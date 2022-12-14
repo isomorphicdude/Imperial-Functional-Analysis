@@ -270,21 +270,67 @@ by letting $\varepsilon \downarrow 0$
         To see this, consider 
         $$c_0 = \{(x_n): \lim_{n \to \infty} = 0\} \subset \ell^{\infty}$$
     \end{enumerate}
+
+\textbf{Claim:} \((c_0)^* \cong \ell^1\ \)
+\begin{proof}
+    (Sketch) We show the following statements are true:
+    \begin{enumerate}[1)]
+        \item \(\Lambda_y: c_0 \to \real, x \mapsto \Lambda_y(x)\) is well-defined and bounded for any 
+        $y \in \ell^1$.  
+        \[|\Lambda_y(x)| \leq \norm{x}_{\infty} \norm{y}_1\]
+
+        \item The map \( \ell^1 \to c_0^*, y \mapsto \Lambda_y\) is a linear isometry. To check 
+        \(\norm{\Lambda_y}_* \geq \norm{y}_1\), use \(x = \sum_{i=1}^n \rm{sign}(y_i)e_i\), as before, where
+        \(n \geq 1\).  
+
+        Clearly, \(x \in c_0\) and  
+        \[\Lambda_y(x) = \sum_{i=1}^n \rm{sign}(y_i) \Lambda_y(e_i)=\sum_{i=1}^n |y_i|\]
+        so for \(y \neq 0\)  
+        \[\norm{\Lambda_y}_* \geq \frac{|\Lambda_y(x)|}{\norm{x}_{\infty}}=|\Lambda_y(x)|=\Lambda_y(x)=\sum_{i=1}^n |y_i|\]
+
+        and letting \(n \to \infty\) gives the result.  
+
+        \item \(y \mapsto \Lambda_y\) is onto: similar as before (exercise),
+    \end{enumerate}
+\end{proof}
 \end{remark}  
 
-
-
 \begin{definition}
-    (Dual Operators)
+    (Dual Operators) 
+    \((X, \norm{\cdot}_X)\), \((Y, \norm{\cdot}_Y)\) are normed spaces over \(\real\), and \(A: X \to Y\) is a bounded linear operator.  
+    Then the dual operator 
+    \[A^*: Y^* \to X^*\]
+    is defined by  
+    \[A^* y^* \overset{\rm{def}}{=} y^* \circ A \qquad \forall y^* \in Y^* \]
+    where \(A^* y^* : X \to \real\)
 \end{definition}  
+
+A note on the notation: For \(\ell \in X^*\), instead of \(\ell(x)\), we write \(\inne{\ell}{x}\). Then the above is equivalent to
+\[\inne{A^* y^*}{x} = \inne{y^*}{A x} \qquad \forall x \in X, y^* \in Y^*\]  
+
+Later we will show that if \(A\) is a bounded linear operator, then \(A^*\) is also bounded and \(\norm{A^*}=\norm{A}\)
+using Hahn-Banach; if \(X, Y\) are Hilbert spaces, then we can use the Riesz representation theorem instead.
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item \(A \in \real^{m \times n}\) a real matrix, which induces linear map \(L_A: \real^n \to \real^m, L_Ax=Ax\).
+              If \(A^T\) is the transpose of \(A\) and \(i_k: \real^k \to (\real^k)^* \) is the canonical isomorphisim, then
+              \[(L_A)^* \circ i_m = i_n \circ L_{A^T}: \qquad \real^m \to (\real^n)^*\]
+        \item More generally, if \(H\) is a Hilbert space, \(A: H \to H\) is a bounded linear operator with \(\Lambda: H\to H^*\) as the
+                canonical isomorphism, the operator
+                \[\tilde{A^*} \overset{\rm{def}}{=} \Lambda^{-1} \circ A^* \Lambda: H \to H\]
+            is called the adjoint of \(A\) (and one writes \(A^*\) for \(\tilde{A^*}\) with abuse of notation). Thus,
+            \[\inne{\tilde{A^*}y}{x} = \inne{y}{Ax}, \qquad x,y \in H\]
+            where \(\inne{\cdot}{\cdot}\) is the inner product on \(H\). If \(A=\tilde{A^*}\), then \(A\) is \textbf{self-adjoint}.
+    \end{enumerate}
+\end{example}  
+
 
 \begin{definition}
     (Adjoint Operators)
 \end{definition}    
 
-\begin{example}
-    (Adjoint operators as matrices)
-\end{example}  
+
 
 \begin{remark}
     
