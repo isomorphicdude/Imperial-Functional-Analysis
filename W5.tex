@@ -33,11 +33,11 @@
 % FA and LA
 \newcommand{\inne}[2]{\left<{#1},{#2}\right>}
 \newcommand{\norm}[1]{\left\|{#1}\right\|}
-\newcommand{\hbs}{$\mathscr{H}$ }
+\newcommand{\hbs}{\(\mathscr{H}\) }
 \newcommand{\hbp}{\mathscr{H}}
 \newcommand{\dual}[1]{{#1}^*}
 \newcommand{\sequ}[1]{\left({#1}\right)_1^\infty}
-\newcommand{\func}[3]{${#1}:{#2}\xrightarrow{}{#3}$}
+\newcommand{\func}[3]{\({#1}:{#2}\xrightarrow{}{#3}\)}
 \newcommand{\prf}{\textit{proof}:   }
 
 \newcommand{\cgr}[3]{{#1}\equiv {#2} \,(\bmod \,\,{#3})}
@@ -86,28 +86,28 @@
 \maketitle
 \section{Hahn-Banach Theorem}
 \begin{definition}[sublinear function]\rm\nextline
-	Let $X$ be a vector space. \func{p}{X}{\real} is a sublinear function if the following hold:
+	Let \(X\) be a vector space. \func{p}{X}{\real} is a sublinear function if the following hold:
 	\begin{itemize}
-		\item $p(kx)=kp(x),$ for all $x\in X$ and $k\geq0$
-		\item $p(x+y)=p(x)+p(y),\,\,\forall x,y\in X$
+		\item \(p(kx)=kp(x),\) for all \(x\in X\) and \(k\geq0\)
+		\item \(p(x+y)=p(x)+p(y),\,\,\forall x,y\in X\)
 	\end{itemize}
 \end{definition}
 
 \begin{example}[sublinear function]\rm\nextline
-    Any linear map is sublinear. $p(x)=\norm{x}_X$ on $X$ is also sublinear.
+    Any linear map is sublinear. \(p(x)=\norm{x}_X\) on \(X\) is also sublinear.
 \end{example}
 
 \begin{theorem}[Hahn-Banach Theorem]\rm\nextline
-    Let $X$ be a normed space and $M\subset X$ a linear subspace. \func{p}{X}{\real} sublinear, \func{f}{M}{\real} linear with 
-    $f(x)\leq p(x)\,\,\forall x\in M$.(*)
-    Then there exists a linear map \func{F}{X}{\real} with $F|M=f$ and $F(x)\leq p(x)\,\,\forall x\in X$
+    Let \(X\) be a normed space and \(M\subset X\) a linear subspace. \func{p}{X}{\real} sublinear, \func{f}{M}{\real} linear with 
+    \(f(x)\leq p(x)\,\,\forall x\in M\).(*)
+    Then there exists a linear map \func{F}{X}{\real} with \(F|M=f\) and \(F(x)\leq p(x)\,\,\forall x\in X\)
 \end{theorem}
 % proof begins
 \textbf{proof:}\\
-    If $M=X$, simply choose $F=f$.\\
-    Else, choose $x\not \in M$ and set $M_1=\{x+tx_1:x\in M,t\in\real\}$, which is a linear subspace of $X$. Idea is to extend $F$ to $M_1$ such that  (*) holds on $M_1$ and then repeat this process.
+    If \(M=X\), simply choose \(F=f\).\\
+    Else, choose \(x\not \in M\) and set \(M_1=\{x+tx_1:x\in M,t\in\real\}\), which is a linear subspace of \(X\). Idea is to extend \(F\) to \(M_1\) such that  (*) holds on \(M_1\) and then repeat this process.
     \begin{pf}{Part I: One-dimensional Extension}{}
-    For all $x,y\in M$:
+    For all \(x,y\in M\):
     $$
     f(x)+f(y)
     \stackrel{f\,linear}{=}f(x+y)
@@ -122,25 +122,24 @@
 \alpha\stackrel{def}{=}\sup_{x\in M}\left(f(x)-p(x-x_1)\right)<\infty
     $$
     Define \func{f_1}{M_1}{\real} by 
-    $$f_1(x+tx_1)=f(x)+t\alpha,\,\,x\in M,\,t\in \real$$
+    \[f_1(x+tx_1)=f(x)+t\alpha,\,\,x\in M,\,t\in \real\]
     {\bf Lemma:}
-       We claim: 1) $f_1$ is linear.\quad 
-        2) $f|M=f$.\quad 
-       3)$f_1(x)\leq p(x)\,\forall x\in M_1$ .
+       We claim: 1) \(f_1\) is linear.\quad 
+        2) \(f|M=f\).\quad 
+       3)\(f_1(x)\leq p(x)\,\forall x\in M_1\) .
 
     1) and 2) follows from checking definition.\\
     proof of 3):
-    By definition of $\alpha$,  $\forall x\in M$ : $f(x)=\alpha\leq f(x)-(f(x)-p(x-x_1))=p(x-x_1)$. On the other hand, taking supremum over $x$ in (**) yields $\forall y \in M$ : $f(y)+\alpha\leq p(y+x_1)$. Overall:
+    By definition of \(\alpha\),  \(\forall x\in M\) : \(f(x)=\alpha\leq f(x)-(f(x)-p(x-x_1))=p(x-x_1)\). On the other hand, taking supremum over \(x\) in (**) yields \(\forall y \in M\) : \(f(y)+\alpha\leq p(y+x_1)\). Overall:
     $$
     \forall x\in M:\quad f_1(x\pm x_1)=f(x)\pm \alpha\leq p(x\pm x_1)
     $$
-    Apply with $t^{-1}(\in M)$ for $t>0$, in place of $x$ and multiply both side by $t$ to find
+    Apply with \(t^{-1}(\in M)\) for \(t>0\), in place of \(x\) and multiply both side by \(t\) to find
     $$
     \forall x\in M:\quad f_1(x\pm x_1)\leq  tp(t^{-1}x\pm x_1)\stackrel{i)}{\leq}{p(x\pm x_1)}
     $$
 
-    NB: If $X$ has a countable basis ($e_i,\,i\geq 1
-    $), then one can take $x_1=e_1$ and proceed by induction. For general cases, we use Zorn's lemma.
+    NB: If \(X\) has a countable basis \(\{e_i,\,i\geq 1\}\), then one can take \(x_1=e_1\) and proceed by induction. For general cases, we use Zorn's lemma.
     
     \end{pf}
 
@@ -148,7 +147,7 @@
     % Zorn's lemma
     \begin{lemma}[Zorn's lemma]%\label{Zorn's Lemma}
         \rm\nextline
-        If $P$ is a nonempty partially ordered set and that every totally ordered subset of $P$ has an upper bound , then $P$ has
+        If \(P\) is a nonempty partially ordered set and that every totally ordered subset of \(P\) has an upper bound , then \(P\) has
         a maximal element.
     \end{lemma}
 
@@ -160,94 +159,94 @@ P=\{(N,g):N\in X,\,\text{linear},\, g:N\rightarrow\real,\,\text{linear},\,g|_M=f
     $$
     (N,g)\leq(\sigma,h)\stackrel{def.}{\equiv}N\subset\sigma,\,h|_N=g
     $$
-    Then $(P,\leq)$ is partially ordered, $(M,f)\in P$ so $P\not=\emptyset$. Assume $(N_i,g_i)_{i\in I}$ totally ordered. set $N=\cup_{i\in I}N_i$ and for $x\in N$, $g(x)=g_i(x)$ if $x\in N_i$.
+    Then \((P,\leq)\) is partially ordered, \((M,f)\in P\) so \(P\not=\emptyset\). Assume \((N_i,g_i)_{i\in I}\) totally ordered. set \(N=\cup_{i\in I}N_i\) and for \(x\in N\), \(g(x)=g_i(x)\) if \(x\in N_i\).
 
-    Then $(N,g)\in P$. Indeed $N\subset X$ is linear and $g$ is well-defined. To see this, consider $x\in N_i\cap N_k$, $N_i\subset N_k$, then  $g|_{N_i}=g_i$ have $g_i(x)=g_k(x)$. Also $g$ is linear with $g\leq $p on N. To see linearity, take $x,y\in N$ then $x\in N_i$ and $y \in N_k$ for some $i,k\in I$ and $N_i\subset N_k$ (reverse same). so, $x,y\in N_k$ and 
+    Then \((N,g)\in P\). Indeed \(N\subset X\) is linear and \(g\) is well-defined. To see this, consider \(x\in N_i\cap N_k\), \(N_i\subset N_k\), then  \(g|_{N_i}=g_i\) have \(g_i(x)=g_k(x)\). Also \(g\) is linear with \(g\leq \)p on N. To see linearity, take \(x,y\in N\) then \(x\in N_i\) and \(y \in N_k\) for some \(i,k\in I\) and \(N_i\subset N_k\) (reverse same). so, \(x,y\in N_k\) and 
     $$
 g(x+y)\stackrel{def}{=}g_k(x+y)\stackrel{g,lin}{=}g_k(x)+g_k(y)\stackrel{def}{=}g(x)+g(y)
     $$
-    Similarly, one can check $g\leq p$ on $N$. (exercise)
+    Similarly, one can check \(g\leq p\) on \(N\). (exercise)
 
-    $(N,g)$ is an upper bound for $(N_i,g_i)_{i\in I}$ since $N_i\subset N$ and $g|_{N_i}=g_i$ by definition.
+    \((N,g)\) is an upper bound for \((N_i,g_i)_{i\in I}\) since \(N_i\subset N\) and \(g|_{N_i}=g_i\) by definition.
 
-    So Zorn's lemma applies here and yields that $(P,\leq)$ has a maximal element $(N,g)\in P$. set $F=g$. By definition of $P$. all properties required of $F$ hold and $N=X$. For other wise we can apply Part I) to $(N,g)$ and find $(N_1,g_1)\in P$ with $(N,g)<(N_1,g_1)$,which violates maximality of $(N,g)$. 
+    So Zorn's lemma applies here and yields that \((P,\leq)\) has a maximal element \((N,g)\in P\). set \(F=g\). By definition of \(P\). all properties required of \(F\) hold and \(N=X\). For other wise we can apply Part I) to \((N,g)\) and find \((N_1,g_1)\in P\) with \((N,g)<(N_1,g_1)\),which violates maximality of \((N,g)\). 
     \end{pf}
 %--------proof ends---------
 \newpage
-\begin{remark}[H-B over $\comp$]\rm\nextline
-    There is a version of Hahn-Banach theorem for $X$ over $\comp$, where \func{p}{X}{\real} is called $\comp$-sublinear if \begin{itemize}
-        \item $p(ax)=|a|p(x)\,\,\forall x\in X$ and $a\in \comp$
+\begin{remark}[H-B over \(\comp\)]\rm\nextline
+    There is a version of Hahn-Banach theorem for \(X\) over \(\comp\), where \func{p}{X}{\real} is called \(\comp\)-sublinear if \begin{itemize}
+        \item \(p(ax)=|a|p(x)\,\,\forall x\in X\) and \(a\in \comp\)
         \item ii) holds.
     \end{itemize}
-    Then the H-B theorem holds for $X$ over $\comp$, if $p$ is $\comp$-sublinear and (*) replaced by
+    Then the H-B theorem holds for \(X\) over \(\comp\), if \(p\) is \(\comp\)-sublinear and (*) replaced by
     $$
     |f(x)|\leq p(x)\forall x\in M
     $$
-    The conclusion is the same with $|F|\leq p$ on $X$ instead.
+    The conclusion is the same with \(|F|\leq p\) on \(X\) instead.
     \begin{pf}{}{}
-        Apply H-B to $f_1=Re(f)$ which is linear and $f_2=im(f)$
+        Apply H-B to \(f_1=Re(f)\) which is linear and \(f_2=im(f)\)
     \end{pf}
 \end{remark}
 
-From now on $X$ is linear space over $\real$ and endowed with a norm.
+From now on \(X\) is linear space over \(\real\) and endowed with a norm.
 \newpage
 \section{Application of Hahn-Banach} 
 \begin{corollary}[extending a linear functional]\rm\nextline
-    $M\subset X$ linear, $f\in \dual M$. Then $\exists F\in \dual X$ with $F|_M=f$ and $\norm{F}_{\dual{X}}=\norm{f}_{\dual{X}}$
+    \(M\subset X\) linear, \(f\in \dual M\). Then \(\exists F\in \dual X\) with \(F|_M=f\) and \(\norm{F}_{\dual{X}}=\norm{f}_{\dual{X}}\)
     \begin{pf}{}{}
-    Define \func{p}{X}{\real} via $p(x)=\norm{x}_X\norm{f}_{\dual M}$
-    $p$ is sublinear and $\forall x\in M$:
+    Define \func{p}{X}{\real} via \(p(x)=\norm{x}_X\norm{f}_{\dual M}\)
+    \(p\) is sublinear and \(\forall x\in M\):
     $$
 f(x)\leq|f(x)=\norm{x}_X\frac{|f(x)|}{\norm{x}_X}\leq\norm{x}_X\norm{f}_{\dual M}=p(x)
     $$
     Then apply Hahn-Banach theorem. 
     \end{pf}
 \end{corollary}
-{{For $\dual x\in \dual X$ recall notation$ \dual x(x)=\inne{\dual x}{x}$, $x\in X$}}
+{{For \(\dual x\in \dual X\) recall notation\( \dual x(x)=\inne{\dual x}{x}\), \(x\in X\)}}
 \begin{theorem}\rm\nextline
-    $\forall x \in  X$, $\exists \dual x \in \dual X$, s.t. $\inne{\dual x}{x}=\norm{x}_X^2=\norm{\dual x}_{\dual X}^2$
+    \(\forall x \in  X\), \(\exists \dual x \in \dual X\), s.t. \(\inne{\dual x}{x}=\norm{x}_X^2=\norm{\dual x}_{\dual X}^2\)
     \begin{pf}{}{}
-    $M\stackrel{def}{=}{span\{x\}}$. Define
-  $f(t)=t\norm{x}^2_X\,\forall t\in \real$
+    \(M\stackrel{def}{=}{span\{x\}}\). Define
+  \(f(t)=t\norm{x}^2_X\,\forall t\in \real\)
     .Then \func{f}{M}{\real} is linear and 
     $$
     \norm{f}_{\dual M}=\sup_{\norm{tx}_X\leq 1}|f(x)|=\norm{x}_X
     $$
-    so $f\in \dual M$. Apply corollary to extend $f$ to $\dual x\stackrel{def}{=}F\in \dual X$ with $\norm{\dual x}_{\dual X}=\norm{f}_{\dual X}=\norm{x}_X$ and $\inne {\dual x}{x}=f(x)=\norm{x}^2_X. $\end{pf}
+    so \(f\in \dual M\). Apply corollary to extend \(f\) to \(\dual x\stackrel{def}{=}F\in \dual X\) with \(\norm{\dual x}_{\dual X}=\norm{f}_{\dual X}=\norm{x}_X\) and \(\inne {\dual x}{x}=f(x)=\norm{x}^2_X. \)\end{pf}
 \end{theorem}
 \begin{remark}\rm\nextline
     The theorem gives dual characterization of norm.
 \end{remark}
 Using H-B, one can "separate" all sort of things.
 \begin{proposition}[separating points by dual element]\rm\nextline
-	Let  $x,y\in X$, $\exists l\in\dual{X}$ such that $l(x)\neq l(y)$.
+	Let  \(x,y\in X\), \(\exists l\in\dual{X}\) such that \(l(x)\neq l(y)\).
 	\begin{pf}{}{}
-		Choose $l\in \dual{X}$ to be the dual functional of $(y-x)\in X$. \\Then $l(y-x)=\norm{y-x}^2_X>0\implies l(y)\neq l(x)$.
+		Choose \(l\in \dual{X}\) to be the dual functional of \((y-x)\in X\). \\Then \(l(y-x)=\norm{y-x}^2_X>0\implies l(y)\neq l(x)\).
 	\end{pf}
 \end{proposition}
 
 
 
 \begin{proposition}[separation from subspaces]\rm\nextline
-    $M\subset X$ is a linear space, closed. Assume $x_0\not\in M$ such that $d\equiv dist(x_0,M)$, then $\exists \ell\in\dual{X}$ with $\ell|_M=0$ and $\norm{\ell}_\dual{X}=1$ and $\ell(x_0)=d$.
+    \(M\subset X\) is a linear space, closed. Assume \(x_0\not\in M\) such that \(d\equiv dist(x_0,M)\), then \(\exists \ell\in\dual{X}\) with \(\ell|_M=0\) and \(\norm{\ell}_\dual{X}=1\) and \(\ell(x_0)=d\).
     \begin{pf}{}{}
-        Let $M_0=\{xt+x_0:x\in M\}$. Define \func{f}{M_0}{\real} which is linear, $f(x+tx_0)=td$. Then apply corollary to obtain extension $l\stackrel{def}{=}F\in \dual X$ with $\norm{l}_{\dual X}=1$.
+        Let \(M_0=\{xt+x_0:x\in M\}\). Define \func{f}{M_0}{\real} which is linear, \(f(x+tx_0)=td\). Then apply corollary to obtain extension \(l\stackrel{def}{=}F\in \dual X\) with \(\norm{l}_{\dual X}=1\).
     \end{pf}
     \end{proposition}
 
     The proven theorem has a lot of mileage. For instance:
     \begin{corollary}\rm\nextline
-        Apply H-B with $M=\{0\}$, $x_0=x/{\norm{x}_X}$, theorem p.34 with $\dual x\stackrel{def}{=}\norm{x}_Xl$
+        Apply H-B with \(M=\{0\}\), \(x_0=x/{\norm{x}_X}\), theorem p.34 with \(\dual x\stackrel{def}{=}\norm{x}_Xl\)
     \end{corollary}
 
         \begin{theorem}\rm\nextline
-            $\dual X$ separable $\implies$ $X$ separable.
+            \(\dual X\) separable \(\implies\) \(X\) separable.
             \\
             Proof uses the theorem.
         \end{theorem}
 In particular this gives the following corollary:
 \begin{corollary}\rm\nextline
-    $\dual{\ell^\infty}\not\cong \ell^1$
+    \(\dual{\ell^\infty}\not\cong \ell^1\)
 \end{corollary}
 From theorem p.34 one gets a dual characterization of the norm
 \begin{corollary}\rm\nextline
@@ -266,7 +265,7 @@ Moreover, the supremum in i) is always attained.
 \end{corollary}
 
 \begin{theorem}\rm\nextline
-    Let $X$,$Y$ be normed spaces and $A\in\mathcal{L}(X,Y)$.\\ The dual operator \func{\dual A}{\dual Y}{\dual X} is bounded and $\norm{\dual A}=\norm{A}$
+    Let \(X\),\(Y\) be normed spaces and \(A\in\mathcal{L}(X,Y)\).\\ The dual operator \func{\dual A}{\dual Y}{\dual X} is bounded and \(\norm{\dual A}=\norm{A}\)
     \begin{pf}{}{}
         \begin{equation}
             \begin{split}
@@ -276,35 +275,35 @@ Moreover, the supremum in i) is always attained.
                 &=\sup_{\norm{x}_X=1}\norm{Ax}_Y
             \end{split}
         \end{equation}
-        where in the last step we used  that "$\leq$" holds and supremum over $\dual y$ is attained by thm p.34.
+        where in the last step we used  that "\(\leq\)" holds and supremum over \(\dual y\) is attained by thm p.34.
     \end{pf}
 \end{theorem}
 
 \subsection{Zorn's lemma}
 \begin{definition}[Partial Order]\rm \nextline
-    A partial order on set $X$, is a binary relation, written generically $\leq$, satisfying following property.
+    A partial order on set \(X\), is a binary relation, written generically \(\leq\), satisfying following property.
     \begin{itemize}
-        \item transitivity: if $a\leq b$ and $b\leq c$ then $a\leq c$
-        \item reflexivity: $a\leq a$
-        \item anti-symmetry: if $a\leq b$ and $b\leq a$ then $a=b$
+        \item transitivity: if \(a\leq b\) and \(b\leq c\) then \(a\leq c\)
+        \item reflexivity: \(a\leq a\)
+        \item anti-symmetry: if \(a\leq b\) and \(b\leq a\) then \(a=b\)
 
     \end{itemize}
-    If we also have that for any $a$ and $b$, either $a\leq b$ or $b\leq a$, then we say $\leq$ is a total order.
+    If we also have that for any \(a\) and \(b\), either \(a\leq b\) or \(b\leq a\), then we say \(\leq\) is a total order.
 
 \end{definition}
 
 \begin{definition}[Upper bound]\rm\nextline
-    Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$, we say an element $x\in X$ is an {\bf upper bound} of $Y$ if $y\leq x\,\,\forall y\in Y$.
+    Let \(X\) be a set partially ordered by \(\leq\) and \(Y\subset X\), we say an element \(x\in X\) is an {\bf upper bound} of \(Y\) if \(y\leq x\,\,\forall y\in Y\).
 
 \end{definition}
 
 \begin{definition}[Maximal element]\rm\nextline
-    Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$. say $x\in X$ is a maximal element of $X$ if $x\leq m$ implies $m=x$.
+    Let \(X\) be a set partially ordered by \(\leq\) and \(Y\subset X\). say \(x\in X\) is a maximal element of \(X\) if \(x\leq m\) implies \(m=x\).
 
 \end{definition}
 \begin{lemma}[Zorn's lemma]\label{Zorn's Lemma}\rm\nextline
-    If $X$ is a nonempty partially ordered set with the
-    property that every totally ordered subset of $X$ has an upper bound in $X$, then $X$ has
+    If \(X\) is a nonempty partially ordered set with the
+    property that every totally ordered subset of \(X\) has an upper bound in \(X\), then \(X\) has
     a maximal element.
 \end{lemma}
 
