@@ -1,0 +1,47 @@
+\usepackage[utf8]{inputenc}
+\usepackage{svg, amsfonts, amsmath, amssymb, 
+            todonotes, float, geometry, todonotes,
+             amsthm, setspace, enumerate, ragged2e}
+             
+% docmute subfiles standalong are used to input contents of other latex files into the main.tex
+\usepackage{import, standalone, docmute, subfiles}
+            
+\usepackage[hidelinks]{hyperref}
+% \newgeometry{vmargin={15mm}, hmargin={12mm,12mm}}
+\svgpath{{figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\mf}[1]{\mathbf{#1}}
+\newcommand{\ca}[1]{\mathcal{#1}}
+
+% defines shortcuts for inner product, norm
+\newcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\norm}[1]{||#1||}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for numbering the theorems            
+\theoremstyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the following are not in italics
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{claim}[thm]{Claim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\doublespacing
+% \raggedleft

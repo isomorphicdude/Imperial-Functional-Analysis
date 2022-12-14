@@ -1,0 +1,293 @@
+\documentclass{article}
+
+\input{commands.tex}
+
+\title{Functional Analysis Chapters 4 and 5}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Duality}  
+
+Recall that the space of all bounded linear operators is defined as
+
+$$
+\mathcal{L}(X,Y) = \{A: X \to Y, A \textrm{ bounded, linear}\}
+$$ 
+
+$\mathcal{L}(X,Y)$ is Banach if $Y$ is Banach and it has norm  
+
+$$
+\norm{A} = \norm{A}_{\mathcal{L}(X,Y)} = \sup_{\norm{x}_X \leq 1} \norm{Ax}
+$$  
+
+An Important special case is  
+
+$$
+X^* \overset{\textrm{def}}{=} \mathcal{L}(X,\real)
+$$  
+
+which is the \textit{dual space} of $X$.  
+
+\begin{definition}
+    (Dual Spaces) The space of all continuous linear operators $\mathcal{L}(X, \real)$ is called the \textbf{dual space} of $X$ and is denoted as  $X^*$
+\end{definition}  
+
+\begin{remark}
+    $X^*$ is always Banach (eventhough $X$ may not be). We often abbreviate $\norm{\cdot}_* = \norm{\cdot}_{X^*}$. The elements of $X^*$ are called (bounded, linear) \textbf{functionals}.
+\end{remark}
+
+Dual spaces play a central role in functional analysis. They are easiest to grasp in the following contexts.  
+
+\subsection{Duality in Hilbert Spaces}  
+In this section, let $(H, {\langle \cdot, \cdot \rangle}_H )$ be a Hilbert space over $\real$. For $y\in H$, we define the map  
+
+\begin{equation*}
+    \Lambda_y: X \to \real, \qquad x \mapsto {\langle y, x \rangle}_H
+\end{equation*}  
+
+We note that this is an injective map from $H$ to its dual $H^*$ and we will show that this is in fact a bijective isometry.  
+
+\begin{lemma}
+    (Mapping to dual space)
+    \begin{enumerate}[i)]
+        \item $\Lambda_y \in H^*$
+        \item The map $\Lambda: H \to H^*$ is a linear isometry with $||\Lambda_y||_{*}=||y||$
+    \end{enumerate}
+\end{lemma}  
+
+\begin{proof}
+    \begin{enumerate}[i)]
+        \item We need to check the linearity and boundedness of the operator $\Lambda_y^*$. The former follows from that of the inner product and the latter is proven by applying Cauchy-Schwarz  
+        \begin{equation*}
+            ||\Lambda_y||_* = \sup_{x\in H, ||x|| \leq 1} |\inne{y}{x}_H| \leq \norm{y}_H
+        \end{equation*}  
+        which implies $\Lambda_y \in H^*$
+        
+        \item Choose $x = \frac{y}{\norm{y}_H}$ to attain the equality in the equation above , whence we have $\norm{\Lambda_y}_*=\norm{y}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    (Riesz Representation)  
+    For every $\ell \in H^*$, there is a unique $y \in H$, such that $\ell=\Lambda_y$
+\end{theorem}  
+
+\begin{proof}
+    We show the existence and uniqueness of such a linear operator.  
+    \begin{itemize}
+        \item \textbf{(Existence)} If $\ell(x)\equiv 0$, then take $y=0$. Otherwise, assume $\norm{\ell}_*=1$ (as we can replace $\ell(\cdot)$ by $\frac{\ell(\cdot)}{\norm{\ell}_*}$).  
+        By the definition of $\norm{\cdot}_*$, there is a sequence of $(y_n)_{n\in \natu} \subset H$ with  
+        \begin{equation*}
+            |\ell(y_n)| \to \norm{\ell}_*, \qquad \norm{y_n}=1, \forall n \in \natu
+        \end{equation*}
+        We will show that the limit of this sequence is the desired $y$.  
+        
+        \textbf{Claim 1:} The sequence $(y_n)_{n \in \natu}$ is Cauchy   
+        
+        Apply the parallelogram identity to $x = \frac{y_n}{2}$ and $y = \frac{y_m}{2}$, so we have  
+        \begin{equation*}
+            \forall n,m \geq 1, \qquad \norm{\frac{y_n-y_m}{2}}^2=1-\norm{\frac{y_n+y_m}{2}}^2
+        \end{equation*}  
+        Using linearity and boundedeness of $\ell$,   
+        \begin{equation*}
+            \frac{1}{2} |l(y_n)+l(y_m)| = |l(\frac{y_n+y_m}{2})| \leq \norm{l}_* \norm{\frac{y_n+y_m}{2}}
+        \end{equation*}  
+        The LHS of the equation above converges to $1$ by assumption on $(y_n)_{n \in \natu}$, which implies and $(y_n)_{n \in \natu}$ is Cauchy.  
+        Since $H$ is complete, there is a unique $y$, such that $y_n \to y$  
+        
+        \textbf{Claim 2:} $\ell=\Lambda_y$  
+        
+        Since $\textrm{span}\{y\}$ is closed, we can consider the orthogonal decomposition $H = \textrm{span}\{y\} \oplus (\textrm{span}\{y\})^{\perp}$.  
+        It suffices to show:  
+        \begin{enumerate}[(1)]
+            \item $\ell(y)=\Lambda_y(y), \forall y \in \textrm{span}\{y\}$
+            \item $\ell(x)=\Lambda_y(x), \forall x \in (\textrm{span}\{y\})^{\perp}$
+        \end{enumerate}  
+        To show (1), assume wlog $\norm{y}=1$, we note by continuity of $\ell$  
+        \begin{equation*}
+            \ell(y) = \lim_{n \to \infty} |\ell(y_n)| = \norm{\ell}_*=1
+        \end{equation*}  
+        and 
+        \begin{equation*}
+            \norm{y}^2_H = \inne{y}{y}_H =\Lambda_y(y)=1
+        \end{equation*}  
+        So $\Lambda_y(y)=\ell(y)$.  
+        
+        To show (2), we need to argue that 
+        \begin{equation*}
+            \ell(x)=0, \qquad \forall x \in (\textrm{span}\{y\})^{\perp}
+        \end{equation*}  
+        Now take $y_a = \frac{y+ax}{\sqrt{1+a^2}}$ and $\norm{y_a}=1$, where $y \in \textrm{span}\{y\}, a\in \real$ and $x \in (\textrm{span}\{y\})^{\perp}$. By definition of the norm $\norm{\cdot}_*$ and (1),  
+        \begin{equation*}
+            \ell(y_a)  \leq |\ell(y_a)| \leq 1 = \ell(y)
+        \end{equation*}  
+        So $\ell(y_a)$ has a global maximum at $a=0$ ($y_0=y$). Therefore,  
+        \begin{equation*}
+            0 = \frac{d}{da} \ell(y_a) \Bigr|_{a=0} = \frac{d}{da} \frac{1}{\sqrt{1+a^2}} (\ell(y)+a\ell(x))=\ell(x)
+        \end{equation*}  
+        So $\ell(x)=\Lambda_y(x), \forall x \in (\textrm{span}\{y\})^{\perp}$.
+        
+        \item \textbf{(Uniqueness)}  
+        If $\ell=\Lambda_y=\Lambda_z$ for some $y,z \in H$, then  
+        $$
+        \forall x \in H \qquad \Lambda_y(x) = \inne{y}{x}_H = \inne{z}{x}_H = \Lambda_z(x)
+        $$  
+        Pick $x=y-z$, then $\inne{y}{z-x}_H = \inne{z}{z-x}_H \implies \norm{y-z}_H^2=0$. Hence $y=z$.
+    \end{itemize}
+\end{proof}
+
+\begin{corollary}
+    All Hilbert spaces $H$ are isomorphic to their duals $H^*$.
+\end{corollary}  
+
+\begin{unexaminable}
+\begin{example}
+    Some of the examples are:  
+    \begin{itemize}
+        \item $(l^2)^* \cong l^2$
+        \item $(L^2(\mu))^* \cong L^2(\mu)$
+    \end{itemize}
+\end{example}
+\end{unexaminable}
+
+\subsection{Duality in Banach Spaces}  
+
+\begin{theorem}
+    (Conjugates are duals) For all $p \in (1, \infty)$, $(\ell^p)^* \cong \ell^q$, where $\frac{1}{p}+\frac{1}{q}=1$
+\end{theorem}  
+
+\begin{proof}
+    For $y \in \ell^q$ define  
+    \begin{align*}
+        \Lambda_y: \ell^p &\to \real \\
+        x &\mapsto \Lambda_y(x) = \sum_{n \in \natu} y_n x_n
+    \end{align*}
+\begin{lemma} (cf. \todo{what lemma})
+\label{isometry in lp dual}
+\begin{enumerate}[i)]
+    \item $\Lambda_y \in (\ell^p)^*$
+    \item $\Lambda: \ell^q \to (\ell^p)^*, y \mapsto \Lambda_y$ is a linear isometry
+\end{enumerate}  
+\end{lemma}
+\begin{enumerate}[i)]
+    \item By Hölder's inequality,  
+    	\begin{equation*}
+		\left|\Lambda_y(x)\right|
+		\leq\sum_{n=1}^{\infty}|y_n x_n|
+		\leq\norm{y}_q\norm{x}_p
+	\end{equation*}
+	in particular $\Lambda_y$ is well-defined (i.e. maps to $\real$). The inequality implies $\norm{\Lambda_y}_* \leq \norm{y}_q$.   
+	In fact, one has equality. Let $x=(x_n)_n$ with  
+	$$x_n = \textrm{sign}(y_n) |y_n|^{q-1}$$
+	where the sign function is  
+	\begin{equation*}
+	    \textrm{sign}(t) = \begin{cases}
+	    1 & t \geq 0 \\
+	    -1 & t<0
+	\end{cases}
+	\end{equation*}
+	with $\textrm{sign}(t)t=|t|, \forall t \in \real$.  
+	Then $x \in \ell^p$ as $|x_n|^p=|y_n|^{p(q-1)}=|y_n|^q$ so  
+	$$
+	\norm{x}_p = \left(\sum_{n \in \natu} |y_n|^q\right)^{\frac{1}{p}} = \norm{y}_q^{\frac{q}{p}} = \norm{y}_q^{q-1}. 
+	$$
+	and
+	$$
+	|\Lambda_y(x)| = |\sum_{n \in \natu} x_ny_n| = \sum_{n \in \natu} |y_n|^q = \norm{y}^q_q =\norm{y}_q\norm{x}_p 
+	$$
+	which implies  
+	$$
+        \norm{\Lambda_y}_* \geq \frac{|\Lambda_y(x)|}{\norm{x}_p} = \frac{\Lambda_y(x)}{\norm{x}_p} = \norm{y}_q
+	$$
+        from which ii) follows.
+\end{enumerate}
+To complete the proof of the theorem, we have to show the following analogue of Riesz representation theorem (which applies only when $p=q=2$).  
+
+\begin{lemma}
+    $\Lambda: \ell^q \to (\ell^p)^*$ given by $y \mapsto \Lambda_y$ is surjective (onto).
+\end{lemma}  
+Let $e_n = (0, \ldots, 0, 1, 0, \ldots) \in \ell^p$ and define $y_n = \ell(e_n)$ for $\ell \in (\ell^p)^*$
+
+\textbf{Claim:} 
+\begin{enumerate}[i)]
+    \item $y = (y_n) \in \ell^q$
+    \item $\ell = \Lambda_y$ for some $y$
+\end{enumerate}  
+
+Consider the "truncated y": $y^{(n)}=(y_1, \ldots, y_n, 0, \ldots) = \sum_{i=1}^n y_i e_i \in \ell^q$ and 
+$$x^{(n)}=\sum_{i=1}^{n}|y_{i}|^{q-1} \textrm{sign}(y_i) e_i \in \ell^p$$ 
+
+Then as before: $\norm{x^{(n)}}_p = \norm{y^{(n)}}_q^{q-1}$  
+with 
+$$
+\ell(x^{(n)})=\sum_{i=1}^{n}|y_{i}|^{q-1} \textrm{sign}(y_i) \ell(e_i) = \sum_{i=1}^n |y_i|^q=\norm{y^{(n)}}^q_q  
+$$
+where $y_i = \ell(e_i)$. Hence
+$$
+ \left(\sum_{i=1}^n |y_i|^q \right)^{\frac{1}{q}} = \norm{y^{(n)}}_q = \frac{\ell(x^{(n)})}{\norm{y^{(n)}}_q^{q-1}} = \frac{\ell(x^{(n)})}{\norm{x^{(n)}}_p} \leq \norm{\ell}_* < \infty
+$$
+and letting $n \to \infty$, Claim (i) follows.  
+
+For ii), let $x \in \ell^p$ and $\varepsilon > 0$. Since $e_n$'s form a Schauder basis, we know that  
+
+$$\norm{x^{(n)}-x}_p \overset{n \to \infty}{\rightarrow} 0$$  
+
+(since by definition of Schauder basis, we have unique rep. of $x = \sum_{n \in \natu} x_n e_n$)
+
+By choosing $n$ large, we can ensure that  
+
+$$\norm{l(x)-l(x^{(n)})}<\varepsilon/2, \qquad |\Lambda_y(x)-\Lambda_y(x^{(n)})| < \frac{\varepsilon}{2}$$  
+
+using continuity of $\ell(\cdot)$ and $\Lambda_y(\cdot)$, where the latter is a consequence of \Cref{isometry in lp dual}.  
+
+But writing  
+
+\begin{equation}
+|\ell(x)-\Lambda_y(x)| \leq |\ell(x)- \ell(x^{(n)})| + |\ell(x^{(n)}) - \Lambda_y(x^{(n)})|+|\Lambda_y(x^{(n)})-\Lambda_y(x)|
+\end{equation}  
+and observing that $\ell(x^{(n)})=\sum_{i=1}^n x_i \ell(e_i) = \sum_{i=1}^n x_i y_i = \Lambda_y(x^{(n)})$, it follows that  
+
+$$
+|\ell(x)-\Lambda_y(x)| \leq \varepsilon \quad \rm{and} \quad \ell=\Lambda_y
+$$  
+by letting $\varepsilon \downarrow 0$
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}[1)]
+        \item The proof extends to $p=1$, so $(\ell^1)^* = \ell^{\infty}$. In fact, for $(X, \mathcal{A}, \mu)$, one has  
+        $$L^p(\mu)^* \cong L^q(\mu) \qquad \forall p \in [1, \infty)$$
+        \item For $p=\infty$, one can still define  
+        $$\Lambda: \ell^1 \to (\ell^{\infty})^* \qquad y \mapsto \Lambda_y$$
+        as before and check that $\Lambda$ is a linear isometry between Banach spaces.
+        
+        However, it is \textbf{not} surjective.  
+        
+        To see this, consider 
+        $$c_0 = \{(x_n): \lim_{n \to \infty} = 0\} \subset \ell^{\infty}$$
+    \end{enumerate}
+\end{remark}  
+
+
+
+\begin{definition}
+    (Dual Operators)
+\end{definition}  
+
+\begin{definition}
+    (Adjoint Operators)
+\end{definition}    
+
+\begin{example}
+    (Adjoint operators as matrices)
+\end{example}  
+
+\begin{remark}
+    
+\end{remark}
+
+\end{document}

@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+
+\title{Week 6}
+
+\begin{document}
+\maketitle
+
+\section{Baire Category and UBP}
+
+\subsection{Baire Category}
+
+We seek a topological characterization of the "size" of the sets. First recall some relevant topological terms.  
+
+\begin{definition}[Clousure and interior]
+    Let $(X,d)$ be a metric space, $A\subset X$.
+    The \textbf{interior} of $A$, written as $\interior(A)$ or sometimes $A^o$:
+    $$ \interior(A)=\bigcup_{G\subset A,\,open}G$$
+    The closure of A, written as $\bar{A}$ or $cl(A)$:
+    $$ \bar{A}=\bigcap_{U\supset A\,closed}U$$
+
+\end{definition}  
+
+\begin{definition}[nowhere dense]
+    A set $A$ is \textbf{nowhere dense} if $\interior{\bar{A}}=\emptyset$
+\end{definition}
+
+\begin{proposition}
+\label{complement of nowhere}
+    $G \subset X$ is open and dense in $X$ if and only if $X \setminus G$ is closed and nowhere dense
+\end{proposition}   
+
+\begin{proof}
+    This is left as an exercise.
+\end{proof}
+
+
+We now present a key lemma.   
+
+
+\begin{lemma}%\rm\nextline
+\label{baire lemma}
+    Let $(X,d)$ be a complete metric space over $\mathbb{R}$, $X\neq\emptyset$.    
+    If $X=\bigcup_{k=1}^\infty A_k$, where each $A_k$ is closed (i.e. $\bar{A_k}=A_k$), then at least one of the $A_k$ contains an open ball. ($\exists k \in \mathbb{N}$ such that $\interior{A_k}\neq\emptyset$)  
+\end{lemma}    
+
+    \begin{proof}
+        Assume for the sake of contradiction, that
+
+        \begin{equation*}
+            \interior(A_k)=\emptyset \tag{$\star$}, \qquad \forall k \in \mathbb{N}
+        \end{equation*}
+        
+        We pick $x_1\in X\setminus A_1$, by \Cref{complement of nowhere}.
+        
+        Since $X\setminus A_1=X\cap A_1^c$ is open, we can find $r_1 \in (0,2^{-1})$ such that
+        
+        $$B(x_1,r_1)\subset X\setminus A_1$$  
+        
+        We can repeat the construction above and find $x_2\in B(x_1,r_1/2)\setminus A_2$ and $r_2 \in (0, 2^{-2} r_1)$, such that 
+        
+        $$B(x_2,r_2)\subset X\setminus A_2$$
+        
+        \textbf{Claim:} $\forall n \in \mathbb{N}$, $\exists x_n \in X$ and $0<r_n<2^{-n}r_1$ such that,  
+        \begin{equation*}
+            B(x_{n+1},r_{n+1})\subset B(x_n,r_n/2)\subset B(x_n,r_n)\subset X\setminus A_n
+        \end{equation*}
+            
+        We prove this claim by induction on $n$.   
+        
+        The base case $n=1$ is shown above.    
+        
+        For $n=k$, we have by the inductive hypothesis, $B(x_k, r_k) \subset X \setminus A_k$, which is open and dense, so we can choose $x_{k+1} \in B(x_k, r_k) \setminus A_{k}$ and $B(x_{k+1}, r_{k+1}) \subset B(x_k, r_k) \setminus A_{k}$.  
+        
+        The sequence $(x_n)_{n \geq 1}$ is Cauchy. By (1)
+        
+        $$d(x_m,x_n)\stackrel{x_m\in B(x_n,r_n/2)}{\leq}r_n/2<2^{-(k+1)}r_1, \qquad \forall m\geq n\geq1$$
+        
+        By completeness, $\exists x_*\in X$, such that $d(x_n,x_*)\to0$ as $n\to \infty$.  
+    
+        \textbf{Claim:} $x_*\in B(x_n,r_n),\,\,\forall k\geq 1$  
+        
+        If the claim is true then,  $x_*\in X\setminus A_k\,\forall k \in \mathbb{N}$ i,e, 
+        $$x_*\in\bigcap_{k\geq1}(x\setminus A_k)=X\setminus\bigcup_{k\geq1}A_k=\emptyset$$
+        which is a contradiction. 
+        To get claim, note that for all $b\geq0$:
+        $$
+        d(x_*,x_n)\leq \underbrace{{d(x_*,x_{n+1})}}_{\to0\,\,n\to\infty}+\underbrace{d(x_{n+1},x_n)}_{\leq r_n/2}
+        $$
+        so by choosing $n$ large enough, the sum is less than $r_n$
+    \end{proof} 
+
+\begin{flushleft}
+The lemma motivates the following.  
+\end{flushleft}
+
+
+\begin{definition}
+    (Category)  
+    Let $(X,d)$ be a metric space.  
+\end{definition}
+\begin{enumerate}[i)]
+    \item $A \subset X$ is called \textbf{meager} (or of the $1^{\textrm{st}}$ Baire Category) if $A = \cup_{k=1}^{\infty} A_k$ with nowhere dense sets $A_k$; denoted $\textrm{cat}(A)=1$.  
+    \item $A \subset X$ is called \textbf{fat} (or of the $2^{\textrm{nd}}$ Baire Category) if it is not meager; denoted $\textrm{cat}(A)=2$.  
+\end{enumerate}  
+
+In this language, \cref{baire lemma} becomes  
+
+\begin{theorem}
+(Baire category)  
+Let  $(X,d)$ be a complete, non-empty metric space. Then $\textrm{cat}(A)=2$.  
+\end{theorem}  
+
+\begin{remark}
+
+\end{remark}
+
+\subsection{UBP}
+\begin{flushleft}
+Uniform boundedness principle is sometimes called Banach–Steinhaus theorem. In its basic form, it asserts that for a family of bounded linear operators  whose domain is a Banach space, pointwise boundedness is equivalent to uniform boundedness in operator norm.
+\end{flushleft}
+
+
+\begin{theorem}[Uniform Boundedness principle] %\rm\nextline
+	Let $X$ be a Banach space, $Y$ a normed vector space. Let $F$ be a collection of bounded linear operators from $X$ to $Y$. If
+	$$
+		\sup_{f\in F}\norm{fx}<\infty,,\,\forall x\in X
+	$$
+	Then
+	$$
+		\sup_{f\in F}\norm{f}<\infty
+	$$
+\end{theorem}
+
+\begin{proof}
+Let $A_n=\{
+	x\in X, \norm{fx}\leq n,\,\forall f\in F
+	\},\,n\in\mathbb{N}$. By assumption we have $\bigcap_{n=1}^\infty A_n=X$.\\
+We claim that there exists some $j\in \mathbb{N}$ such that $A_j$ is non-empty and closed. To see this, first by by Baire category theorem, there is some $A_j$ such that $\overline{A_j}\strut^\mathrm{o}\not=\emptyset$. Then let $\{x_m\}$ be a Cauchy sequence in $A_j$ with $x_n\xrightarrow{}x$, then by continuity of $f$, $\norm{fx}=\lim_{n\to\infty}\norm{fx_m}\leq n,\,\forall f\in F$. So $x\in A_j$, hence $A_j$ is closed, thus $\overline{A_j}=A_j$, $A_j\strut^\mathrm{o}=\overline{A_j}\strut^\mathrm{o}\not=\emptyset$. So we can choose a point $p$ from interior of $A_j$, and $\varepsilon>0$ such that open ball $B_{\varepsilon}(p)\subseteq A_j$.\\
+Now for any $x<\norm{\varepsilon}$ with any $T\in F$ we have
+$$
+	\norm{T(x)}=\norm{T(x+p-p)}=\norm{T(x+p)-T(p)}\leq\norm{T(x+p)}+\norm{T(p)}\leq n+n=2n
+$$
+So for any non-zero vector $x\in X$, we have
+$$
+	\norm{T(x)}=\frac{\norm{x}}{\varepsilon}\norm{T(\varepsilon \frac{x}{\norm{x}})}\leq\frac{2n}{\varepsilon}\norm{x}
+$$
+This holds for any $T\in F$, thus
+$$
+	\sup_{f\in F}\norm{f}\leq\frac{2n}{\varepsilon}<\infty
+$$
+\end{proof}  
+
+A simple corollary of the theorem is Banach limit.
+\begin{corollary}[Banach Limit]\rm\nextline
+	Let $T_n:X\xrightarrow{}Y$ be a sequence of operators, where $X$ and $Y$ are Banach spaces. Suppose $\{T_n\}$ converges pointwise,
+	then these pointwise limits define a bounded linear operator $T$.
+\end{corollary}
+\end{document}

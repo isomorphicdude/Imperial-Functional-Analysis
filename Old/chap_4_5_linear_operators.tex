@@ -1,0 +1,163 @@
+\documentclass{article}
+
+\input{includes}
+
+\title{Functional Analysis Chapters 4 and 5}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Linear Operators}  
+
+\begin{defn}
+    (Bounded Operators)  
+\end{defn}   
+
+\begin{thm}
+    (Properties of Linear Operators)  
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{thm}  
+
+\section{Dual Spaces}  
+
+\begin{defn}
+    (Dual Spaces) The space of all continuous linear operators $\mathcal{L}(X, \R)$ is called the \textbf{dual space} of $X$ and is denoted as  $X^*$
+\end{defn}  
+
+Clearly, the dual $X^*$ is also a linear space and we denote the norm on the dual space as $||\cdot||_*$
+
+\begin{remark}
+    $X^*$ is always a Banach space and its elements are called functionals.
+\end{remark}
+
+\subsubsection{Duality in Hilbert Spaces}  
+In this section, let $(H, {\langle \cdot, \cdot \rangle}_H )$ be a Hilbert space over $\R$. For $y\in H$, we define the map  
+
+\begin{equation*}
+    \Lambda_y: X \to \R, \qquad x \mapsto {\langle y, x \rangle}_H
+\end{equation*}  
+
+We note that this is an injective map from $H$ to its dual $H^*$ and we will show that this is in fact a bijective isometry.  
+
+\begin{lemma}
+    (Mapping to dual space)
+    \begin{enumerate}[i)]
+        \item $\Lambda_y \in H^*$
+        \item The map $\Lambda: H \to H^*$ is a linear isometry with $||\Lambda_y||_{*}=||y||$
+    \end{enumerate}
+\end{lemma}  
+
+\begin{proof}
+    \begin{enumerate}[i)]
+        \item We need to check the linearity and boundedness of the operator $\Lambda_y^*$. The former follows from that of the inner product and the latter is proven by applying Cauchy-Schwarz  
+        \begin{equation*}
+            ||\Lambda_y||_* = \sup_{x\in H, ||x||=1} |\ip{y}{x}_H| \leq \norm{y}_H
+        \end{equation*}  
+        which implies $\Lambda_y \in H^*$
+        
+        \item Choose $x = \frac{y}{\norm{y}_H}$ to attain the equality in the equation above , whence we have $\norm{\Lambda_y}_*=\norm{y}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{thm}
+    (Riesz Representation)  
+    For every $l \in H^*$, there is a unique $y \in H$, such that $l=\Lambda_y$
+\end{thm}  
+
+\begin{proof}
+    We show the existence and uniqueness of such a linear operator.  
+    \begin{itemize}
+        \item \textbf{(Existence)} If $l(x)\equiv 0$, then take $y=0$. Otherwise, assume $\norm{l}_*=1$ (as we can replace...).  
+        By the definition of $\norm{\cdot}_*$, there is a sequence of $(y_n)_{n\in \N} \subset H$ with  
+        \begin{equation*}
+            |l(y_n)| \to \norm{l}_*, \qquad \norm{y_n}=1, \forall n \in \N
+        \end{equation*}
+        We will show that the limit of this sequence is the desired $y$.  
+        
+        \textbf{Claim 1:} The sequence $(y_n)_{n \in \N}$ is Cauchy   
+        
+        Apply the parallelogram identity to $x = \frac{y_n}{2}$ and $y = \frac{y_m}{2}$, so we have  
+        \begin{equation*}
+            \forall n,m \geq 1, \qquad \norm{\frac{y_n-y_m}{2}}^2=1-\norm{\frac{y_n+y_m}{2}}^2
+        \end{equation*}  
+        Using linearity and boundedeness of $l$,   
+        \begin{equation*}
+            \frac{1}{2} |l(y_n)+l(y_m)| = |l(\frac{y_n+y_m}{2})| \leq \norm{l}_* \norm{\frac{y_n+y_m}{2}}
+        \end{equation*}  
+        The LHS of the equation above converges to $1$ by assumption on $(y_n)_{n \in \N}$, which implies and $(y_n)_{n \in \N}$ is Cauchy.  
+        Since $H$ is complete, there is a unique $y$, such that $y_n \to y$  
+        
+        \textbf{Claim 2:} $l=\Lambda_y$  
+        
+        Since $span\{y\}$ is closed, we can consider the orthogonal decomposition $H = span\{y\} \oplus (span\{y\})^{\perp}$.  
+        It suffices to show:  
+        \begin{enumerate}[(1)]
+            \item $l(y)=\Lambda_y(y), \forall y \in span\{y\}$
+            \item $l(x)=\Lambda_y(x), \forall x \in (span\{y\})^{\perp}$
+        \end{enumerate}  
+        To show (1), assume wlog $\norm{y}=1$, we note by continuity of $l$  
+        \begin{equation*}
+            l(y) = \lim_{n \to \infty} |l(y_n)| = \norm{l}_*=1
+        \end{equation*}  
+        and 
+        \begin{equation*}
+            \norm{y}^2_H = \ip{y}{y}_H =\Lambda_y(y)=1
+        \end{equation*}  
+        So $\Lambda_y(y)=l(y)$.  
+        
+        To show (2), we need to argue that 
+        \begin{equation*}
+            l(x)=0, \qquad \forall x \in (span\{y\})^{\perp}
+        \end{equation*}  
+        Now take $y_a = \frac{y+ax}{\sqrt{1+a^2}}$ and $\norm{y_a}=1$, where $y \in span\{y\}, a\in \R$ and $x \in (span\{y\})^{\perp}$. By definition of the norm $\norm{\cdot}_*$ and (1),  
+        \begin{equation*}
+            l(y_a)  \leq |l(y_a)| \leq 1 = l(y)
+        \end{equation*}  
+        So $l(y_a)$ has a global maximum at $a=0$. Therefore,  
+        \begin{equation*}
+            0 = \frac{d}{da} l(y_a) \Bigr|_{a=0} = \frac{d}{da} \frac{1}{\sqrt{1+a^2}} (l(y)+al(x))=l(x)
+        \end{equation*}  
+        So $l(x)=\Lambda_y(x), \forall x \in (span\{y\})^{\perp}$.
+        
+        \item \textbf{(Uniqueness)}  
+        \todo{fill in uniqueness}
+    \end{itemize}
+\end{proof}
+
+\begin{cor}
+    All Hilbert spaces $H$ are isomorphic to their duals $H^*$.
+\end{cor}
+\begin{eg}
+    Some of the examples are:  
+    \begin{itemize}
+        \item $(l^2)^* \cong l^2$
+        \item $(L^2(\mu))^* \cong L^2(\mu)$
+    \end{itemize}
+\end{eg}
+\subsubsection{Duality in Banach Spaces}  
+
+\begin{thm}
+    (Conjugates are duals)
+\end{thm}  
+
+\begin{defn}
+    (Dual Operators)
+\end{defn}  
+
+\begin{defn}
+    (Adjoint Operators)
+\end{defn}  
+\begin{eg}
+    (Adjoint operators as matrices)
+\end{eg}  
+
+\begin{remark}
+    
+\end{remark}
+
+\end{document}

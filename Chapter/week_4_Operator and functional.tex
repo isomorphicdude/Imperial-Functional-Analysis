@@ -1,0 +1,447 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+
+\title{Week 7}
+
+\begin{document}
+\maketitle
+\section{Operator and Functional}
+\subsection{Linear functionals}\label{Linear Functionals}
+Linear functionals are a special class of linear mapping from a vector space to its scalar field.
+
+\begin{definition}[Linear mapping]\rm\nextline
+	Let $X$ and $Y$ be vector spaces over the same scalar field. A mapping $\mathrm{\Lambda}:X\xrightarrow{}Y$ is called a {\bf linear mapping} if
+	$$
+		\Lambda({\alpha x+\beta y})=\alpha\Lambda{x}+\beta \Lambda{y}
+	$$
+	for all $x,y$ vectors and $\alpha,\beta $ scalars.\\
+	When Y is the scalar field, $\Lambda$ is called a {\bf{linear functional}}. In the following text, we assume $Y=\mathbb{C}$ unless mentioned otherwise.
+\end{definition}
+
+\begin{definition}[Image, preimage, kernel]\rm\nextline
+	Let $T$ be linear mapping :$T:X\xrightarrow{}Y$, let $M\subset X$, $N\subset Y$.\\
+	Then the {\bf Image} of X is
+	$$
+		T(M)\equiv \{y\in Y: y=T(x),x\in M\}\subset Y
+	$$
+	The {\bf Preimage} of Y is
+	$$
+		T^{-1}(Y)\equiv \{x\in X: y=T(x),y\in N\}\subset X
+	$$
+	Specially, {\bf Kernel} of $T$ is defined to be the preimage of $\{0_Y\}$,a set containing only the null-element of Y ($0_Y$ is a scalar 0 when $Y$ is the scalar field:
+	$$
+		\text{Ker}(Y)\equiv T^{-1}(\{0_Y\})=\{x\in X: T(x)=0_Y,y\in N\}\subset X
+	$$
+\end{definition}
+
+\subsubsection{Boundedness and continuity}
+In this section we shall see a very nice result about linear functional, which links their boundedness and continuity
+
+\begin{definition}[Boundedness]\rm\nextline
+	Let $X$ be a nomred vector space. $\Lambda:X\xrightarrow{}\mathbb{C}$ a linear functional. Then $\Lambda$ is {\bf bounded} if there exists a constant $M$, such that for all $x\in X$, we have $$\norm{\Lambda(x)}\leq M\norm{x}$$
+
+
+\end{definition}
+
+\begin{definition}[Functional norm]\rm\nextline
+	For a bounded linear functional $\Lambda:X\xrightarrow{}\mathbb{C}$, we define its norm as follows:
+
+	$$
+		\norm{\Lambda}=\sup_{x\in X}{\left\{\norm{\Lambda(x)},\norm{x}\leq1\right\}}
+	$$
+\end{definition}
+
+\begin{proposition}[An inequality of no name]\rm\nextline
+	Let $X$ be a nomred vector space. $\Lambda:X\xrightarrow{}\mathbb{C}$ a bounded linear functional.
+	Then
+	$$
+		\norm{\Lambda(x)}\leq\norm{\Lambda}\norm{x}
+	$$
+	\begin{pf}{}{}
+	Let $e\in X$ be such that $\norm{e}=1$.
+	Then:
+	\begin{equation}
+		\begin{split}
+			\norm{\Lambda}\norm{e}&=\sup_{x\in X}{\left\{\norm{\Lambda(x)},\norm{x}\leq1\right\}}\norm{e}\\
+			&\leq \norm{\Lambda(e)}\norm{e}\\
+			&=\norm{\Lambda(e)}
+		\end{split}
+	\end{equation}
+	Then for arbitrary non-zero vector $x\in\dual X$ we write $x=\norm{x}\frac{x}{\norm{x}}$ and exploit linearity to finish the proof.
+\end{pf}
+\end{proposition}
+Definition for continuous linear functional is similar to the that of continuous function in real-analysis, changing absolute value to corresponding norms. It is a routine exercise to check that this indeed defines a norm.
+
+\begin{definition}[Continuous linear functional]\rm\nextline
+	Let $\Lambda:X\xrightarrow{}\mathbb{C}$ be a linear functional. It is continuous at $y\in X$ if for all $\varepsilon>0$, there exists $\delta>0$ such that whenever $x\in\{x\in X, \norm{x-y}<\delta\}$, we have $\norm{\Lambda(x)-\Lambda(y)}<\varepsilon$. If $\Lambda$ is continuous at all $y\in X$, then it is called a {\bf continuous linear map}.
+
+
+\end{definition}
+
+\begin{proposition}[Continuity $\Longleftrightarrow$ Continuity at 0]\rm\nextline
+	Let $\Lambda:X\xrightarrow{}\mathbb{C}$ be a linear functional. Then $\lambda$ is continuous if and only if it is continuous at 0. Proof of this proposition is trivial, left as an exercise.
+
+\end{proposition}
+
+\begin{proposition}[Continuity $\Longleftrightarrow$ Boundedness]\rm\nextline
+	Let $\Lambda:X\xrightarrow{}\mathbb{C}$ be a linear functional. Then $\lambda$ is continuous if and only if it is bounded.
+	\begin{pf}{Part I: Continuity implies Boundedness}{}
+	$(\Longrightarrow)$We first show that continuity implies boundedness. We know $\Lambda$ is continuous at 0, so fix $\varepsilon>0$, we may find $\delta_0>0$ such that $\norm{x}<\delta_0\Longrightarrow \norm{\Lambda(x)}<\varepsilon$. So for any $y\in X$ we have that:
+	\begin{equation}
+		\begin{split}
+			\Lambda(y)&=\Lambda\left(\frac{2\norm{y}}{\delta_0}\left(\frac{\delta_0}{2}\frac{y}{\norm{y}}\right)\right)\\
+			&=\frac{2\norm{y}}{\delta_0}\Lambda\left(\frac{\delta_0}{2}\frac{y}{\norm{y}}\right)\\
+			&\leq\frac{2\norm{y}}{\delta_0}\varepsilon=\frac{2\varepsilon}{\delta_0}\norm{y}
+		\end{split}
+	\end{equation}
+	Hence $M=2\varepsilon/\delta_0$ gives a bound of the functional.
+\end{pf}
+\begin{pf}{Part II:Boundedness implies Continuity}{}
+	$(\Longleftarrow)$Now we show that boundedness implies continuity. By last proposition we may reduce this to showing that boundedness implies continuity at 0. Let $K$ be such that
+	$$
+		\Lambda(x) \leq K\norm{x},\quad\forall x\in X
+	$$
+	Now fix $\varepsilon>0$, let $\delta=\frac{\varepsilon}{2K}$. Then when $x<\delta$, we have
+	\begin{equation}
+		\begin{split}
+			\Lambda(x)&\leq K\norm{x}\\
+			&< K \delta\\
+			&= K \frac{\varepsilon}{2K}\\&
+			=\frac{\varepsilon}{2}<\varepsilon\\
+		\end{split}
+	\end{equation}
+	Hence $\Lambda$ is continuous at 0, which finishes the proof.
+\end{pf}
+\end{proposition}
+
+\begin{proposition}[Sequential continuity]\rm
+	Let $\Lambda:f\xrightarrow{}Y$ be a mapping, $X$ is a metric space and $Y$ is topological space. Then it is continuous if and only if, for any sequence $\{x_n\}$ in $X$ such that $x_n\longrightarrow{}x_0\in X$, we have $f(x)\longrightarrow{}f(x_0)\in Y$
+\end{proposition}
+
+\newpage
+
+
+
+\subsection{Basic Operator Theory}
+\subsubsection{Bounded linear operator}
+\begin{definition}[Linear operator]\rm\nextline
+	Let $X$, $Y$ be normed vector spaces. A mapping $\Gamma:X\xrightarrow{}Y$ is a linear operator if
+	$$
+		\Gamma(k_1x_1+k_2x_2)=k_1\Gamma(x_1)+k_2\Gamma(x_2)
+	$$
+	for all $x_1,x_2\in X$ and $k_1,k_2$ scalars.
+\end{definition}
+
+\begin{definition}[Bounded linear operator]\label{continuity of LO}\rm\nextline
+	Let $X$, $Y$ be normed vector spaces. Linear operator $\Gamma:X\xrightarrow{}Y$ is bounded if there is a finite constant $C>0$ such that
+	$$
+		\norm{\Gamma(x)}_Y\leq\norm{x}_X
+	$$
+	holds for all $x\in X$.
+\end{definition}
+
+\begin{definition}[Operator norm]\label{operator norm}\rm\nextline
+	Let $X$, $Y$ be normed vector spaces, $\Gamma:X\xrightarrow{}Y$ a bounded linear operator, then
+
+	$$
+		\norm{\Gamma}\equiv\sup_{x\in X}{\left\{\norm{\Gamma(x)}_Y,\norm{x}_X\leq1\right\}}
+	$$
+	The definition is very similar to that for functionals.
+\end{definition}
+
+\begin{proposition}[Boundedness and continuity]\rm\nextline
+	Let $X$, $Y$ be normed vector spaces, $\Gamma:X\xrightarrow{}Y$ a linear operator. Then the following three are equivalent:
+	\begin{itemize}
+		\item $\Gamma$ is bounded
+		\item $\Gamma$ is continuous
+		\item $\Gamma$ is continuous at 0
+		\item {\bf Also:} $\Gamma$ is Lipschitz, i.e.$\exists C>0$ with $\norm{Aa-Ab}_Y\leq C\norm{a-b}_X,\,\,\forall a,b\in X$
+		\item {\bf Also:} $\Gamma$ is continuous at any $x\in X$
+
+	\end{itemize}
+\end{proposition}
+
+\begin{definition}[$\mathscr B$]\rm\nextline
+	We define $\mathscr B(X,Y)$ to be the collection of all bounded linear operators from $X$ to $Y$. We also write $\mathscr B(X,X)$ as $\mathscr B(X)$
+\end{definition}
+
+\begin{proposition}\rm\nextline
+	$\mathscr B(X,Y)$ is normed linear space in operator norm. Specially if $Y$ is Banach then $\mathscr B(X,Y)$ is also Banach.
+\end{proposition}
+
+\begin{theorem}\rm\nextline
+	Every finite dimensional linear operator is bounded.
+\end{theorem}
+
+\begin{theorem}\rm\nextline
+	A bounded linear operator attains its inf and sup on  a compact set.
+\end{theorem}
+
+%\subsubsection{Adjoints of Hilbert space operators.}
+
+
+
+\subsection{Duality}
+
+\subsubsection{Dual space: A nice self-symmetry}
+One may notice, that linear maps also form a vector space: multiple of a linear map are also linear, sum of linear maps are also linear. We'll formalize this idea to the concept of dual space.
+
+\begin{definition}[Dual Space]\rm\nextline
+	Let $X$ be a Banach space. Define its dual space $X^*$ as follows:
+	$$
+		X^*=\left\{
+		T: T\text{ is a bounded linear functional on } X
+		\right\}
+	$$
+\end{definition}
+\begin{proposition}[Dual space of Banach Space]\label{dual space Banach}\rm\nextline
+	Dual space of a Banach space is also Banach, under functional norm.\\
+	\begin{pf}{}{}
+
+	Here we assume scalar field to be $\mathbb{C}$.\\
+	First,to check that $\dual{X}$ is a vector space, it suffices to show that multiple and sum of bounded linear functional remains to be linear and bounded. This part of proof is trivial.\\
+	Second, we shall check that $\dual X$ is complete under functional norm.
+	To show this, we let $\{T_n\}$ to be a Cauchy sequence in $\dual X$, which means given $\varepsilon>0$, there exists a positive constant $N$ such that for all $a,b>N$, we have
+	$$
+		\norm{T_a-T_b}<\varepsilon
+	$$
+	So given any point $x\in X$, we have that
+	\begin{equation}
+		\begin{split}
+			\norm{T_a(x)-T_b(x)}&=\norm{(T_a-T_b)x}\\
+			&\leq \norm{T_a-T_b}\norm{x}\\
+			&<\varepsilon\norm{x}
+		\end{split}
+	\end{equation}
+	This implies that $\{T_n(x)\}$ is a Cauchy sequence on $\mathbb{C}$. By completeness of $\mathbb{C}$, it converges to a point on $\mathbb{C}$. Note that this works for arbitrary $x\in X$, we can define $T$ to be the pointwise limit in following form:
+	$$
+		T(x)\equiv\lim_{n\to\infty}{T_n(x)},\quad\forall x\in X
+	$$
+	We can verify that $T$ is linear:
+	\begin{equation}
+		\begin{split}
+			T(ax)&=\lim_{n\to\infty}{T_n(ax)}\\
+			&=\lim_{n\to\infty}{aT_n(x)}\\
+			&=a\lim_{n\to\infty}{T_n(x)}\\
+			&=aT(x)
+		\end{split}
+	\end{equation}
+
+	\begin{equation}
+		\begin{split}
+			T(x)+T(y)&=\lim_{n\to\infty}{T_n(x)}+\lim_{n\to\infty}{T_n(y)} \\
+			&=\lim_{n\to\infty}{T_n(x)+T_n(y)}\\
+			&=\lim_{n\to\infty}{T_n(x+y)}\\
+			&=T(x+y)
+		\end{split}
+	\end{equation}
+
+	It remains to show that $T$ is bounded. Fix $r>0$, we can find $a\in\mathbb{N}$ such that $\norm{T-T_a}<r$,
+	\begin{equation}
+		\begin{split}
+			\norm{T}&=\norm{T-T_a+T_a}\\
+			&\leq\norm{T-T_a}+\norm{T_a}\\
+			&=r+\norm{T_a}
+		\end{split}
+	\end{equation}
+	Hence T is also bounded, so $T\in \dual X$, which finishes the proof for completeness.
+\end{pf}
+\end{proposition}
+
+
+
+We have shown that dual space of a Banach space is Banach, what about dual space of a Hilbert space? In the following result, we'll see that the inner product of a Hilbert space allows great elegance in structure of its dual space, which is identity in the sense of isomorphism.
+
+\subsubsection{Riesz representation Theorem}\label{Riesz representation theory}
+\begin{theorem}[Riesz representation Theorem]\rm
+	A bounded linear functional $T$ on Hilbert space \hbs is uniquely associated with a vector $h_0\in \hbp$ in the sense that
+	$$
+		T(h)=\inne{h}{h_0},\quad\forall h\in\hbp\quad\text{ and  }\norm{T}=\norm{h}
+	$$
+	\begin{pf}{}{}
+	If $T=0$ we simply choose $h_0=0$.\\
+	When $T\neq0$,let $S=Ker(T)$, pick a non-zero vector $w\in S^\perp$, without loss of generality, we may assume $T(w)=1$. Then, for any $x\in \hbp$, we observe for vector $(T(x)w-x)$ that
+	$$
+		T\left(T(x)w-x\right)=T(w)T(x)-T(x)=T(x)-T(x)=0
+	$$
+	Therefore $(T(x)w-x)\in S$, which means $(T(x)w-x)\perp w$. Hence
+	$$
+		\inne{(T(x)w-x)}{w}=0,\quad\forall w\in\hbp
+	$$
+	By (left) linearity of inner product,
+	$$
+		\inne{x}{w}=T(x)\inne{w}{w}=T(x)\norm{w}^2
+	$$
+	Thus
+	$$
+		T(x)=\frac{\inne{x}{w}}{\norm{w}}=\inne{x}{\frac{w}{\norm{w}^2}}
+	$$
+	So $h=w/\norm{w}^2$ is the desired vector. Also,
+	\begin{equation}
+		\begin{split}
+			\norm{T}&=\sup_{x\in \hbp}{\left\{\norm{T(x)},\norm{x}\leq1\right\}}\\
+			&=\sup_{x\in \hbp}{\left\{\norm{\inne{x}{h}},\norm{x}\leq1\right\}}\\
+			&=\norm{\inne{\frac{h}{\norm{h}}}{h}}\\
+			&=\norm{h}
+		\end{split}
+	\end{equation}
+	The result shows that \hbs=$\dual\hbp$ in the sense that the ma from $h$ to corresponding linear functional is an isometry: $\norm{h}=\norm{T}$
+\end{pf}
+\end{theorem}
+\begin{remark}[Alternative proof of Riesz Representation theorem]\rm\nextline
+	The proof above is purely algebraic, in the sense that no analysis is used. However, one may realise that the proof relies heavily on the construction of $T(x)w-x$, which may not be that easy to thought of. Hence another completely different proof is presented here. 
+	\begin{pf}{Riesz Representation theorem}{}
+	The idea of the proof is to construct a sequence of points that finally converges to the desired $h_0$.\\
+	If $\norm{T}=0$, we simply choose $h_0=0$.\\
+	If not, without loss of generality, let's consider operators with norm equal to 1.We first show existence of such $h_0$. Let $T\in\hbp^*$ be such that $\norm{T}=1$.\\
+	Now by definition of operator norm, specializes to 1-Euclidean norm on $\real$:
+	$$
+		\norm{T}=\sup_{x\in\hbp}\frac{\norm{Tx}}{\norm{x}} =\sup_{\norm{x}=1}\norm{Tx}
+	$$
+	The existence of {\bf supremum} in the definition guarantees that we can find a sequence of points $(x_n)_0^\infty$ in $\{x\in\hbp:\norm{x}=1\}$ that gives
+	$$
+		\lim_{n\to\infty}{T(x_n)}=1
+	$$
+	The norm can be removed here as we're discussing functionals \func{T}{\hbp}{\real}, and for each $y\in\hbp$ if $T(y)<0$ there is $(-y)\in\hbp$ and $T(-y)=-T(y)>0$ by linearity.\\
+	We claim that $(x_n)_1^\infty$ is Cauchy. To prove this, we first notice  parallelogram equality in Hilbert space:
+	$$
+		2\norm{a}^2+2\norm{b}^2=\norm{a+b}^2+\norm{a-b}^2
+	$$
+	we have that
+	\begin{equation}
+		\begin{split}
+			\norm{x_m-x_n}^2&=2\norm{x_m}^2+2\norm{x_n}^2-\norm{x_m+x_n}^2\\
+			&=2\times1+2\times1-\norm{x_m+x_n}^2\\
+			&=4-\norm{x_m+x_n}^2\\
+			&=4-\norm{T}^2\norm{x_m+x_n}^2\\
+			&\leq4-\norm{Tx_m+Tx_n}^2\\
+			&=\leq4-(Tx_m+Tx_n)^2
+		\end{split}
+	\end{equation}
+	Taking $n$ and $m$ to infinity we have that $\norm{x_m-x_n}\to 0$, which means that $(x_n)_1^\infty$ is Cauchy.
+	\end{pf}
+\end{remark}
+\begin{theorem}[Dual space of Hilbert space]\label{dual space Hilbert}\rm\nextline
+	Let $\hbp$ be a Hilbert space, then its dual space $\hbp^*$ is isomorphic to  itself: $\hbp\cong\hbp^*$, moreover, the natural norm on them is an isometry, which means that the operator norm of a linear functional equals the element that generates this functional by inner product. This is an immediate corollary from results of \hyperref[Riesz representation theory]{Riesz representation theory}.
+\end{theorem}
+
+\subsubsection{Dual space of lp space}\label{lp dual}
+In this section, we consider sequence spaces, $l_p$ space. Specially, when $p=2$, the space is Hilbert. In other cases,  when $p\not=2$, what happens? One may realise that $q=p=2$ is precisely a solution to $1/p+1/q=1$, and $p=q$ gives the self-duality. We will investigate this intuition here and prove that the dual space of $l_p$ is precisely $l_q$, where $1/p+1/q=1$,$p,q\in\real$. One should pay attention here, that $p=\infty$ is slightly different, the result may not hold in given $p=\infty$.
+
+\begin{theorem}[Dual of \texorpdfstring{$\ell^p$}.]\rm\nextline
+	Let $p\in (1,\infty)$, then $(\ell^p)^*\cong\ell^q $, where $1/p+1/q=1$.\\
+	\prf\\
+	The proof has two parts. First we show that every element  $y\in\ell^q$ uniquely defines a linear linear functional \func{\Lambda_y}{X}{\real}, then we prove surjectivity, which means that every functional $l\in(\ell^p)^*$ can be uniquely represented by an element in $\ell^q$. Equation $1/p+1/q=1$ and its variation like $p+q=pq$ and  $1+q/p=q$ will be useful at some steps.
+	\begin{pf}{STEP I}{}
+	Let $y=\sequ{y_n}\in\ell^q$,,define \func{\Lambda_y}{X}{\real}, by 
+	$$\Lambda_y(x)=\sum_{k=1}^{\infty}x_ny_n,\,\,\forall x=\sequ{x_n}\in\ell^p$$
+	We claim that:\begin{itemize}
+		\item $\Lambda_y\in(\ell^p)^*$, which means that $\Lambda_y$ is a bounded linear functional.
+		\item $\norm{\Lambda_y}\equiv\sup\{|\Lambda_y(x)|:\norm{x}_p=1\}=\norm{y}_q$, i.e. the map $y\rightarrow\Lambda_y$ is an isometry.
+	\end{itemize}
+	Linearity immediately follows from definition. To check boundedness, we notice that
+	\begin{comment}
+	\begin{equation}
+		\begin{split}
+		\left|\Lambda_y(x)\right|&=\left|\sum_{k=1}^{\infty}x_ny_n\right|\\
+		&\leq\sum_{k=1}^{\infty}|x_ny_n|\\
+		&\leq\norm{xy}_1\\
+		\text{(Hölder)}\quad&\leq\norm{x}_p\norm{y}_q
+		\end{split}
+	\end{equation}
+	\end{comment}
+	\begin{equation}
+		\left|\Lambda_y(x)\right|=\left|\sum_{k=1}^{\infty}x_ny_n\right|
+		\leq\sum_{k=1}^{\infty}|x_ny_n|
+		\leq\norm{xy}_1
+		\quad\leq\norm{x}_p\norm{y}_q
+	\end{equation}
+	Now, plugging in any $x\in\ell^p$ with norm 1 we get boundedness, and to see isometry we need to find a proper $x$ in $\ell^p$ that saturates the supremum.\\
+	The candidate here is $x=\sequ{x_n}$, with $x_n=sign(y_n)\cdot(y_n)^{q-1}$. We need to check followings:
+	\begin{itemize}
+		\item $x\in\ell^p$
+		\item $|\Lambda_y(x)|=\norm{y}_q\norm{x}_p$
+	\end{itemize}
+	First, we compute the p-norm of $x$:
+	\begin{equation}
+		\begin{split}
+			\norm{x}_p&=\left(\sum_{k=1}^\infty |x_n|^p\right)^{1/p}=\left(\sum_{k=1}^\infty |sign(y_n)\cdot(y_n)^{q-1}|^p\right)^{1/p}\\
+			&=\left(\sum_{k=1}^\infty |(y_n)^{q-1}|^p\right)^{1/p}=\left(\sum_{k=1}^\infty |(y_n)|^q\right)^{1/p}\\
+			&=\left(\sum_{k=1}^\infty |(y_n)|^q\right)^{(1/q)\cdot (q/p)}=\norm{y}_q^{q/p}<\infty
+		\end{split}
+	\end{equation}
+	This gives that $x\in\ell^p$. Then
+	\begin{equation}
+		\begin{split}
+			\Lambda_y(x)&=\sum_{k=1}^{\infty}x_ny_n\\
+			&=\sum_{k=1}^{\infty}(sign(y_n)\cdot(y_n)^{q-1}\cdot y_n)\\
+			&=\sum_{k=1}^{\infty}|y_n|^q\\
+			&=\norm{y}_q^q
+		\end{split}
+	\end{equation}
+	Thus we have that 
+	\begin{equation}
+		\begin{split}
+			\frac{|\Lambda_y(x)|}{\norm{x}}&=\frac{|\norm{y}_q^q|}{\norm{y}_q^{q/p}}\\
+			&=\norm{y}_q^{q-{q/p}}\\
+			&=\norm{y}_q
+		\end{split}
+	\end{equation}
+	Which shows isometry. \\
+\end{pf}
+\begin{pf}{STEP II}{}
+	Now let us assume $l\in(\ell^p)^*$. We define natural basis of an $\ell^q$ space: $e_n=\sequ{(e_n)_k}$ , where $(e_n)_k=1$ if $k=n$, otherwise $(e_n)_k=0$. Each $e_n$ is a sequence with all entries zero, except at $k-th$ entry the value is 1. Now consider a sequence of $y_n=\sum_{k=1}^nl(e_k)\cdot e_k$,i.e. $y_n$ is a sequence where $(y_n)_k=l(e_k)$ for $k\leq n$. By denoting $x^n$ to be the sequence with first n-terms equals to corresponding term of x and any term afterwards set to zero, we claim the following three things:
+	\begin{itemize}
+		\item $y_n\in\ell^q$ for all $n\in\natu$. 
+		\item $l(x^{(n)})=\sum_{k=1}^nx_k(y_n)_k$
+		\item $\lim_{n\to\infty}\norm{l(x)-xy_n}=0$
+	\end{itemize}
+	First, note that each $y_n$ is a finite sum, its q-norm is finite, hence $y_n\in\ell^q$ for all $n\in\natu$.  Then we notice that we can express $x^(n)$ as a finite summation:
+	$$
+	x^{(n)}=\sum_{k=1}^nx_ke_k\implies l(x^{(n)})=\sum_{k=1}^nl(x_ke_k)=\sum_{k=1}^nx_k\cdot l(e_k)
+	$$
+	Then the second statement is clear.
+	$$
+	\sum_{k=1}^nx_k(y_n)_k=\sum_{k=1}^nx_k\cdot l(e_k)=l(x^{(n)})
+	$$
+	For the last statement, we use separability of any $\ell^p$ space and express $x$ uniquely by canonical Schauder basis $e_k$: $x=\sum_{k=1}^\infty x_ke_k$. Thus for any $\varepsilon>0$, an index $s\in\natu$ such that 
+	$$
+	\norm{y_nx-y_nx^{(n)}}\leq
+	\norm{x-x^{(n)}}\cdot\norm{y_n}
+	<\varepsilon/2
+	$$
+	Then, by continuity (boundedness) of $l$, we can choose another index $t\in\natu$ such that 
+	$$
+	\norm{l(x)-l(x^{(n)})}<\varepsilon/2
+	$$
+	Then 
+	\begin{equation}
+		\begin{split}
+			\norm{l(x)-y_nx}&=\norm{l(x)-l(x^{(n)})+y_nx^{(n)}-y_nx}\\
+			&\leq\norm{l(x)-l(x^{(n)})}+\norm{y_nx^{(n)}-y_nx}\\
+			&<2\varepsilon/2=\varepsilon
+		\end{split}
+	\end{equation}
+	By letting $n\to\infty$ we have that that $x\lim_{n\to\infty}y_n=l(x)$ for all $x\in\ell^p$. Thus we can define $y=\lim_{n\to\infty}y_n$. $y$ is an element of $\ell^q$ since $\sequ{y_n}$ is Cauchy, since the different of any $y_m$ and $y_n$ is the partial sum from m-th term to n-th term of a sequence that converges in q-norm, and thus can be arbitrarily small when n and m goes to infinity. Existence and uniqueness of $y$ is then follows from completeness of $\ell^q$. This shows that every linear functional in $(\ell^p)^*$ uniquely gives an element in $\ell^q$, which proves that $\Lambda_y$ is a surjection, hence we have an isomorphism as stated: $(\ell^p)^*\cong\ell^q$.
+\end{pf}
+\end{theorem}
+
+\newpage
+\subsubsection{Dual operator}\label{dual operator}
+\begin{definition}[dual operator]\rm\nextline
+	Let $X$, $Y$ be Banach spaces, with norm $\norm{\cdot}_X$ and $\norm{\cdot}_Y$. Let A be an operator from $X$ to $Y$ : \func{A}{X}{Y}. \\
+	Then dual operator of $A$, \func{A^*}{Y^*}{X^*} is defined as follows:
+	$$
+	A^*y^*=y^* A:x\rightarrow \real,\quad \forall y^*\in Y^*
+	$$
+	Adopting the notation of bracket, which means to write a linear functional $l$ acting on an element $x$: $l(x)$ to be $\inne{l}{x}$, dual operator can be rewritten in this way:
+	$$
+	\inne{A^*y^*}{x}=\inne{y^*}{Ax}
+	$$
+\end{definition}
+\begin{remark}\rm\nextline
+	\rm This bracket here does not stand for inner product in Banach space. However it's used in a way such that this notation coincides with the adjoint under Hilbert space. This means that under Hilbert space context, one can think of this as an inner product, as every linear functional can be uniquely represented by an element in Hilbert space by Riesz representation theorem.
+\end{remark}
+
+\end{document}

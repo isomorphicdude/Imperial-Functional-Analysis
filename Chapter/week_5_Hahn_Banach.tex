@@ -1,0 +1,256 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+
+\title{Week 5 Hahn-Banach and Consequences}
+
+\begin{document}
+\maketitle
+
+\section{Hahn-Banach Theorem} 
+
+\begin{definition}
+\label{sublinear map}
+(Sublinear functional)
+	Let $X$ be a vector space. \func{p}{X}{\real} is called \textbf{sublinear} if the following holds
+	\begin{enumerate}[i)]
+		\item $p( \alpha x)= \alpha p(x),$ $\forall x\in X$ and $\alpha\geq0$
+		\item $p(x+y) \leq p(x)+p(y),\,\,\forall x,y\in X$
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+    Any linear functional is also sublinear. Also, the norms on $X$ are sublinear.
+\end{example}  
+
+\begin{theorem}
+(Hahn-Banach)
+	Let $M\subset X$ be a linear subspace, \func{p}{X}{\real} is sublinear, and \func{f}{M}{\real} is linear with 
+	
+	$$
+	f(x)\leq p(x) \qquad \forall x\in M
+	$$
+	
+	Then, there exists a linear map \func{F}{X}{\real} with $F|_M=f$ and
+	
+	$$F(x)\leq p(x) \qquad \forall x\in X$$
+\end{theorem}
+
+\begin{lemma}[one-dimensional extension]
+\label{ODEX}
+	Let $X$ be a normed vector space over $\mathbb F$ ($\mathbb{C}$ or $\mathbb{R}$), $Y_n$ is a proper subspace of $X$. Let $v\in X\backslash Y$, $X_{n+1}=\{x+hv:x\in X_n,\,h\in\mathbb{C}\}$
+	. If $T_n:Y\xrightarrow{}\mathbb{F}$ is a bounded linear functional, then there exists a bounded linear functional $T_{n+1}:X_{n+1}\xrightarrow{}\mathbb{F}$ satisfying:
+	\begin{itemize}
+		\item $T_{n+1}(x)=T_n(x)$ for all $x\in X_n$
+		\item $\norm{T_{n+1}}=\norm{T_n}$
+	\end{itemize}
+\end{lemma}
+
+\begin{pf}{One-dimensional extension}{}
+		Define linear functional $P:X_{n+1}\xrightarrow{}\mathbb{R}$ by
+		$$
+			P(x+kv)=T_n(x)-Ck,\,\forall\,x\in X_n,\,k\in\mathbb{R}
+		$$
+		where C is a constant to be determined.
+		First we shall check linearity, which is left as an exercise.
+		Then we shall show that we can find a proper constant $C$ so that $\norm{P}=\norm{T_n}$. Note that $X_n\subset X_{n+1}$, so we have
+		\begin{equation}
+			\begin{split}
+				\norm{P}&=\sup_{x\in X_{n+1}}(\{|Px|:\norm{x}=1\})\\
+				&\geq\sup_{x\in X_{n}}(\{|Px|:\norm{x}=1\})\\
+				&=\sup_{x\in X_{n}}(\{|T_nx|:\norm{x}=1\})\\
+				&=1
+			\end{split}
+		\end{equation}
+		So by choosing $C$ such that $P(x+kv)\leq \norm{x+kv}$ for any $x\in X_n$ and $k\in \mathbb{R}$, we will have that $\norm{P}\leq 1$, giving $\norm{P}=1$. Thus it remains to show that we can find such a constant $C$.\\
+		We aim to find $C$ such that
+		$$
+			|P(x+kv)|=|T_n(x)-Ck|\leq \norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
+		$$
+		Hence,
+		$$
+			T_n(x)-\norm{x+kv}\leq Ck\leq T_n(x)+\norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
+		$$
+		Note that for all $x,y\in X_n$ we have:
+		\begin{equation}
+			\begin{split}
+				T_nx-T_ny&=T_n(x-y)\\
+				&\leq \norm{x-y}\\
+				&=\norm{(x+kv)-(kv+y)}\\
+				&\leq\norm{x+kv}+\norm{y+kv}
+			\end{split}
+		\end{equation}
+		Thus
+		$$
+			l^-=\sup_{x\in X_n,k\in\mathbb{R}}(T_n(x)-\norm{x+kv})\leq  \inf_{x\in X_n,k\in\mathbb{R}}(T_n(x)+\norm{x+kv})=l^+
+		$$
+		Hence we can always find a $C$ such that
+		$$
+			T_n(x)-\norm{x+kv}\leq l^-\leq Ck\leq l^+ \leq T_n(x)+\norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
+		$$
+		Which finishes the proof.
+	\end{pf}
+
+\begin{remark}
+
+\end{remark}  
+
+\begin{proof}
+
+\end{proof}
+
+\begin{definition}
+(Partial Order)
+	A partial order on set $X$, is a binary relation, written generically $\leq$, satisfying following property.
+	\begin{itemize}
+		\item transitivity: if $a\leq b$ and $b\leq c$ then $a\leq c$
+		\item reflexivity: $a\leq a$
+		\item anti-symmetry: if $a\leq b$ and $b\leq a$ then $a=b$
+
+	\end{itemize}
+	If we also have that for any $a$ and $b$, either $a\leq b$ or $b\leq a$, then we say $\leq$ is a total order.
+
+\end{definition}
+
+\begin{definition}
+(Upper bound)
+	Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$, we say an element $x\in X$ is an {\bf upper bound} of $Y$ if $y\leq x$ for all $y \in Y$
+
+\end{definition}
+
+\begin{definition}
+(Maximal element)
+	Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$. say $x\in X$ is a \textbf{maximal element} of $X$ if $x\leq m$ implies $m=x$.
+
+\end{definition}
+\begin{lemma}
+(Zorn's lemma)
+\label{Zorn's Lemma}
+	If $X$ is a nonempty partially ordered set with the
+	property that every totally ordered subset of $X$ has an upper bound in $X$, then $X$ has
+	a maximal element.
+\end{lemma}
+
+
+\subsection{Applications of Hahn-Banach (H-B)}  
+
+Let $(X, \norm{\cdot}_X)$ be a normed vector space, we have the following corollaries.  
+
+\begin{corollary}
+\label{same norm extension}
+(Extending a linear functional)  
+Let $M \subset X$ be a linear subspace. Then $\exists F \in X^*$ with 
+$$F |_M = f \ \rm{and} \ \norm{F}_{X^*}=\norm{f}_{M^*}$$
+\end{corollary}
+
+\begin{proof}
+Define \func{p}{X}{\real} via  
+
+$$p(x) = \norm{x}_X \norm{f}_{M^*}$$  
+
+Note that $p$ is sublinear and $\forall x \in M$ and,  
+
+$$f(x) \leq |f(x)|=\norm{x}_X \frac{|f(x)|}{\hphantom{x} \norm{x}_X} \leq \norm{x}_X \norm{f}_{M^*}=p(x)$$  
+Now apply Hahn-Banach to obtain $F: X \to \real$, with  
+\begin{unexaminable}
+$$\norm{F}_{X^*}(x) \leq \norm{x}_X \norm{f}_{M^*} \implies \norm{F}_{X^*} \leq \norm{f}_{X^*}$$
+and the other direction of the inequality follows as $F |_M = f$
+\end{unexaminable}
+\end{proof}  
+
+\begin{theorem}
+(Dual functional)
+\label{dual charaterization of norm}
+	Let $X$ be a normed linear space. $\forall x\in X,\,\exists x^*\in \dual{X}$ s.t. $$\inne{\dual{x}}{x}\equiv\dual{x}(x)=\norm{x}^2_X=\norm{\dual{x}}^2_{\dual{X}}$$
+\end{theorem}
+
+\begin{proof}
+	Let $M=\text{span}(x)$. Define $f: M \to \real$
+	
+	$$f(tx)=t\norm{x}^2_X \qquad \forall t\in \real$$
+	
+	Then $f$ is linear, and 
+	
+	$$\norm{f}_{\dual{M}} = \sup_{\norm{tx}_X \leq 1} |f(tx)| = \norm{x}_X$$
+	
+	Then we apply \Cref{same norm extension} to extend $f$ to $\dual{x}=F\in \dual{X}$, with $\norm{\dual{x}}_{\dual{X}}=\norm{f}_M=\norm{x}_X$ and $\inne{\dual{x}|_{M}}{x}=f(x)=\norm{x}_X^2$
+\end{proof}
+
+\begin{remark}
+    \Cref{dual charaterization of norm} gives dual characterisation of the norm later.  
+    \begin{unexaminable}
+        When the space is a Hilbert space, this theorem becomes Riesz representation theorem. (without changing notation! That's why bracket is a good notation here) In short, this theorem says that you can always find a linear functional such that for its value for a chosen element is precisely the norm of this element.
+    \end{unexaminable}
+\end{remark}  
+
+Using Hahn-Banach, one can "separate" all sorts of things. Two examples:  
+
+\paragraph{1) Separating points}  
+
+\begin{proposition}
+$\forall x,y \in X$, $x\neq y$, there exists $\ell \in \dual{X}$, such that $\ell(x) \neq \ell(y)$
+\end{proposition}  
+
+\begin{proof}
+    Choose $\ell \in \dual{X}$ according to \Cref{same norm extension} with $y-x$ in place of $x$.  
+    Then  
+    $$\ell (x-y) = \ell(x) - \ell(y) = \norm{y-x}^2_X >0$$ 
+    Thus, $\ell(x) \neq \ell(y)$.
+\end{proof}
+
+\begin{unexaminable}
+	(Question here is do  we need X to be normed? or even Banach?)
+\end{unexaminable}
+
+\paragraph{2) Separating points from closed subspaces (Urysohn-type result)}
+
+\begin{theorem}
+$M \subset X$ linear, closed. Assume $x_0 \in M$, such that  
+$$d = \rm{dist} (x_0, M) = \inf_{x \in M} \norm{x_0-x}_M >0$$
+Then $\exists \ell \in \dual{X}$ with $\ell|_M=0$ and  
+$$\norm{\ell}_{\dual{X}}=1, \  \ell(x_0)=d$$
+\end{theorem}
+
+\begin{proof}
+	Let $M_0=\{x+t x_0: x\in M\}$. Define a linear functional \func{f}{M_0}{\real}, $f(x+tx_0)=td$.
+\end{proof}
+
+From \Cref{dual charaterization of norm}, one gets a dual characterization of the norm:  
+
+\begin{corollary}
+\label{dualilty of norm}
+\end{corollary}
+\begin{enumerate}[i)]
+    \item $\forall x \in X$: $\norm{x}_X = \underset{{\norm{x^*}_{\dual{X}} \leq 1}}{\sup} |\inne{\dual{x}}{x}|$
+    \item $\forall \dual{x} \in \dual{X}$: $\norm{\dual{x}}_{\dual{X}} = \underset{{\norm{x}_X \leq 1}}{\sup} |\inne{\dual{x}}{x}|$
+\end{enumerate}
+The supremum in i) is always achieved.  
+
+\begin{proof}
+For $x=0$, the RHS of i) is $0$ by linearity. Let $x \neq 0$, we show two directions of inequality.  
+\begin{itemize}
+    \item "$\geq$": By homogeneity, we can assume $\norm{x}_X=1$. If $\dual{x} \in \dual{X}$ satisfies $\norm{x^*}_{\dual{X}} \leq 1$, then  
+    $$|\inne{\dual{x}}{x}| \leq \norm{x^*}_{\dual{X}} \norm{x}_X \leq \norm{x}_X$$
+    \item "$\leq$": By \Cref{dual charaterization of norm}, $\exists \dual{x} \in \dual{X}$, such that $|\inne{\dual{x}}{x}|=\norm{x}_X^2=1$. So the supremum is achieved.
+\end{itemize}   
+
+For ii), note that this is the definition of operator norm.   
+\end{proof}
+
+Another consequence \placeholder
+
+\begin{theorem}
+Let $X,Y$ be normed linear spaces and $A \in \blf{X}{Y}$. The dual operator \func{A^*}{\dual{Y}}{\dual{X}} is bounded and $\norm{\dual{A}}_{\blf{\dual{Y}}{\dual{X}}}=\norm{A}_{\blf{X}{Y}}$
+\end{theorem}  
+
+\begin{proof}
+\begin{align*}
+    \norm{\dual{A}} &\stackrel{\textrm{def \ of} \ \norm{\cdot}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}} \norm{\dual{A} \dual{y}}_{\dual{X}} \\
+    &\stackrel{\textrm{def \ of} \  \norm{\cdot}_{\dual{X}}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}} \sup_{\norm{x}_X=1} |\inne{\dual{A}\dual{y}}{x}| \\
+    &\stackrel{\textrm{def \ of} \ \dual{A}}{=} \sup_{\norm{x}_X=1}  \sup_{\norm{\dual{y}}_{\dual{Y}}}  |\inne{\dual{y}}{Ax}| \\
+    &\stackrel{\phantom{\textrm{def \ of} \ \dual{A}}}{=} \sup_{\norm{x}_X=1} \norm{Ax}_Y
+\end{align*}
+where in the last step we used the "$\leq$" direction in the proof of \Cref{dualilty of norm} holds and the supremum over $\dual{y}$ is attained.  
+\end{proof}
+
+\end{document}

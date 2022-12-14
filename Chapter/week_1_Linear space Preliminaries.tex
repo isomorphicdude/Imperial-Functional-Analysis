@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+
+\title{Week 5}
+
+\begin{document}
+\maketitle
+
+\section{Preliminaries}\label{vector space defs}
+This section aims to provide preliminary knowledge to functional analysis. This field of maths is decorated by ideas of both algebra and analysis, particularly linear algebra and real analysis. It is thus important to get familiar with the relevant ideas, as lack of either viewpoint stops you from getting the whole story. At some point, since we are talking about different spaces, topological concepts also comes in. Luckily, they're generally not complicated and presented here as preliminaries.  
+
+
+\subsection{Linear space}
+Mathematicians usually talks about spaces. However they are simply sets with additional structure. Linear spaces, also called vector spaces, are those with linear structure. This means you have vector addition, scalar multiplication, commutativity and distributivity.
+\begin{definition}[Linear space]\rm\nextline
+	A linear space $(V,\oplus,(\mathbb{F},+,\cdot),\odot)$ over a field $\mathbb{F}$, where
+	\begin{itemize}
+		\item $(V,\oplus)$ is an abelian group
+		\item $(\mathbb{F},+,\cdot)$ is a field
+	\end{itemize}
+	and multiplication by a scalar $\odot:\mathbb{F}\times V\xrightarrow{}V$ satisfies for every $\alpha,\beta\in\mathbb{F}$ with $v,\omega\in V$
+	\begin{itemize}
+		\item $\alpha\odot(v\oplus\omega)=\alpha\odot v+\alpha\odot\omega$
+		\item $(\alpha+\beta)\odot v=\alpha\odot v+\beta\odot v$
+		\item $\alpha\odot(\beta\odot v)=(\alpha\cdot\beta)\odot v$
+		\item $\mathbf{1}\cdot v=v$, where $\mathbf{1}$ is unit element in $\mathbb{F}$
+	\end{itemize}
+\end{definition}
+\subsubsection{Examples of linear spaces}
+In this section we have both example and counter example.
+\begin{example}[Vector space over field]\rm\nextline
+	$\mathbb{F}^n$ where $\mathbb{F}$ is a field, $n\in\\natu$ is a linear space. This includes 3 or 2-dimensional vector space over $\real$, or 3-dimensional vector field over $\mathbb{F}_p$. For example, let's check
+	$$
+		V=\mathbb{F}_2^2=\left\{(v_1,v_2)|v_1,v_2\in\mathbb{F}_2\right\}
+	$$
+	with the natural definition of scalar multiplication and term-wise addition over $\mathbb{F}_2$. Note that this is indeed a space of four elements:
+	$$
+		V=\left\{(0,0),(0,1),(1,0),(1,1)\right\}
+	$$
+	With scalars only 1 or 0. Thus it's easy to closure under scalar multiplication. Now consider vector addition, one just have to check every pair of addition and see if still falls into $V$, like
+	$$
+		(1,0)+(1,1)=(0,1)\in V
+	$$
+\end{example}
+\begin{example}\rm\nextline
+	Consider set of convergent sequence:
+	$$
+		V=\left\{\{x_n\}_1^\infty:x_i\in\mathbb{F}\,\forall i\in\mathbb{N},\,and\, \lim_{n\to \infty}x_n\to C\right\}
+	$$
+	First we consider the addition to be term-wise and multiplication applied to whole sequence:
+	$$
+		x+y=\{x_i+y_i\}_1^\infty,\,\alpha\odot x=\{\alpha\cdot x_i\},\,\,\forall x,y\in V,\,\alpha\in\mathbb{F}
+	$$
+	When $C$ is fixed, this is a vector space if and only if $C=0$
+	When $C$ is not fixed, this becomes a vector space.
+\end{example}
+
+\begin{example}[Polynomials]\rm\nextline
+	$V$ is set of all polynomials:
+	$$
+		f(z)=\sum_{j=0}^{n}a_jz^j,\,n\in\mathbb{N}
+	$$
+	with $z\in\mathbb{C}$ and $a_j\in{\mathbb{Q}}$ with addition and multiplication of polynomials. Unfortunately this is not a vector space, since the field is set to be $\mathbb{C}$. When we multiply an element in V by a complex number, say $1+2i$, we could end up in some polynomials with complex coefficient. But this would be a vector space if we change to $a_j\in \mathbb{C}$ or $z\in\mathbb{Q}$
+\end{example}
+
+\begin{example}[Analytic functions]\rm\nextline
+	Consider set of all analytic functions $f:\mathbb{C}\xrightarrow{}\mathbb{C}$ satisfying:
+	$$
+		\frac{d^2}{dz^2}f-\frac{d}{dz}f-2z=0
+	$$
+	This is not a vector space. Take a non-trivial $f$, consider $g=2f$:
+	\begin{equation}
+		\begin{split}\nonumber
+			&\frac{d^2}{dz^2}g-\frac{d}{dz}g-2z\\
+			=&\frac{d^2}{dz^2}(2f)-\frac{d}{dz}(2f)-2z\\
+			=&2\frac{d^2}{dz^2}f-2\frac{d}{dz}f-2z\\
+			=&4z-2z=2z\neq0
+		\end{split}
+	\end{equation}
+	However, removing $-2z$ will make this a vector space.
+\end{example}
+
+\begin{example}[Weak $L^p$ space]\rm\nextline
+	Define $D_f(t)=\{\lambda{x\in\mathbb{R}:|f(x)|>t}\}$, where $\lambda$ is Lebesgue measure on $\mathbb{R}$. Consider:
+	$$
+		L^{p,w}=
+		\left\{
+		f:\mathbb{R}\xrightarrow{}\mathbb{R}:f,\,\,measurable,\,\, and\,\, \exists C>0,\,\,s.t.\,\,D_f(t)<\frac{C^p}{t_p}\,\forall t>0
+		\right\}
+	$$
+	This is a vector space for $p>0$ and $L^p(\mathbb{R})\subset L^{p,w}(\mathbb{R})$. Distributivity and commutativity of scalar operation follows immediately from their definition. The point is to check closure under scalar multiplication and addition.\\
+	$\mathbf{f+g\in L^{p,w}}:$\\
+	Let $f,g\in L^{p,w}$, then we can find $C_1>0 $ and $C_2>0$ with
+	\begin{equation}
+		\begin{split}\nonumber
+			C_1^p>t^p\cdot\lambda\{x:|f(x)|>t\},\,\,\forall t>0\\
+			C_2^p>t^p\cdot\lambda\{x:|g(x)|>t\},\,\,\forall t>0
+		\end{split}
+	\end{equation}
+	Now by triangular inequality we have $|f(x)|+|g(x)|\geq|f(x)+g(x))|$.\\
+	Thus $|(f+g)(x)|>t\implies|f(x)|+|g(x)|>t\implies 2\cdot max(|f(x)|,|g(x)|)>t$.
+	So consider set $A,B,C$:
+	\begin{equation}
+		\begin{split}\nonumber
+			X:&=\{x\in\mathbb{R}:|f(x)+g(x)|>t\}\\
+			Y:&=\{x\in\mathbb{R}:|f(x)|+|g(x)|>t\}\\
+			Z:&=\{x\in\mathbb{R}:2max(|f(x)|,|g(x)|)>t\}=\left\{x\in\mathbb{R}:max(|f(x)|,|g(x)|)>t/2\right\}
+		\end{split}
+	\end{equation}
+	We have $X\subseteq Y\subseteq Z$, thus $\lambda(X)\leq\lambda(Y)\leq\lambda(Z)$.\\
+	Thus $t^p\cdot\lambda(A)\leq 2^p (t/2)^p\lambda\{x:max(|f(x)|,|g(x)|)>t/2\}\leq2^p\cdot max(C_1^p,C_2^p)<\infty$ for all $t>0$.\\
+	Showing closure under scalar multiplication is a bit easier. Take any $t>0,$ we have
+	\begin{equation}
+		\begin{split}\nonumber
+			&t^p\cdot\lambda\{x\in\mathbb{R}:|2f(x)|>t\}\\
+			=&2^p\left(\frac{t}{2}\right)^p\cdot\lambda\{x\in\mathbb{R}:|f(x)|>t/2\}\\
+			<&2^pC_1^p
+		\end{split}
+	\end{equation}
+	Which completes the proof.
+\end{example}
+
+
+\subsection{Metric Linear space}\label{Metric linear space}
+\begin{definition}[Metric linear space]\rm\nextline
+	A metric space $(V,d)$ is called metric linear space if its vector addition and scalar multiplication $\oplus$, $\odot$ are continuous
+\end{definition}
+
+
+\begin{remark}[Equivalence of metrics]\rm\nextline
+	$\oplus$ can be considered as a function: \func{\oplus}{V\times V}{V}, endowed with metric \func{\rho_1}{V\times V}{V} defined as $\rho_1(x_1+y_1,x_2+y_2)=max(d(x_1,x_2),d(y_1,y_2))$
+	or sum \func{\rho_2}{V\times V}{V} defined as $\rho_2(x_1+y_1,x_2+y_2)=d(x_1,x_2)+d(y_1,y_2)$. The two metrics are topologically equivalent, i.e. they induces same topology.\\
+	Similarly, $\odot$ can be considered as a function: \func{\odot}{\mathbb{F}\times V}{V}, endowed with metric \func{\rho_1}{\mathbb{F}\times V}{V} defined as $\rho_1(k_1x_1,k_2x_2)=max(|k_1-k_2|,d(x_1,x_2))$
+	or sum \func{\rho_2}{V\times V}{V} defined as $\rho_2(x_1+y_1,x_2+y_2)=|k_1-k_2|+d(x_1,x_2)$. Again, the two metrics are topologically equivalent.
+\end{remark}
+
+\begin{definition}[Translation invariant]\rm\nextline
+	A metric $\rho$ is translation invariant if for all $x,y,z\in V$, we have  $\rho(x,y)=\rho(x-z,y-z)$
+\end{definition}
+
+\begin{proposition}\rm\nextline
+	Addition is continuous with respect to translation invariant metic.
+\end{proposition}
+
+\begin{proposition}[Metric induced by norm]\rm\nextline
+	Let $\norm{\cdot}$ be a norm on $V$, then its induced metric $\rho(x,y)=\norm{x-y}$ is translation invariant. See definition of norm {\color{red} \hyperref[definition of norm]{here}}.
+\end{proposition}
+
+\subsection{Topology}\label{topology}
+
+\subsubsection{Separability}
+
+\begin{definition}[dense]\rm
+	A set in $S$ metric space $(V,d)$ is dense if there it intersects with any open subset of $V$. Equivalently this is $\forall x\in V,\forall \varepsilon>0$, $D\cap B_{x,\varepsilon}\neq \emptyset$.
+\end{definition}
+
+
+\begin{definition}[separable]\rm
+	A metric space $(V,d)$ is separable if it contains a countable dense subset.
+\end{definition}
+
+\begin{example}[separable space example]\label{separable space example}
+\end{example}
+
+\subsubsection{Schauder Basis and Hamel basis}
+
+\begin{definition}[Schauder basis]\label{Schauder basis}\rm
+	A Schauder basis of Normed vector space $(v,\norm{\cdot})$ is a set $B\subset V$ that is linearly independent, and that $\forall x\in V$, we have a sequence $\{a_n\}$ with $\lim_{n\to\infty}\sum_{k=1}^n a_k b_k\to x$. In plain language, this means that every element of the set can be expressed as a infinite linear combination of the basis.
+\end{definition}
+
+
+\begin{proposition}[Schauder implies separability]\rm\nextline
+	If a normed vector space has a Schauder basis, then it's separable.
+\end{proposition}
+
+\begin{definition}[Hamel basis]\rm\nextline
+	\placeholder
+\end{definition}
+
+\begin{remark}[Hamel basis and Schauder basis]\rm\nextline
+	\placeholder
+\end{remark}
+
+\subsubsection{Compactness}
+\begin{definition}[Compactness]\label{compactness}\rm\nextline
+	Let $(X,d)$ be a metric space. A subset $S\subset X$ is {\bf compact} if any sequence $(x_n)$ in $S$ has a convergent subsequence converges in to some $x\in S$
+\end{definition}
+
+
+\begin{remark}\rm\nextline
+	The definition is "sequential compactness". There're many versions of definition of compactness. One shall really pay attention to the definition in linear algebra or real analysis that compactness is equivalence to closedness and boundedness. We'll see later that this is guaranteed to true only for finite-dimensional spaces. However, it is true that compactness always implies closedness and boundedness. Following examples we prove the implications in detail and present the fact that compactness of space can studied by looking at closed unit ball.
+\end{remark}
+
+
+\begin{proposition}[Compact $\implies$ closed and bounded]\rm\nextline
+	If a set $K$ is compact, then it's closed and bounded. Here, bounded means $\exists L>0$ such that for all $x,y\in K$, we have $d(x,y)\leq L$.\\
+	\begin{pf}{}{}
+		First we show that compact implies closed. Let $(x_n)$ be a convergent sequence in $K$, then by compactness, there is a subsequence of $(x_n)$, name it $(y_n)$ which converges to $y\in K$, but by uniqueness of limit $(x_n)$ also converges to $y\in K$.\\
+		Now we show boundedness by contradiction. Assume $K$ is not bounded. Then we fix $a\in K$, and by unboundedness we have that $\forall n\in \natu,\,\exists x\in K$ with $d(x,a)>n$. Now consider a sequence $(x_n)$ where  $d(x_n,a)>n$ $\forall n>0$. This sequence has no convergent subsequence.
+	\end{pf}
+\end{proposition}
+
+
+\begin{theorem}[F.Riesz]\label{compact unit balls}\rm\nextline
+	Let $(X,\norm{\cdot})$ be a normed vector space. Following are equivalent:
+	\begin{itemize}
+		\item $dim(X)\leq\infty$
+		\item Closed unit ball $B_U=\{x\in X:\norm{x}\leq 1\}$ is compact.
+	\end{itemize}
+	\prf Proof uses a lemma which is shown later\placeholder
+\end{theorem}
+
+\begin{lemma}[F.Riesz]\rm\nextline
+	Let $(X,\norm{\cdot}$ be a normed linear space with a subspace $Y\subset X$,$Y\neq X$.
+	Then for all $\varepsilon\in(0,1)$, there exists $x\in X$ with $\norm{x}=1$ and $d(x,Y)\equiv\inf_{y\in Y} \norm{x-y}>1-\varepsilon$
+	\prf \placeholder
+\end{lemma}
+
+\end{document}
+

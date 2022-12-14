@@ -1,0 +1,263 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+
+\title{Week 8}
+
+\begin{document}
+\maketitle
+% This file is made purely according to Written note
+\section{Open mapping theorem}
+\begin{definition}[Open Ball]\nl
+An open ball in normed linear space $X$ with radius $r>0$ centered at $x\in X$ is
+$$
+B_X(x,r)=\{y\in X:\norm{y-x}_X<r\}
+$$
+Also, when $x=0$ we write 
+$$
+B_X(0,r)\equiv B_x(r)
+$$
+\end{definition}
+
+\begin{definition}[Open map]\nl
+	Let $X$, $Y$ be linear spaces. \func{A}{X}{Y} is {\underline{open}} if $A(U)\subset Y $ is open.
+\end{definition}
+\begin{remark}\hfill
+
+\begin{itemize}
+    \item $A$ being continuous means $A^{-1}(V)\subset{X}$ open $\forall V\subset Y$ open.
+    \item $A$ being continuous need not be open. e.g. $Ax\stackrel{def}{=}0\in Y$
+\end{itemize}
+\end{remark}
+
+\begin{theorem}[Open Mapping Theorem]\nl
+	Let $X,Y$ be Banach, $A\subset\mathcal{L}(X,Y)$. Then:
+	\begin{itemize}
+	    \item[i)] if $A$ is surjective, $A$ is open.
+	    \item[ii)] if $A$ is bijective, then $A^{-1}\in \mathcal{L}(X,Y)$. (Inverse operator theorem)
+	\end{itemize}
+\end{theorem}
+
+\begin{remark}\nl
+ii) important in application. If $A\in\blf{X}{Y}$ is bijective then \func{A^{-1}}{X}{Y} liner is easy (why?). The point is $A^{-1}$ is also bounded, or equivalently continuous.
+\end{remark}
+
+The main step of the proof is the following:
+\begin{lemma}[$A$ as in i)]\nl
+$\exists r>0$ s.t. $B_Y(r)\subset \overline{A(B_x(1))}$
+\begin{pf}{}{}\rm
+Since $A$ is suerjective 
+$$
+Y=\bigcup_{k=1}^\infty A(B_X(k))
+$$
+Since $Y$ is complete, by  Baire Category theorem, $\exists k_0$ s.t. 
+$$ int(\overline{A(B_X(1))})\neq\emptyset$$
+So by surjectivity of $A$, one can find $y_0=Ax_0\in Y$, $r_0>0$ s.t. 
+$$ \underbrace{B_Y(y_0,r_0)}_{=Ax_0+B_Y(r_0)}\subset \overline{A(B_X(k_0))}$$
+By linearity of $A$,
+\begin{equation}\nonumber
+    \begin{split}
+        B_Y(r_0)&\subset\overline{A(B_X(k_0))}-Ax_0 \\ &=\overline{A(B_X(k_0)-x_0)}\\
+        &\subset \overline{A(B_X(k_0+M))}   \\
+        &=(k_0+M)\overline{A(B_X(1))}\\
+    \end{split}
+\end{equation}
+Where $M\stackrel{def}{=}\norm{x_0}_X$. So pick $r=\frac{r_0}{k_0+M}$.
+\end{pf}
+
+\end{lemma}
+Proof of theorem:
+\begin{pf}{}{}
+i) Pick $r$ as in Lemma.\\
+Claim: $B_Y(r/2)\subset A(B_X(1)))$.\\
+If claim holds, then for $U\subset X$ open, pick $x_0\in U$, $s>0$ small so that $B_X(x_0,s)\subset U$. Letting $y_0\stackrel{def}{=}Ax_0$, get 
+$$
+B_Y(y_0,rs/2)=y_0+sB_Y(r/2)\stackrel{claim}{\subset}Ax_0+sA(B_X(1)\stackrel{lin.}{=}A(B_X(x_0,s))\subset A(U)
+$$
+which proves i). To see i) $\implies$ ii), it's enough to show that $B=A^{-1}:Y\to X$ is continuous; but for any $U\subset X$ open, $B^{-1}(U)=(A^{-1})^{-1}(U)=A(U)$
+which is open by i). $\square$
+\end{pf}
+Proof of claim:
+\begin{pf}{}{}
+Fix $y\in B_Y(r/2)$. Need to show: $y=Ax$ for some $x\in X$ with $\norm{x}_X<1.$\\
+We construct a sequence $(x_k)\subset X$ with 
+$$
+\sum_{k=1}^\infty \norm{x_k}_X<1\,\,\text{and}\,\,\sum_{k=1}^\infty Ax_k\stackrel{wrt\norm{\cdot}_Y}{\longrightarrow{}}y,\,n\to\infty
+$$
+By completeness of $X$, $\sum_{k=1}^\infty x_k\stackrel{def.}{=}x$ exists, $x\in B_X(1)$ and by continuity of $A$,
+$$Ax=\sum_{k=1}^\infty Ax_k=y$$
+By lemma above, 
+$$\forall s>0, B_Y(sr)\subset \overline{A(B_X(s))}\,\,(*)$$
+$s=1/2$. Pick $x_1\in B_X(1/2)$ s.t. $\norm{Ax_1-y}<r/2$. Now set $y_1=y-Ax(\in B_X(r/2)$. Iterate. Assume that for some $\geq 1$ have $x_1,......x_k,y_1,......y_k$ s.t.
+$$
+\forall 1\leq\tilde{k}\leq k:\,\,\norm{\tilde{x_k}}_X<2^{-k},\,y_{\tilde{k}}=y_{\tilde{k}-1}-Ax_{\tilde{k}}\in B_Y(2^{-\tilde{k}}r
+$$
+Then using $(*)$ with $s=2^{-(k+1)}$ find $x_{k+1}\in B_X(2^{-(k+1)})$ such that
+$$
+y_{k+1}\stackrel{def}{=}y_k-Ax_{k+1}\in B_Y(2^{-(k+1)}r
+$$
+This yields $\sum{k=1}^{\infty}\norm{x_k}_X<1$ and 
+$$
+y-\sum_{k=1}^n Ax_k=y_1-\sum_{k=2}^n Ax_k=...=y_n\to0\,(n\to \infty)\quad\square
+$$
+\end{pf}
+
+\begin{example}[Equivalence of Norm]\nl
+Let $X=Y$, with norms $\norm{\cdot}_1$ and $\norm{\cdot}_2$ and assume $\exists C>0$ s.t. $$\norm{x}_2\leq C\norm{x}_1,\,\forall x\in X\quad(1)$$
+If $X$ is complete, with respect to both $\norm{\cdot}_1$ and $\norm{\cdot}_2$ then consider $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is open by Theorem (indeed thm applies $b/c$ $A$ is bounded by $(1)$. Since $A$ is bijective, ii) gives that $A^{-1}=id:(X,\norm{\cdot}_2)\to(X,\norm{\cdot}_1)$ is bounded, i.e.
+$$
+\exists C': \norm{A^{-1}}_1=\norm{x}_1\leq C'\norm{x}_2
+$$
+so $\norm{\cdot}_1$ and $\norm{\cdot}_2$ are actually equivalent.
+\end{example}
+
+\begin{example}[Completeness of $Y$]\nl
+Consider $X=C(=C^0[0,1])$ with $\norm{\cdot}_1=\norm{\cdot}_\infty$, $\norm{\cdot}_2=\norm{\cdot}_{L^1}$. Then $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is continuous:
+$$
+\norm{Af}_2
+=\norm{f}_2
+=\int_0^1|f(t)|dt
+\leq\norm{f}_\infty
+=\norm{f}_1
+$$
+but not open. Else by 1),  $\norm{\cdot}_1$ and $\norm{\cdot}_2$ would be equivalent. However consider counter example:
+\begin{equation}\nonumber
+f_n(x)=\left\{
+\begin{split}
+    &{2n^2x} &x\in[0,\frac{1}{2n}]\\
+    &{-2n^2x+2n} &x\in(\frac{1}{2n},\frac{1}{n}]\\
+    &0 &x\in(\frac{1}{n},1]\\
+\end{split}
+\right.\quad\text{satisfy}\quad\norm{f_n}_2=1,\norm{f_n}_1=n\to\infty
+\end{equation}
+This shows $Y$ needs to be complete in theorem.
+\end{example}
+\begin{example}[Completeness of $X$]\nl
+This example shows completness of $X$ is also required.
+Take 
+$$
+X=Y=\{(x_n)\in\ell^\infty:\exists N:x_n=0\,\forall m\geq N\}\subset\ell^\infty
+$$
+with norm $\norm{\cdot}_X=\norm{\cdot}_Y=\norm{\cdot}_\infty$. This is a linear normed space. It's not complete (Exercise: show directly $\overline{X}=c_0$). Another way:
+Define \func{A}{X}{X}, 
+$$
+Ax=(x_1,\frac{x_2}{2},\frac{x_3}{3}\underbrace{......}_{0\,eventually})\quad if \,\,x=(x_1,x_2......)
+$$
+Then $A$ is linear, bijective with 
+$$
+A^{-1}:X\to ,\,\,\,A^{-1}x=(x_1,2x_2,3x_3\underbrace{......}_{0\,eventually})
+$$
+and $A$ is bounded. 
+$$
+\norm{Ax}_\infty=\sup_{n\geq1}\frac{|x_n|}{n}\leq\sup_{n\geq1}|x_n|=\norm{x}_\infty
+$$
+so $\norm{A}\leq1$. But $A^{-1}$ is unbounded. 
+Pick $x^{(n)}=(\overbrace{1,1,1,1}^{n},0,......)$ then $\norm{x^{(n)}}_\infty=1$ but $\norm{A^{-1}x^{(n)}}=n$. Hence $A^{-1}\not\in\mathcal{L}(X)$ and $X$ cannot be complete, else by theorem i), $A^{-1}$ would be bounded.
+\end{example}
+
+\section{Closed Graph Theorem}
+Consider $X$, $Y$ normed spaces. Often an operator $A$ not defined on all of $A$ but on a "domain" $D(A)$. So we assume that 
+$D(A)\subset X$ is a linear subspace on which $A:D(A)(\subset X)\to Y$, linear is defined.
+\begin{example}{Running Example}\nl
+$Y=X=C=C^0[0,1]$ with $\norm{\cdot}_X=\norm{\cdot}_\infty$ and $A=\frac{d}{dt}$, with $D(A)\stackrel{eg}{=}C^1[0,1]\subset X$ or subspaces thereof. Prime example of  (\underline{unbounded}) operator with dense domain $D(A)$: indeed $C^1[0,1]=C$ using e.g. Weierstrass Approximation Theorem (Polynomials are already $\norm{\cdot}_\infty$-dense in C)
+\end{example}
+\begin{definition}[Graph]\nl
+Let $X$, $Y$ be normed space, $A:D(A)(\subset X)\to Y$ . Graph of $A$ (really  of $(A,D(A))$) is the linear (!) space 
+$$
+\Gamma_A=\{(x,Ax):x\in D(A)\}\subset X\times Y
+$$
+We endowed $X\times Y$ with the norm $\norm{(x,y)}_{X\times Y}=\norm{x}_X+\norm{y}_Y$, for all $x\in X$, $y\in Y$.
+    
+\end{definition}
+\begin{definition}[Closed Operator]
+$A$ is called \underline{closed} if $\Gamma_A$ is closed in  $(X\times Y,\norm{\cdot}_{X\times Y})$
+\end{definition}
+
+\begin{example}
+Let $A\in\mathcal{L}(X,Y)$ with $D(A)=X$. Then $A$ is closed.
+\begin{pf}{}{}
+	Let $(x_k,y_k)_k\subset \Gamma_A$  with $\norm{(x_k,y_k)-(x,y)}_{X\times Y}\xrightarrow{k\to\infty}0$ for some $(x,y)\in X\times Y$\\
+	NTS: $(x,y)\in \Gamma_A$ i.e. $y=Ax$. 
+	Know $ y_k=Ax_k$ and $\norm{x_k-x}_X\xrightarrow{k\to\infty}0$, $\norm{Ax-y}_Y\xrightarrow{k\to\infty}0$
+	But $\forall k\geq 1$
+	$$\norm{y-Ax}_Y\leq\norm{y-Ax}_Y+\norm{Ax_k-ax}_Y
+	\leq \norm{y-Ax}_Y\norm{A}\norm{x_k-x}_X$$
+	Thus 
+	$$\lim_{k\to\infty}\norm{y-Ax}_Y\leq\lim_{k\to\infty}\norm{y-Ax}_Y\norm{A}\norm{x_k-x}_X=0$$
+\end{pf}
+\end{example}
+
+\begin{theorem}[Closed Graph]\nl
+Let $X$, $Y$ be Banach $A:X\to Y$ linear. The following are equivalent:
+\begin{itemize}
+    \item [i)] $A\in\mathcal{L}(X,Y)$
+    \item [ii)] $A$ is closed
+\end{itemize} 
+\begin{pf}{}{}
+    i) $\implies$ ii): see example\\
+    ii) $\implies$ i): If $X$, $Y$ complete, then so is $(X\times Y,\norm{\cdot}_{X\times Y})$ (exercise). A closed meas $\Gamma_A$ is closed in $(X\times Y,\norm{\cdot}_{X\times Y})$, so $(\Gamma_A,\norm{\cdot}_{X\times Y})$ is complete. Consider:
+    \begin{equation}
+        \begin{aligned}
+            \Pi_X:\,\,\Gamma_A&\to X \qquad\qquad& \Pi_Y:\Gamma_A&\to Y\\
+        (x,Ax)&\mapsto x  & (x,Ax)&\mapsto Ax\\
+        \end{aligned}    
+    \end{equation}
+$\Pi_X$, $\Pi_Y$ are continuous with $\norm{\Pi_X},\norm{\Pi_Y}\leq 1$, $\Pi_X$ is injective, and surjective. By OMT, ii), ${\Pi_X}^{-1}\in\mathcal{L}{(X,\Gamma_A)}$ and so
+$$
+A=\Pi_Y\circ \Pi_X^{-1}\in\mathcal{L}(X,Y)
+$$
+\end{pf}
+\end{theorem}
+
+\begin{remark}
+	ii) is simpler than i), but equivalent.\\
+	i) says A is continuous, i.e. if $(x_n)\subset X$, $x\in X$
+	$$\norm{x_n-x}_X\rightarrow{n\to\infty}0\implies\norm{Ax_n-Ax}_Y\rightarrow{n\to\infty}0$$
+	This contains two things to check: $(Ax_n)$ converges and limit is $Ax$.\\
+	ii) says $A$ is closed, i.e.
+	\begin{equation}
+		\left\{
+		\begin{aligned}
+			&\norm{x_n-x}_X\rightarrow{n\to\infty}0\\
+			&\norm{Ax_n-y}_Y\rightarrow{n\to\infty}0\\
+		\end{aligned}
+		\right.\implies
+		Ax=y
+	\end{equation}
+	Which is only one condition to check.
+\end{remark}
+
+\begin{example}[running example continues]
+	$(D(A),\norm{\cdot}_\infty)$ with $D(A)=C^1[0,1]$ is NOT Banach, and $A:D(A)\to C$ is an example of an operator which is:\\
+	claim: \\
+	i) closed, but\\
+	ii) not continuous\\
+	For ii), take $f_n(t)=t^n\in D(A)$, $Af_n=nf_{n-1}$ so $\norm{f_n}_\infty=1$, $\norm{Af_n}\infty=n\norm{f_{n-1}}\infty=n$. So 
+	$$ \sup_{f\in D(A),\norm{f}\infty\leq1}\norm{Af}_\infty=\infty$$
+	For i), if $(f_n,f_n')\to(f,g)$ in $(D(A)\times C)$ then $\norm{f-f_n}_\infty\to 0$, $\norm{f_n'-g}_\infty\to0$ but
+	$$
+	\forall t\in(0,1],\,\underbrace{f_n(t)}_{\rightarrow{n\to\infty}f(t)}
+	=\underbrace{\int_0^t f'_n(x) dx}_{\rightarrow{DCT}\int_0^t g(x) dx}
+	+f_n(0)
+	$$
+	so $f'=g$ by fundamental theorem of calculus(FTC), i.e. $(f,g)=(f,f')\in\Gamma_A$.
+\end{example}
+
+
+\begin{corollary}[Continuous Inverse]\nl
+	$X$, $Y$ Banach, $A:(DA)\subset X\to Y$ linear, closed and bijective. Then $\exists B=A^{-1}\in\mathcal{L}(Y,X)$ with $AB=id_Y$ and $BA=id_{D(A)}$.
+	Proof is left as an exercise. Hint: similar to CGT, consider $\Pi_Y:\Gamma_A\to Y$, $B\stackrel{def.}{=}\Pi_X\circ \Pi_Y^{-1}$
+	
+\end{corollary}
+
+\begin{example}[???]\nl
+	A is surjective: for $g\in C$ define $f(t)=\int_0^t g(s) ds$. Then by FTC, $Af=g$.\\
+	A is not injective: $Af=A\tilde{f}\implies f=\tilde{f}+c,c\in\real$. 
+	Let $D(A)\defeq C_0^1[0,1]=\{f\in C^1[0,1]:f(0)=0\}$
+	Then $A:D(A)\to C$ is bijective and has continuous inverse $B=A^{-1}$ by corollary. In fact, $Bf(t)=\int_0^tf(s)ds$ with $Bf\in D(A)$.
+\end{example}
+
+
+
+\end{document}
+
