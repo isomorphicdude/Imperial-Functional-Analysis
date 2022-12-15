@@ -6,4 +6,5 @@
 *.out
 *.toc
 *.ipynb
+*.pdf
 Chapter/*.pdf
