@@ -25,7 +25,7 @@
 \titleformat*{\subparagraph}{\large \bfseries}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General 
 \newcommand{\nextline}{\hfill\break}
 \newcommand{\nl}{\nextline\rm}
@@ -68,7 +68,7 @@
 \newcommand{\comp}{\mathbb{C}}
 \newcommand{\inte}{\mathbb{Z}}
 \newcommand{\natu}{\mathbb{N}}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -84,19 +84,19 @@
 
 
 % for numbering the theorems            
-\theoremstyle{plain}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{proposition}[theorem]{Proposition}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% the following are not in italics
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{claim}[theorem]{Claim}
+% \theoremstyle{plain}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem{proposition}[theorem]{Proposition}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % the following are not in italics
+% \theoremstyle{definition}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{example}[theorem]{Example}
+% \newtheorem{remark}[theorem]{Remark}
+% \newtheorem{claim}[theorem]{Claim}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % proof box
@@ -115,7 +115,7 @@
     colframe=black!25,
   } 
 }{prf}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % extra content box to put in contents not covered in the lecture notes
 % use the command \begin{unexaminable}
 \newmdenv[skipabove=7pt, skipbelow=7pt,
@@ -126,13 +126,13 @@
     innerbottommargin=5pt]{unexamBox}
 \newenvironment{unexaminable}{\begin{unexamBox}}{\end{unexamBox}}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % clever ref settings
 \crefname{lemma}{lemma}{lemmas}
 \Crefname{lemma}{Lemma}{Lemmas}
 \crefname{theorem}{theorem}{theorems}
 \Crefname{theorem}{Theorem}{Theorems}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % formatting 
 % https://tex.stackexchange.com/questions/217497/aligning-stackrel-signs-beneath-each-other-using-split
 \newlength{\leftstackrelawd}
@@ -142,6 +142,27 @@
 \addtolength{\leftstackrelawd}{-\leftstackrelbwd}%
 \leavevmode\ifthenelse{\lengthtest{\leftstackrelawd>0pt}}%
 {\kern-.5\leftstackrelawd}{}\mathrel{\mathop{#2}\limits^{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% colors
+\usepackage{xcolor}
+\definecolor{royal}{RGB}{0,35,102}
+\definecolor{navyblue}{cmyk}{1,0.5,0,0.3}
+\definecolor{c0}{cmyk}{0.83, 0.34, 0, 0.29}
+\definecolor{c1}{cmyk}{0, 0.5, 0.95, 0}
+\definecolor{c2}{cmyk}{0.72, 0, 0.72, 0.37}
+\definecolor{skyblue}{cmyk}{0.6,0.16,0,0}
+\definecolor{lightgreen}{cmyk}{0.5,0,0.5,0}
+\definecolor{pastelgreen}{cmyk}{0.25,0,0.25,0}
+\definecolor{mossgreen}{cmyk}{0.64,0.4,1,0}
+\definecolor{reddish}{cmyk}{0, 0.64, 0.64, 0.2}
+\definecolor{one}{cmyk}{0, 0.6, 0.46, 0.69}
+\definecolor{two}{cmyk}{0.11, 0, 0.72, 0.16}
+\definecolor{imperialorange}{RGB}{255,134,24}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spacing
 \doublespacing
 \RaggedRight
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
