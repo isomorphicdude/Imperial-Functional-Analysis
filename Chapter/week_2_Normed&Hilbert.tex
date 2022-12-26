@@ -14,14 +14,34 @@
 In this section, we will be working with metric spaces \((V, \rho)\).
 
 \begin{definition}[Separable]
-	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable, such that \(B_{\rho}(x, \varepsilon) \cap D \neq \empty, \forall x \in V, \forall \varepsilon >0\) (\textit{i.e.} D is dense in \(V\))
+	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable, 
+	such that \(B_{\rho}(x, \varepsilon) \cap D \neq \empty, \forall x \in V, \forall \varepsilon >0\) 
+	(\textit{i.e.} D is dense in \(V\))
 \end{definition}
+
+Here \(B_{\rho}(x, \varepsilon)=\{y \in V: \rho (y,x) < \varepsilon\}\) is an open ball of radius \(\varepsilon\) 
+centered at \(x\).
+
+\begin{proposition}
+	\(\ell^p\) space is separable for \(p \in [1. \infty)\)
+\end{proposition}  
+(Here it is understood that \(\ell^p, \rho\), where \(\rho\) is the metric indcued by the norm \(\norm{\cdot}_p\), 
+\textit{i.e.} \(\rho(x,y)=\norm{x-y}_p\))  
+
+\begin{proof}
+	Consider \(D = \cup_{n\geq 1} D_n\), where  
+	\[ D_n = \{x=(x_n): x_n \in \mathbb{Q} \forall n \in \natu, x_k=0, \forall k >n\}\]
+\end{proof}
+
 
 \newpage
 \section{Hilbert Space}  
 
 \begin{unexaminable}
-Hilbert space is a special class of Banach space. Apart from completeness and norm, it is also equipped with an additional structure, {\bf inner product}. This allow us to explore nice geometric properties of the space,like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
+Hilbert space is a special class of Banach space. 
+Apart from completeness and norm, it is also equipped with an additional structure, 
+{\bf inner product}. This allow us to explore nice geometric properties of the space, 
+like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
 \end{unexaminable}
 
 In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm{or} \ \mathbb{ C}$
