@@ -1,0 +1,76 @@
+\documentclass{article}
+\input{Chapter/commands.tex}
+\input{theoremstyle.tex}
+
+\begin{document}  
+\section{Weak Topology and weak convergence}
+Let $(X, || \cdot ||_X)$ be a normed linear space with dual space $X^*$ (over $\mathbb{R}$).
+\begin{definition}
+\begin{itemize}
+    \item A sequence $(x_n) \subset X$ converges weakly to $x\in X$, written as $x_n \xrightarrow{\text{w}} x (n \rightarrow \infty)$, if $\forall l \in X^*$, $$lim_{n\rightarrow \infty} l(x_n) = l(x);$$
+    \item $(x_n)$ converges (strongly/in norm) to $x$ if $lim_{n\rightarrow \infty} ||x_n - x|| = 0$, write as: $x_n \rightarrow x (n\rightarrow \infty).$
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+\begin{enumerate}
+    \item $x_n\rightarrow x$ implies  $x_n \xrightarrow{w} x$: $|l(x_n) - l(x)| \leq ||l||_* ||x_n - x||$
+    \item The converse of 1) is false. Let $x_n (= e_n) = (0,...,0,1,0,...) \in l^2$. $||x_n-x_m|| = \sqrt{2}, n\neq m$, so $x_n$ doesn't converge (strongly). But $x_n \xrightarrow{w} 0$: by Reisz Representation, $l(\cdot) = <y,\cdot>_{l^2}$ for some $y \in l^2$, Hence with $y=(y^n)_n$, $$l(x_n) = <y,x_n> = y^n \leq \sqrt{\Sigma_{k\geq n} {|y^k|}^2} \xrightarrow{n\rightarrow \infty} 0$$, since $||y||_2 < 0$.
+    \item $x_n \xrightarrow{w} x, y \Rightarrow x=y$. Assume not, by Prop. p.34 (\textquotedblleft dual elements separate points"), $\exists l \in X^*: l(x) \neq l(y)$ if $x\neq y$. With this $l$: $$l(x) = lim_{n} l(x_n) = l(y) $$ 
+    \item $x_n \xrightarrow{w} x \Rightarrow sup||x_n|| < \infty$. Consider $A_n \in \mathfrak{L}(X^*, \mathbb{R})$ ($=X^{**}$, the bidual) with $A_n(l) := l(x_n), l\in X^*$. $x_n \xrightarrow{w} x$ implies $sup_n |A_n(l) < \infty \forall l\in X^*$, and $X^*$ is complete so by Banach-Steinhaus: $$sup_n ||A_n||_{\mathfrak{L}(X^*, \mathbb{R})} < \infty$$ But $||A_n||_{\mathfrak{L}(X^*,\mathbb{R})} = sup_{l\in X^*, ||l||\leq 1} |l(x_n)| = ||x_n||_X$.
+\end{enumerate}
+\end{remark}
+
+This naturally leads to:\begin{definition}
+    $X^{**} := (X^*)^* \quad (=\mathfrak{L}(X^*,\mathbb{R}))$ is called bidual of $X$. $X$ embeds canonically into $X^{**}$ via: $$ \eta : X\rightarrow X^{**}: \eta(x)(l) := l(x) \quad \forall x \in X, l \in X^*$$ 
+\end{definition}
+\begin{remark}
+    $\eta$ is a linear isometry: similarly as in 4) above. One has: $\forall x \in X: ||x||_X = sup_{l\in X^*, ||l|| \leq 1} |l(x)| = ||\eta(x)||_{**}$.
+\end{remark}
+
+\begin{definition}
+    $X$ is reflexive if $\eta$ is surjective.
+\end{definition}
+
+\begin{eg}
+\begin{enumerate}
+    \item if $dimX<\infty$, $X$ is reflexive;
+    \item $H$ a Hilbert space is reflexive;
+    \item $L^p, 1<p<\infty$ is reflexive;
+    \item $L^1, L^\infty$ are in general not reflexive.
+\end{enumerate}
+For 4, consider $L^\infty[-1,1]$. Define the Dirac function $\delta_{x_0}: C^0[-1,1] \rightarrow \mathbb{R}: f \mapsto \delta_{x_0}(f) = f(x_0)$.\\
+$\delta_{x_0}$ is linear and continuous on $(C^0[-1,1],||\cdot ||_\infty)$. By Corollary of Hahn-Banach on p.33, there exists extension 
+$$l\in (L^\infty [-1,1])^* s.t. l\mid_{C^0[0,1]} = \delta_{x_0}.$$
+(with some norm) (Omit \textquotedblleft $[-1,1]$" henceforth) \\
+For $g\in L^1$, $l_g(f) = \int_{-1}^1 gf dx, f\in L^\infty, l_g\in (L^\infty)^*$.
+\\Claim: $\nexists g\in L^1: l=l_g$.
+\\Claim implies that $\eta: L^1 \rightarrow (L^\infty)^*, g \mapsto l_g$ is not surjective, i.e., $L^1$ is not reflexive.\\
+For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).\\
+Proof of Claim: Suppose $\exists g\in l^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
+Pick a bump function $\phi \in C^\infty [-1,1]: 0 \leq \phi \leq 1, \phi \equiv 1$ on $B_{\frac{1}{2}}$, $\phi(\pm 1)=0$. For $n\leq 1: \phi(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 a.e.$.\\
+This yields: $$1 = \phi_n(0)=\delta_{x_0}(\phi_n) = l(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \nrightarrow 0$$
+this is a contradiction, as $\delta_{x_0}(\phi_n) = 0$.
+\end{eg}
+
+
+
+\end{document}
+
+
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{hyperref}
+% \usepackage{graphicx}
+% \usepackage{cleveref}
+% \usepackage{commath}
+% \usepackage{setspace}
+% \usepackage[titletoc]{appendix}
+
+
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{prop}{Proposition}[section]
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem{remark}{Remark}[section]
+
+% \newenvironment{proof}{{\scshape Proof. }\itshape }{\hfill$\spadesuit$\par}

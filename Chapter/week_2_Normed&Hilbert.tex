@@ -1,0 +1,299 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+\input{theoremstyle.tex}
+
+\title{Week 2}
+
+\begin{document}
+\maketitle
+
+
+\section{Separability}  
+
+In this section, we will be working with metric spaces \((V, \rho)\).
+
+\begin{definition}[Separable]
+	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable, such that \(B_{\rho}(x, \varepsilon) \cap D \neq \empty, \forall x \in V, \forall \varepsilon >0\) (\textit{i.e.} D is dense in \(V\))
+\end{definition}
+
+\newpage
+\section{Hilbert Space}  
+
+\begin{unexaminable}
+Hilbert space is a special class of Banach space. Apart from completeness and norm, it is also equipped with an additional structure, {\bf inner product}. This allow us to explore nice geometric properties of the space,like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
+\end{unexaminable}
+
+In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm{or} \ \mathbb{ C}$
+
+\begin{definition}
+(Bilinear Map)
+	Let $X$ be a vector space over $\mathbb C$. An {\bf bilinear map} is a function $\left<\cdot,\cdot\right>:H \times H \xrightarrow{}{\mathbb C}$ satisfying following: $\forall x,y,z\in H,\alpha$ a scalar,
+	\begin{itemize}
+		\item[1] $\left<x,y\right>={\overline{\left<y,x\right>}},\forall x,y\in H$
+		\item[2] $\left<x,x\right>\geq0$
+		\item[3] $\left<x,x\right>=0$ iff $x=0$
+		\item[4] $\left<x+y,z\right>=\left<x,z\right>+\left<y,z\right>$
+		\item[5] $\left<ax,z\right>=a\left<x,z\right>$
+	\end{itemize}
+\end{definition}
+1 is complex conjugation. 2 and 3 is positive-definiteness. 4 and 5 is left-linearity.
+
+
+\begin{theorem}
+	If $\left<\cdot,\cdot\right>$ is an inner product on $X$, define $\norm{x}\overset{\textrm{def}}{=}\sqrt{\inne{x}{x}}$.  
+	\begin{enumerate}[i)]
+	    \item (Cauchy-Schwarz) $\ \forall x,y\in X$,
+	$$|\left<x,y\right>|^2\leq\left<x,y\right>\cdot\left<y,y\right>$$
+	\item $\norm{x}$ is a norm
+\end{enumerate}  
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}[i)]
+    \item If $x=0$ or $y=0$, the inequality holds. Else, let $\xi = \frac{x}{\norm{x}}, \eta = \frac{y}{\norm{y}}$, so $\norm{\xi}=\norm{\eta}=1$. Hence 
+    $$0 \leq \norm{\eta-\inne{\xi}{\eta}\xi}^2=\norm{\eta}^2 - |\inne{\xi}{\eta}|^2=1-|\inne{\xi}{\eta}|^2$$  
+    so $|\inne{\xi}{\eta}| \leq 1$
+    \item Positivity and homogeneity follows from definition of $\inne{\cdot}{\cdot}$; and triangle inequality follows from i)  
+    $$\norm{x+y}^2$$
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+(Hilbert space)
+    An inner product space $(H, \inne{\cdot}{\cdot})$ which is complete w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
+\end{definition}
+
+
+\begin{unexaminable}
+\begin{example}[Euclidean Space over $\mathbb R$]\rm\nextline
+	It happens that 2-D or 3-D vector space over $\mathbb R$ is an example of Hilbert space, under the standard definition of vector inner product.
+\end{example}
+
+\begin{example}[Euclidean Space over $\mathbb C$]\rm\nextline
+	${\mathbb C}^n$ with inner product
+	$$
+		\inne{x}{y}=\sum_{i=1}^n {\overline{x_i}}\,y_i
+	$$
+	is a Hilbert space. This is a generalization of last example. Still, this is a finite-dimensional Hilbert space.
+\end{example}
+\end{unexaminable}
+
+
+\begin{example}[Sequence space]\rm\nextline
+	Complex sequence space:
+	$$\ell^2=
+		\left\{\{x_n\}_1^\infty:\sum_{k=1}^\infty |x_k|^2<\infty \right\}$$
+	with  inner product,denoting $x=\{x_n\}_1^\infty$ and $y=\{y_n\}_1^\infty$
+	$$
+		\inne{x}{y}=\sum_{k=1}^\infty \,{\overline{x_k}\, y_k}
+	$$
+\end{example}
+
+\begin{unexaminable}
+Structure of inner product allows discussion for nice geometric property of Hilbert spaces. This includes orthogonality, angles and nearest distance etc.
+\end{unexaminable}
+\begin{unexaminable}
+Orthogonality is the generalization of two lines being perpendicular. In euclidean geometry, we have Pythagorean theorem closely related to such property. Results on orthogonality in Hilbert spaces in many ways resemble their Euclidean version.
+\end{unexaminable}
+
+\begin{proposition}
+(Nearest Point Property)
+	Let \hbs be a Hilbert space, $K\subset \hbp$ be a closed, convex subset, then $\forall y \in \hbp$ there exists a {\bf{unique}} $x_0\in K$ such that
+	$$
+		\delta \overset{\rm{def}}{=} \inf_{x\in K} \norm{x-y} = \norm{x_0-y}
+	$$
+\end{proposition}
+
+\begin{proof} 
+By considering the set $K-y = \{x-y: x\in K\}$ (still closed and convex), we can assume $y=0$.  
+
+\underline{\textbf{Existence:}}
+By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\epsilon >0$. Pick $N \in \natu$ such that  
+
+$$
+\forall n \geq N \qquad \norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4}
+$$  
+
+$K$ being convex implies that $\frac{x_n+x_n}{2} \in K, \forall n,m \in \natu$, which implies by definition of $\delta$, $\norm{x_n+x_m} \geq 2\delta$.  
+
+It follows that for all $n,m \geq N$,  
+
+\begin{equation*}
+    \norm{x_n-x_m}^2 = \underbrace{2(\norm{x_n}^2+\norm{x_m}^2)}_{< 2\delta^2 + \varepsilon^2 /2} \underbrace{-\norm{x_n+x_m}^2}_{\leq 4\delta^2} < \varepsilon^2
+\end{equation*}  
+
+where we have used the Parallelogram law.  
+
+By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$, and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.  
+
+\underline{\textbf{Uniqueness:}}
+\todo{uniqueness}
+\end{proof}  
+
+\begin{corollary}
+(Orthogonal Decomposition) Let $H$ be a Hilbert space and $E \subset H$ be a closed subspace. Then  
+
+$$
+H = E \oplus E^{\perp}
+$$  
+(\textit{i.e.} $E \cap E^{\perp} = \{0\}$ and $H = E + E^{\perp}$, that is $\forall x \in H, x=e+ e^{\perp}$ for some $e \in E, e^{\perp} \in E^{\perp}$)
+\end{corollary}
+
+\begin{proof}
+If $x \in E\cap E^{\perp}$, then $\inne{x}{x}=0$, so $\norm{x}=0$, $x=0$.  
+
+For all $x\in H$, $E$
+\end{proof}
+
+\begin{definition}[Orthogonality]\rm\nextline
+	Let $\mathscr{H}$ be a Hilbert space and $f\in\mathscr{H}$. Say $g$ is orthogonal to $f$ if $\inne{f}{g}=0$, writes $f\perp g$. For two sets $A,B\in \mathscr{H}$, write $A\perp B$ if $a\perp b$ for all $a\in A$ and $b\in B$
+
+
+\end{definition}
+
+\begin{definition}[Orthogonal Complement]\rm\label{ortho comp}\nextline
+	Let $A$ be a set in Hilbert space $\mathscr{H}$. Its orthogonal complement, $A^{\perp}$ is the set of all vectors $f \in \mathscr{H}$ such
+	that $f\perp g\,,\forall g \in A$. $A^\perp$ is always a subset of $\mathscr{H}$. Moreover, $A^\perp=\cup_{a\in A}(a)^\perp$, and we can prove that $A^\perp$ is always a closed subset of \hbs.
+\end{definition}
+
+\begin{proposition}[Pythagorean Theorem]\rm\nextline
+	Let $f_1,\,f_2,\,......,f_n$ be pairwise orthogonal vectors in Hilbert space \hbs. Then
+	$$
+		\norm{\sum_{k=1}^n f_k}^2={\sum_{k=1}^n \norm{f_k}^2}
+	$$
+	\textit{proof:}\\
+	It suffices to show for n=2, and proceed with induction. Consider $a,b\in \hbp$ with $a\perp b$.
+	Then
+	\begin{equation}
+		\begin{split}
+			\norm{a+b}^2&=\inne{a+b}{a+b}\\
+			&=\inne{a}{a}+\inne{a}{b}+\inne{b}{a}+\inne{b}{b}\\
+			&=\inne{a}{a}+0+0+\inne{b}{b}\\
+			&=\norm{a}^2+\norm{b}^2
+		\end{split}
+	\end{equation}
+
+
+\end{proposition}
+
+\begin{remark}[Parallelogram equality]\rm\label{parallelogram}\nextline
+	Let $a,b\in \hbp$ be arbitrary vectors.
+	Then
+	\begin{equation}
+		\begin{split}
+			\norm{a+b}^2&=\inne{a+b}{a+b}\\
+			&=\inne{a}{a}+\inne{a}{b}+\inne{b}{a}+\inne{b}{b}\\
+			&=\inne{a}{a}+\inne{a}{b}+{\overline{\inne{a}{b}}}+\inne{b}{b}\\
+			&=\norm{a}^2+2Re(\inne{a}{b})+\norm{b}^2
+		\end{split}
+	\end{equation}
+
+	Similarly,
+	\begin{equation}
+		\begin{split}
+			\norm{a-b}^2&=\inne{a-b}{a-b}\\
+			&=\inne{a}{a}-\inne{a}{b}-\inne{b}{a}+\inne{b}{b}\\
+			&=\inne{a}{a}-\inne{a}{b}-{\overline{\inne{a}{b}}}+\inne{b}{b}\\
+			&=\norm{a}^2-2Re(\inne{a}{b})+\norm{b}^2
+		\end{split}
+	\end{equation}
+
+	Adding up, we obtain {\bf{\emph{ parallelogram equality}}}:
+	$$
+		\norm{a+b}^2+\norm{a-b}^2=2\norm{a}^2+2\norm{b}^2
+	$$
+
+
+	This equation holds for all Hilbert spaces including 2-d vector space over $\mathbb R$. Readers may find this form identical to the parallelogram equality in that vector space. It is also where the name comes from.
+\end{remark}
+
+
+
+\subsubsection{Nearest Point Property}
+\begin{unexaminable}
+In Euclidean geometry, choosing a point and a line we can find the minimal distance form the point to any point on the line, defined as the distance from the point to the line. This can be generalized, with line extending to a {\bf{\emph{closed convex set}}} and space becoming a Hilbert space.
+\end{unexaminable}
+
+
+\begin{definition}[Convexity]\rm\label{convexity}\nextline
+	A set $S\subset \mathscr{H}$ is convex if $\forall f,g\in S,\forall t\in\left[0,1\right]$, we have $(tf+(1-t)g)\in S$.
+
+\end{definition}
+Intuitively, this means that given any two points in the a convex set, the "segment" connecting the points stays inside the set. Hence a closed convex set is such a set with the property that every convergent sequence in the set converges to a point in the set.
+
+\begin{definition}[Set-point distance]\rm\nextline
+	Let \hbs be a Hilbert space, $S\in \mathscr{H}$ be a closed subset, $x\in \hbp$ be arbitrary vector. We define the {\bf{distance}} from $x$ to $S$ to be the infimum of distance between $x$ and element of $S$:
+
+	$$\text{dist}(S,x)\equiv\inf_{s\in S} (\norm{s-x})$$
+
+\end{definition}
+
+
+
+
+\subsubsection{Projection Theorem}
+\begin{definition}[Projection mapping]\rm\nextline
+	Let \hbs be a Hilbert space. A mapping $P:\hbp\xrightarrow{}\hbp$ is a projection mapping if $$
+		P(Px)=Px,\,\forall x\in\hbp
+	$$
+
+
+\end{definition}
+
+
+\begin{proposition}[Projection Theorem]\rm\nextline
+	Let \hbs be a Hilbert space and M a closed subspace. Then there exists unique pair of projection mapping $P:\hbp\xrightarrow{}M$ and $Q:\hbp\xrightarrow{}M^\perp$ satisfying $x=Px+Qx$ for any $x\in\hbp$, with the following property:
+	\begin{enumerate}[(1)]
+		\item $x\in M$ if and only if $Px=x,\,Qx=0$
+		\item $x\in M^\perp$ if and only if $Px=0,\,Qx=x$
+		\item $\norm{Px}^2+\norm{Qx}^2=\norm{x}^2$
+		\item $P$ and $Q$ are linear maps
+		\item $Px$ is the closest vector in $M$ to x.
+		\item $Qx$ is the closest vector in $M^\perp$ to x.
+	\end{enumerate}
+	\textit{proof:}\\
+	We shall use nearest point property. Since $M$ is a closed subspace, it is clearly a convex subset of \hbs. Thus for each $x\in \hbp$ there exists a unique point in $M$ that is closest to $x$. So we define $Px$ to be the unique nearest point in $M$ for each x. Uniqueness of nearest point gives the uniqueness of mapping $P$. $Q$ is then defined as $x-Px$. We should show that this definition of $Q$ indeed gives a mapping from \hbs to $M^\perp$.\\
+	Fix $x$, let $m\in M$ be such that $\norm{m}=1$. We must have, for all $a\in\mathbb{C}$:
+	\begin{equation}
+		\begin{split}
+			\norm{Qx}^2&\leq\norm{Qx+am}^2\\
+			&=\norm{Qx}^2+|a|^2\norm{m}^2+\inne{Qx}{m}+\inne{m}{Qx}
+		\end{split}
+	\end{equation}
+	Then we choose $a=-\inne{Qx}{m}$ and simplify the equation, we have
+	\begin{equation}
+		\begin{split}
+			0&\leq|a|^2\norm{m}^2+\inne{Qx}{am}+\inne{am}{Qx}\\
+			&=|\inne{Qx}{m}|^2\norm{m}^2+\inne{Qx}{-\inne{Qx}{m}m}+\inne{-\inne{Qx}{m}m}{Qx}\\
+			&=|\inne{Qx}{m}|^2-
+			\overline{\inne{Qx}{m}}\inne{Qx}{m}-
+			\overline{\inne{m}{Qx}}\inne{m}{Qx}\\
+			&=-|\inne{Qx}{m}|^2
+		\end{split}
+	\end{equation}
+	Thus we must have $\inne{Qx}{m}=0$, so $Qx\in M^\perp$.\\
+	We proceed to prove (1) and (2).\\
+	First $x\in M$. We have $Qx\in M^\perp$. Note that $x\in M$ and $Px\in M$ we have $Qx=x-Px\in M$. Hence $Qx\in(M\cap M^\perp)={0}$. Thus $Qx=0$ and $Px=x-0=x$. \\
+	To see other direction, we simply notice that $x=Px\in M$ by definition.\\
+	Proof of (2) is similar.\\
+	Now let's prove (3). We shall use the fact that $Px\perp Qx$, giving $\inne{Px}{Qx}=0$
+	\begin{equation}
+		\begin{split}
+			\norm{x}^2&=\inne{x}{x}\\
+			&=\inne{Px+Qx}{Px+Qx}\\
+			&=\inne{Px}{Px}+\inne{Qx}{Px}+\inne{Px}{Qx}+\inne{Qx}{Qx}\\
+			&=\inne{Px}{Px}+\inne{Qx}{Qx}\\
+			&=\norm{Px}^2+\norm{Qx}^2
+		\end{split}
+	\end{equation}
+	Proof of (4) is a routine work verifying linearity. Left as an exercise.\\
+	Now let's prove (5) and (6).\\
+	(3) is given by the construction of P. To see (4), consider $y\in M^\perp$, we have:
+	$$
+		\norm{x-y}=\norm{Px+Qx-y}=\norm{Px}+\norm{Qx-y}\geq \norm{Px}
+	$$
+	So minimal distance is $\norm{Px}$, Obtained at $y=Qx$
+\end{proposition}
+
+\end{document}

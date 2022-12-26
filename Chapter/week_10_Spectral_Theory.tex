@@ -1,0 +1,358 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+\input{theoremstyle.tex}
+
+\title{Week 8}
+
+\begin{document}
+\maketitle
+
+
+\section{Spectrum}
+In this section, we consider normed linear spaces over $\comp$, for the reason that it provides a simpler picture of the spectrum problem. In linear algebra, we know that Hermitian matrices over $\comp$ has real eigenvalues. This is the spectral theory of finite dimensional space. In infinite dimensional spaces, the settings are different, however, are extensions of finite dimensional cases.
+
+\begin{definition}[Resolvent \& Spectral]\nl
+Let $X$ be Banach. \func{T}{D_T\subset X}{X} be a linear operator, its {\underline{resolvent set}} is
+$$
+\varrho({T})=
+\{
+\lambda\in\comp:(\lambda I-T) \text{ is bijective and } \exists (xI-T)^{-1}\in \mathcal{L}(X)
+\}
+$$
+The {\underline{spectrum}} is defined as the complement:
+$$
+\sigma(T)=\comp\backslash\varrho(T)
+$$
+The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)},$\varrho(A)\ni\lambda\mapsto \in\mathcal{L}(X)$
+\end{definition}
+
+\begin{remark}\nl
+    In this section, we define $\lambda-A=\lambda id -A=\lambda I-A$, where $id$ is the identity map and the third expression uses first-year linear algebra notation.
+\end{remark}
+
+% Below are in accordance with written notes
+\begin{example}
+    Consider $X=\comp$, $A\in \mathcal{L}(X)$, i.e. $D_A=X$, $\lambda\in\comp$, $(\lambda-A)$ invertible $\iff p(\lambda)\stackrel{def.}{=}det(\lambda-A)\neq0$. Since  $p(\cdot)$ has at least $1$ and at most $n$ (distinct) solutions, one get $\sigma(A)\neq \emptyset$, $\sigma(A)$ contains at most $n$ points. Hence $\varrho(A)\neq\emptyset$ and $\varrho(A)\subset\comp$ is dense.
+\end{example}
+
+\begin{lemma}\nl
+If $\sigma_0\in\varrho(A)$, then 
+$$D\stackrel{def.}{=}
+\{
+\varrho\in\comp:|\varrho-\varrho_0|<\frac{1}{\norm{R(\varrho_0)}_{\mathcal{L}(X)}}
+\}
+\subset\varrho(A)$$
+Hence $\varrho(A)$ is open, and $\sigma(A)$ is closed.
+\begin{pf}{}{}
+Write 
+$$
+\zeta-A=
+( \zeta-\zeta_0)+(\zeta_0-A)=(1+(\zeta-\zeta_0)R_{\zeta_0})(\zeta_0-A)
+$$
+If $\zeta\in D$ then $1+(\zeta-\zeta_0)R_{\zeta_0}$ is invertible with $\circ{1}$:
+$$
+(1+(\zeta-\zeta_0)R_{\zeta_0}^{-1}=\sum_{n\geq0}(\zeta0-\zeta)^n {R_{\zeta_0}}^n
+$$
+hence also
+$$
+R_\zeta=(\zeta-A)^{-1}\stackrel{(*)}{=}R_{\zeta_0}(1+(\zeta-\zeta_0)R_{\zeta_0})^{-1}\in\mathcal{L}(X)
+$$
+For $\circ{1}$ use: if $A\in\mathcal{L}(X)$, $\norm{A}<1$ then with $A^0=Id=1$, 
+$$
+\sum_{n=0}^\infty A^n\in\mathcal{L}(X)
+$$
+i.e. the sequence
+$$
+\left(
+S_n=\sum_{k=0}n A^k
+\right)\subset\mathcal{L}(X)
+$$
+converges, and
+$$
+\sum_{n=0}^\infty A^n=(1-A^{-1})^{-1}
+$$
+\end{pf}
+\end{lemma}
+
+\begin{example}\nl
+    Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
+    \begin{pf}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
+    $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by lemma $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
+    \end{pf}
+
+    \begin{pf}{$\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$}{}
+    If $\Tilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\Tilde{\lambda}-\lambda_k|>\delta$ $\forall k\in\natu$. Let $x\in\ell^2$, $y\stackrel{def.}{=}(\Tilde{\lambda}-T)x=((\Tilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\Tilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\Tilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\tilde{\lambda}\in\varrho(T)$
+    \end{pf}
+\end{example}
+
+\begin{remark}\nl
+    In finite dimension, $(\lambda-A)$ not inverttible $\iff(\lambda-A)$ not injective by rank formula. One may wonder if "lack of injectivity"is the only reason for $\lambda\notin \sigma(A)$.
+\end{remark}
+
+\begin{definition}\nl
+    Consider linear operatorn $A$ with colsed grapgh and specturm $\sigma(A)$.
+    \begin{itemize}
+        \item [point spectrum] $\sigma_p(A)\stackrel{def.}{=}
+        \left\{
+        \lambda\in \comp :\lambda-A \text{ not  injective}
+        \right\}$
+        \item [continuous specturm] $\sigma_c(A)\stackrel{def.}{=}
+        \left\{
+        \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, Im(\lambda-A) \text{ dense }        
+        \right\}$
+        \item [residual specturm] $\sigma_r(A)\stackrel{def.}{=}\sigma(A)\setminus(
+        \sigma_p(A)\cup\sigma_c(A))$         Elements of point specturm are called {\underline Eigenvalues of $A$} with {\underline eigenspaces} $ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$
+    \end{itemize}
+\end{definition}
+
+\begin{example}[Shift operator]\nl
+    \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$: indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin Im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
+    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_(n+1)\,\,\forall n\in\natu\implies x_k=0$ for all k. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\zeta\in\comp:|\zeta|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$
+\end{example} 
+\begin{example}\nl
+    $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
+\end{example}
+\begin{example}\nl
+    $T_\lambda$ is indicative of a certain class : $ X$ Hilbert, $T\in\mathcal{L}(X)$ compact, self-adjoint, then by Riesz-Schauder, $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}
+    $
+\end{example}
+% Below are content from written lecture note 9.2-10
+
+\subsection{Spectral Theory in Hilbert space}
+Consider $(H,\inne{\cdot}{\cdot}$, Hilbert space over $\comp$, \func{A}{{D_A\subset H}}{H} linear, with adjoint \func{\dual{A}}{D_\dual{A}\subset H}{H}. Recall $\dual{A}$ characterised by $\forall x\in D_A$, $y\in D_\dual{A}$: $\inne{\dual{A}y}{x}=\inne{y}{Ax}$ and $D_\dual{A}=\{y\in H : l_y:D_A\to \comp,\,x\mapsto \inne{y}{Ax}\,\text{ is continuous }\}$.
+In sequel write $A\subset B$, reads $B$ is extension of $A$ if $D_A\subset D_B$ and $B|_{D_A}=A$.
+
+
+\begin{definition}\nl
+	i)  $A$ is {\underline{symmetric}} if $A\subset \dual{A}$, i.e. $D_A\subset D_\dual{A}$ and $\inne{Ax}{y}=\inne{x}{Ay}$ for all $x,y\in D_A$.\\
+	ii) $A$ is {\underline{self-adjoint}} if $A=\dual{A}$, i.e. A symmetric with $D_\dual{A}=D_A$.
+\end{definition}
+
+What can we say about spectrum $\sigma(A)$ for such $A$?
+
+\begin{lemma}
+	IF $A$ is symmetric, $\sigma_p(A)\subset\real$.
+	\begin{pf}{}{}
+		Let $\lambda\in\sigma_p(A)$ with non-zero eigenvector $x\in ker(\lambda-A)$. Then $\lambda\norm{X}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H^1$. So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
+	\end{pf}
+\end{lemma}
+Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
+%question part----------------------------------
+\begin{example}\nl
+	$H$=$L^2(0,1)$, $\inne{f}{g}=\int_0^1f\bar{g} \mathrm{d}t$. $A\in\frac{\mathrm{d}}{\mathrm{d}t}$. More precisely, $f\in\mathcal{H}$ is said to have a \underline{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in \mathcal{H}$, $\int_0^1 fg'\mathrm{d}t=-\int_0^1 vg\mathrm{d}t$, $\forall g\in C^\infty_c(0,1)$.\\
+	Consider
+	$$
+		A_\infty =i\frac{\mathrm{d}}{\mathrm{d}t}:C^\infty_c(0,1)\subset H\to H
+	$$
+	and extensions $A_1$.....$A_3$ with
+	\begin{equation}
+		\begin{aligned}
+			 & D_{A_1}=H^1\defeq\{f\in H: f \text{ has a weak derivative  f'}\} \\
+			 & \cup                                                            \\
+			 & D_{A_2}=\{f\in H^1:f(0)=f(1)\}\text{ periodic b.c.}             \\
+			 & \cup                                                            \\
+			 & D_{A_3}=\{f\in H^1: f(0)=0=f(1)\}\text{ Dirichlet b.c.}         \\
+		\end{aligned}
+	\end{equation}
+	Set $A_k(f)=if'\,\,\forall f\in D_{A_k}$. Evidently $ A_\infty\subsetneq A_3\subsetneq A_2 \subsetneq A_1$.\\
+	One can show that
+	$$
+		A_3\subset\dual{A_1}\subset\dual{A_2}=A_2\subset\dual{A_3}
+	$$
+	So: $A_3$ is symmetric but because $A_3\subsetneq A_2\subset \dual{A_3}$ not self-adjoint, $A_2$ is self-adjoint.\\
+	Claim:
+	\begin{itemize}
+		\item [i)] $\sigma(A_1)=\sigma_p(A_1)=\comp$,$ \varrho(A_1)=\emptyset$.
+		\item [ii)] $\sigma(A_2)-\sigma_p(A_2)=a\pi\inte$, $\varrho(A_2)=\comp$.
+		\item [iii)] $\sigma(A_3)=\comp$, $\sigma_p(A_3)=\emptyset$, $\varrho(A_3)=\emptyset$
+	\end{itemize}
+	So symmetric operators can have imaginary spectrum!
+	\begin{pf}{}{}
+		i) For $\lambda\in\comp$, pick $f(t)=e^{-i\lambda t}\in ker(\lambda-A_1)$.\\
+		ii) For $k\in\inte$, $f(t)=e^{-2\pi ikt}\in D_{A_2}\cap ker(a\pi k-A_2$,
+		so $2\pi \inte\subset \sigma_p(A_2)\subset\sigma(A_2)$.
+		Let $\lambda\in\comp\setminus a\pi\inte$.
+		Need to show: $\lambda\in\varrho(A_2)$ i.e. \func{\lambda-A_2}{D_{A_2}}{H} is invertible and $(\lambda-A_2)^{-1}\in\mathcal{H}$.\\
+		For $g\in H$, the general sd. of $\lambda f-if'=g$ can be obtained via variation of constant formula:
+		$$
+			(*)\rightsquigarrow f(t)=ae^{-i\lambda t}+i \int_0^t e^{i\lambda}g(s)\mathrm{d}s
+		$$
+		for some $a\in\comp$. But if $\lambda\notin2\pi\inte$, the b.b. determines $a$ uniquely:
+		$$
+			a=f(0)=f(1)=ae^{-i\lambda}+i\int_0^1e^{i\lambda(s-1)}g(s)\mathrm{d}s$$
+		so
+		$$
+			a=(1-e^{-i\lambda})^{-1}i\int_0^1e^{i\lambda(s-1)}g(s)\mathrm{d}s
+		$$
+		so $\lambda-A_2$ is invertible and
+		$$
+        \norm{f}_{L^2}\leq |A|+\norm{g}_{L^2}\leq(|1-e^{-i\lambda}|^{-1})\norm{g}_{L^2}
+        $$
+		which shows $(\lambda-A_2)^{-1}\in\mathcal{L}(H)$\\
+		iii) If $A_3f=if'=\lambda f$ for some $\lambda\in\comp$, then by (*) $f(t)=ae^{-i\lambda t}$ and $a=0$ since $f(0)=0$, so $\sigma_p(A_3)=\emptyset$.\\
+		On the other hand $(\lambda-A_3)$ for $\lambda\in\comp$ is never surjective ($\implies \lambda\in\varrho(A_3)$). Indeed, consider $g(s)=e^{i\lambda s}$, then using $(*)$ and b.c. get $a=0$ and
+		$$
+        f(t)=ie^{-i\lambda t}\int_0^1e^{i\lambda s} \mathrm{d}s=ite^{-i\lambda t}
+        $$
+		but $f(1)\neq0$ so $f\notin D_{A_3}$.
+	\end{pf}
+\end{example}
+%question part-------------------------------------
+We have seen: symmetric operators can have imaginary spectrum, but:
+\begin{lemma}
+	Let $A\subset \dual{A}$. Then $\forall\zeta\in\comp\,\forall u\in D_A$: $\norm
+		{(\zeta-A)u}_H\geq |Im(\zeta)|\norm{u}_H$.\\
+	(So for $\zeta\notin\real\implies(\zeta-A)$ injective, i.e. $\zeta\notin\sigma_p(A)$)
+	\begin{pf}{}{}
+		For $u\in D_A:$ $\inne{u}{Au}\stackrel{A\subset\dual{A}}{=}\inne{Au}{u}=\overline{\inne{u}{Au}}\in\real$. Hence,
+		$$
+			|Im(\zeta)|\norm{u}^2_H=|Im(\inne{u}(\zeta-A)u)|\leq|\inne
+			{u}{(\zeta-A)u}\leq\norm{u}_H\norm{(\zeta-A)u}_H
+		$$
+	\end{pf}
+\end{lemma}
+% mind Im and im, Im is imaginary part and im is image. Pay attention  to the difference.
+The example also nicely illustrates:
+\begin{proposition}
+	If $A=\dual{A}$, then $\sigma(A)\subset \real$
+	\begin{pf}{}{}
+		Let $\zeta\in\comp\setminus\real$. Want to show $\zeta\in\varrho(A)$, i.e. \func{zeta-A}{D_A}{H} is bijective with $(\zeta-A)^{-1}\in\mathcal{L}(H)$.\\
+		We will show:\\
+		(*) $\zeta-A$ is surjective.\\
+		Once  (*) holds, we are done: by previous lemma, $\zeta-A$ is injective hence bijective, and surjectivity + same lemma also yields
+		$$
+			\norm{(\zeta-A)^{-1}}_{\mathcal{L}(H)}\leq\frac{1}{|Im(\zeta)}
+		$$
+		proof of (*): we first show
+		$$
+			(**)\qquad im(\zeta-A)(\subset H) \text{  is closed}
+		$$
+		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}$. BY Lemma p.65,
+		$$
+			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\zeta)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}$$Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\
+		Back to (*):\\
+		Due to (**), $M\defeq Im(\zeta-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
+		$$
+			\forall u\in D_A:\inne{v}{(\zeta-A)u}=0\text{  or  }\inne{v}{Au}=\overline{\zeta}\inne{v}{u}$$
+		Hence,
+		$
+			D_A\ni u\mapsto \inne{v}{Au}
+		$
+		is continuous, $v\in D_\dual{A}=D_A$ and $Av=\dual{A}v=\overline{\zeta}v$
+		but by lemma p.65,
+		$$|Im(\zeta)|\norm{v}_H\leq\norm{(\overline{\zeta}-A)v}_H=0$$
+		which yields $v=0 $
+	\end{pf}
+\end{proposition}
+% Below are content for week 10
+\subsection{Spectral theorem for compact self-adjoint operators}
+$H$: Hilbert space over $\comp$, inner product $\inne{\cdot}{\cdot}$, with $\norm{x}^2_H=\inne{x}{x}$. Following is an extension (!) of the familiar result from linear algebra concerning diagonalization of symmetric matrices.
+\begin{theorem}[Reisz-Schauder]\nl
+	Let  \func{T}{H}{H} be compact and self-adjoint, then:
+	\begin{itemize}
+		\item [i)] $\sigma(T)\subset\real$
+		\item [ii)] $\sigma_p(T)$ contains at most countably many eigenvalues $\lambda_k\in\real\setminus\{0\}$, which accumulate at most at $\lambda=0$
+		\item [iii)] One can choose $e_k$  corresponding to $\lambda_k$ such that $e_k\perp e_l$ $\forall k\neq l$ and one has $\forall x\in H:Tx=\sum_k \lambda_k e_k\inne{x}{e_k}$
+	\end{itemize}
+\end{theorem}
+\begin{example}\nl
+	Shift operator \func{T_\lambda}{\ell^2}{\ell^2} continued.\\
+	\begin{itemize}
+	    \item $T_\lambda$ is compact $\iff \lim_{k\to\infty}\lambda_k=0$
+	    \item $T_\lambda$ is self-adjoint $\iff \lambda_k\in\real\,,\forall k$
+	\end{itemize}
+	 and we know $\sigma_p(T_\lambda)=\overline{\{\lambda_k:k\in\natu\}}$.
+\end{example}
+We start with the following lemma:
+\begin{lemma}[Lemma 1]
+	$T\in\mathcal{L}(H)$, self-adjoint. If $\lambda_1\neq\lambda_2$, $\lambda_1,\lambda_2\in\sigma_p(T)$ with eigenvectors $e_1,e_2$, i.e. $\lambda_1 e_1=Te_1$ and $\lambda_2e_2=Te_2$, then $\inne{e_1}{e_2}=0$
+	\begin{pf}{}{}
+		\begin{equation}
+			\begin{split}
+			\lambda_1\inne{e_1}{e_2}&=\inne{\lambda_1e_1}{e_2}=\inne{Te_1}{e_2}\stackrel{SA.}{=}\inne{e_1}{Te_2}\\
+			&=\inne{e_1}{\lambda_2e_2}\stackrel{\lambda_2=\overline{\lambda_2}}{=}\lambda_2\inne{e_1}{e_2}
+			\end{split}
+		\end{equation}
+		Since $\lambda_1\neq\lambda_2$, $\inne{e_1}{e_2}=0$.
+	\end{pf}
+\end{lemma}
+Henceforth, we always assume \func{T}{H}{H} is compact and self-adjoint. In particular, Lemma 1 is in force.\\
+Define, for $\lambda\in\sigma_p(T)\setminus\{0\}$, $X_\lambda=ker(\lambda-T)\neq\{0\}$. By lemma 1:
+$$X_\lambda\perp X_\lambda\,\,\forall\lambda\neq\lambda',\lambda\lambda'\in\sigma_p(T)\setminus\{0\}$$
+\begin{lemma}[Lemma 2]
+	$\lambda\in\sigma_p(T)\setminus\{0\}$.
+	\begin{itemize}
+		\item $dim(X_\lambda)<\infty$
+		\item $\forall r>0$: $\sigma_p(T)\setminus B_r(0)$ is finite.
+	\end{itemize}
+	\begin{pf}{}{}
+		i) Let $B_r^{X_\lambda}(0)=\{x\in X_\lambda:\norm{x}_H<r\}$, which is a bounded set. By compactness of $T$, $T(B_r^{X_\lambda}(0))$ is compact. But since $Tx=\lambda x\,\forall x\in X_\lambda$, $T(B_r^{X_\lambda}(0))=\lambda B_1^{X_\lambda}(0)$. So $\lambda\overline{(B_1^{X_\lambda}(0))}$ is compact $\implies \overline{B_1^{X_\lambda}(0)}$ is compact $\implies dim(X_\lambda)<\infty$.\\
+		ii) Suppose not, then $\exists r>0$: $\sigma_p(T)\setminus B_r(0)$ is infinite (one can show $\sup_{\lambda\in\sigma_p(T)}|\lambda|<\infty$). Then one can pick sequence $(\lambda_k)\subset\sigma_p(T)$ with $\lambda_k\neq\lambda_l\,\forall k\neq l$ and $\lambda_k|>r\,\forall k$.\\
+		Let $e_k\neq0$ be eigenvector for $\lambda_k$: $Te_k=\lambda_ke_k\,\forall k$.
+		By compactness of $T$, $\exists\Lambda\subset\natu$ such that for some $y\in H$, $$Te_k\xrightarrow[k\to\infty,k\in\Lambda]{wrt.\norm{\cdot}_H}y\in H$$
+		Hence,
+		$$(\lambda_ke_k)\xrightarrow[k\to\infty,k\in\Lambda]{wrt.\norm{\cdot}_H}y\in H$$
+		In particular, $(\lambda_ke_k)){k\in\Lambda}$ is Cauchy. But for $k\neq l$,
+		$$\norm{\lambda_ke_k-\lambda_le_l}^2_H=
+			+\inne{\lambda_le_l}{\lambda_le_l}
+			+\underbrace{\inne{\lambda_ke_k}{\lambda_le_l}}_{=\lambda_k\overline{\lambda_l}\inne{e_k}{e_l}\stackrel{Lemma1}{=}0}
+			+\inne{\lambda_le_l}{\lambda_ke_k}
+		$$
+		Assume, $\norm{e_k}_H=\norm{e_l}_H=1$, otherwise replace $e_k$ by $e_k/\norm{e_k}_H$,
+		$$
+			\norm{\lambda_ke_k-\lambda_le_l}^2_H=|\lambda_k|^2+|\lambda_l|^2>2r
+		$$
+	\end{pf}
+\end{lemma}
+\begin{pf}{Riesz-Schauder}{}
+	Proof of i) see last week.\\
+	ii) By Lemma 2 ii),
+	$$A_n=\sigma_p(T)\cap\{z:\frac{1}{n+1}\leq|z|\leq\frac{1}{n}\}(\subset \sigma_p(T)\setminus B_{1/(n+1)}(0))$$
+	is finite and $\sigma_p(T)\setminus\{0\}=\bigcup_n A_n$ is thus countable. This also implies $\sigma_p(T)\setminus\{0\}$ has no accumulation point.\\
+	iii) By applying Gram-Schmidt to the (finite-dimensional) space $X_\lambda$, $\lambda\in\sigma_p(T)\setminus\{0\}$, can ensure that eigenvectors $e_k$, $e_l$ to eigenvalues $\lambda_k=\lambda_l$ are orthonormal. If they belong
+	% remark: Lemma 2 gives important structural information on the spectrum. In particular, ii) implies that $\sigma_p(T)\setminus\{0\}$ is countable with no accumulation point and by I) each eigenvalue has finite multiplicity.
+	to distinct eigenvalues $\lambda+k\neq\lambda_l$ this is automatic after normalizing them to have norm 1 by lemma 1.\\
+	So let $(\lambda_k)$ be the elements of $\sigma_p(T)\setminus\{0\}$, counted with multiplicities( i.e. $dim(X_{\lambda_k})$ copies of $\lambda_k$. Let
+	$$
+		X\defeq\overline{span\{e_k\}}=\overline{\oplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
+	$$
+	Claim 1 $\forall x\in X$: $x=\sum_k \inne{x}{e_k}e_k$\\
+	proof: Let $x_n=\sum_k\leq n \inne{x}{e_k}e_k$.
+	Then $\forall n\geq0$,
+	$$
+		\norm{x_n}_H^2=\sum_{k\leq n}|\inne{x,e_k}|^2=\inne{x_n}{x}\leq\norm{x_n}_H\norm{x}_H$$
+	so $\norm{x_n}_H\leq\norm{x}_H$ unless $x_n=0$. Hence
+	$$\sum_{k}|\inne{x,e_k}|^2=\lim_{n\to\infty}\norm{x_n}_H^2\leq\norm{x}_H^2<\infty$$
+	and $\forall n\geq m\geq0$:
+	$$\norm{x_n-x_m}^2_H=\sum_{m\leq k\leq n}|\inne{x,e_k}|^2\xrightarrow{n,m\to\infty}0$$
+	Thus $x_n\xrightarrow[\norm{\cdot}_H]{n\to\infty}y\in X$. Moreover, $\forall k\geq 0$,
+	$$\inne{x-y}{e_k}=\lim_{n\to\infty}\inne{x-x_k}{e_k}=\inne{x}{e_k}-\lim_{n\to\infty}\inne{x_n}{e_k}=0$$
+	so $x=y$. With claim 1 and continuity of $T$ we have
+	$$\forall x\in X\,: Tx=\sum_k \inne{x}{e_k}Te_k=\sum_k \inne{x}{e_k}\lambda_ke_k$$
+	It remains to argue:\\
+	{\bf Claim 2}: $Y\defeq X^\perp=ker(T)$, which concludes the proof.
+	Proof of claim2:\\
+	If $Y=\{0\}$, it's trivial. So one can assume $Y\neq\{0\}$. First, note that
+	\begin{equation}T(y)\subset Y\tag{$*$}\end{equation}
+	For, if $y\in Y$ then $\forall k$:
+	\[\inne{e_k}{Ty}=\inne{Te_k}{y}=\lambda\inne{e_k}{y}\stackrel{Y\perp\{e_k\}}{=}0\]
+	By $(*)$,
+	\[T_Y=T|_Y:Y\to Y\] is well defined. $T_Y$ inherits compactness and self-adjointness from $T$ (exercise). We want to show that \func{T_Y}{Y}{Y}: $y\mapsto0 $ is the  "0-map" on $Y$, or equivalently, $\norm{T_Y}_{\mathcal{L}(X)}=0$. If not, one can show (no proof) that
+	\[sigma_p(T)\setminus\{0\}\neq\emptyset\]
+	(in fact $+\lambda$ or $-\lambda$ is an eigenvalue where $\lambda=\norm{T_Y}_{\mathcal{L}(X)}$) But this can't be because if $e\in Y$ is an eigenvector for $\lambda\in]sigma_p(T)$, $\lambda\neq 0$, then
+	\[Te\stackrel{e\in Y}{=}T_Y e=\lambda e\]
+	So $e\in X_\lambda\subset X=Y^\perp$. But $Y^\perp\cap Y=\{0\}$
+\end{pf}
+\begin{remark}
+	We have actually shown that $H$ admits the orthogonal decomposition:
+	\[H=ker(T)\oplus
+		\overline{\oplus_{\lambda\in\sigma_p(T)\setminus\{0\}X_\lambda}}
+	\]
+	where $\sigma_p(T)\setminus\{0\}X_\lambda$ is countable.
+\end{remark}
+
+
+
+\end{document}
+
