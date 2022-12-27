@@ -9,22 +9,23 @@
 \maketitle
 
 
-\section{Spectrum}
-In this section, we consider normed linear spaces over $\comp$, for the reason that it provides a simpler picture of the spectrum problem. In linear algebra, we know that Hermitian matrices over $\comp$ has real eigenvalues. This is the spectral theory of finite dimensional space. In infinite dimensional spaces, the settings are different, however, are extensions of finite dimensional cases.
+\section{Spectral Theory}
+In this section, we consider Banach space $\comp$. 
 
 \begin{definition}[Resolvent \& Spectral]\nl
-Let $X$ be Banach. \func{T}{D_T\subset X}{X} be a linear operator, its {\underline{resolvent set}} is
+Let $X$ be Banach. \func{A}{D_A\subset X}{X}  linear operator.\\
+{\underline{Resolvent set}} of $A$ is
 $$
-\varrho({T})=
+\varrho({A})=
 \{
-\lambda\in\comp:(\lambda I-T) \text{ is bijective and } \exists (xI-T)^{-1}\in \mathcal{L}(X)
+\lambda\in\comp:(\lambda I-A) \text{ is bijective and } \exists (xI-A)^{-1}\in \mathcal{L}(X)
 \}
 $$
 The {\underline{spectrum}} is defined as the complement:
 $$
-\sigma(T)=\comp\backslash\varrho(T)
+\sigma(A)=\comp\backslash\varrho(A)
 $$
-The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)},$\varrho(A)\ni\lambda\mapsto \in\mathcal{L}(X)$
+The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)}, $\varrho(A)\ni\lambda\mapsto R_\lambda= (\lambda-A)^{-1}\in\mathcal{L}(X)$
 \end{definition}
 
 \begin{remark}\nl
@@ -32,40 +33,41 @@ The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)}
 \end{remark}
 
 % Below are in accordance with written notes
-\begin{example}
-    Consider $X=\comp$, $A\in \mathcal{L}(X)$, i.e. $D_A=X$, $\lambda\in\comp$, $(\lambda-A)$ invertible $\iff p(\lambda)\stackrel{def.}{=}det(\lambda-A)\neq0$. Since  $p(\cdot)$ has at least $1$ and at most $n$ (distinct) solutions, one get $\sigma(A)\neq \emptyset$, $\sigma(A)$ contains at most $n$ points. Hence $\varrho(A)\neq\emptyset$ and $\varrho(A)\subset\comp$ is dense.
+\begin{example}\nl
+    Consider $X=\comp$, $A\in \mathcal{L}(X)$, i.e. $D_A=X$, $\lambda\in\comp$.\\
+    $(\lambda-A)$ invertible $\iff p(\lambda)\stackrel{def.}{=}det(\lambda-A)\neq0$. Since  $p(\cdot)$ has at least $1$ and at most $n$ (distinct) solutions, one get $\sigma(A)\neq \emptyset$, $\sigma(A)$ contains at most $n$ points. Hence $\varrho(A)\neq\emptyset$ and $\varrho(A)\subset\comp$ is dense.
 \end{example}
 
 \begin{lemma}\nl
-If $\sigma_0\in\varrho(A)$, then 
+If $z_0\in\varrho(A)$, then 
 $$D\stackrel{def.}{=}
 \{
-\varrho\in\comp:|\varrho-\varrho_0|<\frac{1}{\norm{R(\varrho_0)}_{\mathcal{L}(X)}}
+z\in\comp:|z-z_0|<\frac{1}{\norm{R(z)}_{\mathcal{L}(X)}}
 \}
 \subset\varrho(A)$$
 Hence $\varrho(A)$ is open, and $\sigma(A)$ is closed.
 \begin{pf}{}{}
 Write 
 $$
-\zeta-A=
-( \zeta-\zeta_0)+(\zeta_0-A)=(1+(\zeta-\zeta_0)R_{\zeta_0})(\zeta_0-A)
+z-A=
+( z-z_0)+(z_0-A)=(1+(z-z_0)R_{z_0})(z_0-A)
 $$
-If $\zeta\in D$ then $1+(\zeta-\zeta_0)R_{\zeta_0}$ is invertible with $\circ{1}$:
-$$
-(1+(\zeta-\zeta_0)R_{\zeta_0}^{-1}=\sum_{n\geq0}(\zeta0-\zeta)^n {R_{\zeta_0}}^n
-$$
+If $z\in D$ then $1+(z-z_0)R_{z_0}$ is invertible with:
+\[
+(1+(z-z_0)R_{z_0})^{-1}=\sum_{n\geq0}(z_0-z)^n {R_{z_0}}^n\tag{\textcircled{1}}
+\]
 hence also
 $$
-R_\zeta=(\zeta-A)^{-1}\stackrel{(*)}{=}R_{\zeta_0}(1+(\zeta-\zeta_0)R_{\zeta_0})^{-1}\in\mathcal{L}(X)
+R_z=(z-A)^{-1}\stackrel{(*)}{=}R_{z_0}(1+(z-z_0)R_{z_0})^{-1}\in\mathcal{L}(X)
 $$
-For $\circ{1}$ use: if $A\in\mathcal{L}(X)$, $\norm{A}<1$ then with $A^0=Id=1$, 
+For $\textcircled{1}$ use: if $A\in\mathcal{L}(X)$, $\norm{A}<1$ then with $A^0=Id=1$, 
 $$
 \sum_{n=0}^\infty A^n\in\mathcal{L}(X)
 $$
 i.e. the sequence
 $$
 \left(
-S_n=\sum_{k=0}n A^k
+S_n=\sum_{k=0}^n A^k
 \right)\subset\mathcal{L}(X)
 $$
 converges, and
@@ -75,6 +77,7 @@ $$
 \end{pf}
 \end{lemma}
 
+
 \begin{example}\nl
     Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
     \begin{pf}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
@@ -82,7 +85,8 @@ $$
     \end{pf}
 
     \begin{pf}{$\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$}{}
-    If $\Tilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\Tilde{\lambda}-\lambda_k|>\delta$ $\forall k\in\natu$. Let $x\in\ell^2$, $y\stackrel{def.}{=}(\Tilde{\lambda}-T)x=((\Tilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\Tilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\Tilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\tilde{\lambda}\in\varrho(T)$
+    If $\widetilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\widetilde{\lambda}-\lambda_k|>\delta$, $\forall k\in\natu$. \\
+    Let $x\in\ell^2$, $y\stackrel{def.}{=}(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
     \end{pf}
 \end{example}
 
@@ -93,22 +97,23 @@ $$
 \begin{definition}\nl
     Consider linear operatorn $A$ with colsed grapgh and specturm $\sigma(A)$.
     \begin{itemize}
-        \item [point spectrum] $\sigma_p(A)\stackrel{def.}{=}
+        \item Point spectrum: $\sigma_p(A)\stackrel{def.}{=}
         \left\{
         \lambda\in \comp :\lambda-A \text{ not  injective}
         \right\}$
-        \item [continuous specturm] $\sigma_c(A)\stackrel{def.}{=}
+        \item Continuous spectrum: $\sigma_c(A)\stackrel{def.}{=}
         \left\{
-        \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, Im(\lambda-A) \text{ dense }        
+        \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, im(\lambda-A) \text{ dense }        
         \right\}$
-        \item [residual specturm] $\sigma_r(A)\stackrel{def.}{=}\sigma(A)\setminus(
-        \sigma_p(A)\cup\sigma_c(A))$         Elements of point specturm are called {\underline Eigenvalues of $A$} with {\underline eigenspaces} $ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$
+        \item Residual spectrum: $\sigma_r(A)\stackrel{def.}{=}\sigma(A)\setminus(
+        \sigma_p(A)\cup\sigma_c(A))$         
     \end{itemize}
+    Elements of point specturm are called {\underline {eigenvalues} of $A$} with {\underline {eigenspaces}} $$ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$$
 \end{definition}
 
 \begin{example}[Shift operator]\nl
-    \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$: indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin Im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
-    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_(n+1)\,\,\forall n\in\natu\implies x_k=0$ for all k. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\zeta\in\comp:|\zeta|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$
+    \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$: indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
+    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_{(n+1)},\,\,\forall n\in\natu\implies x_k=0$ for all $k\in\natu$. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\zeta\in\comp:|\zeta|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$.
 \end{example} 
 \begin{example}\nl
     $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
@@ -132,9 +137,10 @@ In sequel write $A\subset B$, reads $B$ is extension of $A$ if $D_A\subset D_B$ 
 What can we say about spectrum $\sigma(A)$ for such $A$?
 
 \begin{lemma}
-	IF $A$ is symmetric, $\sigma_p(A)\subset\real$.
+	If $A$ is symmetric, $\sigma_p(A)\subset\real$.
 	\begin{pf}{}{}
-		Let $\lambda\in\sigma_p(A)$ with non-zero eigenvector $x\in ker(\lambda-A)$. Then $\lambda\norm{X}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H^1$. So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
+		Let $\lambda\in\sigma_p(A)$ with non-zero eigenvector $x\in ker(\lambda-A)$. \\
+		Then $\lambda\norm{X}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H^1$. So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
 	\end{pf}
 \end{lemma}
 Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
@@ -149,13 +155,13 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 	\begin{equation}
 		\begin{aligned}
 			 & D_{A_1}=H^1\defeq\{f\in H: f \text{ has a weak derivative  f'}\} \\
-			 & \cup                                                            \\
-			 & D_{A_2}=\{f\in H^1:f(0)=f(1)\}\text{ periodic b.c.}             \\
-			 & \cup                                                            \\
-			 & D_{A_3}=\{f\in H^1: f(0)=0=f(1)\}\text{ Dirichlet b.c.}         \\
+			 & \bigcup                                                            \\
+			 & D_{A_2}=\{f\in H^1:f(0)=f(1)\}\text{ (periodic boundary condition)}             \\
+			 & \bigcup                                                            \\
+			 & D_{A_3}=\{f\in H^1: f(0)=0=f(1)\}\text{ (Dirichlet boundary condition)}         \\
 		\end{aligned}
 	\end{equation}
-	Set $A_k(f)=if'\,\,\forall f\in D_{A_k}$. Evidently $ A_\infty\subsetneq A_3\subsetneq A_2 \subsetneq A_1$.\\
+	Set $A_k(f)=if',\,\,\forall f\in D_{A_k}$. Evidently $ A_\infty\subsetneq A_3\subsetneq A_2 \subsetneq A_1$.\\
 	One can show that
 	$$
 		A_3\subset\dual{A_1}\subset\dual{A_2}=A_2\subset\dual{A_3}
@@ -163,7 +169,7 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 	So: $A_3$ is symmetric but because $A_3\subsetneq A_2\subset \dual{A_3}$ not self-adjoint, $A_2$ is self-adjoint.\\
 	Claim:
 	\begin{itemize}
-		\item [i)] $\sigma(A_1)=\sigma_p(A_1)=\comp$,$ \varrho(A_1)=\emptyset$.
+		\item [i)] $\sigma(A_1)=\sigma_p(A_1)=\comp$, $ \varrho(A_1)=\emptyset$.
 		\item [ii)] $\sigma(A_2)-\sigma_p(A_2)=a\pi\inte$, $\varrho(A_2)=\comp$.
 		\item [iii)] $\sigma(A_3)=\comp$, $\sigma_p(A_3)=\emptyset$, $\varrho(A_3)=\emptyset$
 	\end{itemize}

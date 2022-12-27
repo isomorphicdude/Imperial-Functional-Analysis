@@ -90,12 +90,12 @@ leftmargin=0cm, rightmargin=0cm, linewidth=4pt,
 innerbottommargin=5pt]{exBox}
 
 % Proof box
-\newmdenv[skipabove=7pt, skipbelow=7pt,
-rightline=false, leftline=true, topline=false, bottomline=false,
-linecolor=gray,
-innerleftmargin=5pt, innerrightmargin=30pt, innertopmargin=5pt,
-leftmargin=0cm, rightmargin=0cm, linewidth=4pt,
-innerbottommargin=5pt]{proofBox}
+% \newmdenv[skipabove=7pt, skipbelow=7pt,
+% rightline=false, leftline=true, topline=false, bottomline=false,
+% linecolor=gray,
+% innerleftmargin=5pt, innerrightmargin=30pt, innertopmargin=5pt,
+% leftmargin=0cm, rightmargin=0cm, linewidth=4pt,
+% innerbottommargin=5pt]{proofBox}
 
 
 
@@ -106,8 +106,9 @@ innerbottommargin=5pt]{proofBox}
 \newenvironment{proposition}{\begin{lBox}\begin{propositionT}}{\end{propositionT}\end{lBox}}
 \newenvironment{corollary}{\begin{lBox}\begin{corollaryT}}{\end{corollaryT}\end{lBox}}
 \newenvironment{property}{\begin{lBox}\begin{propertyT}}{\end{propertyT}\end{lBox}}
-\newenvironment{remark}{\begin{lBox}\begin{remarkT}}{\end{remarkT}\end{lBox}}
+
 
 % \newenvironment{proof*}{\begin{proofBox}\begin{proof}}{\end{proof}\end{proofBox}}
 \newenvironment{exercise}{\begin{exBox}\begin{exerciseT}}{\hfill{\color{royal}}\end{exerciseT}\end{exBox}}
+\newenvironment{remark}{\begin{exBox}\begin{remarkT}}{\end{remarkT}\end{exBox}}
 \newenvironment{example}{\begin{exBox}\begin{exampleT}}{{}\end{exampleT}\end{exBox}}

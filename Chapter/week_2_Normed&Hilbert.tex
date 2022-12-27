@@ -30,8 +30,128 @@ centered at \(x\).
 
 \begin{proof}
 	Consider \(D = \cup_{n\geq 1} D_n\), where  
-	\[ D_n = \{x=(x_n): x_n \in \mathbb{Q} \forall n \in \natu, x_k=0, \forall k >n\}\]
+	\[ D_n = \{x=(x_n): x_n \in \mathbb{Q}, \forall n \in \natu, \ \text{and} \ x_k=0, \forall k >n\}\]
+ Clearly $D_n \subset \ell^p$, hence $D\subset \ell^p$ and $D_n \cong \mathbb{Q}^n$ is countable, hence $D$ is also countable.   
+
+\textbf{Claim:} $D$ is dense in $\ell^p$.  
+
+Let $x = (x_n) \in \ell^p$ and $\varepsilon >0$ . First we build a $\norm{\cdot}_p-$close sequence $\Tilde{x}=(\Tilde{x}_n)$ with values in $\mathbb{Q}$. Since $\mathbb{Q} \subset \real$ is dense, we find for every $n$ a number $\tilde{x}_n \in \qq$ s.t.  
+
+$$
+|x_n-\Tilde{x}_n| \leq \left(\frac{\varepsilon}{2}\right) (2^{-\frac{n}{p}})
+$$  
+
+This implies  
+
+\begin{equation}
+\label{1}
+    \norm{x-\Tilde{x}}_p^p = \sum_{n=1}^{\infty} |x_n-\Tilde{x}_n|^p \leq \left(\frac{\varepsilon}{2}\right)^p \sum_{n=1}^{\infty} 2^{-n}=\left(\frac{\varepsilon}{2}\right)^p
+\end{equation}
+
+Note that this also implies $\Tilde{x} \in \ell^p$, since $\norm{\Tilde{x}}_p \leq \underbrace{\norm{\Tilde{x}-x}_p}_{<\infty}+\underbrace{\norm{x}_p}_{<\infty}$.  
+
+Since $\Tilde{x} \in \ell^p$, we have $\sum_n |\Tilde{x}_n|^p < \infty$ hence we can pick an $n$ s.t.  
+
+\begin{equation}
+\label{2}
+    \sum_{k\geq n} |\Tilde{x}_n|^p < \left(\frac{\varepsilon}{2}\right)^p
+\end{equation}
+
+Now define $y = (\Tilde{x}_1, \ldots, \Tilde{x}_n, 0, 0, \ldots,)$. Clearly, $y \in D_n$. Moreover, \cref{2} asserts that $\norm{\Tilde{x}-y} < \frac{\varepsilon}{2}$. Combining with \cref{1} and using the triangle inequality yields $\norm{x-y}_p < \varepsilon$, \textit{i.e.} $x\in B(y, \varepsilon)$.  
+\end{proof}  
+
+\begin{proposition}
+    $L^p(\real^n), p \in [1, \infty)$ is separable
+\end{proposition}  
+
+\begin{proof}
+    (Sketch)  Consider  
+    $$
+    C = \left\{Q\: \text{\ dyadic\ cube}, i.e. \ Q = x + [0, 2^{-l}) \text{\ for\ some\ } x \in 2^{-l} \inte^n(\subset \real^n) \text{\ and\ } l\in \natu \cup \{0\}\right\}
+    $$   
+    Define  
+    $$
+    D = \left\{g = \sum_{k=1}^n a_k \mathbf{1}_{Q_k}: n\in \natu, a_k \in \qq, Q_k \in C \right\}
+    $$
+    \textbf{Claim:} D is dense in $L^p(\real^n), p \in [1, \infty)$  
+
+    Let $f \in L^p(\real^n)$. Assume $f \geq 0$ (else split into $f=f^+-f^-$)  
+
+    \textbf{Step 1} By approximation of simple functions, we can find $\Tilde{g}$ simple, s.t. $0 \leq \Tilde{g} \leq f$ and  
+    $$
+    \norm{f-\Tilde{g}} < \frac{\varepsilon}{3}
+    $$  
+    with $\Tilde{g}=\sum_{k=1}^m a_k \mathbf{1}_{A_k}$ for suitable $A_k \in \mathcal{B}(\real^n)$.  
+
+    \textbf{Step 2} We can find a sequence of simple functions $\hat{g}$ with coefficients $a_l \to a_k$ where $a_l\in \qq$ such that  
+    $$
+    \norm{\hat{g}-\Tilde{g}} < \frac{\varepsilon}{3}
+    $$  
+
+    \textbf{Step 3} For each $A_k$, we can find $O_k$ open s.t.  
+    $$
+    \lambda(O_k\setminus A_k) < \frac{\varepsilon}{6} 2^{-k}
+    $$
+    And we can approximate $O_k$ using dyadic cubes with precision $\frac{\varepsilon}{6} 2^{-k}$
+\end{proof}  
+
+It is crucial that $\lambda(A_k) < \infty$, as  
+
+$$
+\forall k \in \natu: |a_k|^p \lambda(A_k) \leq \norm{\Tilde{g}}_p \leq \norm{f}_p < \infty
+$$  
+
+see also MATH50006 proof of (4.13). 
+
+\begin{definition}[Schauder basis]
+
+Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
+$$
+\norm{x - \lim_{n\to\infty}\sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
+$$
+\end{definition}
+
+
+\begin{proposition}[Schauder implies separability]
+\label{Schauder implies separability}
+	If $(X, \norm{\cdot})$ has a Schauder basis, then it is separable.
+\end{proposition}  
+
+\begin{proof}
+    Define the set $D \subset X$ as,  
+    $$
+    D = \left\{\sum_{i=1}^n q_i e_i: q_i \in \qq \right\}
+    $$  
+    where $(e_i)$ is a Schauder basis. (if $X$ is over $\mathbb{C}$, then use $q \in \qq + i \qq$)
+    
+    Then by definition, one can find $n$ and $x_i$ such that  
+    \begin{equation}
+        \label{3}
+        \norm{x - \sum_{i=1}^n x_i e_i} \leq \frac{\varepsilon}{2}  
+    \end{equation}
+    Choose $q_i \in \qq$ such that $|q_i - x_i|<\frac{\varepsilon}{2n \sum_{i=1}^n \norm{e_i}}$, we have  
+    \begin{equation}
+    \label{4}
+        \norm{\sum_{i=1}^n x_i e_i - \sum_{i=1}^n q_i e_i} \leq \sum_{i=1}^n |x_i-q_i| \norm{e_i} \leq \frac{\varepsilon}{2}
+    \end{equation}
+    Using triangle inequality and \cref{3}, \cref{4} above, we see
+    $$
+    \norm{x-\sum_{i=1}^n q_i e_i} < \frac{\varepsilon}{2}
+    $$
 \end{proof}
+
+\begin{remark}
+    The converse of \cref{Schauder implies separability} is not true, Per Enflo constructed a counter example that is Banach in \href{https://projecteuclid.org/download/pdf_1/euclid.acta/1485889774}{this paper}.
+\end{remark}
+
+\begin{example}
+    A Schauder basis of $\ell^p, p\in [1, \infty)$ is $e_n=(0,\ldots, 0,1,0, \ldots,0,\ldots), n\in \natu$ (the $n^{th}$ entry is $0$).  
+    Take $x=(x_n)\in \ell^p$  
+    $$
+    \norm{x-\sum_{i=1}^n x_ie_i}_p^p = \sum_{i=n+1}^{\infty} |x_i|^p \overset{n\to \infty}{\longrightarrow} 0
+    $$  
+    since $\norm{x}_0 < \infty$.  
+\end{example}
 
 
 \newpage
@@ -47,7 +167,7 @@ like orthogonality and angle. We'll see later that this structure resemble Eucli
 In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm{or} \ \mathbb{ C}$
 
 \begin{definition}
-(Bilinear Map)
+[Bilinear Map]\nextline
 	Let $X$ be a vector space over $\mathbb C$. An {\bf bilinear map} is a function $\left<\cdot,\cdot\right>:H \times H \xrightarrow{}{\mathbb C}$ satisfying following: $\forall x,y,z\in H,\alpha$ a scalar,
 	\begin{itemize}
 		\item[1] $\left<x,y\right>={\overline{\left<y,x\right>}},\forall x,y\in H$
@@ -64,7 +184,7 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm
 	If $\left<\cdot,\cdot\right>$ is an inner product on $X$, define $\norm{x}\overset{\textrm{def}}{=}\sqrt{\inne{x}{x}}$.  
 	\begin{enumerate}[i)]
 	    \item (Cauchy-Schwarz) $\ \forall x,y\in X$,
-	$$|\left<x,y\right>|^2\leq\left<x,y\right>\cdot\left<y,y\right>$$
+	$$|\inne{x}{y}|^2\leq \norm{x} \norm{y}$$
 	\item $\norm{x}$ is a norm
 \end{enumerate}  
 \end{theorem}
@@ -75,39 +195,28 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm
     $$0 \leq \norm{\eta-\inne{\xi}{\eta}\xi}^2=\norm{\eta}^2 - |\inne{\xi}{\eta}|^2=1-|\inne{\xi}{\eta}|^2$$  
     so $|\inne{\xi}{\eta}| \leq 1$
     \item Positivity and homogeneity follows from definition of $\inne{\cdot}{\cdot}$; and triangle inequality follows from i)  
-    $$\norm{x+y}^2$$
+    $$
+    \norm{x+y}^2=\norm{x}^2 + 2 \inne{x}{y} + \norm{y}^2 \leq (\norm{x}+\norm{y})^2
+    $$
 \end{enumerate}
 \end{proof}
 
-\begin{definition}
-(Hilbert space)
+\begin{definition}[Hilbert space]
     An inner product space $(H, \inne{\cdot}{\cdot})$ which is complete w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
 \end{definition}
 
-
-\begin{unexaminable}
-\begin{example}[Euclidean Space over $\mathbb R$]\rm\nextline
-	It happens that 2-D or 3-D vector space over $\mathbb R$ is an example of Hilbert space, under the standard definition of vector inner product.
+\begin{example}[$L^2-$spaces]
+The space $L^2(\mu)$ for all measures $\mu$ is a Hilbert space with inner product $\inne{f}{g}=\int fg d\mu$ and $\inne{f}{f}=\norm{f}_2^2$    
 \end{example}
 
-\begin{example}[Euclidean Space over $\mathbb C$]\rm\nextline
-	${\mathbb C}^n$ with inner product
-	$$
-		\inne{x}{y}=\sum_{i=1}^n {\overline{x_i}}\,y_i
-	$$
-	is a Hilbert space. This is a generalization of last example. Still, this is a finite-dimensional Hilbert space.
-\end{example}
-\end{unexaminable}
-
-
-\begin{example}[Sequence space]\rm\nextline
-	Complex sequence space:
-	$$\ell^2=
-		\left\{\{x_n\}_1^\infty:\sum_{k=1}^\infty |x_k|^2<\infty \right\}$$
-	with  inner product,denoting $x=\{x_n\}_1^\infty$ and $y=\{y_n\}_1^\infty$
-	$$
-		\inne{x}{y}=\sum_{k=1}^\infty \,{\overline{x_k}\, y_k}
-	$$
+\begin{example}[$l^2-$spaces]
+The sequence space
+	$\ell^2=
+		\left\{\{x_k\}_{k\in \natu}:\sum_{k=1}^\infty |x_k|^2<\infty \right\}$
+	is a Hilbert space with inner product defined by 
+	$
+		\inne{x}{y}=\sum_{k=1}^\infty \,{x_k \overline{y_k}}
+	$
 \end{example}
 
 \begin{unexaminable}
@@ -117,19 +226,20 @@ Structure of inner product allows discussion for nice geometric property of Hilb
 Orthogonality is the generalization of two lines being perpendicular. In euclidean geometry, we have Pythagorean theorem closely related to such property. Results on orthogonality in Hilbert spaces in many ways resemble their Euclidean version.
 \end{unexaminable}
 
-\begin{proposition}
-(Nearest Point Property)
-	Let \hbs be a Hilbert space, $K\subset \hbp$ be a closed, convex subset, then $\forall y \in \hbp$ there exists a {\bf{unique}} $x_0\in K$ such that
+\begin{theorem}
+[Nearest Point Property]\nextline
+\label{nearest point}
+	Let $H$ be a Hilbert space, $K\subset H$ be a closed, convex subset, then $\forall y \in \hbp$ there exists a {\bf{unique}} $x_0\in K$ such that
 	$$
 		\delta \overset{\rm{def}}{=} \inf_{x\in K} \norm{x-y} = \norm{x_0-y}
 	$$
-\end{proposition}
+\end{theorem}
 
 \begin{proof} 
 By considering the set $K-y = \{x-y: x\in K\}$ (still closed and convex), we can assume $y=0$.  
 
 \underline{\textbf{Existence:}}
-By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\epsilon >0$. Pick $N \in \natu$ such that  
+By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\varepsilon >0$. Pick $N \in \natu$ such that  
 
 $$
 \forall n \geq N \qquad \norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4}
@@ -145,15 +255,78 @@ It follows that for all $n,m \geq N$,
 
 where we have used the Parallelogram law.  
 
-By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$, and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.  
+By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$ and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.  
 
 \underline{\textbf{Uniqueness:}}
-\todo{uniqueness}
+Take $x_0, x_1 \in K$ with $\norm{x_0}=\norm{x_1}=\delta$ and assume $x_0\neq x_1$, then $\frac{1}{2}(x_0+x_1) \in K$ by convexity and so $\norm{x_0+x_1}\geq 2\delta$. By the Parallelogram law,  
+$$
+\norm{x_0-x_1}^2 = 2(\norm{x_0}^2 + \norm{x_1}^2) - \norm{x_0+x_1}^2 \leq 4\delta^2-4\delta^2= 0
+$$  
+So $x_0=x_1$, a contradiction.
 \end{proof}  
 
-\begin{corollary}
-(Orthogonal Decomposition) Let $H$ be a Hilbert space and $E \subset H$ be a closed subspace. Then  
+\begin{remark}
+    A good example of $K$ is $K \subset H$ a subsapce.
+\end{remark}  
 
+\begin{proposition}[Parallelogram law]\rm\label{parallelogram}\nextline
+	Let $x,y\in H$, then
+        $$
+		\norm{x+y}^2+\norm{x-y}^2=2\norm{x}^2+2\norm{y}^2
+	$$
+\end{proposition}
+\begin{proof}
+    Then
+	\begin{equation}
+		\begin{split}
+			\norm{x+y}^2&=\inne{x+y}{x+y}\\
+			&=\inne{x}{x}+\inne{x}{y}+\inne{y}{x}+\inne{y}{y}\\
+			&=\inne{x}{x}+\inne{x}{y}+{\overline{\inne{x}{y}}}+\inne{y}{y}\\
+			&=\norm{x}^2+2Re(\inne{x}{y})+\norm{y}^2
+		\end{split}
+	\end{equation}
+
+	Similarly,
+	\begin{equation}
+		\begin{split}
+			\norm{x-y}^2&=\inne{x-y}{x-y}\\
+			&=\inne{x}{x}-\inne{x}{y}-\inne{y}{x}+\inne{y}{y}\\
+			&=\inne{x}{x}-\inne{x}{y}-{\overline{\inne{x}{y}}}+\inne{y}{y}\\
+			&=\norm{x}^2-2Re(\inne{x}{y})+\norm{y}^2
+		\end{split}
+	\end{equation}
+ Adding up, we obtain the identity.  
+\end{proof}
+
+If $H$ is Hilbert space,  a lot of geometric intuition from linear algebra prevails. For instance, call $x \perp y$ if $\inne{x}{y}=0$.  
+
+Then if $K\subset H$ is a closed subspace, $y \in H$, then \Cref{nearest point} applies with $x_0$ being a nearest point in $K$ to $y$ and  
+
+$$
+z = y-x_0 \perp K
+$$  
+in other words, $z\perp x, \forall x \in K$.  
+
+Assume this is not true, then $\exists x \in K: \inne{z}{x} \neq 0$, then  
+$$
+\norm{z - \frac{\inne{z}{x}}{\norm{x}^2}x}^2 = \underbrace{\norm{z}^2}_{=\delta} - \frac{|\inne{z}{x}|^2}{\norm{x}^2}<\delta
+$$  
+which violates the minimality of $x_0$.  
+
+More generally, one has  
+
+
+\begin{definition}[Orthogonal Complement]\nextline
+    For $S\subset H$, $H$ a Hilbert space, we define the \textbf{orthogonal complement} 
+    $$
+    S^{\perp} \overset{\text{def.}}{=} \left\{y \in H: \inne{x}{y}=0, \forall x \in S \right\}
+    $$
+    We can also check that $S^{\perp}$ is closed.  
+\end{definition}  
+
+
+\begin{corollary}[Orthogonal Decomposition] \nextline
+Let $H$ be a Hilbert space and $E \subset H$ be a closed subspace. Then  
 $$
 H = E \oplus E^{\perp}
 $$  
@@ -163,157 +336,27 @@ $$
 \begin{proof}
 If $x \in E\cap E^{\perp}$, then $\inne{x}{x}=0$, so $\norm{x}=0$, $x=0$.  
 
-For all $x\in H$, $E$
-\end{proof}
-
-\begin{definition}[Orthogonality]\rm\nextline
-	Let $\mathscr{H}$ be a Hilbert space and $f\in\mathscr{H}$. Say $g$ is orthogonal to $f$ if $\inne{f}{g}=0$, writes $f\perp g$. For two sets $A,B\in \mathscr{H}$, write $A\perp B$ if $a\perp b$ for all $a\in A$ and $b\in B$
-
-
-\end{definition}
-
-\begin{definition}[Orthogonal Complement]\rm\label{ortho comp}\nextline
-	Let $A$ be a set in Hilbert space $\mathscr{H}$. Its orthogonal complement, $A^{\perp}$ is the set of all vectors $f \in \mathscr{H}$ such
-	that $f\perp g\,,\forall g \in A$. $A^\perp$ is always a subset of $\mathscr{H}$. Moreover, $A^\perp=\cup_{a\in A}(a)^\perp$, and we can prove that $A^\perp$ is always a closed subset of \hbs.
-\end{definition}
-
-\begin{proposition}[Pythagorean Theorem]\rm\nextline
-	Let $f_1,\,f_2,\,......,f_n$ be pairwise orthogonal vectors in Hilbert space \hbs. Then
-	$$
-		\norm{\sum_{k=1}^n f_k}^2={\sum_{k=1}^n \norm{f_k}^2}
-	$$
-	\textit{proof:}\\
-	It suffices to show for n=2, and proceed with induction. Consider $a,b\in \hbp$ with $a\perp b$.
-	Then
-	\begin{equation}
-		\begin{split}
-			\norm{a+b}^2&=\inne{a+b}{a+b}\\
-			&=\inne{a}{a}+\inne{a}{b}+\inne{b}{a}+\inne{b}{b}\\
-			&=\inne{a}{a}+0+0+\inne{b}{b}\\
-			&=\norm{a}^2+\norm{b}^2
-		\end{split}
-	\end{equation}
-
-
-\end{proposition}
-
-\begin{remark}[Parallelogram equality]\rm\label{parallelogram}\nextline
-	Let $a,b\in \hbp$ be arbitrary vectors.
-	Then
-	\begin{equation}
-		\begin{split}
-			\norm{a+b}^2&=\inne{a+b}{a+b}\\
-			&=\inne{a}{a}+\inne{a}{b}+\inne{b}{a}+\inne{b}{b}\\
-			&=\inne{a}{a}+\inne{a}{b}+{\overline{\inne{a}{b}}}+\inne{b}{b}\\
-			&=\norm{a}^2+2Re(\inne{a}{b})+\norm{b}^2
-		\end{split}
-	\end{equation}
-
-	Similarly,
-	\begin{equation}
-		\begin{split}
-			\norm{a-b}^2&=\inne{a-b}{a-b}\\
-			&=\inne{a}{a}-\inne{a}{b}-\inne{b}{a}+\inne{b}{b}\\
-			&=\inne{a}{a}-\inne{a}{b}-{\overline{\inne{a}{b}}}+\inne{b}{b}\\
-			&=\norm{a}^2-2Re(\inne{a}{b})+\norm{b}^2
-		\end{split}
-	\end{equation}
-
-	Adding up, we obtain {\bf{\emph{ parallelogram equality}}}:
-	$$
-		\norm{a+b}^2+\norm{a-b}^2=2\norm{a}^2+2\norm{b}^2
-	$$
-
-
-	This equation holds for all Hilbert spaces including 2-d vector space over $\mathbb R$. Readers may find this form identical to the parallelogram equality in that vector space. It is also where the name comes from.
-\end{remark}
-
-
-
-\subsubsection{Nearest Point Property}
+For all $x\in H$, the subspace $K\overset{\text{def.}}{=}x+E$ is closed and convex. 
+Thus, by \Cref{nearest point}, $\exists x_0 \in E$, s.t. $\norm{x-x_0} \leq \norm{x-\eta}, \forall \eta \in E$.
 \begin{unexaminable}
-In Euclidean geometry, choosing a point and a line we can find the minimal distance form the point to any point on the line, defined as the distance from the point to the line. This can be generalized, with line extending to a {\bf{\emph{closed convex set}}} and space becoming a Hilbert space.
+    We show that every $x\in H$ can be written as $x=x_0+(x-x_0)$.
 \end{unexaminable}
 
+We have, $\forall \eta \in E$:  
+\begin{equation*}
+    t=0 \text{\ is\ a\ minimum\ of\ } t\in [0,1] \mapsto \frac{1}{2} \norm{x-x_0+t\eta}^2
+\end{equation*} 
 
-\begin{definition}[Convexity]\rm\label{convexity}\nextline
-	A set $S\subset \mathscr{H}$ is convex if $\forall f,g\in S,\forall t\in\left[0,1\right]$, we have $(tf+(1-t)g)\in S$.
+which is a quadratic function of $t$, therefore  
 
-\end{definition}
-Intuitively, this means that given any two points in the a convex set, the "segment" connecting the points stays inside the set. Hence a closed convex set is such a set with the property that every convergent sequence in the set converges to a point in the set.
+\begin{equation*}
+    0=\frac{d}{dt}\frac{1}{2} \norm{x-x_0+t\eta}^2 \Big|_{t=0} = t\norm{\eta}^2 + \inne{x-x_0}{\eta} \Big|_{t=0}=\inne{x-x_0}{\eta}
+\end{equation*}
 
-\begin{definition}[Set-point distance]\rm\nextline
-	Let \hbs be a Hilbert space, $S\in \mathscr{H}$ be a closed subset, $x\in \hbp$ be arbitrary vector. We define the {\bf{distance}} from $x$ to $S$ to be the infimum of distance between $x$ and element of $S$:
-
-	$$\text{dist}(S,x)\equiv\inf_{s\in S} (\norm{s-x})$$
-
-\end{definition}
-
-
+\textit{i.e.} $(x-x_0) \in E^{\perp}$ and $x=x_0+(x-x_0) \in E+E^{\perp}$
+\end{proof}
 
 
-\subsubsection{Projection Theorem}
-\begin{definition}[Projection mapping]\rm\nextline
-	Let \hbs be a Hilbert space. A mapping $P:\hbp\xrightarrow{}\hbp$ is a projection mapping if $$
-		P(Px)=Px,\,\forall x\in\hbp
-	$$
 
-
-\end{definition}
-
-
-\begin{proposition}[Projection Theorem]\rm\nextline
-	Let \hbs be a Hilbert space and M a closed subspace. Then there exists unique pair of projection mapping $P:\hbp\xrightarrow{}M$ and $Q:\hbp\xrightarrow{}M^\perp$ satisfying $x=Px+Qx$ for any $x\in\hbp$, with the following property:
-	\begin{enumerate}[(1)]
-		\item $x\in M$ if and only if $Px=x,\,Qx=0$
-		\item $x\in M^\perp$ if and only if $Px=0,\,Qx=x$
-		\item $\norm{Px}^2+\norm{Qx}^2=\norm{x}^2$
-		\item $P$ and $Q$ are linear maps
-		\item $Px$ is the closest vector in $M$ to x.
-		\item $Qx$ is the closest vector in $M^\perp$ to x.
-	\end{enumerate}
-	\textit{proof:}\\
-	We shall use nearest point property. Since $M$ is a closed subspace, it is clearly a convex subset of \hbs. Thus for each $x\in \hbp$ there exists a unique point in $M$ that is closest to $x$. So we define $Px$ to be the unique nearest point in $M$ for each x. Uniqueness of nearest point gives the uniqueness of mapping $P$. $Q$ is then defined as $x-Px$. We should show that this definition of $Q$ indeed gives a mapping from \hbs to $M^\perp$.\\
-	Fix $x$, let $m\in M$ be such that $\norm{m}=1$. We must have, for all $a\in\mathbb{C}$:
-	\begin{equation}
-		\begin{split}
-			\norm{Qx}^2&\leq\norm{Qx+am}^2\\
-			&=\norm{Qx}^2+|a|^2\norm{m}^2+\inne{Qx}{m}+\inne{m}{Qx}
-		\end{split}
-	\end{equation}
-	Then we choose $a=-\inne{Qx}{m}$ and simplify the equation, we have
-	\begin{equation}
-		\begin{split}
-			0&\leq|a|^2\norm{m}^2+\inne{Qx}{am}+\inne{am}{Qx}\\
-			&=|\inne{Qx}{m}|^2\norm{m}^2+\inne{Qx}{-\inne{Qx}{m}m}+\inne{-\inne{Qx}{m}m}{Qx}\\
-			&=|\inne{Qx}{m}|^2-
-			\overline{\inne{Qx}{m}}\inne{Qx}{m}-
-			\overline{\inne{m}{Qx}}\inne{m}{Qx}\\
-			&=-|\inne{Qx}{m}|^2
-		\end{split}
-	\end{equation}
-	Thus we must have $\inne{Qx}{m}=0$, so $Qx\in M^\perp$.\\
-	We proceed to prove (1) and (2).\\
-	First $x\in M$. We have $Qx\in M^\perp$. Note that $x\in M$ and $Px\in M$ we have $Qx=x-Px\in M$. Hence $Qx\in(M\cap M^\perp)={0}$. Thus $Qx=0$ and $Px=x-0=x$. \\
-	To see other direction, we simply notice that $x=Px\in M$ by definition.\\
-	Proof of (2) is similar.\\
-	Now let's prove (3). We shall use the fact that $Px\perp Qx$, giving $\inne{Px}{Qx}=0$
-	\begin{equation}
-		\begin{split}
-			\norm{x}^2&=\inne{x}{x}\\
-			&=\inne{Px+Qx}{Px+Qx}\\
-			&=\inne{Px}{Px}+\inne{Qx}{Px}+\inne{Px}{Qx}+\inne{Qx}{Qx}\\
-			&=\inne{Px}{Px}+\inne{Qx}{Qx}\\
-			&=\norm{Px}^2+\norm{Qx}^2
-		\end{split}
-	\end{equation}
-	Proof of (4) is a routine work verifying linearity. Left as an exercise.\\
-	Now let's prove (5) and (6).\\
-	(3) is given by the construction of P. To see (4), consider $y\in M^\perp$, we have:
-	$$
-		\norm{x-y}=\norm{Px+Qx-y}=\norm{Px}+\norm{Qx-y}\geq \norm{Px}
-	$$
-	So minimal distance is $\norm{Px}$, Obtained at $y=Qx$
-\end{proposition}
 
 \end{document}
