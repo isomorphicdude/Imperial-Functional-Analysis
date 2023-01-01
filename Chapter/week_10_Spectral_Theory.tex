@@ -46,6 +46,8 @@ z\in\comp:|z-z_0|<\frac{1}{\norm{R(z)}_{\mathcal{L}(X)}}
 \}
 \subset\varrho(A)$$
 Hence $\varrho(A)$ is open, and $\sigma(A)$ is closed.
+\end{lemma}
+
 \begin{pf}{}{}
 Write 
 $$
@@ -75,12 +77,12 @@ $$
 \sum_{n=0}^\infty A^n=(1-A^{-1})^{-1}
 $$
 \end{pf}
-\end{lemma}
 
 
 \begin{example}\nl
     Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
-    \begin{pf}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
+\end{example}
+\begin{pf}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
     $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by lemma $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
     \end{pf}
 
@@ -88,7 +90,6 @@ $$
     If $\widetilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\widetilde{\lambda}-\lambda_k|>\delta$, $\forall k\in\natu$. \\
     Let $x\in\ell^2$, $y\stackrel{def.}{=}(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
     \end{pf}
-\end{example}
 
 \begin{remark}\nl
     In finite dimension, $(\lambda-A)$ not inverttible $\iff(\lambda-A)$ not injective by rank formula. One may wonder if "lack of injectivity"is the only reason for $\lambda\notin \sigma(A)$.
@@ -210,19 +211,20 @@ We have seen: symmetric operators can have imaginary spectrum, but:
 	Let $A\subset \dual{A}$. Then $\forall\zeta\in\comp\,\forall u\in D_A$: $\norm
 		{(\zeta-A)u}_H\geq |Im(\zeta)|\norm{u}_H$.\\
 	(So for $\zeta\notin\real\implies(\zeta-A)$ injective, i.e. $\zeta\notin\sigma_p(A)$)
-	\begin{pf}{}{}
+\end{lemma}
+\begin{pf}{}{}
 		For $u\in D_A:$ $\inne{u}{Au}\stackrel{A\subset\dual{A}}{=}\inne{Au}{u}=\overline{\inne{u}{Au}}\in\real$. Hence,
 		$$
 			|Im(\zeta)|\norm{u}^2_H=|Im(\inne{u}(\zeta-A)u)|\leq|\inne
 			{u}{(\zeta-A)u}\leq\norm{u}_H\norm{(\zeta-A)u}_H
 		$$
-	\end{pf}
-\end{lemma}
+\end{pf}
 % mind Im and im, Im is imaginary part and im is image. Pay attention  to the difference.
 The example also nicely illustrates:
 \begin{proposition}
 	If $A=\dual{A}$, then $\sigma(A)\subset \real$
-	\begin{pf}{}{}
+\end{proposition}
+\begin{pf}{}{}
 		Let $\zeta\in\comp\setminus\real$. Want to show $\zeta\in\varrho(A)$, i.e. \func{zeta-A}{D_A}{H} is bijective with $(\zeta-A)^{-1}\in\mathcal{L}(H)$.\\
 		We will show:\\
 		(*) $\zeta-A$ is surjective.\\
@@ -250,7 +252,7 @@ The example also nicely illustrates:
 		$$|Im(\zeta)|\norm{v}_H\leq\norm{(\overline{\zeta}-A)v}_H=0$$
 		which yields $v=0 $
 	\end{pf}
-\end{proposition}
+ 
 % Below are content for week 10
 \subsection{Spectral theorem for compact self-adjoint operators}
 $H$: Hilbert space over $\comp$, inner product $\inne{\cdot}{\cdot}$, with $\norm{x}^2_H=\inne{x}{x}$. Following is an extension (!) of the familiar result from linear algebra concerning diagonalization of symmetric matrices.
@@ -273,7 +275,8 @@ $H$: Hilbert space over $\comp$, inner product $\inne{\cdot}{\cdot}$, with $\nor
 We start with the following lemma:
 \begin{lemma}[Lemma 1]
 	$T\in\mathcal{L}(H)$, self-adjoint. If $\lambda_1\neq\lambda_2$, $\lambda_1,\lambda_2\in\sigma_p(T)$ with eigenvectors $e_1,e_2$, i.e. $\lambda_1 e_1=Te_1$ and $\lambda_2e_2=Te_2$, then $\inne{e_1}{e_2}=0$
-	\begin{pf}{}{}
+\end{lemma}
+\begin{pf}{}{}
 		\begin{equation}
 			\begin{split}
 			\lambda_1\inne{e_1}{e_2}&=\inne{\lambda_1e_1}{e_2}=\inne{Te_1}{e_2}\stackrel{SA.}{=}\inne{e_1}{Te_2}\\
@@ -282,7 +285,6 @@ We start with the following lemma:
 		\end{equation}
 		Since $\lambda_1\neq\lambda_2$, $\inne{e_1}{e_2}=0$.
 	\end{pf}
-\end{lemma}
 Henceforth, we always assume \func{T}{H}{H} is compact and self-adjoint. In particular, Lemma 1 is in force.\\
 Define, for $\lambda\in\sigma_p(T)\setminus\{0\}$, $X_\lambda=ker(\lambda-T)\neq\{0\}$. By lemma 1:
 $$X_\lambda\perp X_\lambda\,\,\forall\lambda\neq\lambda',\lambda\lambda'\in\sigma_p(T)\setminus\{0\}$$
@@ -292,7 +294,8 @@ $$X_\lambda\perp X_\lambda\,\,\forall\lambda\neq\lambda',\lambda\lambda'\in\sigm
 		\item $dim(X_\lambda)<\infty$
 		\item $\forall r>0$: $\sigma_p(T)\setminus B_r(0)$ is finite.
 	\end{itemize}
-	\begin{pf}{}{}
+\end{lemma}
+\begin{pf}{}{}
 		i) Let $B_r^{X_\lambda}(0)=\{x\in X_\lambda:\norm{x}_H<r\}$, which is a bounded set. By compactness of $T$, $T(B_r^{X_\lambda}(0))$ is compact. But since $Tx=\lambda x\,\forall x\in X_\lambda$, $T(B_r^{X_\lambda}(0))=\lambda B_1^{X_\lambda}(0)$. So $\lambda\overline{(B_1^{X_\lambda}(0))}$ is compact $\implies \overline{B_1^{X_\lambda}(0)}$ is compact $\implies dim(X_\lambda)<\infty$.\\
 		ii) Suppose not, then $\exists r>0$: $\sigma_p(T)\setminus B_r(0)$ is infinite (one can show $\sup_{\lambda\in\sigma_p(T)}|\lambda|<\infty$). Then one can pick sequence $(\lambda_k)\subset\sigma_p(T)$ with $\lambda_k\neq\lambda_l\,\forall k\neq l$ and $\lambda_k|>r\,\forall k$.\\
 		Let $e_k\neq0$ be eigenvector for $\lambda_k$: $Te_k=\lambda_ke_k\,\forall k$.
@@ -310,7 +313,6 @@ $$X_\lambda\perp X_\lambda\,\,\forall\lambda\neq\lambda',\lambda\lambda'\in\sigm
 			\norm{\lambda_ke_k-\lambda_le_l}^2_H=|\lambda_k|^2+|\lambda_l|^2>2r
 		$$
 	\end{pf}
-\end{lemma}
 \begin{pf}{Riesz-Schauder}{}
 	Proof of i) see last week.\\
 	ii) By Lemma 2 ii),
