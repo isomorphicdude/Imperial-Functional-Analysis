@@ -19,7 +19,7 @@ In this section, let $X$ be a linear space.
  $$
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[Norms are equivalent in finite dim]\nextline
     If $\dim X < \infty$ (\textit{i.e.} $X \cong \mathbb{K}^n$ for some $n \geq 1$), any two norms on $X$ are equivalent.
 \end{proposition}
 \begin{proof}
@@ -76,7 +76,8 @@ In particular, if $\dim X < \infty$, then one can choose $Y=X$.
 As a consequence of \Cref{finite dim is complete}, one also gets  
 
 \begin{corollary}
-    If $(X, \norm{\cdot})$ is normed, $Y \subset X$ a finite dimensional subspace $d\dim Y < \infty$, then $(Y, \norm{\cdot})$ is closed.
+\label{finite dim is closed}
+    If $(X, \norm{\cdot})$ is normed, $Y \subset X$ a finite dimensional subspace $\dim Y < \infty$, then $(Y, \norm{\cdot})$ is closed.
 \end{corollary}
 \begin{proof}
     
@@ -109,6 +110,7 @@ In the following, we will let $(X, \rho)$ be a metric linear space.
 \end{remark}
 
 \begin{proposition}
+\label{comapct implies ...}
     K compact $\implies$ K closed and bounded
 \end{proposition}
 \begin{proof}
@@ -135,160 +137,79 @@ for some $C>0$, violating (*) for large $k$.
 The "$\impliedby$" breaks down if $\dim X = \infty$.
 
 \begin{example}
-    Take the following set in $l^1$:  
+    Take the following set in $\ell^1$:  
     \begin{equation*}
         K = \left\{ e_n = (0, \ldots, 0, 1, 0, \ldots), n \in \mathbb{N} \right\}
     \end{equation*}  
-    Then $\norm{e_n}_{\ell^1}=1$, so $K$ is bounded and closed
+    Then $\norm{e_n}_{\ell^1}=1$, so $K$ is closed and bounded($\norm{e_n-e_m} = 2 \times \mathbf{1}_{n\neq m}$, so any convergent sequence $(x_n) \subset K$ is eventually constant \textit{i.e. it equals $e_k$ for some $k$}). But the bounded sequence $(x_n) := (e_n)$ has no convergent subsequences, since no subsequence is Cauchy. So $K$ is \textbf{not} compact.
 \end{example}  
 
 Another (illustrative) example is the following  
 
 \begin{example}
-    Consider the set $\bar{B}_1 \subset C[0,1]$,  
+    Consider the set $\overline{B_1} \subset C[0,1]$,  
     \begin{equation*}
-        \bar{B}_1 = \left\{ f \in C[0,1] : ||f||_{\infty} \leq 1 \right\}
+        \overline{B_1} = \left\{ f \in C[0,1] : ||f||_{\infty} \leq 1 \right\}
     \end{equation*}  
-    The sequence of functions,  
+    Then $\overline{B_1}$ is closed and bounded, but \textbf{not} compact. To see this,
+    consider,  
     \begin{equation*}
         f_n(t) = \sin(2^n \pi t), \quad 0 \leq t \leq 1
     \end{equation*}  
-    Then $||f_n-f_m||\geq 1$ for all $n \neq m$ and hence no convergent subsequences. 
+    Then $||f_n-f_m||_{\infty}\geq 1$ for all $n \neq m$, so it has no convergent subsequences. 
 \end{example}
 
-\begin{theorem}
-    In a normed space $(X, ||\cdot||)$, the following two conditions are equivalent:  
-    \begin{itemize}
-        \item $\dim X < \infty$
-        \item The unit ball $\bar{B}_1$ is compact 
-    \end{itemize}
-\end{theorem}  
-  
-  
-Before proving this, we need a lemma that allows us to construct a sequence of vectors
-that are at a fixed distance to each other, hence has no convergent subsequence.  
+Compactness of the unit ball characterizes in fact finite dimensional spaces.  
 
-\begin{lemma}
-    (Riesz) Let $Y \subset Z \subset X$ be a \textit{proper} closed subspace of some subspace in $(X, ||\cdot||)$. Then for any $\theta \in (0,1)$, there is a $z\in Z$ on the unit ball, $||z||=1$, such that  
-    \begin{equation*}
-        \forall y \in Y \qquad ||y-z|| \geq \theta
-    \end{equation*}
+\begin{theorem}[Characterization of finite dim. spaces]\nextline
+    In a normed space $(X, \norm{\cdot})$, the following statements are equivalent:  
+    \begin{enumerate}[i)]
+        \item $\dim X < \infty$
+        \item The unit ball $\overline{B_1}$ is compact 
+    \end{enumerate}
+\end{theorem}  
+
+\begin{proof}
+    i) $\implies$ ii) $\overline{B_1}$ is closed + bounded, so we use \Cref{comapct implies ...}  
+    
+    For ii) $\implies$ i), one uses  
+\begin{lemma}[Riesz]\nextline
+\label{riesz unit ball lemma}
+    Let $Y \subset X$, $Y\neq X$ be a \textit{proper} closed subspace of $(X, \norm{\cdot})$. Then for all $\varepsilon \in (0,1)$, $\exists x \in X\setminus Y$ such that,  
+    \begin{enumerate}[i)]
+        \item $\norm{x}=1$
+        \item $d(x, Y) \overset{\text{def.}}{=} \inf_{y\in Y} \norm{x-y} > 1- \varepsilon$
+    \end{enumerate}
 \end{lemma}  
 \begin{proof}
-(Sketch)  
-\todo{Add alternative proof in the hand-written lecture notes. }
+    Pick any $x^* \in X\setminus Y$. Since $Y$ is closed, $d:=d(x^*, Y)>0$.  
+    By the definition of $d(x,Y)$, we can thus find $y^* \in Y$ s.t.  
+    $$
+    d \leq \norm{x^*-y^*} < \frac{d}{1-\varepsilon}
+    $$  
+    Set $x = \frac{x^*-y^*}{\norm{x^*-y^*}}$, then i) is satisfied and for all $y\in Y$ one has  
+    $$
+    \norm{x-y} = \frac{x^*-y^*-\norm{x^*-y^*}y}{\norm{x^*-y^*}} \geq \frac{d}{\norm{x^*-y^*}} > 1-\varepsilon
+    $$
+\end{proof}
 
-\begin{itemize}
-    \item Choose $v \in X \setminus Y$, let $d=\inf_{y\in Y}||v-y||>0$, as $Y$ is closed and proper
-    \item Choose $y_0 \in Y$, with $||v-y_0||<d/\theta$, which is greater than $d$
-\end{itemize}
-Set
-\begin{equation*}
-    z = \frac{v-y_0}{||v-y_0||}
-\end{equation*}  
-Compute this and show this to be greater than $\theta$.
-\end{proof}  
+Returning to  ii) $\implies$ i). We show the contrapositive. 
 
-Now to construct a sequence of vectors inductively, we take a unit vector $x_1 \in X$ and pick  
+Assume $\dim X=\infty$, let $(y_n)$ be a sequence of linearly independent vectors, define
 
-\begin{equation*}
-    ||x_2-x_1|| \geq \theta=\frac{1}{2}
-\end{equation*}  
+$$Y_n = \text{span} \{y_k: 1\leq k\leq n\} $$
 
-Suppose a set $\{x_1, \ldots, x_m\}$ has been constructed s.t. every pair of elements satisfy the equation above, then the span of this set is closed (finite dimensional) so we can continue the construction to obtain a sequence  
+note $\dim Y_n < \infty$, so by \Cref{finite dim is closed}, $Y_n$ is closed.  
 
-\begin{equation*}
-    ||x_p-x_q|| \geq \frac{1}{2}, \qquad \forall p, q \in \N
-\end{equation*}
+Pick $x_1 = \frac{y_1}{\norm{y_1}}$ and for all $n \geq 2$ using \Cref{riesz unit ball lemma} with $X=Y_n$, $Y=Y_{n-1}$, and $\varepsilon=\frac{1}{2}$, we can choose $x_n \in Y_n \setminus Y_{n-1}$ with 
+$$\norm{x_n}=1 \qquad \text{and} \qquad d(x_n, Y_{n-1})>\frac{1}{2}$$
 
-\begin{theorem}[Equivalence of finite dimensional norms]\rm\nextline
-	Let $X$ be a finite dimensional vector space, then any two norms $\norm{\cdot}_a$ and $\norm{\cdot}_b$ are equivalent.\\
-	\prf The proof are divided into four steps:
-	\begin{itemize}
-		\item Showing that equivalence of norm is transitive
-		\item Showing that equivalence of equivalence on unit sphere implies equivalence on $X$
-		\item Showing that any norm is continuous with respect to $\norm{\cdot}_1$
-		\item Showing that any norm is equivalent to $\norm{x}_1\equiv\sum_{s=1}^n |x_s|$
-	\end{itemize}
-	\begin{pf}{STEP I}{}
-		Let $\norm{\cdot}_a$ be equivalent to $\norm{\cdot}_b$ and $\norm{\cdot}_b$ equivalent to $\norm{\cdot}_c$.
-		Then $\exists m_1,m_2,M_1,M_2>0$ with
-		\begin{equation}
-			\begin{split}\nonumber
-				&m_1\norm{x}_a\leq \norm{x}_b\leq M_1\norm{x}_a,\,\,\forall x\in X\\
-				&m_2\norm{x}_b\leq \norm{x}_c\leq M_2\norm{x}_b,\,\,\forall x\in X
-			\end{split}
-		\end{equation}
-		Then
-		\begin{equation}
-			\begin{split}\nonumber
-				&m_1m_2\norm{x}_a\leq m_2\norm{x}_b\leq \norm{x}_c,\,\,\forall x\in X\\
-				&\norm{x}_c\leq M_2\norm{x}_b\leq M_1M_2\norm{x}_c\,\,\forall x\in X
-			\end{split}
-		\end{equation}
-		Which gives $m_1m_2\norm{x}_a\leq\norm{c}\leq M_1M_2\norm{x}_a$ for arbitrary $x$. Hence $\norm{\cdot}_a$ and$\norm{\cdot}_c$ are equivalent.
-	\end{pf}
-	\begin{pf}{STEP II}{}
-		Now let us assume that $\norm{\cdot}_a$ is equivalent to $\norm{\cdot}_b$ on $U_a=\{s\in X:\norm{s}_a=1\}$.
-		Then let $x\in X$ be non-zero. Then we have
-		$$
-			m\norm{\frac{x}{\norm{x}_a}}_a\leq \norm{\frac{x}{\norm{x}_a}}_b\leq M\norm{\frac{x}{\norm{x}_a}}_a
-		$$
-		So
-		$$
-			m\norm{x}_a\frac{1}{\norm{x}_a}\leq \norm{x}_b\frac{1}{\norm{x}_a}\leq M\norm{x}_a\frac{1}{\norm{x}_a}
-		$$
-		And since ${\norm{x}_a}$ is non-zero,we have that
-		$$
-			m{\norm{x}_a}\leq \norm{x}_b\leq M\norm{x}_a
-		$$
-		Now since $x$ is arbitrary, the proof is completed.	
-	\end{pf}
-	\begin{pf}{STEP III}{}
-		Now we shall proof continuity of any norm under $\norm\cdot _1$. This can be done by showing for a sequence $(x_n)$ converging to $x$ under the metric induced by $\norm{\cdot}_1$, the norm if its terms under $\norm{\cdot}_a$ converges to $\norm{x}_a$. So let $(x_n)$ be a sequence in $X$ with $x_n\xrightarrow[]{n\to \infty}x$. We have
-		\begin{equation}
-			\begin{split}\nonumber
-				|\norm{x_n}_a-\norm{x}_a|&\leq\norm{x_n-x}_a\leq M\norm{x_n-x}_1\to0\quad \text{when}\,\,n\to\infty
-			\end{split}
-		\end{equation}
-		Thus
-		$$
-			\lim_{n\to\infty}|\norm{x_n}_a-\norm{x}_a|=0
-		$$
-	\end{pf}
-\begin{pf}{STEP IV}{}
-	Now we shall apply extreme value theorem to obtain our final result here. Using the theorem requires unit sphere to be a compact set. Proof of this fact is given later, one should realise that the proof does not depend on equivalence of norms, as we only require compactness in $X,\norm{\cdot}_1$. However, it is true that unit sphere is compact under any norm in finite dimensional cases. So we have that $U_1=\{s\in X:\norm{s}_1=1\}$ is compact with  a  function $\norm{\cdot}_a$ continuous on it, so by extreme value theorem it attains maximum $M_U=max\{\norm{x}_a:x\in U_1\}$ and minimum $m_u=min\{\norm{x}_a:x\in U_1\}$ on $U_1$, thus for any $x\in U_1$ we have
-	$$
-		m_u \norm{x}_1=m_u\leq\norm{x}_a\leq M_u=M_u \norm{x}_1
-	$$
-	Hence we show that any norm is equivalent to $\norm{\cdot}_1$ on unit sphere.
-\end{pf}
-By combining the results of the four steps, we finish the proof of the theorem.
-\end{theorem}
+Then $\forall m > n$, one has:  
+$$
+\norm{x_m-x_n} \geq d(x_m, Y_n) \overset{Y_n \subset Y_m}{\geq} d(x_n, Y_{n-1}) > \frac{1}{2}
+$$  
+So $(x_n)$ has no convergent subsequences. Clearly $(x_n) \subset \overline{B_1} $. So $\overline{B_1} $ is not compact.  
+\end{proof}
 
-\begin{remark}\rm\nextline
-	The proof is not unique. We can also choose other norms to be the "bridging" norm, say supremum norm which in finite dimensional case becomes the max norm: $\norm{x}\equiv max\{|x_i|\}$. About the meaning of equivalence here, in fact, equivalent norms are equivalent in the sense that they induces same topology, so it is also called "topologically"equivalent. Generally speaking, this means that topological properties such as open, close, compact, convergence, continuity which holds for one norm will hold in its equivalent norms.
-\end{remark}
-Following results are simple exercises to check statements above.
-
-\begin{proposition}[Equivalence of openness]\rm\nextline
-	Open sets in $(X,\norm{\cdot}_a)$ are open in $(X,\norm{\cdot}_b)$ (Following notation in definition of equivalent norms).
-	\begin{pf}{}{}
-	It suffices to check open balls. Let $B^a_x(r)\equiv\{s\in X:\norm{x-s}_a<r\}$ be open balls with radius $r>0$ centered at $x$, which is an open ball in $(X,\norm{\cdot}_a)$. Choose $p\in B^a_x(r)$, we should show that $\exists \varepsilon>0$ with $B^b_p(\varepsilon)\equiv\{s\in X:\norm{p-s}_b<\varepsilon\}\subset B^a_x(r)$.\\
-	By openness of $B^a_x(r)$, we have that $\exists \varepsilon_a>0$ with
-	\begin{equation}
-		\begin{split}\nonumber
-			B^a_p(\varepsilon_a)&\equiv\{s\in X:\norm{p-s}_a<\varepsilon_a\}\\
-			&=\{s\in X:m\norm{p-s}_a<m\varepsilon_a\}\\
-			&\supseteq \{s\in X:\norm{p-s}_b<m\varepsilon_a\}\\
-			&=B^b_p(m\varepsilon_a)
-		\end{split}
-	\end{equation}
-	Note that $B^b_p(m\varepsilon_a)\subseteq B^a_p(\varepsilon_a)\subset B^a_x(r)$, hence $\varepsilon=m\varepsilon_a$.
-	\end{pf}
-	
-\end{proposition}
-
-
-
+\todo{linear operators}
 \end{document}

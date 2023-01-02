@@ -9,11 +9,9 @@
 \maketitle
 
 \section{Preliminaries}\label{vector space defs}
-This section aims to provide preliminary knowledge to functional analysis. This field of maths is decorated by ideas of both algebra and analysis, particularly linear algebra and real analysis. It is thus important to get familiar with the relevant ideas, as lack of either viewpoint stops you from getting the whole story. At some point, since we are talking about different spaces, topological concepts also comes in. Luckily, they're generally not complicated and presented here as preliminaries.  
-
 
 \subsection{Linear space}
-Mathematicians usually talks about spaces. However they are simply sets with additional structure. Linear spaces, also called vector spaces, are those with linear structure. This means you have vector addition, scalar multiplication, commutativity and distributivity.
+
 \begin{definition}[Linear space]\rm\nextline
 	A linear space $(V,\oplus,(\mathbb{F},+,\cdot),\odot)$ over a field $\mathbb{F}$, where
 	\begin{itemize}
@@ -183,40 +181,8 @@ In this section we have both example and counter example.
 	\placeholder
 \end{remark}
 
-\subsubsection{Compactness}
-\begin{definition}[Compactness]\label{compactness}\rm\nextline
-	Let $(X,d)$ be a metric space. A subset $S\subset X$ is {\bf compact} if any sequence $(x_n)$ in $S$ has a convergent subsequence converges in to some $x\in S$
-\end{definition}
 
 
-\begin{remark}\rm\nextline
-	The definition is "sequential compactness". There're many versions of definition of compactness. One shall really pay attention to the definition in linear algebra or real analysis that compactness is equivalence to closedness and boundedness. We'll see later that this is guaranteed to true only for finite-dimensional spaces. However, it is true that compactness always implies closedness and boundedness. Following examples we prove the implications in detail and present the fact that compactness of space can studied by looking at closed unit ball.
-\end{remark}
-
-
-\begin{proposition}[Compact $\implies$ closed and bounded]\rm\nextline
-	If a set $K$ is compact, then it's closed and bounded. Here, bounded means $\exists L>0$ such that for all $x,y\in K$, we have $d(x,y)\leq L$.\\
-	\begin{pf}{}{}
-		First we show that compact implies closed. Let $(x_n)$ be a convergent sequence in $K$, then by compactness, there is a subsequence of $(x_n)$, name it $(y_n)$ which converges to $y\in K$, but by uniqueness of limit $(x_n)$ also converges to $y\in K$.\\
-		Now we show boundedness by contradiction. Assume $K$ is not bounded. Then we fix $a\in K$, and by unboundedness we have that $\forall n\in \natu,\,\exists x\in K$ with $d(x,a)>n$. Now consider a sequence $(x_n)$ where  $d(x_n,a)>n$ $\forall n>0$. This sequence has no convergent subsequence.
-	\end{pf}
-\end{proposition}
-
-
-\begin{theorem}[F.Riesz]\label{compact unit balls}\rm\nextline
-	Let $(X,\norm{\cdot})$ be a normed vector space. Following are equivalent:
-	\begin{itemize}
-		\item $dim(X)\leq\infty$
-		\item Closed unit ball $B_U=\{x\in X:\norm{x}\leq 1\}$ is compact.
-	\end{itemize}
-	\prf Proof uses a lemma which is shown later\placeholder
-\end{theorem}
-
-\begin{lemma}[F.Riesz]\rm\nextline
-	Let $(X,\norm{\cdot}$ be a normed linear space with a subspace $Y\subset X$,$Y\neq X$.
-	Then for all $\varepsilon\in(0,1)$, there exists $x\in X$ with $\norm{x}=1$ and $d(x,Y)\equiv\inf_{y\in Y} \norm{x-y}>1-\varepsilon$
-	\prf \placeholder
-\end{lemma}
 
 \end{document}
 
