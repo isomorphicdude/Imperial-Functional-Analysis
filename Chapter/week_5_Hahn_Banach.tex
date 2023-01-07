@@ -10,9 +10,8 @@
 
 \section{Hahn-Banach Theorem} 
 
-\begin{definition}
+\begin{definition}[Sublinear functional]\nl
 \label{sublinear map}
-(Sublinear functional)
 	Let $X$ be a vector space. \func{p}{X}{\real} is called \textbf{sublinear} if the following holds
 	\begin{enumerate}[i)]
 		\item $p( \alpha x)= \alpha p(x),$ $\forall x\in X$ and $\alpha\geq0$
@@ -21,88 +20,111 @@
 \end{definition}
 
 \begin{example}
-    Any linear functional is also sublinear. Also, the norms on $X$ are sublinear.
+    Any linear functional is also sublinear. Also, $p(x)=\norm{x}$ on $X$ is sublinear.
 \end{example}  
 
-\begin{theorem}
-(Hahn-Banach)
+\begin{theorem}[Hahn-Banach]\nl
+\label{Hahn-Banach}
 	Let $M\subset X$ be a linear subspace, \func{p}{X}{\real} is sublinear, and \func{f}{M}{\real} is linear with 
-	
-	$$
-	f(x)\leq p(x) \qquad \forall x\in M
-	$$
-	
+	\begin{equation*}
+	    f(x)\leq p(x) \qquad \forall x\in M
+     \tag{$*$}
+	\end{equation*}
+
 	Then, there exists a linear map \func{F}{X}{\real} with $F|_M=f$ and
 	
 	$$F(x)\leq p(x) \qquad \forall x\in X$$
 \end{theorem}
 
-\begin{lemma}[one-dimensional extension]
-\label{ODEX}
-	Let $X$ be a normed vector space over $\mathbb F$ ($\mathbb{C}$ or $\mathbb{R}$), $Y_n$ is a proper subspace of $X$. Let $v\in X\backslash Y$, $X_{n+1}=\{x+hv:x\in X_n,\,h\in\mathbb{C}\}$
-	. If $T_n:Y\xrightarrow{}\mathbb{F}$ is a bounded linear functional, then there exists a bounded linear functional $T_{n+1}:X_{n+1}\xrightarrow{}\mathbb{F}$ satisfying:
-	\begin{itemize}
-		\item $T_{n+1}(x)=T_n(x)$ for all $x\in X_n$
-		\item $\norm{T_{n+1}}=\norm{T_n}$
-	\end{itemize}
-\end{lemma}
+\begin{remark}[Geometric Intuitions]
+    Take $x=\real^n$, $0 \in M \subset X$ an open convex subset, if $x_1 \notin <M$, then one can find a $f: X \to \real$ linear "separating" $x_1$ from $M$:
 
-\begin{pf}{One-dimensional extension}{}
-		Define linear functional $P:X_{n+1}\xrightarrow{}\mathbb{R}$ by
-		$$
-			P(x+kv)=T_n(x)-Ck,\,\forall\,x\in X_n,\,k\in\mathbb{R}
-		$$
-		where C is a constant to be determined.
-		First we shall check linearity, which is left as an exercise.
-		Then we shall show that we can find a proper constant $C$ so that $\norm{P}=\norm{T_n}$. Note that $X_n\subset X_{n+1}$, so we have
-		\begin{equation}
-			\begin{split}
-				\norm{P}&=\sup_{x\in X_{n+1}}(\{|Px|:\norm{x}=1\})\\
-				&\geq\sup_{x\in X_{n}}(\{|Px|:\norm{x}=1\})\\
-				&=\sup_{x\in X_{n}}(\{|T_nx|:\norm{x}=1\})\\
-				&=1
-			\end{split}
-		\end{equation}
-		So by choosing $C$ such that $P(x+kv)\leq \norm{x+kv}$ for any $x\in X_n$ and $k\in \mathbb{R}$, we will have that $\norm{P}\leq 1$, giving $\norm{P}=1$. Thus it remains to show that we can find such a constant $C$.\\
-		We aim to find $C$ such that
-		$$
-			|P(x+kv)|=|T_n(x)-Ck|\leq \norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
-		$$
-		Hence,
-		$$
-			T_n(x)-\norm{x+kv}\leq Ck\leq T_n(x)+\norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
-		$$
-		Note that for all $x,y\in X_n$ we have:
-		\begin{equation}
-			\begin{split}
-				T_nx-T_ny&=T_n(x-y)\\
-				&\leq \norm{x-y}\\
-				&=\norm{(x+kv)-(kv+y)}\\
-				&\leq\norm{x+kv}+\norm{y+kv}
-			\end{split}
-		\end{equation}
-		Thus
-		$$
-			l^-=\sup_{x\in X_n,k\in\mathbb{R}}(T_n(x)-\norm{x+kv})\leq  \inf_{x\in X_n,k\in\mathbb{R}}(T_n(x)+\norm{x+kv})=l^+
-		$$
-		Hence we can always find a $C$ such that
-		$$
-			T_n(x)-\norm{x+kv}\leq l^-\leq Ck\leq l^+ \leq T_n(x)+\norm{x+kv},\,\forall x\in X_n,\,\forall k\in\mathbb{R}
-		$$
-		Which finishes the proof.
-	\end{pf}
+    \textit{i.e.} $$
+    \begin{cases}
+        f(x) < a & , x\in M \\
+        f(x) \geq a & x \notin M
+    \end{cases}
+    $$
+    for some $a\neq 0$. One can assume $a=1$ by replacing $f$ by $\frac{f}{a}$.  
 
-\begin{remark}
+    To find $f$, we introduce  
+    $$
+    p(x) \defeq \inf \{r > 0: \frac{x}{r} \in M\}
+    $$
+    \begin{unexaminable}
+        Minkowski functional, cf. PS6
+    \end{unexaminable}
+    (e.g. $p(x)=\norm{x}$ if $M=\{x: \norm{x}<1\}$ in a normed space $(X, \norm{\cdot})$).
 
-\end{remark}  
+    One can check (using continuity) that $p$ is sublinear and  
+    $$
+    p(x) < 1 \iff x \in M
+    $$
+    
+\end{remark}
 
 \begin{proof}
+    If $M=X$, take $F=f$. Else. choose $x_1 \notin M$ and set  
+    $$
+    M_1 = \{x+tx_1: x\in M, t\in \real\}
+    $$
+    ($M\subset X$ linear). Extend $f$ to $M_1$, such that ($*$) holds on $M_1$, then 'repeat'  
 
+    \underline{\textbf{Step (I)}}\nl
+    
+    For all $x,y \in M$: 
+    $$
+    f(x)+f(y) \overset{\text{f \ linear}}{=} f(x+y) \overset{(*)}{\leq} p(x+y) \leq p(x-x_1)+p(x_1+y)
+    $$
+    hence 
+    \begin{equation*}
+        \forall x,y\in M: \qquad f(x)-p(x-x_1) \leq p(x_1+y) - f(y) \tag{$**$}
+    \end{equation*}
+    Take supremum over $x$, with $y$ fixed, we get  
+    $$
+    \alpha \defeq \sup_{x\in M} (f(x)-p(x-x_1)) < \infty
+    $$
+    Define $f_1: M\to \real$ by  
+    $$
+    f_1(x+tx_1) = f(x) + tx \qquad ,x\in M, t\in \real
+    $$
+    \begin{lemma}
+    \phantom{something}
+        \begin{enumerate}[1)]
+            \item $f_1$ is linear
+            \item $f_1 \mid_M=f$ 
+            \item $f_1(x) \leq p(x), \forall x \in M_1$, (\textit{i.e.} ($*$) for $(f_1, M_1)$ instead of $(f, M)$)
+        \end{enumerate}
+    \end{lemma}
+    The first two properties are easy to check.  
+    
+    \underline{Proof of 3):}\nl
+    By definition of $\alpha$, $\forall x \in M: f(x)-\alpha \leq f(x)-( f(x)-p(x-x_1)) = p(x-x_1)$. On the other hand, taking supremum over $x$ in $(**)$ yields, for all $y \in M$  
+    $$
+    f(y) + \alpha \leq p(y+x_1)
+    $$  
+    Overall, we have  
+    $$
+    \forall x\in M: \qquad f_1(x\pm x_1) = f(x) \pm \alpha \leq p(x \pm x_1)
+    $$  
+    Apply with $t^{-1}x(\in M)$ for $t > 0$ in place of $x$ and multiply both sides by $t$ to find  
+    $$
+    \forall x \in M, t>0: \qquad f_1(x \pm tx_1) \leq tp(t^{-1}x\pm x_1)=p(x\pm tx_1)
+    $$
 \end{proof}
 
-\begin{definition}
-(Partial Order)
-	A partial order on set $X$, is a binary relation, written generically $\leq$, satisfying following property.
+NB: If $X$ has a countable basis $\{e_1, i\geq 1\}$ [e.g. $\ell^p, p\in [1,\infty)$], then we can take $x_1=e_1$ and proceed by induction. For the general case, we use:
+
+\underline{\textbf{Step (II)}}\nl
+\begin{proof}(continued:)
+\begin{lemma}[Zorn's lemma]\nl
+\label{Zorn's Lemma}
+	Let $(P, \leq), P\neq \emptyset$ is a nonempty partially ordered set and every totally ordered subset has an upper bound, then $P$ has a maximal element.
+\end{lemma}  
+\begin{unexaminable}
+    \begin{definition}
+[Partial Order]\nl
+	A \textbf{partial order} on set $X$, is a binary relation, written generically $\leq$, satisfying following property.
 	\begin{itemize}
 		\item transitivity: if $a\leq b$ and $b\leq c$ then $a\leq c$
 		\item reflexivity: $a\leq a$
@@ -110,28 +132,52 @@
 
 	\end{itemize}
 	If we also have that for any $a$ and $b$, either $a\leq b$ or $b\leq a$, then we say $\leq$ is a total order.
-
 \end{definition}
 
 \begin{definition}
-(Upper bound)
+[Upper bound]\nl
 	Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$, we say an element $x\in X$ is an {\bf upper bound} of $Y$ if $y\leq x$ for all $y \in Y$
 
 \end{definition}
 
 \begin{definition}
-(Maximal element)
+[Maximal element]\nl
 	Let $X$ be a set partially ordered by $\leq$ and $Y\subset X$. say $x\in X$ is a \textbf{maximal element} of $X$ if $x\leq m$ implies $m=x$.
 
 \end{definition}
-\begin{lemma}
-(Zorn's lemma)
-\label{Zorn's Lemma}
-	If $X$ is a nonempty partially ordered set with the
-	property that every totally ordered subset of $X$ has an upper bound in $X$, then $X$ has
-	a maximal element.
-\end{lemma}
+\end{unexaminable}
+Take 
+$$
+P = \{(N,g): N\subset X \ \text{linear\ subspace}, g: N \to \real \ \text{linear}, \ g\mid_N=f, \ g\mid_N \leq p\}
+$$  
+and define  
+$$
+(N,g) \leq (O, h ) \overset{\text{def.}}{\iff} N \subset O, h\mid_N = g
+$$
+Then $(P, \leq)$ is partially ordered, $(M,f) \in P$ so $P \neq \emptyset$. Assume $(N_i, g_i)_{i \in I}$ totally ordered. Set $N = \cup_{i\in I} N_i$ and for $x\in N$,  
+$$
+g(x) = g_i(x) \qquad \text{if\ }x\in N_i
+$$
+Then $(N,g) \in P$. Indeed $N\subset X$ is linear, and $g$ is well-defined and linear with $g\leq p$ on $N$.
+\begin{itemize}
+    \item (Well-defined) If $x \in N_i \cap N_k$, $N_i \subset N_k$, then $g_k \mid_{N_i}=g_i$, hence $g_i(x)=g_k(x)$
+    \item (Linear) If $x,y \in N$, then $x\in N_i, y\in N_k$, for some $i,k \in I$ and $N_i \subset N_k$ (or vice versa), so $x, y \in N_k$ and  
+    $$
+    g(x+y) = g_k(x+y) = g_k(x)+g_k(y) = g(x) + g(y)
+    $$
+    \item (Bounded by $p(x)$) Similarly, one can check $g \leq p$ on $N$ (exercise)
+\end{itemize}  
 
+$(N,g)$ is an upper bound for $(N_i, g_i)_{i \in I}$, since $N_i \subset N$ and $g\mid_{N_i} = g_i$ by definition  
+
+So \Cref{Zorn's Lemma} applies and yields that $(P, \leq)$ has a maximal element $(N,g)\in P$. Set $F=g$.  
+By definition of $P$, all properties required of $F$ hold and $N=X$. For, otherwise, one can apply \underline{\textbf{Step(I)}} to $(N,g)$ and find $(N_1, g_1) \in P$ with $(N,g) < (N_1, g_1)$, which violates the maximality of $(N,g)$.
+\end{proof}
+
+
+\begin{remark}
+
+\end{remark}  
 
 \subsection{Applications of Hahn-Banach (H-B)}  
 
@@ -139,8 +185,7 @@ Let $(X, \norm{\cdot}_X)$ be a normed vector space, we have the following coroll
 
 \begin{corollary}
 \label{same norm extension}
-(Extending a linear functional)  
-Let $M \subset X$ be a linear subspace. Then $\exists F \in X^*$ with 
+Let $M \subset X$ be a linear subspace, $f$ a bounded linear functional on $M$. Then $\exists F \in X^*$ with 
 $$F |_M = f \ \rm{and} \ \norm{F}_{X^*}=\norm{f}_{M^*}$$
 \end{corollary}
 
@@ -160,8 +205,7 @@ and the other direction of the inequality follows as $F |_M = f$
 \end{proof}  
 
 \begin{theorem}
-(Dual functional)
-\label{dual charaterization of norm}
+\label{existence of functional equals norm squared}
 	Let $X$ be a normed linear space. $\forall x\in X,\,\exists x^*\in \dual{X}$ s.t. $$\inne{\dual{x}}{x}\equiv\dual{x}(x)=\norm{x}^2_X=\norm{\dual{x}}^2_{\dual{X}}$$
 \end{theorem}
 
@@ -178,7 +222,7 @@ and the other direction of the inequality follows as $F |_M = f$
 \end{proof}
 
 \begin{remark}
-    \Cref{dual charaterization of norm} gives dual characterisation of the norm later.  
+    \Cref{existence of functional equals norm squared} gives dual characterisation of the norm later.  
     \begin{unexaminable}
         When the space is a Hilbert space, this theorem becomes Riesz representation theorem. (without changing notation! That's why bracket is a good notation here) In short, this theorem says that you can always find a linear functional such that for its value for a chosen element is precisely the norm of this element.
     \end{unexaminable}
@@ -199,46 +243,75 @@ $\forall x,y \in X$, $x\neq y$, there exists $\ell \in \dual{X}$, such that $\el
     Thus, $\ell(x) \neq \ell(y)$.
 \end{proof}
 
-\begin{unexaminable}
-	(Question here is do  we need X to be normed? or even Banach?)
-\end{unexaminable}
-
 \paragraph{2) Separating points from closed subspaces (Urysohn-type result)}
 
 \begin{theorem}
-$M \subset X$ linear, closed. Assume $x_0 \in M$, such that  
+\label{analog of Urysohn}
+$M \subset X$ linear, closed. Assume $x_0 \in X\setminus M$, such that  
 $$d = \rm{dist} (x_0, M) = \inf_{x \in M} \norm{x_0-x}_M >0$$
 Then $\exists \ell \in \dual{X}$ with $\ell|_M=0$ and  
 $$\norm{\ell}_{\dual{X}}=1, \  \ell(x_0)=d$$
 \end{theorem}
 
 \begin{proof}
-	Let $M_0=\{x+t x_0: x\in M\}$. Define a linear functional \func{f}{M_0}{\real}, $f(x+tx_0)=td$.
+(Sketch)
+Let $M_0=\{x+t x_0: x\in M\}$. Define a linear functional \func{f}{M_0}{\real}, 
+$$f(x+tx_0)=td$$
+
+Then $f\mid_M=0$ and $f(x_0)=d$. Check $\norm{f}_{M_0^*}=1$ (exercise).  
+
+Now apply \Cref{same norm extension} to obtain extension $\ell \overset{\text{def.}}{=}F \in X^*$ with $\norm{\ell}_{X^*}=1$.
 \end{proof}
 
-From \Cref{dual charaterization of norm}, one gets a dual characterization of the norm:  
+The previous Theorem \Cref{analog of Urysohn} has a lot of mileage. For instance, one get  
+
+\paragraph{3) Alternative for \Cref{existence of functional equals norm squared}}  
+\begin{proposition}
+    Let $X$ be a normed linear space. $\forall x\in X,\,\exists x^*\in \dual{X}$ s.t. $$\inne{\dual{x}}{x}\equiv\dual{x}(x)=\norm{x}_X=\norm{\dual{x}}_{\dual{X}}$$
+\end{proposition}
+\begin{proof}
+    (Sketch) Apply \Cref{analog of Urysohn} with $M = \{0\}$, $x_0=\frac{x}{\norm{x}_X}$ to recover \Cref{existence of functional equals norm squared} with $x^*(x) \defeq \norm{x}_X$.
+\end{proof}
+
+\paragraph{4) $X^*$ separable $\implies$ $X$ separable}  
+\begin{proof}
+    See notes Page 82, which uses \Cref{analog of Urysohn}.
+\end{proof}
+
+In particular, this gives  
 
 \begin{corollary}
-\label{dualilty of norm}
+    $(\ell^{\infty})^* \ncong \ell^1$
 \end{corollary}
+\begin{proof}
+    We know $\ell^1$ is separable (use the set $\{\sum_{i=1}^n x_i e_i: x_i \in \qq, n \in \natu\}$), so if $(\ell^{\infty})^* \cong \ell^1$, then $(\ell^{\infty})^*$ is separable and so is $\ell^{\infty}$ by the theorem above. But $\ell^{\infty}$ is not separable.
+\end{proof} 
+
+From \Cref{existence of functional equals norm squared}, one gets a dual characterization of the norm:  
+
+\begin{corollary}
+\phantom{something}
+\label{dualilty of norm}
 \begin{enumerate}[i)]
     \item $\forall x \in X$: $\norm{x}_X = \underset{{\norm{x^*}_{\dual{X}} \leq 1}}{\sup} |\inne{\dual{x}}{x}|$
     \item $\forall \dual{x} \in \dual{X}$: $\norm{\dual{x}}_{\dual{X}} = \underset{{\norm{x}_X \leq 1}}{\sup} |\inne{\dual{x}}{x}|$
 \end{enumerate}
 The supremum in i) is always achieved.  
+\end{corollary}
+
 
 \begin{proof}
 For $x=0$, the RHS of i) is $0$ by linearity. Let $x \neq 0$, we show two directions of inequality.  
 \begin{itemize}
     \item "$\geq$": By homogeneity, we can assume $\norm{x}_X=1$. If $\dual{x} \in \dual{X}$ satisfies $\norm{x^*}_{\dual{X}} \leq 1$, then  
     $$|\inne{\dual{x}}{x}| \leq \norm{x^*}_{\dual{X}} \norm{x}_X \leq \norm{x}_X$$
-    \item "$\leq$": By \Cref{dual charaterization of norm}, $\exists \dual{x} \in \dual{X}$, such that $|\inne{\dual{x}}{x}|=\norm{x}_X^2=1$. So the supremum is achieved.
+    \item "$\leq$": By \Cref{existence of functional equals norm squared}, $\exists \dual{x} \in \dual{X}$, such that $|\inne{\dual{x}}{x}|=\norm{x}_X^2=1$. So the supremum is achieved.
 \end{itemize}   
 
 For ii), note that this is the definition of operator norm.   
 \end{proof}
 
-Another consequence \placeholder
+Another consequence of \Cref{existence of functional equals norm squared} is (cf. notes Theorem 23 on Page 67 for the special case $X=Y$ Hilbert, in which case the use of Hahn-Banach can be substituted by the Riesz representation theorem.)
 
 \begin{theorem}
 Let $X,Y$ be normed linear spaces and $A \in \blf{X}{Y}$. The dual operator \func{A^*}{\dual{Y}}{\dual{X}} is bounded and $\norm{\dual{A}}_{\blf{\dual{Y}}{\dual{X}}}=\norm{A}_{\blf{X}{Y}}$
@@ -251,7 +324,7 @@ Let $X,Y$ be normed linear spaces and $A \in \blf{X}{Y}$. The dual operator \fun
     &\stackrel{\textrm{def \ of} \ \dual{A}}{=} \sup_{\norm{x}_X=1}  \sup_{\norm{\dual{y}}_{\dual{Y}}}  |\inne{\dual{y}}{Ax}| \\
     &\stackrel{\phantom{\textrm{def \ of} \ \dual{A}}}{=} \sup_{\norm{x}_X=1} \norm{Ax}_Y
 \end{align*}
-where in the last step we used the "$\leq$" direction in the proof of \Cref{dualilty of norm} holds and the supremum over $\dual{y}$ is attained.  
+where in the last step we used the "$\leq$" direction in the proof of \Cref{dualilty of norm} holds and the supremum over $\dual{y}$ is attained by \Cref{existence of functional equals norm squared}.  
 \end{proof}
 
 \end{document}

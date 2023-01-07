@@ -34,7 +34,7 @@ X^* \overset{\textrm{def}}{=} \mathcal{L}(X,\real)
 which is the \textit{dual space} of  \(X\).  
 
 \begin{definition}[Dual Spaces]\nextline
-    The space of all continuous linear operators  \(\mathcal{L}(X, \real)\) is called the \textbf{dual space} of  \(X\) and is denoted as   \(X^*\)
+    The space of all \textit{continuous} linear operators  \(\mathcal{L}(X, \real)\) is called the \textbf{dual space} of  \(X\) and is denoted as   \(X^*\)
 \end{definition}  
 
 \begin{remark}
@@ -53,7 +53,7 @@ In this section, let  \((H, {\langle \cdot, \cdot \rangle}_H )\) be a Hilbert sp
 We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we will show that this is in fact a bijective isometry.  
 
 \begin{lemma}
-    (Mapping to dual space)
+    [Mapping to dual space]\\
     \begin{enumerate}[i)]
         \item  \(\Lambda_y \in H^*\)
         \item The map  \(\Lambda: H \to H^*\) is a linear isometry with  \(||\Lambda_y||_{*}=||y||\)
@@ -73,7 +73,8 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
 \end{proof}
 
 \begin{theorem}
-    (Riesz Representation)  
+    [Riesz Representation] \nl
+    \label{riesz representation}
     For every  \(\ell \in H^*\), there is a unique  \(y \in H\), such that  \(\ell=\Lambda_y\)
 \end{theorem}  
 
@@ -83,9 +84,12 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
         \item \textbf{(Existence)} If  \(\ell(x)\equiv 0\), then take  \(y=0\). Otherwise, assume  \(\norm{\ell}_*=1\) (as we can replace  \(\ell(\cdot)\) by  \(\frac{\ell(\cdot)}{\norm{\ell}_*}\)).  
         By the definition of  \(\norm{\cdot}_*\), there is a sequence of  \((y_n)_{n\in \natu} \subset H\) with  
         \begin{equation*}
-            |\ell(y_n)| \to \norm{\ell}_*, \qquad \norm{y_n}=1, \forall n \in \natu
+            \ell(y_n) \to \norm{\ell}_*, \qquad \norm{y_n}=1, \forall n \in \natu
         \end{equation*}
         We will show that the limit of this sequence is the desired  \(y\).  
+\begin{unexaminable}
+    Note that for negative $\ell(y_n)$, we may multiply by $-1$ using linearity
+\end{unexaminable}
         
         \textbf{Claim 1:} The sequence  \((y_n)_{n \in \natu}\) is Cauchy   
         
@@ -93,9 +97,10 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
         \begin{equation*}
             \forall n,m \geq 1, \qquad \norm{\frac{y_n-y_m}{2}}^2=1-\norm{\frac{y_n+y_m}{2}}^2
         \end{equation*}  
-        Using linearity and boundedeness of  \(\ell\),   
+        Using linearity and boundedeness of  \(\ell\),  
+
         \begin{equation*}
-            \frac{1}{2} |l(y_n)+l(y_m)| = |l(\frac{y_n+y_m}{2})| \leq \norm{l}_* \norm{\frac{y_n+y_m}{2}}
+            \frac{1}{2} l(y_n)+l(y_m) = l(\frac{y_n+y_m}{2}) \leq \norm{l}_* \norm{\frac{y_n+y_m}{2}}
         \end{equation*}  
         The LHS of the equation above converges to  \(1\) by assumption on  \((y_n)_{n \in \natu}\), which implies and  \((y_n)_{n \in \natu}\) is Cauchy.  
         Since  \(H\) is complete, there is a unique  \(y\), such that  \(y_n \to y\)  
@@ -145,7 +150,7 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
     All Hilbert spaces  \(H\) are isomorphic to their duals  \(H^*\).
 \end{corollary}  
 
-\begin{unexaminable}
+
 \begin{example}
     Some of the examples are:  
     \begin{itemize}
@@ -153,12 +158,12 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
         \item  \((L^2(\mu))^* \cong L^2(\mu)\)
     \end{itemize}
 \end{example}
-\end{unexaminable}
+
 
 \subsection{Duality in Banach Spaces}  
 
-\begin{theorem}
-    (Conjugates are duals) For all  \(p \in (1, \infty)\),  \((\ell^p)^* \cong \ell^q\), where  \(\frac{1}{p}+\frac{1}{q}=1\)
+\begin{theorem}[Conjugates are duals]\nl
+ For all  \(p \in (1, \infty)\),  \((\ell^p)^* \cong \ell^q\), where  \(\frac{1}{p}+\frac{1}{q}=1\)
 \end{theorem}  
 
 \begin{proof}
@@ -167,7 +172,9 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
         \Lambda_y: \ell^p &\to \real \\
         x &\mapsto \Lambda_y(x) = \sum_{n \in \natu} y_n x_n
     \end{align*}
-\begin{lemma} (cf. \todo{what lemma})
+    
+\begin{lemma}
+\phantom{a lemma here}
     \label{isometry in lp dual}
 \begin{enumerate}[i)]
     \item  \(\Lambda_y \in (\ell^p)^*\)
@@ -211,15 +218,16 @@ To complete the proof of the theorem, we have to show the following analogue of 
 \begin{lemma}
      \(\Lambda: \ell^q \to (\ell^p)^*\) given by  \(y \mapsto \Lambda_y\) is surjective (onto).
 \end{lemma}  
-Let  \(e_n = (0, \ldots, 0, 1, 0, \ldots) \in \ell^p\) and define  \(y_n = \ell(e_n)\) for  \(\ell \in (\ell^p)^*\)
+Let  \(e_n = (0, \ldots, 0, 1, 0, \ldots) \in \ell^p\) and define  \(y_n = \ell(e_n) \in \real \)  for  \(\ell \in (\ell^p)^*\)
 
 \textbf{Claim:} 
 \begin{enumerate}[i)]
-    \item  \(y = (y_n) \in \ell^q\)
-    \item  \(\ell = \Lambda_y\) for some  \(y\)
+    \item  \(y = (y_n)_{n \in \natu} \in \ell^q\)
+    \item  For every \(\ell \in (\ell^p)^*\), \(\ell = \Lambda_y\) for some  \(y \in \ell^q \)
 \end{enumerate}  
 
-Consider the "truncated y":  \(y^{(n)}=(y_1, \ldots, y_n, 0, \ldots) = \sum_{i=1}^n y_i e_i \in \ell^q\) and 
+Consider the "truncated $y$":  \(y^{(n)}=(y_1, \ldots, y_n, 0, \ldots) = \sum_{i=1}^n y_i e_i \in \ell^q\) and let
+
 \[x^{(n)}=\sum_{i=1}^{n}|y_{i}|^{q-1} \textrm{sign}(y_i) e_i \in \ell^p\] 
 
 Then as before:  \(\norm{x^{(n)}}_p = \norm{y^{(n)}}_q^{q-1}\)  
@@ -241,7 +249,7 @@ For ii), let  \(x \in \ell^p\) and  \(\varepsilon > 0\). Since  \(e_n\)'s form a
 
 By choosing  \(n\) large, we can ensure that  
 
-\[\norm{l(x)-l(x^{(n)})}<\varepsilon/2, \qquad |\Lambda_y(x)-\Lambda_y(x^{(n)})| < \frac{\varepsilon}{2}\]  
+\[|\ell(x)-\ell(x^{(n)})|<\frac{\varepsilon}{2} \qquad |\Lambda_y(x)-\Lambda_y(x^{(n)})| < \frac{\varepsilon}{2}\]  
 
 using continuity of  \(\ell(\cdot)\) and  \(\Lambda_y(\cdot)\), where the latter is a consequence of \Cref{isometry in lp dual}.  
 
@@ -297,7 +305,7 @@ by letting  \(\varepsilon \downarrow 0\)
 \end{remark}  
 
 \begin{definition}
-    (Dual Operators) 
+    [Dual Operators]\nl
     \((X, \norm{\cdot}_X)\), \((Y, \norm{\cdot}_Y)\) are normed spaces over \(\real\), and \(A: X \to Y\) is a bounded linear operator.  
     Then the dual operator 
     \[A^*: Y^* \to X^*\]
@@ -319,9 +327,9 @@ using Hahn-Banach; if \(X, Y\) are Hilbert spaces, then we can use the Riesz rep
               \[(L_A)^* \circ i_m = i_n \circ L_{A^T}: \qquad \real^m \to (\real^n)^*\]
         \item More generally, if \(H\) is a Hilbert space, \(A: H \to H\) is a bounded linear operator with \(\Lambda: H\to H^*\) as the
                 canonical isomorphism, the operator
-                \[\tilde{A^*} \overset{\rm{def}}{=} \Lambda^{-1} \circ A^* \Lambda: H \to H\]
+                \[\tilde{A^*} \overset{\rm{def}}{=} \Lambda^{-1} \circ A^* \circ \Lambda: H \to H\]
             is called the adjoint of \(A\) (and one writes \(A^*\) for \(\tilde{A^*}\) with abuse of notation). Thus,
-            \[\inne{\tilde{A^*}y}{x} = \inne{y}{Ax}, \qquad x,y \in H\]
+            \[\inne{\Tilde{A^*}y}{x} = \inne{y}{Ax}, \qquad x,y \in H\]
             where \(\inne{\cdot}{\cdot}\) is the inner product on \(H\). If \(A=\tilde{A^*}\), then \(A\) is \textbf{self-adjoint}.
     \end{enumerate}
 \end{example}  

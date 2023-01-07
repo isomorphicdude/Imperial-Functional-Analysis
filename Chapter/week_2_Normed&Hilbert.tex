@@ -105,7 +105,7 @@ see also MATH50006 proof of (4.13).
 
 \begin{definition}[Schauder basis]
 
-Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
+Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence of linearly independent $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
 $$
 \norm{x - \lim_{n\to\infty}\sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
 $$
@@ -229,7 +229,7 @@ Orthogonality is the generalization of two lines being perpendicular. In euclide
 \begin{theorem}
 [Nearest Point Property]\nextline
 \label{nearest point}
-	Let $H$ be a Hilbert space, $K\subset H$ be a closed, convex subset, then $\forall y \in \hbp$ there exists a {\bf{unique}} $x_0\in K$ such that
+	Let $H$ be a Hilbert space, $K\subset H$ be a closed, convex subset, then $\forall y \in H$ there exists a {\bf{unique}} $x_0\in K$ such that
 	$$
 		\delta \overset{\rm{def}}{=} \inf_{x\in K} \norm{x-y} = \norm{x_0-y}
 	$$
@@ -238,7 +238,7 @@ Orthogonality is the generalization of two lines being perpendicular. In euclide
 \begin{proof} 
 By considering the set $K-y = \{x-y: x\in K\}$ (still closed and convex), we can assume $y=0$.  
 
-\underline{\textbf{Existence:}}
+\underline{\textbf{Existence:}}\nl
 By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\varepsilon >0$. Pick $N \in \natu$ such that  
 
 $$
@@ -253,11 +253,11 @@ It follows that for all $n,m \geq N$,
     \norm{x_n-x_m}^2 = \underbrace{2(\norm{x_n}^2+\norm{x_m}^2)}_{< 2\delta^2 + \varepsilon^2 /2} \underbrace{-\norm{x_n+x_m}^2}_{\leq 4\delta^2} < \varepsilon^2
 \end{equation*}  
 
-where we have used the Parallelogram law.  
+where we have used the Parallelogram law (\Cref{parallelogram}).  
 
 By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$ and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.  
 
-\underline{\textbf{Uniqueness:}}
+\underline{\textbf{Uniqueness:}}\nl
 Take $x_0, x_1 \in K$ with $\norm{x_0}=\norm{x_1}=\delta$ and assume $x_0\neq x_1$, then $\frac{1}{2}(x_0+x_1) \in K$ by convexity and so $\norm{x_0+x_1}\geq 2\delta$. By the Parallelogram law,  
 $$
 \norm{x_0-x_1}^2 = 2(\norm{x_0}^2 + \norm{x_1}^2) - \norm{x_0+x_1}^2 \leq 4\delta^2-4\delta^2= 0
@@ -266,7 +266,7 @@ So $x_0=x_1$, a contradiction.
 \end{proof}  
 
 \begin{remark}
-    A good example of $K$ is $K \subset H$ a subsapce.
+    A good example of $K$ is $K \subset H$ a subspace.
 \end{remark}  
 
 \begin{proposition}[Parallelogram law]\rm\label{parallelogram}\nextline

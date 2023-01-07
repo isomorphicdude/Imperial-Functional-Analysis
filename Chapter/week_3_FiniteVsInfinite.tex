@@ -29,9 +29,9 @@ In this section, let $X$ be a linear space.
 However, this is not true in infinite dimensional spaces.  
 
 \begin{example}
-    Take $X = C[0,1]$, with $\norm{\cdot}_1$ and $||\cdot||_{\infty}$
+    Take $X = C[0,1]$, with $\norm{\cdot}_1$ and $\norm{\cdot}_{\infty}$
     $$
-    f_n(t) = t^n, \qquad n \geq 1, t\in [0,1]
+    f_n(t) = t^n, \qquad n \geq 1, \ t\in [0,1]
     $$
     then  
     $$
@@ -42,7 +42,7 @@ However, this is not true in infinite dimensional spaces.
 
 \begin{proposition}
 \label{finite dim is complete}
-    If $(X, \norm{\cdot})$ is normed, $Y \subset X$ a finite dimensional subspace $d\dim Y < \infty$, then $(Y, \norm{\cdot})$ is complete.
+    If $(X, \norm{\cdot})$ is normed, $Y \subset X$ a finite dimensional subspace $\dim Y < \infty$, then $(Y, \norm{\cdot})$ is complete.
 \end{proposition}  
 \begin{proof}
     cf. Page 45 Notes, Theorem 10.
@@ -116,12 +116,12 @@ In the following, we will let $(X, \rho)$ be a metric linear space.
 \begin{proof}
 Let $K\subset X$ be compact.  
 
-\textbf{Closed:}\nextline  
+\underline{\textbf{Closed:}}\nextline  
 Let $(x_n) \subset K$, $x_n \overset{\rho}{\longrightarrow} x \in X$.  
 
 We would like to show $x \in K$. By compactness, $\exists (x_{n_k})_k \subset K$ with $\rho(x_{n_k}, \tilde{x}) \overset{k\to \infty}{\longrightarrow} 0$ for some $\tilde{x} \in K$. But we know $\rho(x_{n_k}, x)\overset{k\to \infty}{\longrightarrow} 0$ [subsequence of a convergent sequence has the same limit]. So $\Tilde{x}=x$. 
 
-\textbf{Bounded:}\nextline
+\underline{\textbf{Bounded:}}\nextline
 Assume that $K$ is not bounded. Fix $x_0 \in K$. By definition, $\forall n \geq 1$, we can find $x_k$ s.t. 
 
 $$
@@ -206,10 +206,10 @@ $$\norm{x_n}=1 \qquad \text{and} \qquad d(x_n, Y_{n-1})>\frac{1}{2}$$
 
 Then $\forall m > n$, one has:  
 $$
-\norm{x_m-x_n} \geq d(x_m, Y_n) \overset{Y_n \subset Y_m}{\geq} d(x_n, Y_{n-1}) > \frac{1}{2}
+\norm{x_m-x_n} \geq d(x_m, Y_n) \overset{Y_n \subset Y_m}{\geq} d(x_m, Y_{m-1}) > \frac{1}{2}
 $$  
 So $(x_n)$ has no convergent subsequences. Clearly $(x_n) \subset \overline{B_1} $. So $\overline{B_1} $ is not compact.  
 \end{proof}
 
-\todo{linear operators}
+\todo{Missing linear operators}
 \end{document}

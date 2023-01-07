@@ -5,56 +5,110 @@
 \begin{document}  
 \section{Weak Topology and weak convergence}
 Let $(X, || \cdot ||_X)$ be a normed linear space with dual space $X^*$ (over $\mathbb{R}$).
-\begin{definition}
-\begin{itemize}
-    \item A sequence $(x_n) \subset X$ converges weakly to $x\in X$, written as $x_n \xrightarrow{\text{w}} x (n \rightarrow \infty)$, if $\forall l \in X^*$, $$lim_{n\rightarrow \infty} l(x_n) = l(x);$$
-    \item $(x_n)$ converges (strongly/in norm) to $x$ if $lim_{n\rightarrow \infty} ||x_n - x|| = 0$, write as: $x_n \rightarrow x (n\rightarrow \infty).$
-\end{itemize}
+
+\begin{definition}[Weak Convergence]\nl
+A sequence $(x_n) \subset X$ \textbf{converges weakly} to $x\in X$, written as $x_n \xrightarrow{\text{w}} x (n \rightarrow \infty)$, if $\forall l \in X^*$, 
+    $$\lim_{n\rightarrow \infty} \ell(x_n) = \ell(x);$$
+$(x_n)$ \textbf{converges (strongly/in norm)} to $x$ if $\lim_{n\rightarrow \infty} ||x_n - x|| = 0$, write as: $x_n \rightarrow x (n\rightarrow \infty).$
 \end{definition}
 
 \begin{remark}
-\begin{enumerate}
-    \item $x_n\rightarrow x$ implies  $x_n \xrightarrow{w} x$: $|l(x_n) - l(x)| \leq ||l||_* ||x_n - x||$
-    \item The converse of 1) is false. Let $x_n (= e_n) = (0,...,0,1,0,...) \in l^2$. $||x_n-x_m|| = \sqrt{2}, n\neq m$, so $x_n$ doesn't converge (strongly). But $x_n \xrightarrow{w} 0$: by Reisz Representation, $l(\cdot) = <y,\cdot>_{l^2}$ for some $y \in l^2$, Hence with $y=(y^n)_n$, $$l(x_n) = <y,x_n> = y^n \leq \sqrt{\Sigma_{k\geq n} {|y^k|}^2} \xrightarrow{n\rightarrow \infty} 0$$, since $||y||_2 < 0$.
-    \item $x_n \xrightarrow{w} x, y \Rightarrow x=y$. Assume not, by Prop. p.34 (\textquotedblleft dual elements separate points"), $\exists l \in X^*: l(x) \neq l(y)$ if $x\neq y$. With this $l$: $$l(x) = lim_{n} l(x_n) = l(y) $$ 
-    \item $x_n \xrightarrow{w} x \Rightarrow sup||x_n|| < \infty$. Consider $A_n \in \mathfrak{L}(X^*, \mathbb{R})$ ($=X^{**}$, the bidual) with $A_n(l) := l(x_n), l\in X^*$. $x_n \xrightarrow{w} x$ implies $sup_n |A_n(l) < \infty \forall l\in X^*$, and $X^*$ is complete so by Banach-Steinhaus: $$sup_n ||A_n||_{\mathfrak{L}(X^*, \mathbb{R})} < \infty$$ But $||A_n||_{\mathfrak{L}(X^*,\mathbb{R})} = sup_{l\in X^*, ||l||\leq 1} |l(x_n)| = ||x_n||_X$.
+\label{properties of weak convergence}
+We have the following remarks about weak convergence.  
+
+\begin{enumerate}[1)]
+    \item $x_n\rightarrow x$ implies  $x_n \xrightarrow{w} x$: $|\ell(x_n) - \ell(x)| \leq ||\ell||_* ||x_n - x||$
+    
+    \item The converse of 1) is false. Let $x_n (= e_n) = (0,...,0,1,0,...) \in l^2$. $||x_n-x_m|| = \sqrt{2}, n\neq m$, so $x_n$ doesn't converge (strongly). But $x_n \xrightarrow{w} 0$: by Riesz Representation, $\ell(\cdot) = \inne{y}{\cdot}_{l^2}$ for some $y \in l^2$, Hence with $y=(y^n)_n$, $$\ell(x_n) = \inne{y}{x_n} = y^n \leq \sqrt{\Sigma_{k\geq n} {|y^k|}^2} \xrightarrow{n\rightarrow \infty} 0$$, since $||y||_2 < \infty$.
+    
+    \item If $x_n \xrightarrow{w} x, x_n \xrightarrow{w} y$, then $x=y$. Assume not, by Prop. p.34 (\textquotedblleft dual elements separate points"\todo{reference}), $\exists l \in X^*: \ell(x) \neq \ell(y)$ if $x\neq y$. With this $l$: $$\ell(x) = \lim_{n \to \infty} \ell(x_n) = \ell(y) $$ 
+    ,a contradiction.
+    
+    \item $x_n \xrightarrow{w} x \Rightarrow \sup||x_n|| < \infty$. Consider $A_n \in \mathfrak{L}(X^*, \mathbb{R})$ ($=X^{**}$, the bidual) with $A_n(\ell) := \ell(x_n), \ell \in X^*$. $x_n \xrightarrow{w} x$ implies $\sup_n |A_n(l)| < \infty,$ $\forall l\in X^*$, and $X^*$ is complete so by Banach-Steinhaus: $$\sup_n ||A_n||_{\mathfrak{L}(X^*, \mathbb{R})} < \infty$$ 
+    
+    But by \Cref{dual charaterization of norm},  $||A_n||_{\mathfrak{L}(X^*,\mathbb{R})} = \sup_{l\in X^*, ||\ell||\leq 1} |\ell(x_n)| = ||x_n||_X$.
 \end{enumerate}
 \end{remark}
 
-This naturally leads to:\begin{definition}
-    $X^{**} := (X^*)^* \quad (=\mathfrak{L}(X^*,\mathbb{R}))$ is called bidual of $X$. $X$ embeds canonically into $X^{**}$ via: $$ \eta : X\rightarrow X^{**}: \eta(x)(l) := l(x) \quad \forall x \in X, l \in X^*$$ 
+This naturally leads to:
+
+\begin{definition}[Bidual]
+\label{bidual defnition}
+    $X^{**} := (X^*)^* \quad (=\mathfrak{L}(X^*,\mathbb{R}))$ is called \textbf{bidual} of $X$. $X$ embeds canonically into $X^{**}$ via: $$ \eta : X\rightarrow X^{**}: \eta(x)(\ell) := \ell(x) \quad \forall x \in X, \ell \in X^*$$ 
 \end{definition}
 \begin{remark}
-    $\eta$ is a linear isometry: similarly as in 4) above. One has: $\forall x \in X: ||x||_X = sup_{l\in X^*, ||l|| \leq 1} |l(x)| = ||\eta(x)||_{**}$.
+    $\eta$ is a linear isometry: similarly as in \Cref{properties of weak convergence} 4) above. One has: $$\forall x \in X: ||x||_X = \sup_{l\in X^*, ||\ell|| \leq 1} |\ell(x)| = ||\eta(x)||_{**}$$
 \end{remark}
 
-\begin{definition}
-    $X$ is reflexive if $\eta$ is surjective.
+\begin{definition}[Reflexive]
+    The space $X$ is reflexive if $\eta$ in \Cref{bidual defnition} is surjective.
 \end{definition}
 
-\begin{eg}
+\begin{example}
+\label{reflexive examples}
+Some examples of reflexive spaces.  
 \begin{enumerate}
-    \item if $dimX<\infty$, $X$ is reflexive;
+    \item if $\dim X<\infty$, $X$ is reflexive;
     \item $H$ a Hilbert space is reflexive;
     \item $L^p, 1<p<\infty$ is reflexive;
     \item $L^1, L^\infty$ are in general not reflexive.
 \end{enumerate}
-For 4, consider $L^\infty[-1,1]$. Define the Dirac function $\delta_{x_0}: C^0[-1,1] \rightarrow \mathbb{R}: f \mapsto \delta_{x_0}(f) = f(x_0)$.\\
+\end{example}
+
+\begin{proposition}
+    $L^1[-1,1]$ and $L^{\infty}[-1,1]$ are not reflexive.
+\end{proposition}
+\begin{proof}
+Consider $L^\infty[-1,1]$. 
+
+Define the Dirac function 
+$$\delta_{x_0}: C^0[-1,1] \rightarrow \mathbb{R}: f \mapsto \delta_{x_0}(f) = f(x_0)$$
+
 $\delta_{x_0}$ is linear and continuous on $(C^0[-1,1],||\cdot ||_\infty)$. By Corollary of Hahn-Banach on p.33, there exists extension 
-$$l\in (L^\infty [-1,1])^* s.t. l\mid_{C^0[0,1]} = \delta_{x_0}.$$
+$$\ell\in (L^\infty [-1,1])^* \qquad \text{and} \qquad \ell\mid_{C^0[0,1]} = \delta_{x_0}.$$
 (with some norm) (Omit \textquotedblleft $[-1,1]$" henceforth) \\
-For $g\in L^1$, $l_g(f) = \int_{-1}^1 gf dx, f\in L^\infty, l_g\in (L^\infty)^*$.
-\\Claim: $\nexists g\in L^1: l=l_g$.
-\\Claim implies that $\eta: L^1 \rightarrow (L^\infty)^*, g \mapsto l_g$ is not surjective, i.e., $L^1$ is not reflexive.\\
-For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).\\
-Proof of Claim: Suppose $\exists g\in l^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
-Pick a bump function $\phi \in C^\infty [-1,1]: 0 \leq \phi \leq 1, \phi \equiv 1$ on $B_{\frac{1}{2}}$, $\phi(\pm 1)=0$. For $n\leq 1: \phi(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 a.e.$.\\
-This yields: $$1 = \phi_n(0)=\delta_{x_0}(\phi_n) = l(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \nrightarrow 0$$
-this is a contradiction, as $\delta_{x_0}(\phi_n) = 0$.
-\end{eg}
 
+For $g\in L^1$, we define $\forall f\in L^\infty$
 
+$$\ell_g(f) = \int_{-1}^1 gf dx$$
+then $l_g\in (L^\infty)^*$.
 
+\begin{unexaminable}
+This is the canonical embedding of $L^1$ into $(L^1)^{**}=(L^{\infty})^*$, since $(L^1)^* = L^{\infty}$, every $\zeta \in (L^1)^*$ can be written as  
+$$
+\zeta(g) = \int fg d\mu
+$$
+for some $f \in L^{\infty}$.  
+So $\eta: L^1 \mapsto (L^{\infty})^*:  \eta(g)(\zeta)=\zeta(g)$
+\end{unexaminable}
+
+\textbf{Claim:} $\nexists g\in L^1: \ell=\ell_g$.  
+
+The claim implies that $\eta: L^1 \rightarrow (L^1)^{**}=(L^\infty)^*, g \mapsto \ell_g$ is not surjective, i.e., $L^1$ is not reflexive.  
+
+For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).  
+
+\textbf{Proof of Claim:} Suppose $\exists g\in l^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
+Pick a bump function $\phi \in C^\infty [-1,1]: 0 \leq \phi \leq 1$
+
+$$
+\phi(x) = 1, \ x \in [-\frac{1}{2}, \frac{1}{2}] \qquad \text{and} \qquad \phi(x)=0, \ x=\pm 1
+$$
+
+For $n\leq 1: \phi(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 \ a.e.$.\\
+This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \nrightarrow 0$$
+this is a contradiction, as $\delta_{0}(\phi_n) = 0$.
+\end{proof}
+\begin{unexaminable}
+An example is given at \href{https://math.stackexchange.com/questions/101480/are-there-other-kinds-of-bump-functions-than-e-frac1x2-1}{\color{navyblue} here}.  
+\begin{figure}[H]
+  \centering
+  \makebox[0pt]{%
+  \includesvg[inkscapelatex=false, width=0.5\paperwidth]{Figures/bump_function}
+  }
+  \caption{A bump function}
+\end{figure} 
+\end{unexaminable}
 \end{document}
 
 
