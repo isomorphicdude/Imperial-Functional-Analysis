@@ -15,18 +15,18 @@ In this section, we will be working with metric spaces \((V, \rho)\).
 
 \begin{definition}[Separable]
 	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable, 
-	such that \(B_{\rho}(x, \varepsilon) \cap D \neq \empty, \forall x \in V, \forall \varepsilon >0\) 
+	such that \(B_{\rho}(x, \varepsilon) \cap D \neq \varnothing, \forall x \in V, \forall \varepsilon >0\) 
 	(\textit{i.e.} D is dense in \(V\))
 \end{definition}
 
 Here \(B_{\rho}(x, \varepsilon)=\{y \in V: \rho (y,x) < \varepsilon\}\) is an open ball of radius \(\varepsilon\) 
-centered at \(x\).
+centered at \(x\). For convenience, $\rho$ is often dropped in the notation, writes $B(x, \varepsilon)$
 
 \begin{proposition}
-	\(\ell^p\) space is separable for \(p \in [1. \infty)\)
+	\(\ell^p\) space is separable for \(p \in [1, \infty)\)
 \end{proposition}  
-(Here it is understood that \(\ell^p, \rho\), where \(\rho\) is the metric indcued by the norm \(\norm{\cdot}_p\), 
-\textit{i.e.} \(\rho(x,y)=\norm{x-y}_p\))  
+Here $\ell^p$ actually denotes  \((\ell^p, \rho)\), where \(\rho\) is the metric indcued by the p-norm \(\norm{\cdot}_p\), 
+\textit{i.e.} \(\rho(x,y)=\norm{x-y}_p\)
 
 \begin{proof}
 	Consider \(D = \cup_{n\geq 1} D_n\), where  
@@ -35,29 +35,29 @@ centered at \(x\).
 
 \textbf{Claim:} $D$ is dense in $\ell^p$.  
 
-Let $x = (x_n) \in \ell^p$ and $\varepsilon >0$ . First we build a $\norm{\cdot}_p-$close sequence $\Tilde{x}=(\Tilde{x}_n)$ with values in $\mathbb{Q}$. Since $\mathbb{Q} \subset \real$ is dense, we find for every $n$ a number $\tilde{x}_n \in \qq$ s.t.  
+Let $x = (x_n) \in \ell^p$ and $\varepsilon >0$ . First we build a $\norm{\cdot}_p-$close sequence $\widetilde{x}=(\widetilde{x}_n)$ with values in $\mathbb{Q}$. Since $\mathbb{Q} \subset \real$ is dense, we find for every $n$ a number $\widetilde{x}_n \in \qq$ s.t.  
 
 $$
-|x_n-\Tilde{x}_n| \leq \left(\frac{\varepsilon}{2}\right) (2^{-\frac{n}{p}})
+|x_n-\widetilde{x}_n| \leq \left(\frac{\varepsilon}{2}\right) (2^{-\frac{n}{p}})
 $$  
 
 This implies  
 
 \begin{equation}
 \label{1}
-    \norm{x-\Tilde{x}}_p^p = \sum_{n=1}^{\infty} |x_n-\Tilde{x}_n|^p \leq \left(\frac{\varepsilon}{2}\right)^p \sum_{n=1}^{\infty} 2^{-n}=\left(\frac{\varepsilon}{2}\right)^p
+    \norm{x-\widetilde{x}}_p^p = \sum_{n=1}^{\infty} |x_n-\widetilde{x}_n|^p \leq \left(\frac{\varepsilon}{2}\right)^p \sum_{n=1}^{\infty} 2^{-n}=\left(\frac{\varepsilon}{2}\right)^p
 \end{equation}
 
-Note that this also implies $\Tilde{x} \in \ell^p$, since $\norm{\Tilde{x}}_p \leq \underbrace{\norm{\Tilde{x}-x}_p}_{<\infty}+\underbrace{\norm{x}_p}_{<\infty}$.  
+Note that this also implies $\widetilde{x} \in \ell^p$, since $\norm{\widetilde{x}}_p \leq \underbrace{\norm{\widetilde{x}-x}_p}_{<\infty}+\underbrace{\norm{x}_p}_{<\infty}$.  
 
-Since $\Tilde{x} \in \ell^p$, we have $\sum_n |\Tilde{x}_n|^p < \infty$ hence we can pick an $n$ s.t.  
+Since $\widetilde{x} \in \ell^p$, we have $\sum_n |\widetilde{x}_n|^p < \infty$ hence we can pick an $n$ s.t.  
 
 \begin{equation}
 \label{2}
-    \sum_{k\geq n} |\Tilde{x}_n|^p < \left(\frac{\varepsilon}{2}\right)^p
+    \sum_{k\geq n} |\widetilde{x}_n|^p < \left(\frac{\varepsilon}{2}\right)^p
 \end{equation}
 
-Now define $y = (\Tilde{x}_1, \ldots, \Tilde{x}_n, 0, 0, \ldots,)$. Clearly, $y \in D_n$. Moreover, \cref{2} asserts that $\norm{\Tilde{x}-y} < \frac{\varepsilon}{2}$. Combining with \cref{1} and using the triangle inequality yields $\norm{x-y}_p < \varepsilon$, \textit{i.e.} $x\in B(y, \varepsilon)$.  
+Now define $y = (\widetilde{x}_1, \ldots, \widetilde{x}_n, 0, 0, \ldots,)$. Clearly, $y \in D_n$. Moreover, \cref{2} asserts that $\norm{\widetilde{x}-y} < \frac{\varepsilon}{2}$. Combining with \cref{1} and using the triangle inequality yields $\norm{x-y}_p < \varepsilon$, \textit{i.e.} $x\in B(y, \varepsilon)$.  
 \end{proof}  
 
 \begin{proposition}
@@ -77,15 +77,15 @@ Now define $y = (\Tilde{x}_1, \ldots, \Tilde{x}_n, 0, 0, \ldots,)$. Clearly, $y 
 
     Let $f \in L^p(\real^n)$. Assume $f \geq 0$ (else split into $f=f^+-f^-$)  
 
-    \textbf{Step 1} By approximation of simple functions, we can find $\Tilde{g}$ simple, s.t. $0 \leq \Tilde{g} \leq f$ and  
+    \textbf{Step 1} By approximation of simple functions, we can find $\widetilde{g}$ simple, s.t. $0 \leq \widetilde{g} \leq f$ and  
     $$
-    \norm{f-\Tilde{g}} < \frac{\varepsilon}{3}
+    \norm{f-\widetilde{g}} < \frac{\varepsilon}{3}
     $$  
-    with $\Tilde{g}=\sum_{k=1}^m a_k \mathbf{1}_{A_k}$ for suitable $A_k \in \mathcal{B}(\real^n)$.  
+    with $\widetilde{g}=\sum_{k=1}^m a_k \mathbf{1}_{A_k}$ for suitable $A_k \in \mathcal{B}(\real^n)$.  
 
     \textbf{Step 2} We can find a sequence of simple functions $\hat{g}$ with coefficients $a_l \to a_k$ where $a_l\in \qq$ such that  
     $$
-    \norm{\hat{g}-\Tilde{g}} < \frac{\varepsilon}{3}
+    \norm{\hat{g}-\widetilde{g}} < \frac{\varepsilon}{3}
     $$  
 
     \textbf{Step 3} For each $A_k$, we can find $O_k$ open s.t.  
@@ -98,7 +98,7 @@ Now define $y = (\Tilde{x}_1, \ldots, \Tilde{x}_n, 0, 0, \ldots,)$. Clearly, $y 
 It is crucial that $\lambda(A_k) < \infty$, as  
 
 $$
-\forall k \in \natu: |a_k|^p \lambda(A_k) \leq \norm{\Tilde{g}}_p \leq \norm{f}_p < \infty
+\forall k \in \natu: |a_k|^p \lambda(A_k) \leq \norm{\widetilde{g}}_p \leq \norm{f}_p < \infty
 $$  
 
 see also MATH50006 proof of (4.13). 
@@ -160,24 +160,25 @@ $$
 \begin{unexaminable}
 Hilbert space is a special class of Banach space. 
 Apart from completeness and norm, it is also equipped with an additional structure, 
-{\bf inner product}. This allow us to explore nice geometric properties of the space, 
+{\bf inner product}. This allows us to explore nice geometric properties of the space, 
 like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
 \end{unexaminable}
 
-In this section we work with linear space $H$ over $\mathbb{K} = \real \ \textrm{or} \ \mathbb{ C}$
+In this section we work with linear space $H$ over $\mathbb{K} = \real$. For convenience, we do not study Hilbert space over$\mathbb{ C}$ in this section.
+
 
 \begin{definition}
-[Bilinear Map]\nextline
-	Let $X$ be a vector space over $\mathbb C$. An {\bf bilinear map} is a function $\left<\cdot,\cdot\right>:H \times H \xrightarrow{}{\mathbb C}$ satisfying following: $\forall x,y,z\in H,\alpha$ a scalar,
+[Inner Product]
+	Let $H$ be a vector space over $\real$. An {\ibf inner product} is a bilinear map (i.e. linear in both argument):
+	$H\times H\to\real$, $(x,y)\mapsto \inne{x}{y}$ satisfying:
 	\begin{itemize}
-		\item[1] $\left<x,y\right>={\overline{\left<y,x\right>}},\forall x,y\in H$
-		\item[2] $\left<x,x\right>\geq0$
-		\item[3] $\left<x,x\right>=0$ iff $x=0$
-		\item[4] $\left<x+y,z\right>=\left<x,z\right>+\left<y,z\right>$
-		\item[5] $\left<ax,z\right>=a\left<x,z\right>$
+		\item Symmetric: $\left<x,y\right>={{\left<y,x\right>}},\forall x,y\in H$
+		\item Positive definite: $\left<x,x\right>\geq0$,$\left<x,x\right>=0$ iff $x=0$
 	\end{itemize}
+	is called \underline{inner product}.\\
+	$(H,\inne{\cdot}{\cdot})$, a vector space equipped with an inner product is called an inner product space.
 \end{definition}
-1 is complex conjugation. 2 and 3 is positive-definiteness. 4 and 5 is left-linearity.
+
 
 
 \begin{theorem}
@@ -219,13 +220,6 @@ The sequence space
 	$
 \end{example}
 
-\begin{unexaminable}
-Structure of inner product allows discussion for nice geometric property of Hilbert spaces. This includes orthogonality, angles and nearest distance etc.
-\end{unexaminable}
-\begin{unexaminable}
-Orthogonality is the generalization of two lines being perpendicular. In euclidean geometry, we have Pythagorean theorem closely related to such property. Results on orthogonality in Hilbert spaces in many ways resemble their Euclidean version.
-\end{unexaminable}
-
 \begin{theorem}
 [Nearest Point Property]\nextline
 \label{nearest point}
@@ -266,7 +260,7 @@ So $x_0=x_1$, a contradiction.
 \end{proof}  
 
 \begin{remark}
-    A good example of $K$ is $K \subset H$ a subspace.
+    A good example of $K$ convex is $K \subset H$ a subspace.
 \end{remark}  
 
 \begin{proposition}[Parallelogram law]\rm\label{parallelogram}\nextline

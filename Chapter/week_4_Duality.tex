@@ -22,7 +22,7 @@ Recall that the space of all bounded linear operators is defined as
 \(\mathcal{L}(X,Y)\) is Banach if  \(Y\) is Banach and it has norm  
 
 \[
-\norm{A} = \norm{A}_{\mathcal{L}(X,Y)} = \sup_{\norm{x}_X \leq 1} \norm{Ax}
+\norm{A} = \norm{A}_{\mathcal{L}(X,Y)} = \sup_{\norm{x}_X \leq 1} \norm{Ax}_Y
 \]  
 
 An Important special case is  
@@ -53,7 +53,7 @@ In this section, let  \((H, {\langle \cdot, \cdot \rangle}_H )\) be a Hilbert sp
 We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we will show that this is in fact a bijective isometry.  
 
 \begin{lemma}
-    [Mapping to dual space]\\
+    [Mapping to dual space]\hfill
     \begin{enumerate}[i)]
         \item  \(\Lambda_y \in H^*\)
         \item The map  \(\Lambda: H \to H^*\) is a linear isometry with  \(||\Lambda_y||_{*}=||y||\)
@@ -152,12 +152,13 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
 
 
 \begin{example}
-    Some of the examples are:  
+     Some of the examples are: 
     \begin{itemize}
         \item  \((l^2)^* \cong l^2\)
         \item  \((L^2(\mu))^* \cong L^2(\mu)\)
     \end{itemize}
 \end{example}
+\todo{Can we add a $\real^n$ or/and $\comp^n$ example here?} 
 
 
 \subsection{Duality in Banach Spaces}  

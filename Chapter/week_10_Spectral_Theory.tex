@@ -249,7 +249,8 @@ The example also nicely illustrates:
 		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}v$. By \cref{images of symmetric operators bounded below by imaginary part},
 		$$
 			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\zeta)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
-   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ \todo{Is A a bounded operator?(unless A is defined everywhere)}
+   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ \todo{Is A a bounded operator?(unless A is defined everywhere)
+   Short answer: we don't need boundedness. consider operator on $ell^2$, that multiplies n-th term by n. This is unbounded, but for any e_k it gives finite result.}
 		Back to (*):\\
 		Due to (**), $M\defeq Im(\zeta-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
 		$$
@@ -358,7 +359,7 @@ Now return to the proof of \Cref{riesz schauder}.
 	to distinct eigenvalues $\lambda+k \neq \lambda_l$ this is automatic after normalizing them to have norm 1 by lemma 1.\\
 	So let $(\lambda_k)$ be the elements of $\sigma_p(T)\setminus\{0\}$, counted with multiplicities( i.e. $\dim(X_{\lambda_k})$ copies of $\lambda_k$. Let
 	$$
-		X\defeq\overline{span\{e_k\}}=\overline{\oplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
+		X\defeq\overline{span\{e_k\}}=\overline{\bigoplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
 	$$
 	\textbf{Claim 1:} $\forall x\in X$: $x=\sum_k \inne{x}{e_k}e_k$\\
 	proof: Let $x_n=\sum_{k \leq n} \inne{x}{e_k}e_k$.
@@ -391,7 +392,7 @@ Now return to the proof of \Cref{riesz schauder}.
 \begin{remark}
 	We have actually shown that $H$ admits the orthogonal decomposition:
 	\[H=ker(T)\oplus
-		\overline{\oplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
+		\overline{\bigoplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
 	\]
 	where there are countably many $X_\lambda$ and each is of finite dimension.
 \end{remark}

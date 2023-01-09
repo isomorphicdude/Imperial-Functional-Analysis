@@ -20,6 +20,7 @@ In this section, let $X$ be a linear space.
 \end{definition}
 
 \begin{proposition}[Norms are equivalent in finite dim]\nextline
+\label{Norms are equivalent in finite dim}
     If $\dim X < \infty$ (\textit{i.e.} $X \cong \mathbb{K}^n$ for some $n \geq 1$), any two norms on $X$ are equivalent.
 \end{proposition}
 \begin{proof}
@@ -80,12 +81,15 @@ As a consequence of \Cref{finite dim is complete}, one also gets
     If $(X, \norm{\cdot})$ is normed, $Y \subset X$ a finite dimensional subspace $\dim Y < \infty$, then $(Y, \norm{\cdot})$ is closed.
 \end{corollary}
 \begin{proof}
-    
+    Let $(x_n)\subset Y$ be convergent, $\norm{x_n-x}\xrightarrow{n\to\infty}0$ for some $x\in X$. Need to show $x\in Y$.\\
+    Since $(x_n)$ is convergent, it is Cauchy, but $x_n\in Y$ $\forall  n$, so $(x_n)$ is Cauchy in $Y$. By proposition 1.4. $(Y,\norm{\cdot})$ is complete, hence $(y_n)$ converges to a point $y\in Y$, thus $Y$ is closed.
 \end{proof}
 
 \subsection{Compactness}  
 
-In the following, we will let $(X, \rho)$ be a metric linear space.  
+In the following, we will let $(X, \rho)$ be a metric 
+% linear   // Metric space suffices here 
+space.  
 
 \begin{definition}[Compact] \nextline
     A set $K \subset X$ is \textbf{(sequentially) compact} 
@@ -211,5 +215,150 @@ $$
 So $(x_n)$ has no convergent subsequences. Clearly $(x_n) \subset \overline{B_1} $. So $\overline{B_1} $ is not compact.  
 \end{proof}
 
-\todo{Missing linear operators}
+\section{Linear Operators}  
+Let $(X, \norm{\cdot}_X)$, $(Y, \norm{\cdot}_Y)$ be normed spaces, $A: X \to Y$ linear.  
+
+\begin{definition}[Bounded Opertor]\nl
+    A linear operator $A: (X, \norm{\cdot}_X) \to (Y, \norm{\cdot}_Y)$ is bounded if $\exists C \in (0, \infty)$, such that  
+    $$
+    \norm{Ax}_Y \leq C \norm{x}_X \qquad \forall x \in X
+    $$
+\end{definition}
+
+If $A$ is bounded, 
+$$
+\norm{A} \defeq \sup_{\norm{x}_X\leq 1} \norm{Ax}_Y (<\infty)
+$$
+is the best possible $C$.  
+
+$\norm{A}$ is called \textbf{operator norm} (it is a norm on $\mathcal{L}(X,Y)$).  
+
+Boundedness is the same as continuity.  
+
+\begin{theorem}
+\label{equivalent defn of bounded operators}
+    The following are equivalent:  
+    \begin{enumerate}[i)]
+        \item $A$ is continuous at $x_0\in X$
+        \item $A$ is continuous at every $x \in X$
+        \item $A$ is Lipschitz continuous ($\exists L > 0: \norm{Ax-Ay}_Y \leq L \norm{x-y}_X, \forall x,y\in X$)
+        \item $A$ is bounded
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \textbf{iv) $\implies$ iii)}\nl
+    By linearity of $A$, $\forall x_1\neq x_2 \in X$,  
+    \begin{align*}
+        \norm{Ax_1 - Ax_2}_Y &= \norm{A(x_1-x_2)}_Y = \norm{x_1-x_2}_X \norm{A \left(\frac{x_1-x_2}{\norm{x_1-x_2}_X}\right)}_Y \\
+        &\leq \norm{A} \norm{x_1-x_2}_X \qquad \text{so\ can\ take\ } L = \norm{A}
+    \end{align*}
+    \textbf{iii) $\implies$ ii) $\implies$ i)} is clear.  
+    To show \textbf{i) $\implies$ iv)}:\nl
+    Assume $\norm{A}=\infty$, so can find $(x_n) \subset X$ with  
+    $$
+    \norm{x_n}_X \leq 1 \qquad 0 < \norm{Ax_n}_Y \to \infty \text{\ as\ } n\to \infty
+    $$
+    Set $z_n \defeq \frac{x_n}{\norm{Ax_n}_Y}$,  then $\norm{z_n}_X \to 0$ as $n\to \infty$ but 
+    $$
+    \norm{A(x_0+z_n)-Ax_0}_Y = \norm{Az_n}_Y = 1
+    $$
+    which does not converge to $0$ as $n\to \infty$.
+\end{proof}
+
+\begin{corollary}
+    If $\dim X < \infty$, $A: X\to Y$ linear. Then $A$ is continuous.
+\end{corollary}  
+\begin{proof}
+    $\norm{x}_* \defeq \norm{x}_X + \norm{Ax}_Y$ defines a norm on $X$ (check this).  
+    
+    By \Cref{Norms are equivalent in finite dim}, $\exists C>0$ s.t. $\norm{x}_* \leq C \norm{x}_X, \forall x \in X$. But since $\norm{Ax}_Y \leq \norm{x}_X$, $A$ is bounded, hence continuous by \Cref{equivalent defn of bounded operators}.
+\end{proof}
+
+\begin{example}
+    Let $X=Y=C[0,1]$, $\norm{\cdot}_X=\norm{\cdot}_1, \norm{\cdot}_Y=\norm{\cdot}_{\infty}$ and $A=id$, then $A$ is not continuous: we show it is not bounded.  
+
+    Take 
+    \begin{equation}\nonumber
+f_n(x)=\left\{
+\begin{split}
+    &{n^2x} &x\in[0,\frac{1}{n}]\\
+    &{-n^2x+2n} &x\in(\frac{1}{n},\frac{2}{n}]\\
+    &0 &x\in(\frac{2}{n},1]\\
+\end{split}
+\right.\quad\text{then}\quad\norm{f_n}_1=1  \  \ f_n \in X, \forall n \in \natu
+\end{equation}
+But we have  
+$$
+\norm{A} \underbrace{\geq}_{\norm{f_n}_1=1} \sup_n \norm{Af_n}_Y = \sup_n \underbrace{\norm{f_n}_{\infty}}_n = \infty
+$$
+In fact, unboundedness is rather common, so care is needed!  
+\end{example}  
+
+A classical example is:  
+
+\begin{example}
+    Let $X=C^1[0,1]$, $Y=C[0,1]$, 
+    \begin{align*}
+        A: X &\to Y \\
+        f &\mapsto f'
+    \end{align*}
+    by $"A = \frac{d}{dx}"$, which is well-defined (\textit{i.e.} if $f\in X$ then $Af \in Y$)
+
+    Take $\norm{\cdot}_Y = \norm{\cdot}_{\infty}$ and endow $X$ with $\norm{\cdot}_X = \norm{\cdot}_Y$. Then $A$ is unbounded. Indeed, take  
+    $$
+    f_n(t) = \sin(nt) 
+    $$
+    (or $f_n(t)=t^n$) then $\norm{f_n}_X=1$ but $\norm{Af_n}_Y=n \to \infty$.
+
+    \textbf{Note:} if instead one sets $\norm{\cdot}_X = \norm{\cdot}_{C^1}=\norm{f}_{\infty}+\norm{f'}_{\infty}$ then the above $f_n$'s are of no use (and in fact $A$ is \textbf{bounded}, cf. later)!
+    \todo{what is it?}
+\end{example}  
+
+Now set 
+
+$$
+\mathcal{L}(X, Y) = \left\{A: X \to Y: A \text{\ linear\ +\ continuous} \right\}
+$$
+(really we are setting $\mathcal{L}((X, \norm{\cdot}_X), (Y, \norm{\cdot}_Y))$)  
+is a normed linear space with norm (check!)  
+$$
+\norm{A}_{\mathcal{L}(X, Y)} = \norm{A} = \sup_{\norm{x}_X\leq 1} \norm{Ax}_Y = \sup_{x \neq 0} \frac{\norm{Ax}_Y}{\norm{x}_X}
+$$ 
+and one has the useful inequality:  
+$$
+\forall x \in X: \qquad \norm{Ax}_Y \leq \norm{A} \norm{x}_X
+$$
+If $X=Y$ \textbf{and} $\norm{\cdot}_X = \norm{\cdot}_Y$ one sets $\mathcal{L}(X, X)=X$.  
+
+\begin{theorem}
+    If $(Y, \norm{\cdot}_Y)$ is Banach, then so is $(\mathcal{L}(X, Y), \norm{\cdot}_{\mathcal{L}(X, Y)})$.  
+\end{theorem}
+\begin{proof}
+    Notes Page 53, Theorem 17.
+\end{proof}
+
+\begin{corollary}
+    If $A:X \to Y$ is continuous and $K\subset X$ is compact, then  
+    $$
+    A(K) = \{Ax: x\in K\} \subset Y
+    $$
+    is compact
+\end{corollary}
+\begin{proof}
+    Fix $(y_n) \subset A(K)$, we need to find a convergent subsequence $(y_{n_k})$.  
+
+    By definition of $A(K)$,  
+    $$
+    y_n = Ax_n \qquad \text{\ for\ some\ }x_n \in K
+    $$  
+    So $(x_n) \subset K$, has a convergent subsequence $(x_{n_k})$ by compactness of $K$.  
+
+    \textbf{Claim:} $(y_{n_k})(=Ax_{n_k})$ is convergent.  
+
+    Indeed, let $\norm{x_{n_k}-x}_X \to 0$, $k\to \infty$. By continuity:  
+    $$
+    \norm{y_{n_k}-Ax}_Y = \norm{Ax_{n_k}-Ax}_Y \leq L \norm{x_{n_k}-x}_X \to 0 \text{\ as \ } k \to \infty
+    $$
+    so $(y_{n_k}) \subset Y$ converges and the limit is $Ax$.
+\end{proof}
 \end{document}

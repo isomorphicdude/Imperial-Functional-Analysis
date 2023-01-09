@@ -96,10 +96,10 @@ $$Ax=\sum_{k=1}^\infty Ax_k=y$$
 By \cref{open ball is in closure} above with $\Tilde{r}=\frac{r}{2}$,  
 
 \begin{equation*}
-    \forall s>0, B_Y(s\Tilde{r})\subset \overline{A(B_X(s/2)}
+    \forall s>0, \qquad B_Y(s\Tilde{r})\subset \overline{A(B_X(s/2)}
     \tag{*}
 \end{equation*}
-Let $s=1$. Pick $x_1\in B_X(1/2)$ s.t. $\norm{Ax_1-y}<\Tilde{r}/2$. 
+Let $s=1$. Pick $x_1\in B_X(1/2)$, such that $\norm{Ax_1-y}<\Tilde{r}/2$. 
 
 Now set $y_1=y-Ax_1$, where $(y_1 \in B_Y(\Tilde{r}/2))$. Iterate.  
 
@@ -127,7 +127,7 @@ Let $X=Y$, with norms $\norm{\cdot}_1$ and $\norm{\cdot}_2$ and assume $\exists 
     \norm{x}_2\leq C\norm{x}_1,\,\forall x\in X
 \end{equation}
 
-If $X$ is complete, with respect to both $\norm{\cdot}_1$ and $\norm{\cdot}_2$ then consider $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is open by \Cref{open mapping theorem} (indeed thm applies, as $A$ is bounded by \Cref{equivalence of norm example}. 
+If $X$ is complete, with respect to both $\norm{\cdot}_1$ and $\norm{\cdot}_2$ then consider $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is open by \Cref{open mapping theorem} (indeed thm applies, as $A$ is bounded by \Cref{equivalence of norm example}). 
 
 Since $A$ is bijective, ii) gives that $A^{-1}=id:(X,\norm{\cdot}_2)\to(X,\norm{\cdot}_1)$ is bounded, i.e.
 $$
@@ -186,14 +186,14 @@ Pick $x^{(n)}=(\overbrace{1,1,\ldots, 1,1}^{n},0,......)$ then $\norm{x^{(n)}}_\
 \section{Closed Graph Theorem}
 Consider $X$, $Y$ normed spaces. Often an operator $A$ not defined on all of $A$ but on a "domain" $D(A)$. So we assume that 
 $D(A)\subset X$ is a linear subspace on which $A:D(A)(\subset X)\to Y$, linear is defined.
-\begin{example}[running Example]\nl
+\begin{example}[running xxample]\nl
 $Y=X=C=C^0[0,1]$ with $\norm{\cdot}_X=\norm{\cdot}_\infty$ and 
 $$A=\frac{d}{dt}$$
 with $D(A)\stackrel{eg}{=}C^1[0,1]\subset X$ or subspaces thereof. 
 
 Prime example of  (\underline{unbounded}) operator with dense domain $D(A)$: indeed $C^1[0,1]=C$ using e.g. Weierstrass Approximation Theorem (Polynomials are already $\norm{\cdot}_\infty$-dense in C)
 \end{example}
-\begin{definition}[Graph]\nl
+\begin{definition}[Graph of an operator]\nl
 Let $X$, $Y$ be normed space, $A:D(A)(\subset X)\to Y$ . Graph of $A$ (really  of $(A,D(A))$) is the linear (!) space 
 $$
 \Gamma_A=\{(x,Ax):x\in D(A)\}\subset X\times Y
