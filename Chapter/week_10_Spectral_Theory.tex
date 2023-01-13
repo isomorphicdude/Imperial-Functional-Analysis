@@ -249,10 +249,11 @@ The example also nicely illustrates:
 		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}v$. By \cref{images of symmetric operators bounded below by imaginary part},
 		$$
 			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\zeta)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
-   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ \todo{Is A a bounded operator?(unless A is defined everywhere)
-   Short answer: we don't need boundedness. consider operator on $ell^2$, that multiplies n-th term by n. This is unbounded, but for any e_k it gives finite result.}
-		Back to (*):\\
-		Due to (**), $M\defeq Im(\zeta-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
+   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ 
+   % \todo{Is A a bounded operator?(unless A is defined everywhere)}
+   % Short answer: we don't need boundedness. consider operator on $\ell^2$, that multiplies n-th term by n. This is unbounded, but for any $e_k$ it gives finite result.  
+   
+		Back to (*): Due to (**), $M\defeq Im(\zeta-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
 		$$
 			\forall u\in D_A:\inne{v}{(\zeta-A)u}=0\text{  or  }\inne{v}{Au}=\overline{\zeta}\inne{v}{u}$$
 		Hence,
@@ -400,4 +401,3 @@ Now return to the proof of \Cref{riesz schauder}.
 
 
 \end{document}
-
