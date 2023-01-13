@@ -97,65 +97,171 @@ The lemma motivates the following.
 \end{flushleft}
 
 
-\begin{definition}
-    (Category)  
+\begin{definition}  
     Let $(X,d)$ be a metric space.  
-\end{definition}
-\begin{enumerate}[i)]
-    \item $A \subset X$ is called \textbf{meager} (or of the $1^{\textrm{st}}$ Baire Category) if $A = \cup_{k=1}^{\infty} A_k$ with nowhere dense sets $A_k$; denoted $\textrm{cat}(A)=1$.  
+    \begin{enumerate}[i)]
+    \item $A \subset X$ is called \textbf{meager} (or of the $1^{\textrm{st}}$ Baire Category) if $A = \cup_{k=1}^{\infty} A_k$ with nowhere dense sets $A_k$; denoted $\textrm{cat}(A)=1$. ($A_k$ is nowhere dense if $\interior(\overline{A_k})=\emptyset$)
     \item $A \subset X$ is called \textbf{fat} (or of the $2^{\textrm{nd}}$ Baire Category) if it is not meager; denoted $\textrm{cat}(A)=2$.  
-\end{enumerate}  
+\end{enumerate} 
+\end{definition} 
 
 In this language, \cref{baire lemma} becomes  
 
 \begin{theorem}
-(Baire category)  
+[Baire category theorem]\nl
+\label{baire category}
 Let  $(X,d)$ be a complete, non-empty metric space. Then $\textrm{cat}(A)=2$.  
 \end{theorem}  
+Note that the "completeness" assumption depends and by conclusion is purely topological; thus, the theorem extends to $(X,d)$ not complete if one can find a metric $\Tilde{d}$ such that $(X, \Tilde{d})$ is complete and $d$ induces the same topology as $d$.
 
 \begin{remark}
-
+    Every subset of a meager set $A$ is meager (in particular, \Cref{baire category} implies the \textbf{existence} of fat sets, examples are $(\real, |\cdot|), (C, \norm{\cdot}_{\infty})$)
 \end{remark}
 
-\subsection{UBP}
-\begin{flushleft}
-Uniform boundedness principle is sometimes called Banach–Steinhaus theorem. In its basic form, it asserts that for a family of bounded linear operators  whose domain is a Banach space, pointwise boundedness is equivalent to uniform boundedness in operator norm.
-\end{flushleft}
+\begin{remark}
+\begin{enumerate}[1)]
+    \item $\qq = \bigcup_{x\in \qq} \{x\} \subset \real (=X)$ is meager. What about $\real \setminus \qq$? (this is fat. Why?)
+    \item Under the assumption of \Cref{baire category}, if $A\subset X$  
+    $$
+    \text{cat}(A)=1 \implies \text{cat}(X \setminus A)=2 \ \text{and} \ X\setminus A \ \text{is} \ \text{dense}
+    $$
+    use (exercise): $U \subset X$ open and dense $\iff$ $A = X\setminus U$ closed and nowhere dense, hence:  
+    \begin{equation*}
+        \text{\Cref{baire lemma}} \iff U_k \subset X, k\geq 1, \text{open,\ dense}. \ \text{Then} \ U = \cap_{k=1}^{\infty} U_k \ \text{dense}
+    \end{equation*}
+    \item If $\emptyset \neq U \subset X$ open $\implies$ $\text{cat}(U)=2$ (under the same assumption in 2) )
+    \begin{proof}
+        If $\text{cat}(U)=1$, by $2)$, $X\setminus U$ is dense, \textit{i.e.}  
+        $$
+        X = \overline{X\setminus U}\overset{X\setminus U \ closed}{=} X\setminus U
+        $$
+        in other words, $U=\emptyset$, which is also closed.
+    \end{proof}
+    \item (Topological vs. measure-theoretic size)  $X=\real$ with $\lambda$ the Lebesgue measure. Does $\lambda(A)=0 \implies A $ meager? Does $A \subset \real \implies \lambda(A)=0$?  
 
+    The answer to both questions are NO.  
+    
+    Take $\qq = \{q_1, q_2, \ldots\}$, for $j\geq 1$:  
+    $$
+    U_j = \cup_{k\geq 1} (q_k - \frac{1}{2^{j+k+1}}, q_k + \frac{1}{2^{j+k+1}})
+    $$ 
+    which is decreasing in $j$  
+    $$
+    \lambda(U_j) \leq \sum_{k\geq 1} 2 \cdot \frac{1}{2^{j+k+1}} = 2^{-j}
+    $$
+    $U_j$ is open and $\overline{U_j} \supset \overline{\qq} = \real$, so $\overline{U_j} = \real$, \textit{i.e.} $U_j$ is dense.  
+    By $2)$ (see exercise), $A_j \defeq X \setminus U_j$ is nowhere dense, $A \defeq \cup_{j=1}^{\infty} A_j$ is meager and hence $U = X\setminus A=\cap_{j=1}^{\infty} U_j$ is fat. But  
+    $$
+    \lambda(U) = \lim_{j\to \infty} \lambda(U_j) = 0 \qquad \lambda(A)=\infty
+    $$
+\end{enumerate}
+\end{remark}
 
-\begin{theorem}[Uniform Boundedness principle] %\rm\nextline
-	Let $X$ be a Banach space, $Y$ a normed vector space. Let $F$ be a collection of bounded linear operators from $X$ to $Y$. If
-	$$
-		\sup_{f\in F}\norm{fx}<\infty,,\,\forall x\in X
-	$$
-	Then
-	$$
-		\sup_{f\in F}\norm{f}<\infty
-	$$
+\subsection{Uniform boundednness principple (UBP)}
+
+Baire's category theorem leads to UBP. The first instance of this is not a 'linear' property at all.
+
+\begin{theorem}
+\label{uniform bounded but not linear}
+    Let $(X,d)$ be a complete metric space and $(f_\lambda)_{\lambda \in \Lambda}$ be a family of continuous functions $f_{\lambda}:X \to \real$. If $(f_\lambda)_{\lambda \in \Lambda}$ is bounded pointwise, \textit{i.e.}  
+    $$
+    \sup_{\lambda \in \Lambda, x\in B} |f_{\lambda}(x)|<\infty
+    $$
+    \textit{i.e.} $(f_{\lambda})_{\lambda \in \Lambda}$ uniformly bounded on $B$.
 \end{theorem}
 
 \begin{proof}
-Let $A_n=\{
-	x\in X, \norm{fx}\leq n,\,\forall f\in F
-	\},\,n\in\mathbb{N}$. By assumption we have $\bigcap_{n=1}^\infty A_n=X$.\\
-We claim that there exists some $j\in \mathbb{N}$ such that $A_j$ is non-empty and closed. To see this, first by by Baire category theorem, there is some $A_j$ such that $\overline{A_j}\strut^\mathrm{o}\not=\emptyset$. Then let $\{x_m\}$ be a Cauchy sequence in $A_j$ with $x_n\xrightarrow{}x$, then by continuity of $f$, $\norm{fx}=\lim_{n\to\infty}\norm{fx_m}\leq n,\,\forall f\in F$. So $x\in A_j$, hence $A_j$ is closed, thus $\overline{A_j}=A_j$, $A_j\strut^\mathrm{o}=\overline{A_j}\strut^\mathrm{o}\not=\emptyset$. So we can choose a point $p$ from interior of $A_j$, and $\varepsilon>0$ such that open ball $B_{\varepsilon}(p)\subseteq A_j$.\\
-Now for any $x<\norm{\varepsilon}$ with any $T\in F$ we have
+    For $k\geq 1$, consdier the closed set  
+    $$
+    A_k = \left\{x \in X: \forall \lambda \in \Lambda: |f_{\lambda}(x)|\leq k = \bigcap_{\lambda\in \Lambda} \underbrace{\{|f_{\lambda}|\leq k\}}_{\text{closed\ as\ $f_{\lambda}$\ continuous\ }}\right\}
+    $$
+    Clearly $\cup_{k=1}^{\infty}A_k=X$. Since $X$ is complete,  
+    by \Cref{baire lemma}, $\exists k_0 \in \natu$, s.t. $\interior (A_{k_0})\neq \emptyset$. Pick $B\subset A_{k_0}$.
+\end{proof}
+
+\begin{remark}
+    The $(f_\lambda)_{\lambda \in \Lambda}$ need not to be linear.
+\end{remark}
+
+Incorporating the linear structure, this leads to the following.  
+
+\begin{corollary}[Banach-Steinhaus]
+\label{banach steinhaus}
+Let $X,Y$ be normed vector spaces and $X$ is complete. $(A_\lambda)_{\lambda \in \Lambda} \subset \mathcal{L}(X,Y)$. If $(A_{\lambda})_{\lambda \in \Lambda}$ are bounded pointwise \textit{i.e.}  
 $$
-	\norm{T(x)}=\norm{T(x+p-p)}=\norm{T(x+p)-T(p)}\leq\norm{T(x+p)}+\norm{T(p)}\leq n+n=2n
+\sup_{\lambda \in \Lambda} \norm{A_\lambda x}_Y < \infty \qquad \forall x\in X
+$$  
+then $(A_{\lambda})_{\lambda \in \Lambda}$ is bounded uniformly, \textit{i.e.}  
 $$
-So for any non-zero vector $x\in X$, we have
+\sup_{\lambda \in \Lambda} \norm{A_\lambda}_{\mathcal{L}(X,Y)} < \infty
 $$
-	\norm{T(x)}=\frac{\norm{x}}{\varepsilon}\norm{T(\varepsilon \frac{x}{\norm{x}})}\leq\frac{2n}{\varepsilon}\norm{x}
+\end{corollary}
+
+\begin{proof}
+For $\lambda \in \Lambda$ define the continuous (check this!) map $f_\lambda: X \to \real$ by  
 $$
-This holds for any $T\in F$, thus
+f_{\lambda}(x) = \norm{A_{\lambda}x}_Y, \qquad x\in X
+$$  
+By assumption on $A_\lambda$, \Cref{uniform bounded but not linear} applies and yields $B=B_r(x_0) \subset X$ s.t.  
 $$
-	\sup_{f\in F}\norm{f}\leq\frac{2n}{\varepsilon}<\infty
-$$
+\sup_{\lambda \in \Lambda, x\in B} |f_{\lambda}(x)| < \infty
+$$  
+This gives for all $\norm{x}_X<1$ and $\lambda \in \Lambda$:
+\begin{align*}
+    \norm{A_\lambda x}_Y &= \frac{1}{r} \norm{A_\lambda(x_0+rx)-A_\lambda(x_0)}_Y \\
+    &\leq \frac{1}{r} \norm{A_\lambda(x_0+rx)}_Y + \frac{1}{r} \norm{A_\lambda(x_0)}_Y \\
+    &\leq M
+\end{align*}
 \end{proof}  
 
-A simple corollary of the theorem is Banach limit.
-\begin{corollary}[Banach Limit]\rm\nextline
-	Let $T_n:X\xrightarrow{}Y$ be a sequence of operators, where $X$ and $Y$ are Banach spaces. Suppose $\{T_n\}$ converges pointwise,
-	then these pointwise limits define a bounded linear operator $T$.
-\end{corollary}
+An application of \Cref{banach steinhaus} is the following.  
+
+\begin{proposition}
+    Let $A_k \in \mathcal{L}(X,Y)$, $(A_k)$ converges pointwise to $A: X\to Y$, \textit{i.e.}  
+    $$
+    \forall x \in X: \qquad \norm{A_k x - Ax}_Y \overset{k\to \infty}{\longrightarrow} 0 
+    $$
+    The $A$ is linear and continuous, \textit{i.e.} $A \in \mathcal{L}(X,Y)$ ,and  
+    $$
+    \norm{A}_{\mathcal{L}(X,Y)} \leq \liminf_{k \to \infty} \norm{A_k}_{\mathcal{L}(X,Y)} <\infty
+    $$
+\end{proposition}
+
+\begin{proof}
+    $(A_k x)\subset Y$ is convergent hence bounded, so \Cref{banach steinhaus} applies and yields $\sup_k \norm{A_k}_{\mathcal{L}(X,Y)} < \infty$. This shows $\liminf_{k \to \infty} \norm{A_k}_{\mathcal{L}(X,Y)}$ is finite hence well-defined. Pick subsequence $k_j$ s.t. 
+    $$\norm{A_{k_j}}\overset{j \to \infty}{\longrightarrow} \liminf_k \norm{A_k}_{\mathcal{L}(X,Y)} \defeq M$$
+    $(A_{k_j})_j$ converges pointwise, $A$ is linear (check!) and $\forall x \in X$:  
+    $$
+    \norm{Ax}_Y = \lim_{j} \norm{A_{k_j}x}_Y \leq \lim_j \norm{A_{k_j}}_{\mathcal{L}(X,Y)} \norm{x}_X \leq M \norm{x}_X
+    $$
+\end{proof}
+
+\begin{remark}
+    \textbf{Completeness} of $X$ is important (as for Baire)  
+    
+    Take $X=C(=C^0[0,1])$, $\norm{\cdot}_X=\norm{\cdot}_1$. Let  
+    $$
+    A_k f = k\int_{1-1/k}^1 f(t) dt \qquad k\geq 1
+    $$  
+    Clearly, $|A_k f|\leq k \norm{f}_1$, so $A_k: X\to \real$ continuous with $\norm{A_k}_{\mathcal{L}(X,Y)} \leq k, \forall k \in \natu$. Moreoever,  
+    $$
+    \forall f \in X: \qquad A_k f \overset{k\to \infty}{\longrightarrow} Af \defeq f(1)
+    $$
+    But $A:X\to \real$ is not coninuous: take for examples, $f_n(t)=t^n$ then $\norm{f_n}=\frac{1}{n+1}$ so $f_n \overset{L^1}{\longrightarrow} 0 $ but  
+    $$
+    Af_n = f_n(1) = 1 \nrightarrow 0
+    $$  
+    Of course $(X, \norm{\cdot}_1)$ is not complete (why?), so there is no contradiction.  
+\end{remark}
+
+\begin{remark}
+    If instead we consider $(C, \norm{\cdot}_\infty)$, then  
+    $$
+    |A_k f| \leq \norm{f}_{\infty}
+    $$
+    and $Af=f(1)$ is continuous as it's bounded $\norm{A}_{\mathcal{L}(X,Y)}\leq 1$ as $\norm{Af}_{\infty} \leq \norm{f}_\infty$
+\end{remark}
+
+\subsection{Baire's Original Problem}
+Unexaminable
 \end{document}

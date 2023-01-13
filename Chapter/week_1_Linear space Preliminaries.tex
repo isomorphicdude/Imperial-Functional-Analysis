@@ -26,100 +26,100 @@
 		\item $\mathbf{1}\cdot v=v$, where $\mathbf{1}$ is unit element in $\mathbb{F}$
 	\end{itemize}
 \end{definition}
-\subsubsection{Examples of linear spaces}
-\todo{Should we delete this section? ZY.}
-In this section we have both example and counter example.
-\begin{example}[Vector space over field]\rm\nextline
-	$\mathbb{F}^n$ where $\mathbb{F}$ is a field, $n\in\\natu$ is a linear space. This includes 3 or 2-dimensional vector space over $\real$, or 3-dimensional vector field over $\mathbb{F}_p$. For example, let's check
-	$$
-		V=\mathbb{F}_2^2=\left\{(v_1,v_2)|v_1,v_2\in\mathbb{F}_2\right\}
-	$$
-	with the natural definition of scalar multiplication and term-wise addition over $\mathbb{F}_2$. Note that this is indeed a space of four elements:
-	$$
-		V=\left\{(0,0),(0,1),(1,0),(1,1)\right\}
-	$$
-	With scalars only 1 or 0. Thus it's easy to closure under scalar multiplication. Now consider vector addition, one just have to check every pair of addition and see if still falls into $V$, like
-	$$
-		(1,0)+(1,1)=(0,1)\in V
-	$$
-\end{example}
-\begin{example}\rm\nextline
-	Consider set of convergent sequence:
-	$$
-		V=\left\{\{x_n\}_1^\infty:x_i\in\mathbb{F}\,\forall i\in\mathbb{N},\,and\, \lim_{n\to \infty}x_n\to C\right\}
-	$$
-	First we consider the addition to be term-wise and multiplication applied to whole sequence:
-	$$
-		x+y=\{x_i+y_i\}_1^\infty,\,\alpha\odot x=\{\alpha\cdot x_i\},\,\,\forall x,y\in V,\,\alpha\in\mathbb{F}
-	$$
-	When $C$ is fixed, this is a vector space if and only if $C=0$
-	When $C$ is not fixed, this becomes a vector space.
-\end{example}
+% \subsubsection{Examples of linear spaces}
+% \todo{Should we delete this section? ZY.}
+% In this section we have both example and counter example.
+% \begin{example}[Vector space over field]\rm\nextline
+% 	$\mathbb{F}^n$ where $\mathbb{F}$ is a field, $n\in\\natu$ is a linear space. This includes 3 or 2-dimensional vector space over $\real$, or 3-dimensional vector field over $\mathbb{F}_p$. For example, let's check
+% 	$$
+% 		V=\mathbb{F}_2^2=\left\{(v_1,v_2)|v_1,v_2\in\mathbb{F}_2\right\}
+% 	$$
+% 	with the natural definition of scalar multiplication and term-wise addition over $\mathbb{F}_2$. Note that this is indeed a space of four elements:
+% 	$$
+% 		V=\left\{(0,0),(0,1),(1,0),(1,1)\right\}
+% 	$$
+% 	With scalars only 1 or 0. Thus it's easy to closure under scalar multiplication. Now consider vector addition, one just have to check every pair of addition and see if still falls into $V$, like
+% 	$$
+% 		(1,0)+(1,1)=(0,1)\in V
+% 	$$
+% \end{example}
+% \begin{example}\rm\nextline
+% 	Consider set of convergent sequence:
+% 	$$
+% 		V=\left\{\{x_n\}_1^\infty:x_i\in\mathbb{F}\,\forall i\in\mathbb{N},\,and\, \lim_{n\to \infty}x_n\to C\right\}
+% 	$$
+% 	First we consider the addition to be term-wise and multiplication applied to whole sequence:
+% 	$$
+% 		x+y=\{x_i+y_i\}_1^\infty,\,\alpha\odot x=\{\alpha\cdot x_i\},\,\,\forall x,y\in V,\,\alpha\in\mathbb{F}
+% 	$$
+% 	When $C$ is fixed, this is a vector space if and only if $C=0$
+% 	When $C$ is not fixed, this becomes a vector space.
+% \end{example}
 
-\begin{example}[Polynomials]\rm\nextline
-	$V$ is set of all polynomials:
-	$$
-		f(z)=\sum_{j=0}^{n}a_jz^j,\,n\in\mathbb{N}
-	$$
-	with $z\in\mathbb{C}$ and $a_j\in{\mathbb{Q}}$ with addition and multiplication of polynomials. Unfortunately this is not a vector space, since the field is set to be $\mathbb{C}$. When we multiply an element in V by a complex number, say $1+2i$, we could end up in some polynomials with complex coefficient. But this would be a vector space if we change to $a_j\in \mathbb{C}$ or $z\in\mathbb{Q}$
-\end{example}
+% \begin{example}[Polynomials]\rm\nextline
+% 	$V$ is set of all polynomials:
+% 	$$
+% 		f(z)=\sum_{j=0}^{n}a_jz^j,\,n\in\mathbb{N}
+% 	$$
+% 	with $z\in\mathbb{C}$ and $a_j\in{\mathbb{Q}}$ with addition and multiplication of polynomials. Unfortunately this is not a vector space, since the field is set to be $\mathbb{C}$. When we multiply an element in V by a complex number, say $1+2i$, we could end up in some polynomials with complex coefficient. But this would be a vector space if we change to $a_j\in \mathbb{C}$ or $z\in\mathbb{Q}$
+% \end{example}
 
-\begin{example}[Analytic functions]\rm\nextline
-	Consider set of all analytic functions $f:\mathbb{C}\xrightarrow{}\mathbb{C}$ satisfying:
-	$$
-		\frac{d^2}{dz^2}f-\frac{d}{dz}f-2z=0
-	$$
-	This is not a vector space. Take a non-trivial $f$, consider $g=2f$:
-	\begin{equation}
-		\begin{split}\nonumber
-			&\frac{d^2}{dz^2}g-\frac{d}{dz}g-2z\\
-			=&\frac{d^2}{dz^2}(2f)-\frac{d}{dz}(2f)-2z\\
-			=&2\frac{d^2}{dz^2}f-2\frac{d}{dz}f-2z\\
-			=&4z-2z=2z\neq0
-		\end{split}
-	\end{equation}
-	However, removing $-2z$ will make this a vector space.
-\end{example}
+% \begin{example}[Analytic functions]\rm\nextline
+% 	Consider set of all analytic functions $f:\mathbb{C}\xrightarrow{}\mathbb{C}$ satisfying:
+% 	$$
+% 		\frac{d^2}{dz^2}f-\frac{d}{dz}f-2z=0
+% 	$$
+% 	This is not a vector space. Take a non-trivial $f$, consider $g=2f$:
+% 	\begin{equation}
+% 		\begin{split}\nonumber
+% 			&\frac{d^2}{dz^2}g-\frac{d}{dz}g-2z\\
+% 			=&\frac{d^2}{dz^2}(2f)-\frac{d}{dz}(2f)-2z\\
+% 			=&2\frac{d^2}{dz^2}f-2\frac{d}{dz}f-2z\\
+% 			=&4z-2z=2z\neq0
+% 		\end{split}
+% 	\end{equation}
+% 	However, removing $-2z$ will make this a vector space.
+% \end{example}
 
-\begin{example}[Weak $L^p$ space]\rm\nextline
-	Define $D_f(t)=\{\lambda{x\in\mathbb{R}:|f(x)|>t}\}$, where $\lambda$ is Lebesgue measure on $\mathbb{R}$. Consider:
-	$$
-		L^{p,w}=
-		\left\{
-		f:\mathbb{R}\xrightarrow{}\mathbb{R}:f,\,\,measurable,\,\, and\,\, \exists C>0,\,\,s.t.\,\,D_f(t)<\frac{C^p}{t_p}\,\forall t>0
-		\right\}
-	$$
-	This is a vector space for $p>0$ and $L^p(\mathbb{R})\subset L^{p,w}(\mathbb{R})$. Distributivity and commutativity of scalar operation follows immediately from their definition. The point is to check closure under scalar multiplication and addition.\\
-	$\mathbf{f+g\in L^{p,w}}:$\\
-	Let $f,g\in L^{p,w}$, then we can find $C_1>0 $ and $C_2>0$ with
-	\begin{equation}
-		\begin{split}\nonumber
-			C_1^p>t^p\cdot\lambda\{x:|f(x)|>t\},\,\,\forall t>0\\
-			C_2^p>t^p\cdot\lambda\{x:|g(x)|>t\},\,\,\forall t>0
-		\end{split}
-	\end{equation}
-	Now by triangular inequality we have $|f(x)|+|g(x)|\geq|f(x)+g(x))|$.\\
-	Thus $|(f+g)(x)|>t\implies|f(x)|+|g(x)|>t\implies 2\cdot max(|f(x)|,|g(x)|)>t$.
-	So consider set $A,B,C$:
-	\begin{equation}
-		\begin{split}\nonumber
-			X:&=\{x\in\mathbb{R}:|f(x)+g(x)|>t\}\\
-			Y:&=\{x\in\mathbb{R}:|f(x)|+|g(x)|>t\}\\
-			Z:&=\{x\in\mathbb{R}:2max(|f(x)|,|g(x)|)>t\}=\left\{x\in\mathbb{R}:max(|f(x)|,|g(x)|)>t/2\right\}
-		\end{split}
-	\end{equation}
-	We have $X\subseteq Y\subseteq Z$, thus $\lambda(X)\leq\lambda(Y)\leq\lambda(Z)$.\\
-	Thus $t^p\cdot\lambda(A)\leq 2^p (t/2)^p\lambda\{x:max(|f(x)|,|g(x)|)>t/2\}\leq2^p\cdot max(C_1^p,C_2^p)<\infty$ for all $t>0$.\\
-	Showing closure under scalar multiplication is a bit easier. Take any $t>0,$ we have
-	\begin{equation}
-		\begin{split}\nonumber
-			&t^p\cdot\lambda\{x\in\mathbb{R}:|2f(x)|>t\}\\
-			=&2^p\left(\frac{t}{2}\right)^p\cdot\lambda\{x\in\mathbb{R}:|f(x)|>t/2\}\\
-			<&2^pC_1^p
-		\end{split}
-	\end{equation}
-	Which completes the proof.
-\end{example}
+% \begin{example}[Weak $L^p$ space]\rm\nextline
+% 	Define $D_f(t)=\{\lambda{x\in\mathbb{R}:|f(x)|>t}\}$, where $\lambda$ is Lebesgue measure on $\mathbb{R}$. Consider:
+% 	$$
+% 		L^{p,w}=
+% 		\left\{
+% 		f:\mathbb{R}\xrightarrow{}\mathbb{R}:f,\,\,measurable,\,\, and\,\, \exists C>0,\,\,s.t.\,\,D_f(t)<\frac{C^p}{t_p}\,\forall t>0
+% 		\right\}
+% 	$$
+% 	This is a vector space for $p>0$ and $L^p(\mathbb{R})\subset L^{p,w}(\mathbb{R})$. Distributivity and commutativity of scalar operation follows immediately from their definition. The point is to check closure under scalar multiplication and addition.\\
+% 	$\mathbf{f+g\in L^{p,w}}:$\\
+% 	Let $f,g\in L^{p,w}$, then we can find $C_1>0 $ and $C_2>0$ with
+% 	\begin{equation}
+% 		\begin{split}\nonumber
+% 			C_1^p>t^p\cdot\lambda\{x:|f(x)|>t\},\,\,\forall t>0\\
+% 			C_2^p>t^p\cdot\lambda\{x:|g(x)|>t\},\,\,\forall t>0
+% 		\end{split}
+% 	\end{equation}
+% 	Now by triangular inequality we have $|f(x)|+|g(x)|\geq|f(x)+g(x))|$.\\
+% 	Thus $|(f+g)(x)|>t\implies|f(x)|+|g(x)|>t\implies 2\cdot max(|f(x)|,|g(x)|)>t$.
+% 	So consider set $A,B,C$:
+% 	\begin{equation}
+% 		\begin{split}\nonumber
+% 			X:&=\{x\in\mathbb{R}:|f(x)+g(x)|>t\}\\
+% 			Y:&=\{x\in\mathbb{R}:|f(x)|+|g(x)|>t\}\\
+% 			Z:&=\{x\in\mathbb{R}:2max(|f(x)|,|g(x)|)>t\}=\left\{x\in\mathbb{R}:max(|f(x)|,|g(x)|)>t/2\right\}
+% 		\end{split}
+% 	\end{equation}
+% 	We have $X\subseteq Y\subseteq Z$, thus $\lambda(X)\leq\lambda(Y)\leq\lambda(Z)$.\\
+% 	Thus $t^p\cdot\lambda(A)\leq 2^p (t/2)^p\lambda\{x:max(|f(x)|,|g(x)|)>t/2\}\leq2^p\cdot max(C_1^p,C_2^p)<\infty$ for all $t>0$.\\
+% 	Showing closure under scalar multiplication is a bit easier. Take any $t>0,$ we have
+% 	\begin{equation}
+% 		\begin{split}\nonumber
+% 			&t^p\cdot\lambda\{x\in\mathbb{R}:|2f(x)|>t\}\\
+% 			=&2^p\left(\frac{t}{2}\right)^p\cdot\lambda\{x\in\mathbb{R}:|f(x)|>t/2\}\\
+% 			<&2^pC_1^p
+% 		\end{split}
+% 	\end{equation}
+% 	Which completes the proof.
+% \end{example}
 
 
 \subsection{Metric Linear space}\label{Metric linear space}

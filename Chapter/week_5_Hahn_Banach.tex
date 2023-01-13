@@ -36,7 +36,7 @@
 	$$F(x)\leq p(x) \qquad \forall x\in X$$
 \end{theorem}
 
-\begin{remark}[Geometric Intuitions]
+\begin{remark}[Geometric Intuitions]\nl
     Take $x=\real^n$, $0 \in M \subset X$ an open convex subset, if $x_1 \notin <M$, then one can find a $f: X \to \real$ linear "separating" $x_1$ from $M$:
 
     \textit{i.e.} $$
@@ -61,6 +61,15 @@
     p(x) < 1 \iff x \in M
     $$
     
+    "$\implies$": if $p(x)<1$, then $\exists \varepsilon >0$ s.t. $\frac{x}{1-\varepsilon} \in M$, hence  
+    $$
+    x = (1-\varepsilon) \frac{x}{1-\varepsilon} + \varepsilon \cdot 0 \in M
+    $$
+    by convexity of $M$.  
+
+    "$\impliedby$": $x \in  M \overset{M \ \text{open}}{\implies} \frac{x}{1-\varepsilon} \in M$ which implies that $p(x) \leq 1-\varepsilon$.  
+
+    To find $f$ with above properties, it is thus enough to ensure that $f(x_1)=1$ and $f(x) \leq p(x)$, for all $x \in X$.
 \end{remark}
 
 \begin{proof}
@@ -176,8 +185,22 @@ By definition of $P$, all properties required of $F$ hold and $N=X$. For, otherw
 
 
 \begin{remark}
-
+There is a version of Hahn-Banach theorem for $X$ over $\comp$ and $p: X\to \real$ is called $\comp$-sublinear if  
+\begin{enumerate}[i)]
+    \item $p(\alpha x) = |\alpha|p(x), \forall x \in X, \alpha \in \comp$
+    \item $p(x+y) \leq p(x)+p(y),\,\,\forall x,y\in X$, same as in over $\real$
+\end{enumerate}
+Then \Cref{Hahn-Banach} holds for $X$ over $\comp$, if $p$ is $\comp$-sublinear and $(*)$ replaced by  
+$$
+|f(x)| \leq p(x) \qquad \forall x \in M
+$$  
+The conclusion is the same with $|F|\leq p$ on $X$ instead.  
+\begin{proof}
+    Apply Hahn-Banach to $f_1 = \text{Re}(f)$ (linear!) and $f_2 = \text{Im}(f)$.
+\end{proof}
 \end{remark}  
+
+From now on assume $X$ is over $\real$.
 
 \subsection{Applications of Hahn-Banach (H-B)}  
 
@@ -186,7 +209,7 @@ Let $(X, \norm{\cdot}_X)$ be a normed vector space, we have the following coroll
 \begin{corollary}
 \label{same norm extension}
 Let $M \subset X$ be a linear subspace, $f$ a bounded linear functional on $M$. Then $\exists F \in X^*$ with 
-$$F |_M = f \ \rm{and} \ \norm{F}_{X^*}=\norm{f}_{M^*}$$
+$$F |_M = f \ \text{and} \ \norm{F}_{X^*}=\norm{f}_{M^*}$$
 \end{corollary}
 
 \begin{proof}
