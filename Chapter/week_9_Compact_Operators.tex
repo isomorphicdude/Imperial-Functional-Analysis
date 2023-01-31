@@ -1,0 +1,129 @@
+\documentclass{article}
+\input{Chapter/commands.tex}
+\input{theoremstyle.tex}
+\title{Week 9}
+
+
+\begin{document}
+\maketitle
+\section{Compact operators}  
+
+Compact operators form a very important class of bounded operators. Roughly: they are the closest thing to a matrix in infinite dimension spaces. (cf. \Cref{Spectral theory chapter}).  
+
+\begin{definition}[Compact operator]\nl
+    Let $X,Y$ be normed spaces. $T:X\to Y$ linear. $T$ is compact if for all $B\subset X$ bounded (i.e. $\sup \{\norm{x}_X: x\in B\}<\infty$). $\overline{T(B)}$ is sequentially compact, where $T(B)=\{Tx: x\in B\} \subset Y$.
+\end{definition}  
+
+\begin{lemma}
+\label{equivalent characterization of compact operators}
+Let $X,Y$ be Banach spaces. The following are equivalent:  
+\begin{enumerate}[i)]
+    \item $T$ is compact
+    \item $\overline{T(B_X(0,1))} \subset Y$ is compact
+    \item $\forall (x_n) \subset X$ bounded, $(Tx_n)$ has a Cauchy subsequence
+\end{enumerate}  
+\end{lemma}  
+
+\begin{remark}
+The above are true if $X,Y$ are normed and one replaces "Cauchy" by "convergent".
+\end{remark}  
+
+\begin{proof}
+iii) $\implies$ i). Let $B\subset X$ be bounded. Consider $(y_n) \subset T(B)$ and by iii), $(y_n)$ has a Cauchy subsequence. Hence $\overline{T(B)}$ is compact. Rest is exercise.
+\end{proof}
+
+\begin{example}
+\label{examples of compact operators}
+\begin{enumerate}[1)]
+    \item $T=id:X\to X$ is compact iff $\dim X <\infty$. For $\dim X=\infty$, recall the closed unit ball $B=B_X(0,1)$ is not compact. 
+    \item $T$ has \textbf{finite rank} if $\dim (im(T))<\infty$. If $T\in \mathcal{L}(X,Y)$ has finite rank, then $T$ is compact: using \Cref{equivalent characterization of compact operators} iii): let $(x_n)\subset X$ be bounded. Then $\norm{Tx_n} \leq \norm{T}\norm{x_n} \leq C$ so $(Tx_n)\subset im(T)$ is bounded. Since $im(T)$ is finite dimensional, one can choose a convergent subsequence.  
+
+    \item If $\dim X<\infty$, $T$ is compact. (apply 2))
+
+    \item (Diagonal Operator) $1\leq p \leq \infty$, $\lambda = (\lambda_n)_{n \in \natu}, \lambda_n \in \real$ and $\sup_n |\lambda_n|<\infty$. Then  
+    $$
+    T_\lambda: \ell^p \to \ell^p \qquad T_\lambda x \defeq (\lambda_n x_n)_{n\in \natu} \qquad \text{for\ } x=(x_n)_{n\in \natu}
+    $$
+    is well-defined. If $T_\lambda$ is compact then $\lim_{n\to \infty} \lambda_n = 0$.  
+
+    For, if $\Lambda \subset \natu$ is such that $|\lambda_n|\geq \delta$, $n\in \Lambda$, for some $\delta>0$, then the sequence $(e_n), n\in \Lambda$ is bounded but $(T_{\lambda}e_n: n\in \Lambda)$ has no Cauchy subsequence:  
+    $$
+    \forall n\neq m, n,m\in \Lambda: \norm{T_\lambda e_n - T_\lambda e_m}_p \geq \delta 2^{1/p}
+    $$  
+\end{enumerate}
+\end{example}
+
+We return to this example after the following.  
+
+\begin{theorem}[limit of compact operators]\nl
+\label{limit of compact operators}
+    Let $X, Y$ be Banach spaces. If $T_n: X\to Y$ is a sequence of compact operators and for some $T \in \mathcal{L}(X,Y)$  
+    \begin{align}
+    \label{converging seq of compact operators}
+      \norm{T_n-T}_{\mathcal{L}(X,Y)} \to 0 \qquad n\to \infty    
+    \end{align}
+    Then $T$ is compact.
+\end{theorem}  
+\begin{remark}
+    This means $(\left\{T \in \mathcal{L}(X,Y): T \ \text{compact} \right\}, \norm{\cdot}_{\mathcal{L}(X,Y)}) \subset (\mathcal{L}(X,Y), \norm{\cdot}_{\mathcal{L}(X,Y)})$ is closed hence a Banach space.
+\end{remark}
+\begin{proof}
+    We will use \Cref{equivalent characterization of compact operators} iii) and the diagonal argument.  
+
+    Let $(x_n)\subset X, \sup_n \norm{x_n}_X \leq C$ be bounded.  
+    
+    \underline{\textbf{Goal:}} Show $(Tx_n)$ has a Cauchy subsequence.  
+
+    Since $T_n$ is comapct, there exists subsequence $\Lambda_1 \subset \natu$ s.t.  
+    \begin{center}
+        $(T_1 x_n) \subset Y$ converges w.r.t. $\norm{\cdot}_Y$ as $n\to \infty, n\in \Lambda_1$   
+    \end{center}
+    By induction, one can find subsequence $\Lambda_1 \supset \Lambda_2 \supset \cdots$ s.t.  
+    \begin{center}
+        $\forall k \in \natu: \qquad (T_k x_n) \subset Y$ converges as $n\to \infty, n\in \Lambda_k$
+    \end{center}
+    Let $\Lambda$ be the diagonal subsequence of $\Lambda_1, \Lambda_2, \ldots$, then $\Lambda \subset \Lambda_k, \forall k$ so  
+    \begin{align}
+    \label{convergence of diagonal of compact operators}
+        \forall k \in \natu: \qquad (T_k x_n) \subset Y \ \text{converges\ as} \  n\to \infty, n\in \Lambda
+    \end{align}
+    \underline{\textbf{Claim:}} $(Tx_n)_{n\in \Lambda}$ is Cauchy (in fact converges)  
+    
+    For $n,m\in \Lambda$ and $k\in \natu$ write
+    \begin{align*}
+        \norm{Tx_n - Tx_m}_Y &\leq \norm{(T-T_k)x_n}_Y + \norm{T_k(x_n-x_m)}_Y + \norm{(T-T_k)x_m}  \\
+        &\leq \norm{T-T_k}_{\mathcal{L}(X,Y)} \cdot 2c_1 + \norm{(T-T_k)x_n}_Y
+    \end{align*}
+    Let $\varepsilon >0$. First pick $k$ s.t. $\norm{T-T_k} < \frac{\varepsilon}{4c_1}$ (use \Cref{converging seq of compact operators}).  
+    
+    Then use \Cref{convergence of diagonal of compact operators} to obtain $\forall n,m \in \Lambda$, with $\min (m,n) \geq N_0(\varepsilon)$:  
+    $$
+    \norm{T_kx_n-T_kx_m}_Y < \frac{\varepsilon}{2}
+    $$
+\end{proof}
+\begin{example}
+    Back to \Cref{examples of compact operators} 4):  
+$$
+T_\lambda \ \text{compact} \iff \lim_{n\to \infty}\lambda_n=0
+$$  
+\end{example}
+
+\begin{proof}
+    "$\implies$": see \Cref{examples of compact operators}.  
+
+    "$\impliedby$": use \Cref{limit of compact operators}. Define  
+    $$
+    T_n: \ell^p \to \ell^p \qquad x \mapsto T_nx=(\lambda_0x_0,\ldots,\lambda_nx_n,0,0,\ldots)
+    $$  
+    Then $\dim(im(T))\leq n$, since $im(T)\subset \{x\in \ell^p: x_i=0, \forall i>n\}$, so $T_n$ has finite rank, hence $T_n$ is compact (cf. \Cref{equivalent characterization of compact operators}).  
+    Moreover, for $x\in \ell^p$,  
+    $$
+    \norm{(T-T_n)x}_p = (\sum_{m>n} |\lambda_mx_m|^p)^{\frac{1}{p}} \leq \sup_{m\geq n} |\lambda_m| \norm{x}_p
+    $$  
+    so $\norm{T-T_n}\to 0$. By \Cref{limit of compact operators} $T$ is compact.
+\end{proof}
+
+\begin{example}[Hilbert-Schmidt integral operator]
+    
+\end{example}
+\end{document}

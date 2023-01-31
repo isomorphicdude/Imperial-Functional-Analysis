@@ -64,23 +64,23 @@ Consider $L^\infty[-1,1]$.
 Define the Dirac function 
 $$\delta_{x_0}: C^0[-1,1] \rightarrow \mathbb{R}: f \mapsto \delta_{x_0}(f) = f(x_0)$$
 
-$\delta_{x_0}$ is linear and continuous on $(C^0[-1,1],||\cdot ||_\infty)$. By Corollary of Hahn-Banach on p.33, there exists extension 
+$\delta_{x_0}$ is linear and continuous on $(C^0[-1,1],||\cdot ||_\infty)$. By \Cref{same norm extension}, there exists extension 
 $$\ell\in (L^\infty [-1,1])^* \qquad \text{and} \qquad \ell\mid_{C^0[0,1]} = \delta_{x_0}.$$
-(with some norm) (Omit \textquotedblleft $[-1,1]$" henceforth) \\
+with the same norm (Omit \textquotedblleft $[-1,1]$" henceforth) \\
 
 For $g\in L^1$, we define $\forall f\in L^\infty$
 
 $$\ell_g(f) = \int_{-1}^1 gf dx$$
 then $l_g\in (L^\infty)^*$.
 
-\begin{unexaminable}
-This is the canonical embedding of $L^1$ into $(L^1)^{**}=(L^{\infty})^*$, since $(L^1)^* = L^{\infty}$, every $\zeta \in (L^1)^*$ can be written as  
-$$
-\zeta(g) = \int fg d\mu
-$$
-for some $f \in L^{\infty}$.  
-So $\eta: L^1 \mapsto (L^{\infty})^*:  \eta(g)(\zeta)=\zeta(g)$
-\end{unexaminable}
+% \begin{unexaminable}
+% This is the canonical embedding of $L^1$ into $(L^1)^{**}=(L^{\infty})^*$, since $(L^1)^* = L^{\infty}$, every $\zeta \in (L^1)^*$ can be written as  
+% $$
+% \zeta(g) = \int fg d\mu
+% $$
+% for some $f \in L^{\infty}$.  
+% So $\eta: L^1 \mapsto (L^{\infty})^*:  \eta(g)(\zeta)=\zeta(g)$
+% \end{unexaminable}
 
 \textbf{Claim:} $\nexists g\in L^1: \ell=\ell_g$.  
 
@@ -88,19 +88,19 @@ The claim implies that $\eta: L^1 \rightarrow (L^1)^{**}=(L^\infty)^*, g \mapsto
 
 For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).  
 
-\textbf{Proof of Claim:} Suppose $\exists g\in l^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
+\textbf{Proof of Claim:} Suppose $\exists g\in L^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
 Pick a bump function $\phi \in C^\infty [-1,1]: 0 \leq \phi \leq 1$
 
 $$
 \phi(x) = 1, \ x \in [-\frac{1}{2}, \frac{1}{2}] \qquad \text{and} \qquad \phi(x)=0, \ x=\pm 1
 $$
 
-For $n\leq 1: \phi(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 \ a.e.$.\\
-This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \nrightarrow 0$$
-this is a contradiction, as $\delta_{0}(\phi_n) = 0$.
+For $n\leq 1: \phi_n(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 \ a.e.$.\\
+This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \rightarrow 0$$
+this is a contradiction.
 \end{proof}
-
-An example is given at \href{https://math.stackexchange.com/questions/101480/are-there-other-kinds-of-bump-functions-than-e-frac1x2-1}{\color{navyblue} here}.  
+\begin{unexaminable}
+    An example of a bump function is given at \href{https://math.stackexchange.com/questions/101480/are-there-other-kinds-of-bump-functions-than-e-frac1x2-1}{\color{navyblue} here}.  
 \begin{figure}[H]
   \centering
   \makebox[0pt]{%
@@ -108,6 +108,8 @@ An example is given at \href{https://math.stackexchange.com/questions/101480/are
   }
   \caption{A bump function}
 \end{figure} 
+\end{unexaminable}
+
 
 \end{document}
 

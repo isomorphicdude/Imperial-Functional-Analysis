@@ -10,6 +10,7 @@
 
 
 \section{Spectral Theory}
+\label{Spectral theory chapter}
 In this section, we consider Banach space over $\comp$. 
 
 \begin{definition}[Resolvent \& Spectral]\nl
@@ -41,7 +42,7 @@ The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)}
 \begin{lemma}\nl
 \label{spectrum is closed}
 If $z_0\in\varrho(A)$, then 
-$$D\stackrel{def.}{=}
+$$D\defeq
 \{
 z\in\comp:|z-z_0|<\frac{1}{\norm{R_{z_0}}_{\mathcal{L}(X)}}
 \}
@@ -85,12 +86,12 @@ $$
     Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
 \end{example}
 \begin{proof}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
-    $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by \cref{spectrum is closed} $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
+    $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by \Cref{spectrum is closed} $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
     \end{proof}
 
     \begin{proof}{$\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$}{}
     If $\widetilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\widetilde{\lambda}-\lambda_k|>\delta$, $\forall k\in\natu$. \\
-    Let $x\in\ell^2$, $y\stackrel{def.}{=}(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
+    Let $x\in\ell^2$, $y\defeq(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
     \end{proof}
 
 \begin{remark}\nl
@@ -98,17 +99,17 @@ $$
 \end{remark}
 
 \begin{definition}\nl
-    Consider linear operatorn $A$ with colsed grapgh and specturm $\sigma(A)$.
+    Consider linear operator $A$ with closed graph and spectrum $\sigma(A)$.
     \begin{itemize}
-        \item Point spectrum: $\sigma_p(A)\stackrel{def.}{=}
+        \item Point spectrum: $\sigma_p(A)\defeq
         \left\{
         \lambda\in \comp :\lambda-A \text{ not  injective}
         \right\}$
-        \item Continuous spectrum: $\sigma_c(A)\stackrel{def.}{=}
+        \item Continuous spectrum: $\sigma_c(A)\defeq
         \left\{
         \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, im(\lambda-A) \text{ dense }        
         \right\}$
-        \item Residual spectrum: $\sigma_r(A)\stackrel{def.}{=}\sigma(A)\setminus(
+        \item Residual spectrum: $\sigma_r(A)\defeq\sigma(A)\setminus(
         \sigma_p(A)\cup\sigma_c(A))$         
     \end{itemize}
     Elements of point specturm are called {\underline {eigenvalues} of $A$} with {\underline {eigenspaces}} $$ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$$
@@ -152,6 +153,9 @@ What can we say about spectrum $\sigma(A)$ for such $A$?
 	\end{proof}
 Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 %question part----------------------------------
+
+% the support is denoted as C_c(0,1), outside of which the function takes zero value
+
 \begin{example}[Weak derivative]\nl
 	$H$=$L^2(0,1)$, $\inne{f}{g}=\int_0^1f\bar{g} \mathrm{d}t$. $A\in\frac{\mathrm{d}}{\mathrm{d}t}$. More precisely, $f\in\mathcal{H}$ is said to have a \textbf{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in \mathcal{H}$, 
  $$\int_0^1 fg'\mathrm{d}t=-\int_0^1 vg\mathrm{d}t \qquad \forall g\in C^\infty_c(0,1)$$\\
@@ -159,7 +163,7 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 	$$
 		A_\infty =i\frac{\mathrm{d}}{\mathrm{d}t}:C^\infty_c(0,1)\subset H\to H
 	$$
-	and extensions $A_1$.....$A_3$ with
+	and extensions $A_1, A_2, A_3$ with
 	\begin{equation}
 		\begin{aligned}
 			 & D_{A_1}=H^1\defeq\{f\in H: f \text{ has a weak derivative  f'}\} \\
@@ -246,10 +250,13 @@ The example also nicely illustrates:
 		$$
 			(**)\qquad im(\zeta-A)(\subset H) \text{  is closed}
 		$$
-		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}v$. By \cref{images of symmetric operators bounded below by imaginary part},
+		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}v$. By \Cref{images of symmetric operators bounded below by imaginary part},
 		$$
 			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\zeta)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
    Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ 
+   \begin{unexaminable}
+    every self-adjoint operator is bounded \href{https://math.stackexchange.com/questions/2602548/is-every-self-adjoint-operator-bounded}{link here}
+   \end{unexaminable}
    % \todo{Is A a bounded operator?(unless A is defined everywhere)}
    % Short answer: we don't need boundedness. consider operator on $\ell^2$, that multiplies n-th term by n. This is unbounded, but for any $e_k$ it gives finite result.  
    
@@ -261,7 +268,7 @@ The example also nicely illustrates:
 			D_A\ni u\mapsto \inne{v}{Au}
 		$
 		is continuous, $v\in D_{A^*}=D_A$ and $Av=\dual{A}v=\overline{\zeta}v$
-		but by \cref{images of symmetric operators bounded below by imaginary part},
+		but by \Cref{images of symmetric operators bounded below by imaginary part},
 		$$|Im(\zeta)|\norm{v}_H\leq\norm{(\overline{\zeta}-A)v}_H=0$$
 		which yields $v=0$. Contradiction.
   \end{proof}
