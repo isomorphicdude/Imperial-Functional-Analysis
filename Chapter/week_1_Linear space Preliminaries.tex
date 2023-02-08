@@ -4,8 +4,9 @@
 \input{theoremstyle.tex}
 
 \title{Week 5}
-
+\author{\aut}
 \begin{document}
+
 \maketitle
 
 \section{Preliminaries}\label{vector space defs}
@@ -124,7 +125,7 @@
 
 \subsection{Metric Linear space}\label{Metric linear space}
 \begin{definition}[Metric linear space]\rm\nextline
-	A metric space $(V,d)$ is called metric linear space if its vector addition and scalar multiplication $\oplus$, $\odot$ are continuous
+	A metric space $(V,d)$ is called metric linear space if its vector addition and scalar multiplication $\oplus$, $\odot$ are continuous.
 \end{definition}
 
 
@@ -144,13 +145,12 @@
 \end{proposition}
 
 \begin{proposition}[Metric induced by norm]\rm\nextline
-	Let $\norm{\cdot}$ be a norm on $V$, then its induced metric $\rho(x,y)=\norm{x-y}$ is translation invariant. See definition of norm {\color{red} \hyperref[definition of norm]{here}}.
+	Let $\norm{\cdot}$ be a norm on $V$, then its induced metric $\rho(x,y)=\norm{x-y}$ is translation invariant. %See definition of norm {\color{red} \href[definition of norm]{here}}.
 \end{proposition}
 
 \subsection{Topology}\label{topology}
 
 \subsubsection{Separability}
-
 \begin{definition}[dense]\rm
 	A set in $S$ metric space $(V,d)$ is dense if there it intersects with any open subset of $V$. Equivalently this is $\forall x\in V,\forall \varepsilon>0$, $D\cap B_{x,\varepsilon}\neq \emptyset$.
 \end{definition}
@@ -163,8 +163,8 @@
 \begin{example}[separable space example]\label{separable space example}
 \end{example}
 
-\subsubsection{Schauder Basis and Hamel basis}
 
+\subsubsection{Schauder Basis and Hamel basis}
 \begin{definition}[Schauder basis]\label{Schauder basis}\rm
 	A Schauder basis of Normed vector space $(v,\norm{\cdot})$ is a set $B\subset V$ that is linearly independent, and that $\forall x\in V$, we have a sequence $\{a_n\}$ with $\lim_{n\to\infty}\sum_{k=1}^n a_k b_k\to x$. In plain language, this means that every element of the set can be expressed as a infinite linear combination of the basis.
 \end{definition}
@@ -174,13 +174,16 @@
 	If a normed vector space has a Schauder basis, then it's separable.
 \end{proposition}
 
-\begin{definition}[Hamel basis]\rm\nextline
-	\placeholder
-\end{definition}
+% Following parts causes bug, why?
+% \begin{definition}[Hamel basis]\rm\nextline
+% 	\placeholder
+% 	sadsadsad
+% \end{definition}
 
-\begin{remark}[Hamel basis and Schauder basis]\rm\nextline
-	\placeholder
-\end{remark}
+% \begin{remark}[Hamel basis and Schauder basis]\rm\nextline
+% 	\placeholder
+% 	sadasddas
+% \end{remark}
 
 
 

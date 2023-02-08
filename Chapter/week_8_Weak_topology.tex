@@ -1,9 +1,12 @@
 \documentclass{article}
 \input{Chapter/commands.tex}
 \input{theoremstyle.tex}
+\title{Week 8}
 
 \begin{document}  
-\section{Weak Topology and weak convergence}
+\author{\aut}
+\maketitle
+\section{Weak vs. Strong topologies}
 Let $(X, || \cdot ||_X)$ be a normed linear space with dual space $X^*$ (over $\mathbb{R}$).
 
 \begin{definition}[Weak Convergence]\nl
@@ -34,14 +37,14 @@ This naturally leads to:
 
 \begin{definition}[Bidual]
 \label{bidual defnition}
-    $X^{**} := (X^*)^* \quad (=\mathfrak{L}(X^*,\mathbb{R}))$ is called \textbf{bidual} of $X$. $X$ embeds canonically into $X^{**}$ via: $$ \eta : X\rightarrow X^{**}: \eta(x)(\ell) := \ell(x) \quad \forall x \in X, \ell \in X^*$$ 
+    $X^{**} := (X^*)^* \quad (=\mathfrak{L}(X^*,\mathbb{R}))$ is called \textbf{bidual} of $X$. $X$ embeds canonically into $X^{**}$ via: $$ \iota : X\rightarrow X^{**}: \iota(x)(\ell) := \ell(x) \quad \forall x \in X, \ell \in X^*$$ 
 \end{definition}
 \begin{remark}
-    $\eta$ is a linear isometry: similarly as in \Cref{properties of weak convergence} 4) above. One has: $$\forall x \in X: ||x||_X = \sup_{l\in X^*, ||\ell|| \leq 1} |\ell(x)| = ||\eta(x)||_{**}$$
+    $\iota$ is a linear isometry: similarly as in \Cref{properties of weak convergence} 4) above. One has: $$\forall x \in X: ||x||_X = \sup_{l\in X^*, ||\ell|| \leq 1} |\ell(x)| = ||\iota(x)||_{**}$$
 \end{remark}
 
-\begin{definition}[Reflexive]
-    The space $X$ is reflexive if $\eta$ in \Cref{bidual defnition} is surjective.
+\begin{definition}[Reflexive]\nl
+    The space $X$ is reflexive if $\iota$ in \Cref{bidual defnition} is surjective.
 \end{definition}
 
 \begin{example}
@@ -56,6 +59,7 @@ Some examples of reflexive spaces.
 \end{example}
 
 \begin{proposition}
+\label{non-reflexive space}
     $L^1[-1,1]$ and $L^{\infty}[-1,1]$ are not reflexive.
 \end{proposition}
 \begin{proof}
@@ -79,12 +83,12 @@ then $l_g\in (L^\infty)^*$.
 % \zeta(g) = \int fg d\mu
 % $$
 % for some $f \in L^{\infty}$.  
-% So $\eta: L^1 \mapsto (L^{\infty})^*:  \eta(g)(\zeta)=\zeta(g)$
+% So $\iota: L^1 \mapsto (L^{\infty})^*:  \iota(g)(\zeta)=\zeta(g)$
 % \end{unexaminable}
 
 \textbf{Claim:} $\nexists g\in L^1: \ell=\ell_g$.  
 
-The claim implies that $\eta: L^1 \rightarrow (L^1)^{**}=(L^\infty)^*, g \mapsto \ell_g$ is not surjective, i.e., $L^1$ is not reflexive.  
+The claim implies that $\iota: L^1 \rightarrow (L^1)^{**}=(L^\infty)^*, g \mapsto \ell_g$ is not surjective, i.e., $L^1$ is not reflexive.  
 
 For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).  
 
@@ -100,33 +104,155 @@ This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = l_g(\phi_n) = \
 this is a contradiction.
 \end{proof}
 \begin{unexaminable}
-    An example of a bump function is given at \href{https://math.stackexchange.com/questions/101480/are-there-other-kinds-of-bump-functions-than-e-frac1x2-1}{\color{navyblue} here}.  
+%     An example of a bump function is given at \href{https://math.stackexchange.com/questions/101480/are-there-other-kinds-of-bump-functions-than-e-frac1x2-1}{\color{navyblue} here}.  \\
+% \begin{figure}[H]
+%   \centering
+%   \makebox[0pt]{%
+%   \includesvg[inkscapelatex=false, width=0.5\paperwidth]{Chapter/Figures/bump_function.svg}
+%   }
+%   \caption{A bump function}
+% \end{figure} 
+An example of a bump function is given below:
+\begin{equation}
+f_n(x)=
+\left\{
+\begin{aligned}
+&0 &|x|<\frac{1}{2n}\\
+&{\rm exp}(1-\frac{1}{1-(2n|x|-1)^2}) &\frac{1}{2n}<|x|<\frac{1}{n}\\
+&1 &\frac{1}{n}<|x|\leq1\\
+\end{aligned}
+\right.
+\end{equation}
+
+
 \begin{figure}[H]
   \centering
   \makebox[0pt]{%
-  \includesvg[inkscapelatex=false, width=0.5\paperwidth]{Figures/bump_function}
+  \includegraphics[ width=0.5\paperwidth]{Chapter/Figures/bump_01.png}
   }
-  \caption{A bump function}
+  \caption{Example of bump functions}
 \end{figure} 
+
+
+
 \end{unexaminable}
 
+Recall that we showed unit balls in $\infty$-dimensions are never (sequentially) compact. Weak convergence allows us to restore a weak version of this (cf. \todo{}). For reflexive spaces that is the whole story.  Since $X$ may not be reflexive, one must consider an even weaker topology.  
 
+In the following, we let $(X, \norm{\cdot})$ be a normed linear space, $X^*$ its dual space, $X^{**}$ its bidual, and the isometry $\iota: X \to X^{**}$.  
+
+\begin{definition}
+    A sequence of linear functionals $(\ell_n) \subset X^*$ is \textbf{weak*-convergent} to $\ell \in X^*$ if  
+    $$
+    \lim_{n\to \infty} \ell_n(x) = \ell(x) \qquad \forall x\in X
+    $$
+    (i.e. pointwise convergence in $X$) Notation: $\ell_n \overset{w^*}{\longrightarrow} \ell$
+\end{definition}  
+
+\begin{remark}
+\begin{enumerate}[1)]
+    \item We now have 3 notions of convergence on $X^*$:
+    \begin{enumerate}[i)]
+        \item norm/strong convergence: $\norm{\ell_n-\ell}_* \overset{n\to \infty}{\longrightarrow} 0$ (i.e. $\ell_n \to \ell$)
+        \item weak convergence: $\ell_n \overset{w}{\longrightarrow} \ell$, i.e.  
+        \begin{equation*}
+        \forall \xi \in X^{**}: \qquad \lim_{n\to \infty} \xi(\ell_n) = \xi(\ell)    \tag{**}
+        \end{equation*}
+        \item weak*-convergence: $\ell_n \overset{w^*}{\longrightarrow} \ell$: equivalent to asking $(**)$ for $\xi \in \iota(X)$ only. 
+    \end{enumerate}
+    \item If $X$ is reflexive $ii) \iff iii)$ [e.g. Hilbert space]
+    \item In general, $i) \implies ii) \implies iii)$
+\end{enumerate}
+    
+\end{remark}
+
+\begin{theorem}[Banach-Alaoglu]\nl
+\label{Banach-Alaoglu}
+Let $X$ be separable. If $(\ell_n) \subset X^*$ is bounded (in $X^*$) there exists $\ell\in X^*$ and a subsequence $\Lambda \subset \natu$ s.t.  
+$$
+\ell_n \overset{w^*}{\longrightarrow} \ell \qquad n \to \infty, n\in \Lambda
+$$
+\end{theorem}
+
+\begin{proof}
+    Let $(x_j) \subset X$ be a countable, dense subset. Using boundedness, pick a subsequence $\natu \supset \Lambda_1 \supset \Lambda_2 \supset \cdots \supset \Lambda_j \supset \Lambda_{j+1}$ (inductively) such that, for all $j \in \natu$:  
+    $$
+    \ell_n (x_j) \to a_j \in \real \qquad (n \to \infty, n\in \Lambda_j)
+    $$  
+    $\Lambda \defeq$ diagonal sequence of $(\Lambda_j)_j$, so $\forall j, \ell_n(x_j) \to a_j, (n\to \infty, n\in \Lambda)$. 
+    
+    Define $\ell(x_j) \defeq a_j$, extend it linearly on $M = span \{x_j: j\in \natu\}$ and for all $x\in M$:  
+    $$
+    |\ell(x)| = \lim_{k\to \infty, k\in \Lambda} |\ell_k(x)| \leq \sup_k \norm{\ell_k}_* \norm{x}_{X}
+    $$
+    so $\ell \in M^*$, hence it can be extended to $\ell \in X^*$ by \Cref{same norm extension}.  
+
+    We now show: $\ell_n \overset{w^*}{\rightarrow} \ell$ $(n \to \infty, n \in \Lambda)$. 
+    
+    Let $x\in X$, pick $J \subset \natu$ s.t. $x_j \to x$ $(j\to \infty, j \in J)$. For such $j$ and $n\geq 1$:  
+    \begin{align*}
+        |\ell_n(x)-\ell(x)| &\leq |\ell_n(x-x_j)| + |\ell(x-x_j)| + |\ell_n(x_j)-\ell(x_j)| \\
+        &\leq (\sup_n \norm{\ell_n}_* + \norm{\ell}_*) \norm{x-x_j}_X + |\ell_n(x_j)-\ell(x_j)|
+    \end{align*}
+    Letting first $n\to \infty$ yields  
+    $$
+    \lim_{n\to \infty, n\in \Lambda} |\ell_n(x)-\ell(x)| \leq C \norm{x-x_j}_X, \qquad j \in J
+    $$  
+    Now letting $j\to \infty, j\in J$ yields the desired result.
+\end{proof}  
+
+\begin{remark}
+    \begin{enumerate}[1)]
+        \item If $X$ is reflexive, separability can be removed. Together with \todo{what is this}
+
+        \item As a corollary, for $H$ Hilbert. If $(x_n) \subset H$ is bounded ($\sup_n \norm{x_n}_H < \infty$), then $(x_n)$ has a weakly convergent subsequence.  
+
+        
+    \end{enumerate}
+\end{remark}
+
+Unless $\dim H<\infty$, one \textbf{cannot} replace weak by strong in 2).
+
+\begin{example}
+    \begin{enumerate}[i)]
+        \item $X = L^1[0,1]$ is separable, $X^* \cong L^{\infty}$.
+        If $(f_n) \subset L^{\infty}$ is bounded, i.e. $\sup \norm{f_n}_\infty < \infty$, \Cref{Banach-Alaoglu} yields a subsequence $(n_k)_k \subset \natu$ and $f\in L^{\infty}$ s.t.  
+        $$
+        \lim_{k \to \infty} \int f_{n_k}g dx = \int fg dx, \qquad \forall g\in L^1
+        $$
+        \item $X = L^{\infty}(=L^{\infty}[0,1])$ is not separable (and also not reflexive). The following example shows that the conclusions of \Cref{Banach-Alaoglu} fail in this case. 
+        
+        For $0<\varepsilon\leq 1$ consider,  
+        $$
+        T_{\varepsilon}:L^{\infty} \to \real \qquad T_\varepsilon f = \frac{1}{\varepsilon} \int_0^{\varepsilon} f dx, \qquad f\in L^{\infty}
+        $$  
+        Then $\norm{T_\varepsilon}_{(L^{\infty})^*}\leq 1$, i.e. $T_\varepsilon \in (L^\infty)^*$. We show:  
+
+        \textbf{\underline{Claim:}} $\{T_\varepsilon: 0< \varepsilon \leq 1\}$ is not weak*-sequentially compact.  
+        \begin{proof}
+            Suppose it is, i.e. $\varepsilon \overset{k  \to \infty}{\longrightarrow} 0$ and $T \in (L^{\infty})^*$ s.t. $T_{\varepsilon_k} \overset{w^*}{\longrightarrow} T$ as $k\to \infty$. By passing to a subsequence, one can assume  
+            $$
+            1 > \frac{\varepsilon_{k+1}}{\varepsilon_{k}} \to 0 \qquad \text{as\ } k\to \infty
+            $$
+            Pick $f\defeq \sum_{k=1}^{\infty}(-1)^k \mathbf{1}_{(\varepsilon_{k+1}, \varepsilon_k]} \in L^{\infty}$ with $\norm{f_n}_\infty=1$.  
+
+            For $k\geq 1$, we have:  
+
+            $$
+            T_{\varepsilon_k}f = \frac{1}{\varepsilon_k} \sum_{j=k}^{\infty} (-1)^j (\varepsilon_j - \varepsilon_{j+1}) = (-1)^k \frac{\varepsilon_k - \varepsilon_{k+1}}{\varepsilon_{k+1}} +\frac{1}{\varepsilon_k} \int_0^{\varepsilon_{k+1}} f dx
+            $$  
+            Hence  
+            $$
+            |T_{\varepsilon_k}f-(-1)^{k}| \leq \frac{1}{\varepsilon_k} \left(\varepsilon_{k+1} + \int_0^{\varepsilon_{k+1}} |f| dx\right) \leq \frac{2\varepsilon_{k+1}}{\varepsilon_k} \overset{k\to \infty}{\longrightarrow} 0
+            $$  
+            so $(T_{\varepsilon_k} f)_k$ accumulates at $\pm 1$ and is thus divergent.
+        \end{proof}
+
+    \item If instead consider $X = C^0[0,1]\subset L^{\infty}$, a separable closed subspace, then \Cref{Banach-Alaoglu} applies to $T_\varepsilon \mid_X$. Indeed, one immediately sees that  
+    $$
+    T_\varepsilon f \overset{\varepsilon \downarrow 0}{\longrightarrow} f(0), i.e. \qquad T_\varepsilon \overset{w^*}{\rightarrow} \delta_0 \ (\varepsilon \downarrow 0)
+    $$
+    where $\delta_0$ is the Dirac delta functional at $0$ defined in \Cref{non-reflexive space}.
+    \end{enumerate}
+\end{example}
 \end{document}
-
-
-% \usepackage{amsmath}
-% \usepackage{amssymb}
-% \usepackage{hyperref}
-% \usepackage{graphicx}
-% \usepackage{cleveref}
-% \usepackage{commath}
-% \usepackage{setspace}
-% \usepackage[titletoc]{appendix}
-
-
-% \newtheorem{theorem}{Theorem}[section]
-% \newtheorem{prop}{Proposition}[section]
-% \newtheorem{definition}{Definition}[section]
-% \newtheorem{remark}{Remark}[section]
-
-% \newenvironment{proof}{{\scshape Proof. }\itshape }{\hfill$\spadesuit$\par}

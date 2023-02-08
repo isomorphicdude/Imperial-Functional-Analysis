@@ -2,7 +2,7 @@
 \geometry{left=3cm,right=3cm,top=2cm,bottom=2cm}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
-\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[framemethod=default]{mdframed}% was framemethod=TikZ
 \usepackage{mathrsfs}
 \usepackage{comment}
 \usepackage{enumerate}
@@ -18,6 +18,10 @@
 \usepackage{mathtools}
 \usepackage{svg, float}
 
+
+% Name of the author!!!
+\newcommand{\aut}{AUTHOR}
+
 %
 \titleformat*{\section}{\LARGE \bfseries}
 \titleformat*{\subsection}{\Large \bfseries}
@@ -32,6 +36,7 @@
 \newcommand{\nl}{\nextline\rm}
 % \newcommand{\placeholder}{{\bf\color{red} NOOOOOOT COMPLEEEEEEET! COOOOOOOM BAAAAAACK!!!}}
 \newcommand{\placeholder}{\todo{NOOOOOOT COMPLEEEEEEET! COOOOOOOM BAAAAAACK!!!}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
 
 \newcommand{\defeq}{\stackrel{\text{def.}}{=}}
 % FA and LA

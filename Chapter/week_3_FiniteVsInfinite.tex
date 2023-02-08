@@ -4,7 +4,7 @@
 \input{theoremstyle.tex}
 
 \title{Week 2}
-
+\author{\aut}
 \begin{document}
 \maketitle
 
@@ -218,7 +218,7 @@ So $(x_n)$ has no convergent subsequences. Clearly $(x_n) \subset \overline{B_1}
 \section{Linear Operators}  
 Let $(X, \norm{\cdot}_X)$, $(Y, \norm{\cdot}_Y)$ be normed spaces, $A: X \to Y$ linear.  
 
-\begin{definition}[Bounded Opertor]\nl
+\begin{definition}[Bounded Operator]\nl
     A linear operator $A: (X, \norm{\cdot}_X) \to (Y, \norm{\cdot}_Y)$ is bounded if $\exists C \in (0, \infty)$, such that  
     $$
     \norm{Ax}_Y \leq C \norm{x}_X \qquad \forall x \in X
@@ -280,11 +280,11 @@ Boundedness is the same as continuity.
     Take 
     \begin{equation}\nonumber
 f_n(x)=\left\{
-\begin{split}
+\begin{aligned}
     &{n^2x} &x\in[0,\frac{1}{n}]\\
     &{-n^2x+2n} &x\in(\frac{1}{n},\frac{2}{n}]\\
     &0 &x\in(\frac{2}{n},1]\\
-\end{split}
+\end{aligned}
 \right.\quad\text{then}\quad\norm{f_n}_1=1  \  \ f_n \in X, \forall n \in \natu
 \end{equation}
 But we have  
@@ -361,4 +361,5 @@ If $X=Y$ \textbf{and} $\norm{\cdot}_X = \norm{\cdot}_Y$ one sets $\mathcal{L}(X,
     $$
     so $(y_{n_k}) \subset Y$ converges and the limit is $Ax$.
 \end{proof}
+
 \end{document}

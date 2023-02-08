@@ -3,7 +3,7 @@
 \input{theoremstyle.tex}
 \title{Week 9}
 
-
+\author{\aut}
 \begin{document}
 \maketitle
 \section{Compact operators}  
@@ -55,7 +55,7 @@ iii) $\implies$ i). Let $B\subset X$ be bounded. Consider $(y_n) \subset T(B)$ a
 
 We return to this example after the following.  
 
-\begin{theorem}[limit of compact operators]\nl
+\begin{theorem}[Limit of compact operators]\nl
 \label{limit of compact operators}
     Let $X, Y$ be Banach spaces. If $T_n: X\to Y$ is a sequence of compact operators and for some $T \in \mathcal{L}(X,Y)$  
     \begin{align}
@@ -123,7 +123,26 @@ $$
     so $\norm{T-T_n}\to 0$. By \Cref{limit of compact operators} $T$ is compact.
 \end{proof}
 
-\begin{example}[Hilbert-Schmidt integral operator]
-    
+\begin{example}[Hilbert-Schmidt integral operator]\nl
+Let $X = L^2[0,1]$ and $a \in C^0[0,1]^2$. Define operator $A:X \to X$ by,  
+$$
+Af(x) = \int_0^1 a(x,y) f(y)dy, \qquad f\in L^2[0,1]
+$$
+\begin{enumerate}[1)]
+    \item $A$ is well-defined and bounded:  
+$$
+Af(x) = \int_0^1 |Af(x)|^2 dx \overset{\text{Cauchy\ Schwarz}}{\leq} \underbrace{\int_0^1 dx \int_0^1 dy |a(x,y)|^2}_{\leq C} \norm{f}_2^2
+$$
+\item $A$ is compact: let $(f_n) \subset X, \norm{f_n}_2 \leq M$. Check $(Af_n)$ is continuous, $\sup_n \norm{Af_n}_{\infty} < \infty$. 
+Moreover, let $\varepsilon>0$, we can pick $\delta>0$ s.t. $|a(x,y)-a(x',y')|<\varepsilon$ if $|x-x'|+|y-y'|<\varepsilon$ (uniform-continuity), we have  
+
+\begin{align*}
+    |Af_n(x) - Af_n(y)| &\leq \int_0^1 \underbrace{|a(x,z)-a(y,z)|}_{<\varepsilon \ \text{if}\ |x-y|<\delta} |f_n(z)| dz \\
+    & \leq \varepsilon \norm{f_n}_2 \leq M\varepsilon
+\end{align*}  
+so $(Af_n)$ is equicontinuous. By Arzelà–Ascoli, $(Af_n)$ has a subsequence which converges in $\norm{\cdot}_{L^{\infty}[0,1]}$ hence in $\norm{\cdot}_{L^{2}[0,1]}$.
+\end{enumerate}
+
+
 \end{example}
 \end{document}

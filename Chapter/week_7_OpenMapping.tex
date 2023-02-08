@@ -6,6 +6,7 @@
 \title{Week 8}
 
 \begin{document}
+\author{\aut}
 \maketitle
 % This file is made purely according to Written note
 \section{Open mapping theorem}
@@ -127,7 +128,7 @@ Let $X=Y$, with norms $\norm{\cdot}_1$ and $\norm{\cdot}_2$ and assume $\exists 
     \norm{x}_2\leq C\norm{x}_1,\,\forall x\in X
 \end{equation}
 
-If $X$ is complete, with respect to both $\norm{\cdot}_1$ and $\norm{\cdot}_2$ then consider $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is open by \Cref{open mapping theorem} (indeed thm applies, as $A$ is bounded by \Cref{equivalence of norm example}). 
+If $X$ is complete with respect to both $\norm{\cdot}_1$ and $\norm{\cdot}_2$, then $A=id:(X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2)$ is open by \Cref{open mapping theorem} (indeed thm applies, as $A$ is bounded by \Cref{equivalence of norm example}). 
 
 Since $A$ is bijective, ii) gives that $A^{-1}=id:(X,\norm{\cdot}_2)\to(X,\norm{\cdot}_1)$ is bounded, i.e.
 $$
@@ -149,11 +150,11 @@ $$
 but not open. Else by 1),  $\norm{\cdot}_1$ and $\norm{\cdot}_2$ would be equivalent. However consider counter example:
 \begin{equation}\nonumber
 f_n(x)=\left\{
-\begin{split}
+\begin{aligned}
     &{2n^2x} &x\in[0,\frac{1}{2n}]\\
     &{-2n^2x+2n} &x\in(\frac{1}{2n},\frac{1}{n}]\\
     &0 &x\in(\frac{1}{n},1]\\
-\end{split}
+\end{aligned}
 \right.\quad\text{satisfy}\quad\norm{f_n}_2=1,\norm{f_n}_1=n\to\infty
 \end{equation}
 This shows $Y$ needs to be complete in theorem.
@@ -186,7 +187,7 @@ Pick $x^{(n)}=(\overbrace{1,1,\ldots, 1,1}^{n},0,......)$ then $\norm{x^{(n)}}_\
 \section{Closed Graph Theorem}
 Consider $X$, $Y$ normed spaces. Often an operator $A$ not defined on all of $A$ but on a "domain" $D(A)$. So we assume that 
 $D(A)\subset X$ is a linear subspace on which $A:D(A)(\subset X)\to Y$, linear is defined.
-\begin{example}[running xxample]\nl
+\begin{example}[running example]\nl
 $Y=X=C=C^0[0,1]$ with $\norm{\cdot}_X=\norm{\cdot}_\infty$ and 
 $$A=\frac{d}{dt}$$
 with $D(A)\stackrel{eg}{=}C^1[0,1]\subset X$ or subspaces thereof. 
@@ -282,10 +283,11 @@ The second convergence uses dominated convergence theorem
 
 
 \begin{corollary}[Continuous Inverse]\nl
-	$X$, $Y$ Banach, $A:(DA)\subset X\to Y$ linear, closed and bijective. Then $\exists B=A^{-1}\in\mathcal{L}(Y,X)$ with $AB=id_Y$ and $BA=id_{D(A)}$.
-	Proof is left as an exercise. Hint: similar to the Closed Graph \Cref{closed graph theorem}, consider $\Pi_Y:\Gamma_A\to Y$, $B\defeq\Pi_X\circ \Pi_Y^{-1}$
-	
+	$X$, $Y$ Banach, $A:D(A)\subset X\to Y$ linear, closed and bijective. Then $\exists B=A^{-1}\in\mathcal{L}(Y,X)$ with $AB=id_Y$ and $BA=id_{D(A)}$. 
 \end{corollary}
+\begin{proof}
+    exercise(Hint: similar to the Closed Graph \Cref{closed graph theorem}, consider $\Pi_Y:\Gamma_A\to Y$, $B\defeq\Pi_X\circ \Pi_Y^{-1}$))
+\end{proof}
 
 \todo{what is ?}
 \begin{example}[???]\nl

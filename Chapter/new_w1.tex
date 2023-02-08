@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{commands}
+\input{theoremstyle.tex}
+
+\title{Week 1}
+\author{\aut}
+\begin{document}
+
+\maketitle
+
+What is the course about?
+
+Roughly: solving linear systems of the form 
+$$Ax=y$$  
+where \func{A}{X}{Y} is linear, $y\in Y$ given, find solutions $x\in X$. $X$ and $Y$ are linear spaces.
+\begin{remark}
+    When $X$ and $Y$ are finite dimensional spaces, this is linear algebra.\\
+    $\infty$-dim brings into play additional structure, then it's functional analysis. (completeness, compactness, metric, norm)
+\end{remark}
+
+
+Example: $f\in C_0^\infty (\real^n)$, solve
+$$
+\underbrace{-\Delta}_A u=f\in\real^n
+$$where
+$$
+C_0^\infty(\real^n)=\left\{
+f:\real^n\to\real:f\text{ infinitely differentiable }, supp(f)=\{x:f(x)\neq0\} \text{ compact }
+\right\}
+$$
+What space?
+Can take (in PDE) $X=Y=C_\infty(\real^n)$: function spaces.
+Adequate choice of space to find solutions necessary!
+con vary, metric/normed linear space, locally convec topological space...
+
+In this course: linear space is (almost always): Banach space or Hilbert space.
+\begin{example}[Running example, $L^P$]
+cf. MATH50006 notes $\S2.6$ .
+$(X,\mathcal{A},\mu)$:measure space.
+$$
+L^P(\mu)\equiv l^P(X,\mathcal{A},\mu)=
+\left\{
+f:X\to\mathbb{K}/\sim:\norm{f}_{L^P}<\infty
+\right\},\quad p\in[1,\infty]
+$$
+Norm of $f\in L^p$:
+$$
+\norm{f}_p\equiv\norm{f}_{L^p}=
+\left\{
+\begin{aligned}
+    &\left(\int|f|^p{\rm d}\mu\right)^{1/p} &p<
+    \infty\\
+    & \esssup_X |f| &p=\infty
+\end{aligned}\right.
+$$
+\end{example}
+
+
+Choices of measure space:\\
+Example 0: $X=\{1,2,....,n\}$, $\mathcal{A}=2^X$, $\mu(\{\})k=1\,\forall k=1,...,n$, counting measure on $X$, extended to measure by additivity.\\
+Every function $f:X\to\real$ is simple
+$$
+f(x)=\sum^n_{k=1}f(k)1_{\{k\}}(x)\qquad 1_A(x)=
+\left\{\begin{aligned}
+    &1 &x\in A\\
+    &0 &x\notin A
+\end{aligned}\right.
+$$
+Thus
+$$
+\norm{f}_p^p=\int|f|^p{\rm d}\mu=\sum_{k=1}^n|f(k)|^p
+\underbrace{\int1_{\{k\}}{\rm d}\mu}_{\mu(\{k\})=1}
+=\sum_{k=1}^n|f(k)|
+$$
+So $L^p(\{1,...,n\},\mu\cong\real^n$ endowed with norm 
+$$
+\norm{p}_p=\left(\sum_{k=1}^n|f(k)|^p\right)^{1/p}\quad f\in\real^n
+$$
+which are finite dimensional vector spaces over $\real$ (linear algebra).
+
+Example 1\\
+Same with $X=\natu=\{1,2,3,...\}\mathrel{\leadsto} \ell^p$, "Little-l-p",\\
+i.e. $\mu(\{k\})=1\,\forall k\in\natu$, extended to measure by $\sigma$-additivity, i.e.
+$$
+\mu(A)=\sum_{k\in A} \mu(\{k\})=|A|\quad A\subset \natu
+$$
+Now every $f:X\to \real $ of form 
+
+$$f(x)=\sum_{k=1}^\infty f(k)1_{\{k\}}(x)$$
+Approximated by $f_n\mathrel{\leadsto}\sum_{k=1}^n$ + use of monotone convergence theorem to get
+$$\norm{f}_p^p=\sum_{k=1}^\infty |f(k)|^p$$
+An element $f:X\to \real$, $f=(f(1),f(2),...)\equiv(f_1,f_2,..._\equiv(f_k)_k$ is a sequence!
+$$\ell^p=
+\{
+\text{all real-valued sequences } 
+f=(f_k)_k 
+\text{ s.t. } 
+\sum_{k=1}^\infty|f_k|^p<\infty
+\}$$
+Specially, when $\ell^1$ is the set of all \underline{absolutely convergent series}!.
+\begin{remark}
+    Adding weights (Example 10): $\ell^p(\eta)\,\eta_i\geq0$, define $\mu(\{j\})=\eta_j\,\forall j\in\natu\mathrel{\leadsto}\norm{f}_{\ell^p(\eta)}=\sum_{j=1}^\infty|f_j|^p\eta_j$.
+\end{remark}
+
+Example 2\\
+$X=\real^n$ for some $n\in\natu$, $\mathcal{A}=$ Borel $\sigma$-algebra, $\mu=$Lebesgue meausre, $\mathrel{\leadsto}L^P(r\real^n)$,
+$$\norm{f}_p=\left(\int|f|^p{\rm d}x\right)^\frac{1}{p}$$, 
+where ${\rm{d}}x$ is Lebesgue. \\
+More generally, $x\subset \real^n$ open/closed $\mathrel{\leadsto} L^P(X)$, e.g. $n=1$, $X=[0,1]$.
+
+
+
+\begin{theorem}
+Let $(X,\mathcal{A},\mu)$ be {\underline {any}} measure space. Then:
+\begin{itemize}
+    \item [i)] $\norm{f}_p$ defines a \underline{norm} $\forall p\in[1,\infty]$.
+    \item [ii)] Holders inequality holds:{\color{red} incomplete}
+    \item [iii)] $L^p(\mu)$ is complete
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+A normed linear space $(X,\norm{\cdot}$ which is complete w.r.t the induced metric is called \underline{Banach space}.\\
+Explanation:
+\begin{itemize}
+    \item $\norm\cdot$ is a norm. See definition 3 in notes.
+    \item the induced metric is $d(x,y)=\norm{x-y}$. It is a metric (proposition 2 in the notes) % d(x,y) is the notation used in year-2 analysis 
+    \item $X$ complete w.r.t. $d$: every Cauchy sequence converges.
+    \item Cauchy sequence: $(f_n)_n\subset X$ s.t. $\forall \varepsilon>0,\,\exists N\,\forall m,n\geq N,\,d(f_m,f_n)<\varepsilon$
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+    Theorem asserts $L^P(\mu)$ is a Banach space. Apply in the case of 1 to get immediately all of theorem 2, exercise 10-12 proposition 7 example 12-14 and much more
+    !
+    
+\end{remark}
+
+\underline{Furthur examples}\\
+3. $C([a,b])=\{f:[a,b]\to\real,\,\text{continuous}\}$ with $\norm{f}_\infty=\sup_{x\in[a,b]}|f(x)|$\\
+4. $C^r([a,b])$, similar to above but $f$ is set to be r-times continuously differentiable. In particular $C=C[(a,b)]=C^0[(a,b)]$.  $\norm{f}_{r,\infty}=\sup_{x\in[a,b],1\leq k\leq r}|f^{(k)}(x)|$\\
+5. Sobolev space, for solving PDE(not this course).
+
+\begin{proposition}
+$(C[0,1],\norm{\cdot}_\infty)$ is complete.
+\end{proposition}
+\underline{General strategy to show completeness of  $(X,\norm{\cdot})$}: For a given Cauchy sequence $(f_n)\subset X$
+\begin{itemize}
+    \item [1] find candidate limit $f$
+    \item [2] show $\norm{f_n-f}\xrightarrow{n\to\infty}0$
+    \item [3] show $f\in X$
+\end{itemize}
+
+Proof:\\
+\underline{STEP I}\\
+Let $(f_n)\subset C$ be Cauchy sequence, i.e. $\forall \varepsilon>0,\,\exists N,\,\forall m,n\geq N:\,\norm{f_m-f_n}_\infty<\varepsilon$.\\
+But $\norm{f_n-f_m}_\infty\geq|f_n(x)-f_m(x),\,\forall x\in[0,1]$ so $\left(f_n(x)\right)$ is Cauchy sequence in $\real$ $\forall  x\in[0,1]$. Since $\real$ is complete, it has a limit. Call it $f(x)=\lim_{n\to\infty}f_n(x)$.\\
+\underline{STEP II}\\
+$|f_n(x)-f_m(x)|<\varepsilon\,\forall n,m\geq N,\,\forall x\in[0,1]$, which implies 
+$\lim_{n\to\infty}|f_n(x)-f_m(x)|<\varepsilon$, we also have that $lim_{n\to\infty}|f_n(x)-f_m(x)|=|f(x)-f_m(x)|$ by continuity of $f$.\\
+\underline{STEP III}\\
+To show $f\in C$, need toargue $\forall x,\,\varepsilon>0,\,\exists\delta:\,|x-y|<\delta\implies |f(x)-f(y)|<\varepsilon$. Now we use $\varepsilon/3$ arguement. Write for any $n\in\natu$ and $x,y\in[0,1]$,
+$$
+|f(x)-f(y)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|
+$$
+First, using STEP II, pick $n$ s.t. $\norm{f_n-f}_\infty<\frac{\varepsilon}{3}$, whence
+$$
+|f(x)-f_n(x)|,\,|f(y)-f_n(y)|<\frac{\varepsilon}{3},\,\,\forall x,y\in[0,1]
+$$
+Then, with $n$ now fixed, using continuity of $f_n$, pick $\delta>0$ s.t. 
+$$
+|f_n(x)-f_n(y)<\frac{\varepsilon}{3}\text{ whenever } |x-y|<\delta$$
+Substitute {\color{red}???} into ??? to get 1
+
+
+\begin{remark}
+\begin{itemize}
+    \item 3)??? is well-known from analysis I-II. $\lim_{n\to\infty}\norm{f_n-f}_\infty=0$ is precisely the \underline{uniform convergence} of $(f_n)$ towards $f$. so 3 assrts that "uniform limit of a sequence of continuous functions is again continuous".
+    \item $f_n(x)=x^n$ is not a Cauchy sequence in $(c,\norm{\cdot}\infty$, yet $f_n(x)\xrightarrow{n\to\infty} f(x)=1_{\{1\}}(x)$.
+    \item if instead consider $f_n(x)=x^n$ to be elements of $L^1([0,1])$:
+    $$\int_0^1f_n{\rm d}x=\left.\frac{x^{n+1}}{n+1}\right|^1_0=\frac{1}{n+1}<\infty$$
+    Then $(f_n)\subset L^1([0,1])$ a Cauchy sequence(Ex.), and converges by theorem?????. The limit in $L^1([0,1])$ is $f=0$:
+    $$\norm{f_n}_{L^1([0,1])}=\norm{f_n-0}_{L^1([0,1])}=(n+1)^{-1}\xrightarrow{n\to\infty}0$$
+\end{itemize}
+    
+\end{remark}
+\end{document}
+
