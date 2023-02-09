@@ -9,8 +9,7 @@
 \maketitle
 
 
-\section{Spectral Theory}
-\label{Spectral theory chapter}
+\section{Spectral Theory}\label{Spectral theory chapter}
 In this section, we consider Banach space over $\comp$. 
 
 \begin{definition}[Resolvent \& Spectral]\nl
@@ -82,13 +81,12 @@ $$
 
 
 \begin{example}\nl
-\todo{add ref to diagonal op}
+{\color{red}!!!!!!!{add ref to diagonal op}}\\
     Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
 \end{example}
 \begin{proof}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
     $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by \Cref{spectrum is closed} $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
     \end{proof}
-
     \begin{proof}{$\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$}{}
     If $\widetilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\widetilde{\lambda}-\lambda_k|>\delta$, $\forall k\in\natu$. \\
     Let $x\in\ell^2$, $y\defeq(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
@@ -122,9 +120,10 @@ $$
 \begin{example}\nl
     $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
 \end{example}
+
 \begin{example}\nl
-    $T_\lambda$ is indicative of a certain class : $ X$ Hilbert, $T\in\mathcal{L}(X)$ compact, self-adjoint, then by Riesz-Schauder, $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}
-    $
+    $T_\lambda$ is indicative of a certain class: $ X$ Hilbert, $T\in\mathcal{L}(X)$ compact, self-adjoint. \\
+    Then by Riesz-Schauder, $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}$
 \end{example}
 % Below are content from written lecture note 9.2-10
 
@@ -157,8 +156,9 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 % the support is denoted as C_c(0,1), outside of which the function takes zero value
 
 \begin{example}[Weak derivative]\nl
-	$H$=$L^2(0,1)$, $\inne{f}{g}=\int_0^1f\bar{g} \mathrm{d}t$. $A\in\frac{\mathrm{d}}{\mathrm{d}t}$. More precisely, $f\in\mathcal{H}$ is said to have a \textbf{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in \mathcal{H}$, 
- $$\int_0^1 fg'\mathrm{d}t=-\int_0^1 vg\mathrm{d}t \qquad \forall g\in C^\infty_c(0,1)$$\\
+	$H$=$L^2(0,1)$, $\inne{f}{g}=\int_0^1f\bar{g} \mathrm{d}t$. $A\in\frac{\mathrm{d}}{\mathrm{d}t}$.\\
+	More precisely, $f\in\mathcal{H}$ is said to have a \textbf{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in \mathcal{H}$, 
+ $$\int_0^1 fg'\mathrm{d}t=-\int_0^1 vg\mathrm{d}t \qquad \forall g\in C^\infty_c(0,1)$$
 	Consider
 	$$
 		A_\infty =i\frac{\mathrm{d}}{\mathrm{d}t}:C^\infty_c(0,1)\subset H\to H
@@ -275,7 +275,8 @@ The example also nicely illustrates:
  
 % Below are content for week 10
 \subsection{Spectral theorem for compact self-adjoint operators}
-$H$: Hilbert space over $\comp$, inner product $\inne{\cdot}{\cdot}$, with $\norm{x}^2_H=\inne{x}{x}$. Following is an extension (!) of the familiar result from linear algebra concerning diagonalization of symmetric matrices.
+$H$: Hilbert space over $\comp$, inner product $\inne{\cdot}{\cdot}$, with $\norm{x}^2_H=\inne{x}{x}$. \\
+Following is an extension (!) of the familiar result from linear algebra concerning diagonalization of symmetric matrices.
 \begin{theorem}[Riesz-Schauder]\nl
 \label{riesz schauder}
 	Let  \func{T}{H}{H} be compact and self-adjoint, then:
@@ -338,7 +339,7 @@ $\lambda_k\neq\lambda_l, \ \forall k\neq l$ and $|\lambda_k|>r, \ \forall k$
 Let $e_k\neq0$ be eigenvector for $\lambda_k$: 
 
 $$Te_k=\lambda_ke_k\,\forall k$$ 
-\todo{Are those normalized eigenvectors?}
+{\color{red}{Are those normalised eigenvectors?}!!!!!!!!!!!!!!!!!!!}
 By compactness of $T$, $\exists\Lambda\subset\natu$ such that for some $y\in H$, $$Te_k\xrightarrow[k\to\infty,k\in\Lambda]{\norm{\cdot}_H}y\in H$$
 		Hence,
 		$$(\lambda_ke_k)\xrightarrow[k\to\infty,k\in\Lambda]{\norm{\cdot}_H}y\in H$$

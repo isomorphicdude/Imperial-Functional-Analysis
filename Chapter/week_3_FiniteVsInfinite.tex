@@ -163,9 +163,9 @@ Another (illustrative) example is the following
     Then $||f_n-f_m||_{\infty}\geq 1$ for all $n \neq m$, so it has no convergent subsequences. 
 \end{example}
 
-Compactness of the unit ball characterizes in fact finite dimensional spaces.  
+Compactness of the unit ball characterises in fact finite dimensional spaces.  
 
-\begin{theorem}[Characterization of finite dim. spaces]\nextline
+\begin{theorem}[Characterisation of finite dim. spaces]\nextline
     In a normed space $(X, \norm{\cdot})$, the following statements are equivalent:  
     \begin{enumerate}[i)]
         \item $\dim X < \infty$
@@ -174,8 +174,7 @@ Compactness of the unit ball characterizes in fact finite dimensional spaces.
 \end{theorem}  
 
 \begin{proof}
-    i) $\implies$ ii) $\overline{B_1}$ is closed + bounded, so we use \Cref{comapct implies ...}  
-    
+    i) $\implies$ ii) $\overline{B_1}$ is closed and bounded, which implies compactness since $X$ has finite dimension.
     For ii) $\implies$ i), one uses  
 \begin{lemma}[Riesz]\nextline
 \label{riesz unit ball lemma}
@@ -219,6 +218,7 @@ So $(x_n)$ has no convergent subsequences. Clearly $(x_n) \subset \overline{B_1}
 Let $(X, \norm{\cdot}_X)$, $(Y, \norm{\cdot}_Y)$ be normed spaces, $A: X \to Y$ linear.  
 
 \begin{definition}[Bounded Operator]\nl
+\label{bounded operator def}
     A linear operator $A: (X, \norm{\cdot}_X) \to (Y, \norm{\cdot}_Y)$ is bounded if $\exists C \in (0, \infty)$, such that  
     $$
     \norm{Ax}_Y \leq C \norm{x}_X \qquad \forall x \in X
@@ -310,8 +310,7 @@ A classical example is:
     $$
     (or $f_n(t)=t^n$) then $\norm{f_n}_X=1$ but $\norm{Af_n}_Y=n \to \infty$.
 
-    \textbf{Note:} if instead one sets $\norm{\cdot}_X = \norm{\cdot}_{C^1}=\norm{f}_{\infty}+\norm{f'}_{\infty}$ then the above $f_n$'s are of no use (and in fact $A$ is \textbf{bounded}, cf. later)!
-    \todo{what is it?}
+    \textbf{Note:} if instead one sets $\norm{\cdot}_X = \norm{\cdot}_{C^1}=\norm{f}_{\infty}+\norm{f'}_{\infty}$ then the above $f_n$'s are of no use (and in fact $A$ is {\bf{bounded}}.(see \cref{bounded operator def})
 \end{example}  
 
 Now set 

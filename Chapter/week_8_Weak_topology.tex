@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[utf8]{inputenc}
 \input{Chapter/commands.tex}
 \input{theoremstyle.tex}
 \title{Week 8}
@@ -24,12 +25,12 @@ We have the following remarks about weak convergence.
     
     \item The converse of 1) is false. Let $x_n (= e_n) = (0,...,0,1,0,...) \in l^2$. $||x_n-x_m|| = \sqrt{2}, n\neq m$, so $x_n$ doesn't converge (strongly). But $x_n \xrightarrow{w} 0$: by Riesz Representation, $\ell(\cdot) = \inne{y}{\cdot}_{l^2}$ for some $y \in l^2$, Hence with $y=(y^n)_n$, $$\ell(x_n) = \inne{y}{x_n} = y^n \leq \sqrt{\Sigma_{k\geq n} {|y^k|}^2} \xrightarrow{n\rightarrow \infty} 0$$, since $||y||_2 < \infty$.
     
-    \item If $x_n \xrightarrow{w} x, x_n \xrightarrow{w} y$, then $x=y$. Assume not, by Prop. p.34 (\textquotedblleft dual elements separate points"\todo{reference}), $\exists l \in X^*: \ell(x) \neq \ell(y)$ if $x\neq y$. With this $l$: $$\ell(x) = \lim_{n \to \infty} \ell(x_n) = \ell(y) $$ 
+    \item If $x_n \xrightarrow{w} x, x_n \xrightarrow{w} y$, then $x=y$. Assume not, \cref{dual elements separate points}, $\exists l \in X^*: \ell(x) \neq \ell(y)$ if $x\neq y$. With this $l$: $$\ell(x) = \lim_{n \to \infty} \ell(x_n) = \ell(y) $$ 
     ,a contradiction.
     
     \item $x_n \xrightarrow{w} x \Rightarrow \sup||x_n|| < \infty$. Consider $A_n \in \mathfrak{L}(X^*, \mathbb{R})$ ($=X^{**}$, the bidual) with $A_n(\ell) := \ell(x_n), \ell \in X^*$. $x_n \xrightarrow{w} x$ implies $\sup_n |A_n(l)| < \infty,$ $\forall l\in X^*$, and $X^*$ is complete so by Banach-Steinhaus: $$\sup_n ||A_n||_{\mathfrak{L}(X^*, \mathbb{R})} < \infty$$ 
     
-    But by \Cref{dual charaterization of norm},  $||A_n||_{\mathfrak{L}(X^*,\mathbb{R})} = \sup_{l\in X^*, ||\ell||\leq 1} |\ell(x_n)| = ||x_n||_X$.
+    But by \Cref{dual characterisation of norm},  $||A_n||_{\mathfrak{L}(X^*,\mathbb{R})} = \sup_{l\in X^*, ||\ell||\leq 1} |\ell(x_n)| = ||x_n||_X$.
 \end{enumerate}
 \end{remark}
 
@@ -137,7 +138,8 @@ f_n(x)=
 
 \end{unexaminable}
 
-Recall that we showed unit balls in $\infty$-dimensions are never (sequentially) compact. Weak convergence allows us to restore a weak version of this (cf. \todo{}). For reflexive spaces that is the whole story.  Since $X$ may not be reflexive, one must consider an even weaker topology.  
+Recall that we showed unit balls in $\infty$-dimensions are never (sequentially) compact. Weak convergence allows us to restore a weak version of this . %(cf. \todo{})?
+For reflexive spaces that is the whole story.  Since $X$ may not be reflexive, one must consider an even weaker topology.  
 
 In the following, we let $(X, \norm{\cdot})$ be a normed linear space, $X^*$ its dual space, $X^{**}$ its bidual, and the isometry $\iota: X \to X^{**}$.  
 
@@ -203,11 +205,9 @@ $$
 
 \begin{remark}
     \begin{enumerate}[1)]
-        \item If $X$ is reflexive, separability can be removed. Together with \todo{what is this}
+        \item If $X$ is reflexive, separability can be removed. Together with {\color{red} todo!!!!!!!!!!!}
 
         \item As a corollary, for $H$ Hilbert. If $(x_n) \subset H$ is bounded ($\sup_n \norm{x_n}_H < \infty$), then $(x_n)$ has a weakly convergent subsequence.  
-
-        
     \end{enumerate}
 \end{remark}
 

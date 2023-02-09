@@ -15,7 +15,7 @@ Compact operators form a very important class of bounded operators. Roughly: the
 \end{definition}  
 
 \begin{lemma}
-\label{equivalent characterization of compact operators}
+\label{equivalent characterisation of compact operators}
 Let $X,Y$ be Banach spaces. The following are equivalent:  
 \begin{enumerate}[i)]
     \item $T$ is compact
@@ -24,7 +24,7 @@ Let $X,Y$ be Banach spaces. The following are equivalent:
 \end{enumerate}  
 \end{lemma}  
 
-\begin{remark}
+\begin{remark}\nl
 The above are true if $X,Y$ are normed and one replaces "Cauchy" by "convergent".
 \end{remark}  
 
@@ -36,9 +36,10 @@ iii) $\implies$ i). Let $B\subset X$ be bounded. Consider $(y_n) \subset T(B)$ a
 \label{examples of compact operators}
 \begin{enumerate}[1)]
     \item $T=id:X\to X$ is compact iff $\dim X <\infty$. For $\dim X=\infty$, recall the closed unit ball $B=B_X(0,1)$ is not compact. 
-    \item $T$ has \textbf{finite rank} if $\dim (im(T))<\infty$. If $T\in \mathcal{L}(X,Y)$ has finite rank, then $T$ is compact: using \Cref{equivalent characterization of compact operators} iii): let $(x_n)\subset X$ be bounded. Then $\norm{Tx_n} \leq \norm{T}\norm{x_n} \leq C$ so $(Tx_n)\subset im(T)$ is bounded. Since $im(T)$ is finite dimensional, one can choose a convergent subsequence.  
+    
+    \item $T$ has \textbf{finite rank} if $\dim (im(T))<\infty$. If $T\in \mathcal{L}(X,Y)$ has finite rank, then $T$ is compact: using \Cref{equivalent characterisation of compact operators} iii): let $(x_n)\subset X$ be bounded. Then $\norm{Tx_n} \leq \norm{T}\norm{x_n} \leq C$ so $(Tx_n)\subset im(T)$ is bounded. Since $im(T)$ is finite dimensional, one can choose a convergent subsequence.  
 
-    \item If $\dim X<\infty$, $T$ is compact. (apply 2))
+    \item If $\dim X<\infty$, $T$ is compact. (apply 2)
 
     \item (Diagonal Operator) $1\leq p \leq \infty$, $\lambda = (\lambda_n)_{n \in \natu}, \lambda_n \in \real$ and $\sup_n |\lambda_n|<\infty$. Then  
     $$
@@ -68,13 +69,13 @@ We return to this example after the following.
     This means $(\left\{T \in \mathcal{L}(X,Y): T \ \text{compact} \right\}, \norm{\cdot}_{\mathcal{L}(X,Y)}) \subset (\mathcal{L}(X,Y), \norm{\cdot}_{\mathcal{L}(X,Y)})$ is closed hence a Banach space.
 \end{remark}
 \begin{proof}
-    We will use \Cref{equivalent characterization of compact operators} iii) and the diagonal argument.  
+    We will use \Cref{equivalent characterisation of compact operators} iii) and the diagonal argument.  
 
     Let $(x_n)\subset X, \sup_n \norm{x_n}_X \leq C$ be bounded.  
     
     \underline{\textbf{Goal:}} Show $(Tx_n)$ has a Cauchy subsequence.  
 
-    Since $T_n$ is comapct, there exists subsequence $\Lambda_1 \subset \natu$ s.t.  
+    Since $T_n$ is compact, there exists subsequence $\Lambda_1 \subset \natu$ s.t.  
     \begin{center}
         $(T_1 x_n) \subset Y$ converges w.r.t. $\norm{\cdot}_Y$ as $n\to \infty, n\in \Lambda_1$   
     \end{center}
@@ -115,7 +116,7 @@ $$
     $$
     T_n: \ell^p \to \ell^p \qquad x \mapsto T_nx=(\lambda_0x_0,\ldots,\lambda_nx_n,0,0,\ldots)
     $$  
-    Then $\dim(im(T))\leq n$, since $im(T)\subset \{x\in \ell^p: x_i=0, \forall i>n\}$, so $T_n$ has finite rank, hence $T_n$ is compact (cf. \Cref{equivalent characterization of compact operators}).  
+    Then $\dim(im(T))\leq n$, since $im(T)\subset \{x\in \ell^p: x_i=0, \forall i>n\}$, so $T_n$ has finite rank, hence $T_n$ is compact (cf. \Cref{equivalent characterisation of compact operators}).  
     Moreover, for $x\in \ell^p$,  
     $$
     \norm{(T-T_n)x}_p = (\sum_{m>n} |\lambda_mx_m|^p)^{\frac{1}{p}} \leq \sup_{m\geq n} |\lambda_m| \norm{x}_p
@@ -131,7 +132,7 @@ $$
 \begin{enumerate}[1)]
     \item $A$ is well-defined and bounded:  
 $$
-Af(x) = \int_0^1 |Af(x)|^2 dx \overset{\text{Cauchy\ Schwarz}}{\leq} \underbrace{\int_0^1 dx \int_0^1 dy |a(x,y)|^2}_{\leq C} \norm{f}_2^2
+Af(x) = \int_0^1 |Af(x)|^2 dx \overset{\text{Cauchy\ Schwartz}}{\leq} \underbrace{\int_0^1 dx \int_0^1 dy |a(x,y)|^2}_{\leq C} \norm{f}_2^2
 $$
 \item $A$ is compact: let $(f_n) \subset X, \norm{f_n}_2 \leq M$. Check $(Af_n)$ is continuous, $\sup_n \norm{Af_n}_{\infty} < \infty$. 
 Moreover, let $\varepsilon>0$, we can pick $\delta>0$ s.t. $|a(x,y)-a(x',y')|<\varepsilon$ if $|x-x'|+|y-y'|<\varepsilon$ (uniform-continuity), we have  

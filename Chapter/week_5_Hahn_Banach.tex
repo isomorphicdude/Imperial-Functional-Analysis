@@ -257,6 +257,7 @@ Using Hahn-Banach, one can "separate" all sorts of things. Two examples:
 \paragraph{1) Separating points}  
 
 \begin{proposition}
+\label{dual elements separate points}
 $\forall x,y \in X$, $x\neq y$, there exists $\ell \in \dual{X}$, such that $\ell(x) \neq \ell(y)$
 \end{proposition}  
 
@@ -311,11 +312,12 @@ In particular, this gives
     We know $\ell^1$ is separable (use the set $\{\sum_{i=1}^n x_i e_i: x_i \in \qq, n \in \natu\}$), so if $(\ell^{\infty})^* \cong \ell^1$, then $(\ell^{\infty})^*$ is separable and so is $\ell^{\infty}$ by the theorem above. But $\ell^{\infty}$ is not separable.
 \end{proof} 
 
-From \Cref{existence of functional equals norm squared}, one gets a dual characterization of the norm:  
+From \Cref{existence of functional equals norm squared}, one gets a dual characterisation of the norm:  
 
 \begin{corollary}
 \phantom{something}
 \label{duality of norm}
+\label{dual characterisation of norm}
 \begin{enumerate}[i)]
     \item $\forall x \in X$: $\norm{x}_X = \underset{{\norm{x^*}_{\dual{X}} \leq 1}}{\sup} |\inne{\dual{x}}{x}|$
     \item $\forall \dual{x} \in \dual{X}$: $\norm{\dual{x}}_{\dual{X}} = \underset{{\norm{x}_X \leq 1}}{\sup} |\inne{\dual{x}}{x}|$

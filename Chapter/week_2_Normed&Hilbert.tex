@@ -9,166 +9,166 @@
 \maketitle
 
 
-\section{Separability}  
+\section{Separability}
 
 In this section, we will be working with metric spaces \((V, \rho)\).
 
 \begin{definition}[Separable]
-	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable, 
-	such that \(B_{\rho}(x, \varepsilon) \cap D \neq \varnothing, \forall x \in V, \forall \varepsilon >0\) 
+	A metric space $(V,\rho)$ is \textbf{separable} if \(\exists D \subset V\) countable,
+	such that \(B_{\rho}(x, \varepsilon) \cap D \neq \varnothing, \forall x \in V, \forall \varepsilon >0\)
 	(\textit{i.e.} D is dense in \(V\))
 \end{definition}
 
-Here \(B_{\rho}(x, \varepsilon)=\{y \in V: \rho (y,x) < \varepsilon\}\) is an open ball of radius \(\varepsilon\) 
-centered at \(x\). For convenience, $\rho$ is often dropped in the notation, writes $B(x, \varepsilon)$
+Here \(B_{\rho}(x, \varepsilon)=\{y \in V: \rho (y,x) < \varepsilon\}\) is an open ball of radius \(\varepsilon\)
+centred at \(x\). For convenience, $\rho$ is often dropped in the notation, writes $B(x, \varepsilon)$
 
 \begin{proposition}
 	\(\ell^p\) space is separable for \(p \in [1, \infty)\)
-\end{proposition}  
-Here $\ell^p$ actually denotes  \((\ell^p, \rho)\), where \(\rho\) is the metric indcued by the p-norm \(\norm{\cdot}_p\), 
+\end{proposition}
+Here $\ell^p$ actually denotes  \((\ell^p, \rho)\), where \(\rho\) is the metric induced by the p-norm \(\norm{\cdot}_p\),
 \textit{i.e.} \(\rho(x,y)=\norm{x-y}_p\)
 
 \begin{proof}
-	Consider \(D = \cup_{n\geq 1} D_n\), where  
+	Consider \(D = \cup_{n\geq 1} D_n\), where
 	\[ D_n = \{x=(x_n): x_n \in \mathbb{Q}, \forall n \in \natu, \ \text{and} \ x_k=0, \forall k >n\}\]
- Clearly $D_n \subset \ell^p$, hence $D\subset \ell^p$ and $D_n \cong \mathbb{Q}^n$ is countable, hence $D$ is also countable.   
+	Clearly $D_n \subset \ell^p$, hence $D\subset \ell^p$ and $D_n \cong \mathbb{Q}^n$ is countable, hence $D$ is also countable.
 
-\textbf{Claim:} $D$ is dense in $\ell^p$.  
+	\textbf{Claim:} $D$ is dense in $\ell^p$.
 
-Let $x = (x_n) \in \ell^p$ and $\varepsilon >0$ . First we build a $\norm{\cdot}_p-$close sequence $\widetilde{x}=(\widetilde{x}_n)$ with values in $\mathbb{Q}$. Since $\mathbb{Q} \subset \real$ is dense, we find for every $n$ a number $\widetilde{x}_n \in \qq$ s.t.  
+	Let $x = (x_n) \in \ell^p$ and $\varepsilon >0$ . First we build a $\norm{\cdot}_p-$close sequence $\widetilde{x}=(\widetilde{x}_n)$ with values in $\mathbb{Q}$. Since $\mathbb{Q} \subset \real$ is dense, we find for every $n$ a number $\widetilde{x}_n \in \qq$ s.t.
 
-$$
-|x_n-\widetilde{x}_n| \leq \left(\frac{\varepsilon}{2}\right) (2^{-\frac{n}{p}})
-$$  
+	$$
+		|x_n-\widetilde{x}_n| \leq \left(\frac{\varepsilon}{2}\right) (2^{-\frac{n}{p}})
+	$$
 
-This implies  
+	This implies
 
-\begin{equation}
-\label{1}
-    \norm{x-\widetilde{x}}_p^p = \sum_{n=1}^{\infty} |x_n-\widetilde{x}_n|^p \leq \left(\frac{\varepsilon}{2}\right)^p \sum_{n=1}^{\infty} 2^{-n}=\left(\frac{\varepsilon}{2}\right)^p
-\end{equation}
+	\begin{equation}
+		\label{1}
+		\norm{x-\widetilde{x}}_p^p = \sum_{n=1}^{\infty} |x_n-\widetilde{x}_n|^p \leq \left(\frac{\varepsilon}{2}\right)^p \sum_{n=1}^{\infty} 2^{-n}=\left(\frac{\varepsilon}{2}\right)^p
+	\end{equation}
 
-Note that this also implies $\widetilde{x} \in \ell^p$, since $\norm{\widetilde{x}}_p \leq \underbrace{\norm{\widetilde{x}-x}_p}_{<\infty}+\underbrace{\norm{x}_p}_{<\infty}$.  
+	Note that this also implies $\widetilde{x} \in \ell^p$, since $\norm{\widetilde{x}}_p \leq \underbrace{\norm{\widetilde{x}-x}_p}_{<\infty}+\underbrace{\norm{x}_p}_{<\infty}$.
 
-Since $\widetilde{x} \in \ell^p$, we have $\sum_n |\widetilde{x}_n|^p < \infty$ hence we can pick an $n$ s.t.  
+	Since $\widetilde{x} \in \ell^p$, we have $\sum_n |\widetilde{x}_n|^p < \infty$ hence we can pick an $n$ s.t.
 
-\begin{equation}
-\label{2}
-    \sum_{k\geq n} |\widetilde{x}_n|^p < \left(\frac{\varepsilon}{2}\right)^p
-\end{equation}
+	\begin{equation}
+		\label{2}
+		\sum_{k\geq n} |\widetilde{x}_n|^p < \left(\frac{\varepsilon}{2}\right)^p
+	\end{equation}
 
-Now define $y = (\widetilde{x}_1, \ldots, \widetilde{x}_n, 0, 0, \ldots,)$. Clearly, $y \in D_n$. Moreover, \Cref{2} asserts that $\norm{\widetilde{x}-y} < \frac{\varepsilon}{2}$. Combining with \Cref{1} and using the triangle inequality yields $\norm{x-y}_p < \varepsilon$, \textit{i.e.} $x\in B(y, \varepsilon)$.  
-\end{proof}  
+	Now define $y = (\widetilde{x}_1, \ldots, \widetilde{x}_n, 0, 0, \ldots,)$. Clearly, $y \in D_n$. Moreover, \Cref{2} asserts that $\norm{\widetilde{x}-y} < \frac{\varepsilon}{2}$. Combining with \Cref{1} and using the triangle inequality yields $\norm{x-y}_p < \varepsilon$, \textit{i.e.} $x\in B(y, \varepsilon)$.
+\end{proof}
 
 \begin{proposition}
-    $L^p(\real^n), p \in [1, \infty)$ is separable
-\end{proposition}  
+	$L^p(\real^n), p \in [1, \infty)$ is separable
+\end{proposition}
 
 \begin{proof}
-    (Sketch)  Consider  
-    $$
-    C = \left\{Q\: \text{\ dyadic\ cube}, i.e. \ Q = x + [0, 2^{-l}) \text{\ for\ some\ } x \in 2^{-l} \inte^n(\subset \real^n) \text{\ and\ } l\in \natu \cup \{0\}\right\}
-    $$   
-    Define  
-    $$
-    D = \left\{g = \sum_{k=1}^n a_k \mathbf{1}_{Q_k}: n\in \natu, a_k \in \qq, Q_k \in C \right\}
-    $$
-    \textbf{Claim:} D is dense in $L^p(\real^n), p \in [1, \infty)$  
+	(Sketch)  Consider
+	$$
+		C = \left\{Q\: \text{\ dyadic\ cube}, i.e. \ Q = x + [0, 2^{-l}) \text{\ for\ some\ } x \in 2^{-l} \inte^n(\subset \real^n) \text{\ and\ } l\in \natu \cup \{0\}\right\}
+	$$
+	Define
+	$$
+		D = \left\{g = \sum_{k=1}^n a_k \mathbf{1}_{Q_k}: n\in \natu, a_k \in \qq, Q_k \in C \right\}
+	$$
+	\textbf{Claim:} D is dense in $L^p(\real^n), p \in [1, \infty)$
 
-    Let $f \in L^p(\real^n)$. Assume $f \geq 0$ (else split into $f=f^+-f^-$)  
+	Let $f \in L^p(\real^n)$. Assume $f \geq 0$ (else split into $f=f^+-f^-$)
 
-    \textbf{Step 1} By approximation of simple functions, we can find $\widetilde{g}$ simple, s.t. $0 \leq \widetilde{g} \leq f$ and  
-    $$
-    \norm{f-\widetilde{g}} < \frac{\varepsilon}{3}
-    $$  
-    with $\widetilde{g}=\sum_{k=1}^m a_k \mathbf{1}_{A_k}$ for suitable $A_k \in \mathcal{B}(\real^n)$.  
+	\textbf{Step 1} By approximation of simple functions, we can find $\widetilde{g}$ simple, s.t. $0 \leq \widetilde{g} \leq f$ and
+	$$
+		\norm{f-\widetilde{g}} < \frac{\varepsilon}{3}
+	$$
+	with $\widetilde{g}=\sum_{k=1}^m a_k \mathbf{1}_{A_k}$ for suitable $A_k \in \mathcal{B}(\real^n)$.
 
-    \textbf{Step 2} We can find a sequence of simple functions $\hat{g}$ with coefficients $a_l \to a_k$ where $a_l\in \qq$ such that  
-    $$
-    \norm{\hat{g}-\widetilde{g}} < \frac{\varepsilon}{3}
-    $$  
+	\textbf{Step 2} We can find a sequence of simple functions $\hat{g}$ with coefficients $a_l \to a_k$ where $a_l\in \qq$ such that
+	$$
+		\norm{\hat{g}-\widetilde{g}} < \frac{\varepsilon}{3}
+	$$
 
-    \textbf{Step 3} For each $A_k$, we can find $O_k$ open s.t.  
-    $$
-    \lambda(O_k\setminus A_k) < \frac{\varepsilon}{6} 2^{-k}
-    $$
-    And we can approximate $O_k$ using dyadic cubes with precision $\frac{\varepsilon}{6} 2^{-k}$
-\end{proof}  
+	\textbf{Step 3} For each $A_k$, we can find $O_k$ open s.t.
+	$$
+		\lambda(O_k\setminus A_k) < \frac{\varepsilon}{6} 2^{-k}
+	$$
+	And we can approximate $O_k$ using dyadic cubes with precision $\frac{\varepsilon}{6} 2^{-k}$
+\end{proof}
 
-It is crucial that $\lambda(A_k) < \infty$, as  
+It is crucial that $\lambda(A_k) < \infty$, as
 
 $$
-\forall k \in \natu: |a_k|^p \lambda(A_k) \leq \norm{\widetilde{g}}_p \leq \norm{f}_p < \infty
-$$  
+	\forall k \in \natu: |a_k|^p \lambda(A_k) \leq \norm{\widetilde{g}}_p \leq \norm{f}_p < \infty
+$$
 
-see also MATH50006 proof of (4.13). 
+see also MATH50006 proof of (4.13).
 
 \begin{definition}[Schauder basis]
 
-Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence of linearly independent $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
-$$
-\norm{x - \lim_{n\to\infty}\sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
-$$
+	Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence of linearly independent $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
+	$$
+		\norm{x - \lim_{n\to\infty}\sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
+	$$
 \end{definition}
 
 
 \begin{proposition}[Schauder implies separability]
-\label{Schauder implies separability}
+	\label{Schauder implies separability}
 	If $(X, \norm{\cdot})$ has a Schauder basis, then it is separable.
-\end{proposition}  
+\end{proposition}
 
 \begin{proof}
-    Define the set $D \subset X$ as,  
-    $$
-    D = \left\{\sum_{i=1}^n q_i e_i: q_i \in \qq \right\}
-    $$  
-    where $(e_i)$ is a Schauder basis. (if $X$ is over $\mathbb{C}$, then use $q \in \qq + i \qq$)
-    
-    Then by definition, one can find $n$ and $x_i$ such that  
-    \begin{equation}
-        \label{3}
-        \norm{x - \sum_{i=1}^n x_i e_i} \leq \frac{\varepsilon}{2}  
-    \end{equation}
-    Choose $q_i \in \qq$ such that $|q_i - x_i|<\frac{\varepsilon}{2n \sum_{i=1}^n \norm{e_i}}$, we have  
-    \begin{equation}
-    \label{4}
-        \norm{\sum_{i=1}^n x_i e_i - \sum_{i=1}^n q_i e_i} \leq \sum_{i=1}^n |x_i-q_i| \norm{e_i} \leq \frac{\varepsilon}{2}
-    \end{equation}
-    Using triangle inequality and \Cref{3}, \Cref{4} above, we see
-    $$
-    \norm{x-\sum_{i=1}^n q_i e_i} < \frac{\varepsilon}{2}
-    $$
+	Define the set $D \subset X$ as,
+	$$
+		D = \left\{\sum_{i=1}^n q_i e_i: q_i \in \qq \right\}
+	$$
+	where $(e_i)$ is a Schauder basis. (if $X$ is over $\mathbb{C}$, then use $q \in \qq + i \qq$)
+
+	Then by definition, one can find $n$ and $x_i$ such that
+	\begin{equation}
+		\label{3}
+		\norm{x - \sum_{i=1}^n x_i e_i} \leq \frac{\varepsilon}{2}
+	\end{equation}
+	Choose $q_i \in \qq$ such that $|q_i - x_i|<\frac{\varepsilon}{2n \sum_{i=1}^n \norm{e_i}}$, we have
+	\begin{equation}
+		\label{4}
+		\norm{\sum_{i=1}^n x_i e_i - \sum_{i=1}^n q_i e_i} \leq \sum_{i=1}^n |x_i-q_i| \norm{e_i} \leq \frac{\varepsilon}{2}
+	\end{equation}
+	Using triangle inequality and \Cref{3}, \Cref{4} above, we see
+	$$
+		\norm{x-\sum_{i=1}^n q_i e_i} < \frac{\varepsilon}{2}
+	$$
 \end{proof}
 
 \begin{remark}
-    The converse of \Cref{Schauder implies separability} is not true, Per Enflo constructed a counter example that is Banach in \href{https://projecteuclid.org/download/pdf_1/euclid.acta/1485889774}{this paper}.
+	The converse of \Cref{Schauder implies separability} is not true, Per Enflo constructed a counter example that is Banach in \href{https://projecteuclid.org/download/pdf_1/euclid.acta/1485889774}{this paper}.
 \end{remark}
 
 \begin{example}
-    A Schauder basis of $\ell^p, p\in [1, \infty)$ is $e_n=(0,\ldots, 0,1,0, \ldots,0,\ldots), n\in \natu$ (the $n^{th}$ entry is $0$).  
-    Take $x=(x_n)\in \ell^p$  
-    $$
-    \norm{x-\sum_{i=1}^n x_ie_i}_p^p = \sum_{i=n+1}^{\infty} |x_i|^p \overset{n\to \infty}{\longrightarrow} 0
-    $$  
-    since $\norm{x}_0 < \infty$.  
+	A Schauder basis of $\ell^p, p\in [1, \infty)$ is $e_n=(0,\ldots, 0,1,0, \ldots,0,\ldots), n\in \natu$ (the $n^{th}$ entry is $0$).
+	Take $x=(x_n)\in \ell^p$
+	$$
+		\norm{x-\sum_{i=1}^n x_ie_i}_p^p = \sum_{i=n+1}^{\infty} |x_i|^p \overset{n\to \infty}{\longrightarrow} 0
+	$$
+	since $\norm{x}_0 < \infty$.
 \end{example}
 
 
 
-\section{Hilbert Space}  
+\section{Hilbert Space}
 
-\begin{unexaminable}
-Hilbert space is a special class of Banach space. 
-Apart from completeness and norm, it is also equipped with an additional structure, 
-{\bf inner product}. This allows us to explore nice geometric properties of the space, 
-like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
-\end{unexaminable}
+\begin{comment}
+	Hilbert space is a special class of Banach space.
+	Apart from completeness and norm, it is also equipped with an additional structure,
+	{\bf inner product}. This allows us to explore nice geometric properties of the space,
+	like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
+\end{comment}
 
 In this section we work with linear space $H$ over $\mathbb{K} = \real$. For convenience, we do not study Hilbert space over$\mathbb{ C}$ in this section.
 
 
 \begin{definition}
-[Inner Product]
+	[Inner Product]
 	Let $H$ be a vector space over $\real$. An {\bf inner product} is a bilinear map (i.e. linear in both argument):
 	$H\times H\to\real$, $(x,y)\mapsto \inne{x}{y}$ satisfying:
 	\begin{itemize}
@@ -182,175 +182,175 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 
 
 \begin{theorem}
-	If $\left<\cdot,\cdot\right>$ is an inner product on $X$, define $\norm{x}\overset{\textrm{def}}{=}\sqrt{\inne{x}{x}}$.  
+	If $\left<\cdot,\cdot\right>$ is an inner product on $X$, define $\norm{x}\overset{\textrm{def}}{=}\sqrt{\inne{x}{x}}$.
 	\begin{enumerate}[i)]
-	    \item (Cauchy-Schwarz) $\ \forall x,y\in X$,
-	$$|\inne{x}{y}|^2\leq \norm{x} \norm{y}$$
-	\item $\norm{x}$ is a norm
-\end{enumerate}  
+		\item (Cauchy-Schwarz) $\ \forall x,y\in X$,
+		      $$|\inne{x}{y}|^2\leq \norm{x} \norm{y}$$
+		\item $\norm{x}$ is a norm
+	\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\begin{enumerate}[i)]
-    \item If $x=0$ or $y=0$, the inequality holds. Else, let $\xi = \frac{x}{\norm{x}}, \eta = \frac{y}{\norm{y}}$, so $\norm{\xi}=\norm{\eta}=1$. Hence 
-    $$0 \leq \norm{\eta-\inne{\xi}{\eta}\xi}^2=\norm{\eta}^2 - |\inne{\xi}{\eta}|^2=1-|\inne{\xi}{\eta}|^2$$  
-    so $|\inne{\xi}{\eta}| \leq 1$
-    \item Positivity and homogeneity follows from definition of $\inne{\cdot}{\cdot}$; and triangle inequality follows from i)  
-    $$
-    \norm{x+y}^2=\norm{x}^2 + 2 \inne{x}{y} + \norm{y}^2 \leq (\norm{x}+\norm{y})^2
-    $$
-\end{enumerate}
+	\begin{enumerate}[i)]
+		\item If $x=0$ or $y=0$, the inequality holds. Else, let $\xi = \frac{x}{\norm{x}}, \eta = \frac{y}{\norm{y}}$, so $\norm{\xi}=\norm{\eta}=1$. Hence
+		      $$0 \leq \norm{\eta-\inne{\xi}{\eta}\xi}^2=\norm{\eta}^2 - |\inne{\xi}{\eta}|^2=1-|\inne{\xi}{\eta}|^2$$
+		      so $|\inne{\xi}{\eta}| \leq 1$
+		\item Positivity and homogeneity follows from definition of $\inne{\cdot}{\cdot}$; and triangle inequality follows from i)
+		      $$
+			      \norm{x+y}^2=\norm{x}^2 + 2 \inne{x}{y} + \norm{y}^2 \leq (\norm{x}+\norm{y})^2
+		      $$
+	\end{enumerate}
 \end{proof}
 
 \begin{definition}[Hilbert space]
-    An inner product space $(H, \inne{\cdot}{\cdot})$ which is complete w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
+	An inner product space $(H, \inne{\cdot}{\cdot})$ which is complete w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
 \end{definition}
 
 \begin{example}[$L^2-$spaces]
-The space $L^2(\mu)$ for all measures $\mu$ is a Hilbert space with inner product $\inne{f}{g}=\int fg d\mu$ and $\inne{f}{f}=\norm{f}_2^2$    
+	The space $L^2(\mu)$ for all measures $\mu$ is a Hilbert space with inner product $\inne{f}{g}=\int fg d\mu$ and $\inne{f}{f}=\norm{f}_2^2$
 \end{example}
 
 \begin{example}[$l^2-$spaces]
-The sequence space
+	The sequence space
 	$\ell^2=
 		\left\{\{x_k\}_{k\in \natu}:\sum_{k=1}^\infty |x_k|^2<\infty \right\}$
-	is a Hilbert space with inner product defined by 
+	is a Hilbert space with inner product defined by
 	$
 		\inne{x}{y}=\sum_{k=1}^\infty \,{x_k \overline{y_k}}
 	$
 \end{example}
 
 \begin{theorem}
-[Nearest Point Property]\nextline
-\label{nearest point}
+	[Nearest Point Property]\nextline
+	\label{nearest point}
 	Let $H$ be a Hilbert space, $K\subset H$ be a closed, convex subset, then $\forall y \in H$ there exists a {\bf{unique}} $x_0\in K$ such that
 	$$
 		\delta \overset{\rm{def}}{=} \inf_{x\in K} \norm{x-y} = \norm{x_0-y}
 	$$
 \end{theorem}
 
-\begin{proof} 
-By considering the set $K-y = \{x-y: x\in K\}$ (still closed and convex), we can assume $y=0$.  
+\begin{proof}
+	By considering the set $K-y = \{x-y: x\in K\}$ (still closed and convex), we can assume $y=0$.
 
-\underline{\textbf{Existence:}}\nl
-By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\varepsilon >0$. Pick $N \in \natu$ such that  
+	\underline{\textbf{Existence:}}\nl
+	By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\varepsilon >0$. Pick $N \in \natu$ such that
 
-$$
-\forall n \geq N \qquad \norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4}
-$$  
+	$$
+		\forall n \geq N \qquad \norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4}
+	$$
 
-$K$ being convex implies that $\frac{x_n+x_n}{2} \in K, \forall n,m \in \natu$, which implies by definition of $\delta$, $\norm{x_n+x_m} \geq 2\delta$.  
+	$K$ being convex implies that $\frac{x_n+x_n}{2} \in K, \forall n,m \in \natu$, which implies by definition of $\delta$, $\norm{x_n+x_m} \geq 2\delta$.
 
-It follows that for all $n,m \geq N$,  
+	It follows that for all $n,m \geq N$,
 
-\begin{equation*}
-    \norm{x_n-x_m}^2 = \underbrace{2(\norm{x_n}^2+\norm{x_m}^2)}_{< 2\delta^2 + \varepsilon^2 /2} \underbrace{-\norm{x_n+x_m}^2}_{\leq 4\delta^2} < \varepsilon^2
-\end{equation*}  
+	\begin{equation*}
+		\norm{x_n-x_m}^2 = \underbrace{2(\norm{x_n}^2+\norm{x_m}^2)}_{< 2\delta^2 + \varepsilon^2 /2} \underbrace{-\norm{x_n+x_m}^2}_{\leq 4\delta^2} < \varepsilon^2
+	\end{equation*}
 
-where we have used the Parallelogram law (\Cref{parallelogram}).  
+	where we have used the Parallelogram law (\Cref{parallelogram}).
 
-By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$ and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.  
+	By completeness, $\exists x_0 \ $ s.t. $x_k \to x_0$ as $k \to \infty$. Since $K$ is closed, the limit $x_0\in K$ and $\norm{x_0}=\delta$ by continuity of the norm $\norm{\cdot}$.
 
-\underline{\textbf{Uniqueness:}}\nl
-Take $x_0, x_1 \in K$ with $\norm{x_0}=\norm{x_1}=\delta$ and assume $x_0\neq x_1$, then $\frac{1}{2}(x_0+x_1) \in K$ by convexity and so $\norm{x_0+x_1}\geq 2\delta$. By the Parallelogram law,  
-$$
-\norm{x_0-x_1}^2 = 2(\norm{x_0}^2 + \norm{x_1}^2) - \norm{x_0+x_1}^2 \leq 4\delta^2-4\delta^2= 0
-$$  
-So $x_0=x_1$, a contradiction.
-\end{proof}  
+	\underline{\textbf{Uniqueness:}}\nl
+	Take $x_0, x_1 \in K$ with $\norm{x_0}=\norm{x_1}=\delta$ and assume $x_0\neq x_1$, then $\frac{1}{2}(x_0+x_1) \in K$ by convexity and so $\norm{x_0+x_1}\geq 2\delta$. By the Parallelogram law,
+	$$
+		\norm{x_0-x_1}^2 = 2(\norm{x_0}^2 + \norm{x_1}^2) - \norm{x_0+x_1}^2 \leq 4\delta^2-4\delta^2= 0
+	$$
+	So $x_0=x_1$, a contradiction.
+\end{proof}
 
 \begin{remark}
-    A good example of $K$ convex is $K \subset H$ a subspace.
-\end{remark}  
+	A good example of $K$ convex is $K \subset H$ a subspace.
+\end{remark}
 
 \begin{proposition}[Parallelogram law]\rm\label{parallelogram}\nextline
 	Let $x,y\in H$, then
-        $$
+	$$
 		\norm{x+y}^2+\norm{x-y}^2=2\norm{x}^2+2\norm{y}^2
 	$$
 \end{proposition}
 \begin{unexaminable}
-    \begin{proof}
-    Then
-	\begin{equation}
-		\begin{split}
-			\norm{x+y}^2&=\inne{x+y}{x+y}\\
-			&=\inne{x}{x}+\inne{x}{y}+\inne{y}{x}+\inne{y}{y}\\
-			&=\inne{x}{x}+\inne{x}{y}+{\overline{\inne{x}{y}}}+\inne{y}{y}\\
-			&=\norm{x}^2+2Re(\inne{x}{y})+\norm{y}^2
-		\end{split}
-	\end{equation}
+	\begin{proof}
+		Then
+		\begin{equation}
+			\begin{split}
+				\norm{x+y}^2&=\inne{x+y}{x+y}\\
+				&=\inne{x}{x}+\inne{x}{y}+\inne{y}{x}+\inne{y}{y}\\
+				&=\inne{x}{x}+\inne{x}{y}+{\overline{\inne{x}{y}}}+\inne{y}{y}\\
+				&=\norm{x}^2+2Re(\inne{x}{y})+\norm{y}^2
+			\end{split}
+		\end{equation}
 
-	Similarly,
-	\begin{equation}
-		\begin{split}
-			\norm{x-y}^2&=\inne{x-y}{x-y}\\
-			&=\inne{x}{x}-\inne{x}{y}-\inne{y}{x}+\inne{y}{y}\\
-			&=\inne{x}{x}-\inne{x}{y}-{\overline{\inne{x}{y}}}+\inne{y}{y}\\
-			&=\norm{x}^2-2Re(\inne{x}{y})+\norm{y}^2
-		\end{split}
-	\end{equation}
- Adding up, we obtain the identity.  
-\end{proof}
+		Similarly,
+		\begin{equation}
+			\begin{split}
+				\norm{x-y}^2&=\inne{x-y}{x-y}\\
+				&=\inne{x}{x}-\inne{x}{y}-\inne{y}{x}+\inne{y}{y}\\
+				&=\inne{x}{x}-\inne{x}{y}-{\overline{\inne{x}{y}}}+\inne{y}{y}\\
+				&=\norm{x}^2-2Re(\inne{x}{y})+\norm{y}^2
+			\end{split}
+		\end{equation}
+		Adding up, we obtain the identity.
+	\end{proof}
 \end{unexaminable}
 
 
-If $H$ is Hilbert space,  a lot of geometric intuition from linear algebra prevails. For instance, call $x \perp y$ if $\inne{x}{y}=0$.  
+If $H$ is Hilbert space,  a lot of geometric intuition from linear algebra prevails. For instance, call $x \perp y$ if $\inne{x}{y}=0$.
 
-Then if $K\subset H$ is a closed subspace, $y \in H$, then \Cref{nearest point} applies with $x_0$ being a nearest point in $K$ to $y$ and  
+Then if $K\subset H$ is a closed subspace, $y \in H$, then \Cref{nearest point} applies with $x_0$ being a nearest point in $K$ to $y$ and
 
 $$
-z = y-x_0 \perp K
-$$  
-in other words, $z\perp x, \forall x \in K$.  
-
-Assume this is not true, then $\exists x \in K: \inne{z}{x} \neq 0$, then  
+	z = y-x_0 \perp K
 $$
-\norm{z - \frac{\inne{z}{x}}{\norm{x}^2}x}^2 = \underbrace{\norm{z}^2}_{=\delta} - \frac{|\inne{z}{x}|^2}{\norm{x}^2}<\delta
-$$  
-which violates the minimality of $x_0$.  
+in other words, $z\perp x, \forall x \in K$.
 
-More generally, one has  
+Assume this is not true, then $\exists x \in K: \inne{z}{x} \neq 0$, then
+$$
+	\norm{z - \frac{\inne{z}{x}}{\norm{x}^2}x}^2 = \underbrace{\norm{z}^2}_{=\delta} - \frac{|\inne{z}{x}|^2}{\norm{x}^2}<\delta
+$$
+which violates the minimality of $x_0$.
+
+More generally, one has
 
 
 \begin{definition}[Orthogonal Complement]\nextline
-    For $S\subset H$, $H$ a Hilbert space, we define the \textbf{orthogonal complement} 
-    $$
-    S^{\perp} \overset{\text{def.}}{=} \left\{y \in H: \inne{x}{y}=0, \forall x \in S \right\}
-    $$
-    We can also check that $S^{\perp}$ is closed.  
-\end{definition}  
+	For $S\subset H$, $H$ a Hilbert space, we define the \textbf{orthogonal complement}
+	$$
+		S^{\perp} \overset{\text{def.}}{=} \left\{y \in H: \inne{x}{y}=0, \forall x \in S \right\}
+	$$
+	We can also check that $S^{\perp}$ is closed.
+\end{definition}
 
 
 \begin{corollary}[Orthogonal Decomposition] \nextline
-Let $H$ be a Hilbert space and $E \subset H$ be a closed subspace. Then  
-$$
-H = E \oplus E^{\perp}
-$$  
-(\textit{i.e.} $E \cap E^{\perp} = \{0\}$ and $H = E + E^{\perp}$, that is $\forall x \in H, x=e+ e^{\perp}$ for some $e \in E, e^{\perp} \in E^{\perp}$)
+	Let $H$ be a Hilbert space and $E \subset H$ be a closed subspace. Then
+	$$
+		H = E \oplus E^{\perp}
+	$$
+	(\textit{i.e.} $E \cap E^{\perp} = \{0\}$ and $H = E + E^{\perp}$, that is $\forall x \in H, x=e+ e^{\perp}$ for some $e \in E, e^{\perp} \in E^{\perp}$)
 \end{corollary}
 
 \begin{proof}
-If $x \in E\cap E^{\perp}$, then $\inne{x}{x}=0$, so $\norm{x}=0$, $x=0$.  
+	If $x \in E\cap E^{\perp}$, then $\inne{x}{x}=0$, so $\norm{x}=0$, $x=0$.
 
-For all $x\in H$, the subspace $K\overset{\text{def.}}{=}x+E$ is closed and convex. 
-Thus, by \Cref{nearest point}, $\exists x_0 \in E$, s.t. $\norm{x-x_0} \leq \norm{x-\eta}, \forall \eta \in E$.
-\begin{unexaminable}
-    We show that every $x\in H$ can be written as $x=x_0+(x-x_0)$.
-\end{unexaminable}
+	For all $x\in H$, the subspace $K\overset{\text{def.}}{=}x+E$ is closed and convex.
+	Thus, by \Cref{nearest point}, $\exists x_0 \in E$, s.t. $\norm{x-x_0} \leq \norm{x-\eta}, \forall \eta \in E$.
+	\begin{unexaminable}
+		We show that every $x\in H$ can be written as $x=x_0+(x-x_0)$.
+	\end{unexaminable}
 
-We have, $\forall \eta \in E$:  
-\begin{equation*}
-    t=0 \text{\ is\ a\ minimum\ of\ } t\in [0,1] \mapsto \frac{1}{2} \norm{x-x_0+t\eta}^2
-\end{equation*} 
+	We have, $\forall \eta \in E$:
+	\begin{equation*}
+		t=0 \text{\ is\ a\ minimum\ of\ } t\in [0,1] \mapsto \frac{1}{2} \norm{x-x_0+t\eta}^2
+	\end{equation*}
 
-which is a quadratic function of $t$, therefore  
+	which is a quadratic function of $t$, therefore
 
-\begin{equation*}
-    0=\frac{d}{dt}\frac{1}{2} \norm{x-x_0+t\eta}^2 \Big|_{t=0} = t\norm{\eta}^2 + \inne{x-x_0}{\eta} \Big|_{t=0}=\inne{x-x_0}{\eta}
-\end{equation*}
+	\begin{equation*}
+		0=\frac{d}{dt}\frac{1}{2} \norm{x-x_0+t\eta}^2 \Big|_{t=0} = t\norm{\eta}^2 + \inne{x-x_0}{\eta} \Big|_{t=0}=\inne{x-x_0}{\eta}
+	\end{equation*}
 
-\textit{i.e.} $(x-x_0) \in E^{\perp}$ and $x=x_0+(x-x_0) \in E+E^{\perp}$
+	\textit{i.e.} $(x-x_0) \in E^{\perp}$ and $x=x_0+(x-x_0) \in E+E^{\perp}$
 \end{proof}
 
 
