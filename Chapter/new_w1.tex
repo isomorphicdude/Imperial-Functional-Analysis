@@ -57,7 +57,7 @@ In this course: linear space is (almost always): Banach space or Hilbert space.
 
 
 Choices of measure space:\\
-Example 0: $X=\{1,2,....,n\}$, $\mathcal{A}=2^X$, $\mu(\{\})k=1\,\forall k=1,...,n$, counting measure on $X$, extended to measure by additivity.\\
+\underline{Example 0}:\\ $X=\{1,2,....,n\}$, $\mathcal{A}=2^X$, $\mu(\{\})k=1\,\forall k=1,...,n$, counting measure on $X$, extended to measure by additivity.\\
 Every function $f:X\to\real$ is simple
 $$
 	f(x)=\sum^n_{k=1}f(k)1_{\{k\}}(x)\qquad 1_A(x)=
@@ -78,7 +78,7 @@ $$
 $$
 which are finite dimensional vector spaces over $\real$ (linear algebra).
 
-Example 1\\
+\underline{Example 1}:\\
 Same with $X=\natu=\{1,2,3,...\}\mathrel{\leadsto} \ell^p$, "Little-l-p",\\
 i.e. $\mu(\{k\})=1\,\forall k\in\natu$, extended to measure by $\sigma$-additivity, i.e.
 $$
@@ -113,8 +113,8 @@ More generally, $x\subset \real^n$ open/closed $\mathrel{\leadsto} L^P(X)$, e.g.
 \begin{theorem}
 	Let $(X,\mathcal{A},\mu)$ be {\underline {any}} measure space. Then:
 	\begin{itemize}
-		\item [i)] $\norm{f}_p$ defines a \underline{norm} $\forall p\in[1,\infty]$.
-		\item [ii)] Holders inequality holds:\inc
+		\item [i)] $\norm{f}_p$ defines a \underline{norm} $\forall p\in[1,\infty]$, triangular inequality (Minkowski ineq.) holds: $\norm{f+g}_p\leq\norm{f}_p+\norm{g}_p$.
+		\item [ii)] Holders inequality holds: if $\frac{1}{p}+\frac{1}{q}=1$ with $p,q\in[1,\infty]$, then $\forall f\in L^p(\mu),\,\forall g\in L^q(\mu)$, then $f\cdot g\in L^1(\mu)$ and $\norm{fg}_{L^1(\mu)}\leq\norm{f}_{L^1(\mu)}\norm{g}_{L^1(\mu)}$
 		\item [iii)] $L^p(\mu)$ is complete
 	\end{itemize}
 \end{theorem}
@@ -151,35 +151,41 @@ More generally, $x\subset \real^n$ open/closed $\mathrel{\leadsto} L^P(X)$, e.g.
 	\item [3] show $f\in X$
 \end{itemize}
 
-Proof:\\
-\underline{STEP I}\\
-Let $(f_n)\subset C$ be Cauchy sequence, i.e. $\forall \varepsilon>0,\,\exists N,\,\forall m,n\geq N:\,\norm{f_m-f_n}_\infty<\varepsilon$.\\
+Proof: \\
+\underline{STEP I}  Let $(f_n)\subset C$ be Cauchy sequence, i.e. $\forall \varepsilon>0,\,\exists N,\,\forall m,n\geq N:\,\norm{f_m-f_n}_\infty<\varepsilon$.\\
 But $\norm{f_n-f_m}_\infty\geq|f_n(x)-f_m(x),\,\forall x\in[0,1]$ so $\left(f_n(x)\right)$ is Cauchy sequence in $\real$ $\forall  x\in[0,1]$. Since $\real$ is complete, it has a limit. Call it $f(x)=\lim_{n\to\infty}f_n(x)$.\\
-\underline{STEP II}\\
+
+\underline{STEP II} 
 $|f_n(x)-f_m(x)|<\varepsilon\,\forall n,m\geq N,\,\forall x\in[0,1]$, which implies
 $\lim_{n\to\infty}|f_n(x)-f_m(x)|<\varepsilon$, we also have that $lim_{n\to\infty}|f_n(x)-f_m(x)|=|f(x)-f_m(x)|$ by continuity of $f$.\\
-\underline{STEP III}\\
-To show $f\in C$, need toargue $\forall x,\,\varepsilon>0,\,\exists\delta:\,|x-y|<\delta\implies |f(x)-f(y)|<\varepsilon$. Now we use $\varepsilon/3$ arguement. Write for any $n\in\natu$ and $x,y\in[0,1]$,
-$$
-	|f(x)-f(y)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|
-$$
+
+\underline{STEP III} 
+To show $f\in C$, need to argue 
+\[
+\forall x,\,\varepsilon>0,\,\exists\delta:\,|x-y|<\delta\implies |f(x)-f(y)|<\varepsilon \tag{$C1$}\label{C1}
+\]
+Now we use $\varepsilon/3$ argument. Write for any $n\in\natu$ and $x,y\in[0,1]$,
+\[
+	|f(x)-f(y)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\tag{$C2$}\label{C2}
+\]
 First, using STEP II, pick $n$ s.t. $\norm{f_n-f}_\infty<\frac{\varepsilon}{3}$, whence
-$$
-	|f(x)-f_n(x)|,\,|f(y)-f_n(y)|<\frac{\varepsilon}{3},\,\,\forall x,y\in[0,1]
-$$
+\[
+	|f(x)-f_n(x)|,\,|f(y)-f_n(y)|<\frac{\varepsilon}{3},\,\,\forall x,y\in[0,1]\tag{$C3$}\label{C3}
+\]
 Then, with $n$ now fixed, using continuity of $f_n$, pick $\delta>0$ s.t.
-$$
-	|f_n(x)-f_n(y)<\frac{\varepsilon}{3}\text{ whenever } |x-y|<\delta$$
-Substitute {\color{red}???} into ??? to get 1
+\[
+	|f_n(x)-f_n(y)<\frac{\varepsilon}{3}\text{ whenever } |x-y|<\delta\tag{$C4$}\label{C4}
+\]
+Substitute \Cref{C4},\Cref{C3} into \Cref{C2} to get \Cref{C1}.
 
 
 \begin{remark}
 	\begin{itemize}
-		\item 3)??? is well-known from analysis I-II. $\lim_{n\to\infty}\norm{f_n-f}_\infty=0$ is precisely the \underline{uniform convergence} of $(f_n)$ towards $f$. so 3 assrts that "uniform limit of a sequence of continuous functions is again continuous".
+		\item \cref{C3} is well-known from analysis I-II. $\lim_{n\to\infty}\norm{f_n-f}_\infty=0$ is precisely the \underline{uniform convergence} of $(f_n)$ towards $f$. so 3 asserts that "uniform limit of a sequence of continuous functions is again continuous".
 		\item $f_n(x)=x^n$ is not a Cauchy sequence in $(c,\norm{\cdot}\infty$, yet $f_n(x)\xrightarrow{n\to\infty} f(x)=1_{\{1\}}(x)$.
 		\item if instead consider $f_n(x)=x^n$ to be elements of $L^1([0,1])$:
 		      $$\int_0^1f_n{\rm d}x=\left.\frac{x^{n+1}}{n+1}\right|^1_0=\frac{1}{n+1}<\infty$$
-		      Then $(f_n)\subset L^1([0,1])$ a Cauchy sequence(Ex.), and converges by theorem?????. The limit in $L^1([0,1])$ is $f=0$:
+		      Then $(f_n)\subset L^1([0,1])$ a Cauchy sequence(Ex.), and converges by  completeness of $L^p(\mu)$. The limit in $L^1([0,1])$ is $f=0$:
 		      $$\norm{f_n}_{L^1([0,1])}=\norm{f_n-0}_{L^1([0,1])}=(n+1)^{-1}\xrightarrow{n\to\infty}0$$
 	\end{itemize}
 
