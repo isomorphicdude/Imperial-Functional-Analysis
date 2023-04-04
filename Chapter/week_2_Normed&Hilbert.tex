@@ -141,7 +141,7 @@ see also MATH50006 proof of (4.13).
 \end{proof}
 
 \begin{remark}
-	The converse of \Cref{Schauder implies separability} is not true, Per Enflo constructed a counter example that is Banach in \href{https://projecteuclid.org/download/pdf_1/euclid.acta/1485889774}{this paper}.
+	The converse of \Cref{Schauder implies separability} is not true, Per Enflo constructed a counter example that is Banach in \href{https://projecteuclid.org/download/pdf_1/euclid.acta/1485889774}{\textcolor{blue}{this paper}}.
 \end{remark}
 
 \begin{example}
@@ -164,7 +164,7 @@ see also MATH50006 proof of (4.13).
 	like orthogonality and angle. We'll see later that this structure resemble Euclidean space in many ways. A Hilbert space is naturally Banach, while the reverse may not be true.
 \end{comment}
 
-In this section we work with linear space $H$ over $\mathbb{K} = \real$. For convenience, we do not study Hilbert space over$\mathbb{ C}$ in this section.
+In this section we work with linear space $H$ over $\mathbb{K} = \real$. For convenience, we do not study Hilbert space over $\mathbb{ C}$ in this section.
 
 
 \begin{definition}
@@ -174,9 +174,11 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 	\begin{itemize}
 		\item Symmetric: $\left<x,y\right>={{\left<y,x\right>}},\forall x,y\in H$
 		\item Positive definite: $\left<x,x\right>\geq0$,$\left<x,x\right>=0$ iff $x=0$
-	\end{itemize}
-	is called \underline{inner product}.\\
-	$(H,\inne{\cdot}{\cdot})$, a vector space equipped with an inner product is called an inner product space.
+	\end{itemize}  
+\end{definition}
+
+\begin{definition}[Inner Product Space]
+    $(H,\inne{\cdot}{\cdot})$, a vector space equipped with an inner product is called an inner product space.
 \end{definition}
 
 
@@ -203,7 +205,7 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 \end{proof}
 
 \begin{definition}[Hilbert space]
-	An inner product space $(H, \inne{\cdot}{\cdot})$ which is complete w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
+	An inner product space $(H, \inne{\cdot}{\cdot})$ which is \textit{complete} w.r.t. the metric induced by $\norm{\cdot}=\sqrt{\inne{\cdot}{\cdot}}$ is called a \textbf{Hilbert space}
 \end{definition}
 
 \begin{example}[$L^2-$spaces]
@@ -236,7 +238,7 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 	By definition of $\delta$, $\exists (x_n)_{n \in \natu}$, $x_n\in K$ such that $\lim_{n \to \infty} \norm{x_n}=\delta$. We show that $(x_n)_{n \in \natu}$ is a Cauchy sequence. Let $\varepsilon >0$. Pick $N \in \natu$ such that
 
 	$$
-		\forall n \geq N \qquad \norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4}
+		\norm{x_n}^2 < \delta^2 + \frac{\varepsilon^2}{4} \qquad \forall n \geq N
 	$$
 
 	$K$ being convex implies that $\frac{x_n+x_n}{2} \in K, \forall n,m \in \natu$, which implies by definition of $\delta$, $\norm{x_n+x_m} \geq 2\delta$.
@@ -300,17 +302,17 @@ If $H$ is Hilbert space,  a lot of geometric intuition from linear algebra preva
 Then if $K\subset H$ is a closed subspace, $y \in H$, then \Cref{nearest point} applies with $x_0$ being a nearest point in $K$ to $y$ and
 
 $$
-	z = y-x_0 \perp K
+	z = (y-x_0) \perp K
 $$
 in other words, $z\perp x, \forall x \in K$.
 
-Assume this is not true, then $\exists x \in K: \inne{z}{x} \neq 0$, then
+To see this, assume for the sake of contradiction, $\exists x \in K: \inne{z}{x} \neq 0$, then
 $$
 	\norm{z - \frac{\inne{z}{x}}{\norm{x}^2}x}^2 = \underbrace{\norm{z}^2}_{=\delta} - \frac{|\inne{z}{x}|^2}{\norm{x}^2}<\delta
 $$
 which violates the minimality of $x_0$.
 
-More generally, one has
+More generally, one has the following definition.  
 
 
 \begin{definition}[Orthogonal Complement]\nextline

@@ -24,7 +24,7 @@ In this section, let $X$ be a linear space.
     If $\dim X < \infty$ (\textit{i.e.} $X \cong \mathbb{K}^n$ for some $n \geq 1$), any two norms on $X$ are equivalent.
 \end{proposition}
 \begin{proof}
-    cf. Page 44 Notes, Theorem 9.
+    cf. Page 44 Notes, Theorem 9. 
 \end{proof}
 
 However, this is not true in infinite dimensional spaces.  
@@ -192,7 +192,9 @@ Compactness of the unit ball characterises in fact finite dimensional spaces.
     $$  
     Set $x = \frac{x^*-y^*}{\norm{x^*-y^*}}$, then i) is satisfied and for all $y\in Y$ one has  
     $$
-    \norm{x-y} = \frac{x^*-y^*-\norm{x^*-y^*}y}{\norm{x^*-y^*}} \geq \frac{d}{\norm{x^*-y^*}} > 1-\varepsilon
+    \norm{x-y} = \norm{\frac{x^*-(y^*+\norm{x^*-y^*}y)}{\norm{x^*-y^*}}}=
+    %\frac{\norm{x^*-\overbrace{(y^*+\norm{x^*-y^*}y)}^{\in Y}}}{\norm{x^*-y^*}} 
+    \geq \frac{d}{\norm{x^*-y^*}} > 1-\varepsilon
     $$
 \end{proof}
 
