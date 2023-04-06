@@ -120,6 +120,7 @@ Note that the "completeness" assumption depends and by conclusion is purely topo
 \end{remark}
 
 \begin{remark}
+\label{Baire remark}
 \begin{enumerate}[1)]
     \item $\qq = \bigcup_{x\in \qq} \{x\} \subset \real (=X)$ is meager. What about $\real \setminus \qq$? (this is fat. Why?)
     \item Under the assumption of \Cref{baire category}, if $A\subset X$  
@@ -186,9 +187,11 @@ Baire's category theorem leads to UBP. The first instance of this is not a 'line
 
 Incorporating the linear structure, this leads to the following.  
 
-\begin{corollary}[Banach-Steinhaus]
+\begin{corollary}[Banach-Steinhaus]\nl
 \label{banach steinhaus}
-Let $X,Y$ be normed vector spaces and $X$ is complete. $(A_\lambda)_{\lambda \in \Lambda} \subset \mathcal{L}(X,Y)$. If $(A_{\lambda})_{\lambda \in \Lambda}$ are bounded pointwise \textit{i.e.}  
+Let $X,Y$ be normed vector spaces and $X$ is complete.  
+
+Let $(A_\lambda)_{\lambda \in \Lambda} \subset \mathcal{L}(X,Y)$. If $(A_{\lambda})_{\lambda \in \Lambda}$ are bounded pointwise \textit{i.e.}  
 $$
 \sup_{\lambda \in \Lambda} \norm{A_\lambda x}_Y < \infty \qquad \forall x\in X
 $$  
@@ -264,5 +267,78 @@ An application of \Cref{banach steinhaus} is the following.
 \end{remark}
 
 \subsection{Baire's Original Problem}
-Unexaminable
+Let $(f_n)_{n\geq 1}$ be a sequence of continuous functions $f_n: [0,1] \to \real$ and converges pointwise, \textit{i.e.}  
+$$
+f(x) = \lim_{n\to\infty} f_n(x) \ \text{exists} \ \forall x \in [0,1]
+$$  
+\textbf{Question:} Does $f$ have points of continuity?  
+
+The answer is given by the following theorem.  
+
+\begin{theorem}[Baire]\nl
+    Let $(X,d)$ be a complete metric space and $(f_n)$ a sequence of continuous functions $f_n: X \to \real$, and for each $x\in X$, the point-wise limit 
+    $$
+    \lim_{n\to \infty} f_n(x) \defeq f(x) \in \real
+    $$
+    exists. Then 
+    $$
+    R \defeq \left\{ x\in \real: f \ \text{is\ continuous\ at}\ x\right\}
+    $$
+    is \textbf{dense} in $X$.
+\end{theorem}
+\begin{proof}
+    For $\varepsilon > 0, n\geq 1$ set  
+    $$
+    P_{n, \varepsilon} = \{x\in \real: |f_n(x)-f(x)|\leq \varepsilon\}
+    $$
+    and
+    $$
+    R_\varepsilon = \bigcup_{n=1}^\infty \interior(P_{n, \varepsilon})
+    $$
+    We have the following two claims.   
+    
+    \underline{\textbf{Claim 1:}} $\bigcap_{n=1}^\infty R_{\frac{1}{n}}=R$  
+    \begin{proof}
+        This can be checked by writing out explicitly what $x \in \bigcap_{n=1}^\infty R_{\frac{1}{n}}=\bigcap_{n=1}^\infty \bigcup_{m=1}^{\infty} \interior(P_{m,\frac{1}{n}})$ means, namely $\forall n\in \natu, \exists M \in \natu, \forall m \geq M, |f_m(x)-f(x)|<\frac{1}{n}$, as the sets $\interior(P_{m,\frac{1}{n}})$ are increasing in $n$. By the usual '$3\varepsilon$' argument, for any $\varepsilon>0$, we can find $|x-y|<\delta$, so that $ |f_n(x)-f_n(y)|<\frac{\varepsilon}{3}$ and we choose $n$ accordingly to let $\frac{1}{n}<\frac{\varepsilon}{3}$ such that
+        \begin{align*}
+            |f(x)-f(y)|&\leq|f(x)-f_n(x)|+ |f_n(x)-f_n(y)|+|f_n(y)-f(y)| < \varepsilon
+        \end{align*}
+        which shows the continuity.
+    \end{proof}
+    
+    \underline{\textbf{Claim 2:}} $R_\varepsilon$ is open and dense for all $\varepsilon>0$.  
+    \begin{proof}
+        $R_\varepsilon$ is open, as it is a countable union of open sets.  
+
+        For density, consider $F_{n,\varepsilon}=\bigcap_{k\geq 1} \left\{ x: |f_n(x)-f_{n+k}(x)|\leq \varepsilon\right\}$, which is closed.  
+
+        Since $f_{n+k}(x) \overset{k\to \infty}{\longrightarrow} f(x)$, we have $F_{n,\varepsilon}\subseteq P_{n, \varepsilon}$. % This needs to be checked 
+        \todo{check the direction of inclusion}
+        Also, since $f_n(x)\overset{n\to \infty}{\longrightarrow} f(x)$, we have 
+        $$
+        \bigcup_{n=1}^\infty P_{n, \varepsilon} = X \qquad  \forall \varepsilon >0
+        $$
+        Let $A_{n,\varepsilon} = \partial F_{n,\varepsilon}$, then $A_{n,\varepsilon}$ is closed and 
+        $$
+        \interior(A_{n,\varepsilon}) = \interior(\bar{A}_{n,\varepsilon} \setminus \interior(A_{n,\varepsilon})) = \emptyset
+        $$  
+        \textit{i.e.} $A_{n,\varepsilon}$ is nowhere dense. Hence the set 
+        $$
+        A_\varepsilon = \bigcup_{n\geq 1} A_{n,\varepsilon}
+        $$
+        is meager, also we have
+        \begin{align*}
+        A_\varepsilon &= \bigcup_{n\geq 1} A_{n,\varepsilon} \\
+        &\supseteq \left(\bigcup_{n\geq 1} F_{n, \varepsilon}\right) \setminus \left(\bigcup_{n\geq 1} \interior (F_{n, \varepsilon}) \right) \\
+        &\supseteq X \setminus \left(\bigcup_{n\geq 1} \interior (P_{n, \varepsilon}) \right) \\
+        &= X \setminus R_\varepsilon
+        \end{align*}
+        In other words, $R_\varepsilon \supseteq X\setminus A_\varepsilon$, which is dense by (Baire Category Thm. \Cref{Baire remark}).  
+        
+    \end{proof}
+    By Claim 2, $R_{\frac{1}{n}}$ is open and dense, so by Claim 1 $R$ is dense, as the countable intersection of open and dense sets is dense (Baire Category Thm.).
+\end{proof}
+\begin{remark}
+    As a corollary, the Dirichlet function $\mathbf{1}_\mathbb{Q}$ is nowhere continuous; hence there does not exist any continuous function $f_n: \real \to \real$  with $f_n \to \mathbf{1}_\mathbb{Q}$ point-wise.
+\end{remark}
 \end{document}
