@@ -1,11 +1,12 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\input{Chapter/commands.tex}
+\input{commands}
 \input{theoremstyle.tex}
+
 \title{Week 8}
 
 \begin{document}  
-\author{\aut}
+% \author{\aut}
 \maketitle
 \section{Weak vs. Strong topologies}
 Let $(X, || \cdot ||_X)$ be a normed linear space with dual space $X^*$ (over $\mathbb{R}$).
@@ -25,7 +26,7 @@ We have the following remarks about weak convergence.
     
     \item The converse of 1) is false. Let $x_n (= e_n) = (0,...,0,1,0,...) \in l^2$. $||x_n-x_m|| = \sqrt{2}, n\neq m$, so $x_n$ doesn't converge (strongly). But $x_n \xrightarrow{w} 0$: by Riesz Representation, $\ell(\cdot) = \inne{y}{\cdot}_{l^2}$ for some $y \in l^2$, Hence with $y=(y^n)_n$, $$\ell(x_n) = \inne{y}{x_n} = y^n \leq \sqrt{\Sigma_{k\geq n} {|y^k|}^2} \xrightarrow{n\rightarrow \infty} 0$$, since $||y||_2 < \infty$.
     
-    \item If $x_n \xrightarrow{w} x, x_n \xrightarrow{w} y$, then $x=y$. Assume not, \cref{dual elements separate points}, $\exists l \in X^*: \ell(x) \neq \ell(y)$ if $x\neq y$. With this $l$: $$\ell(x) = \lim_{n \to \infty} \ell(x_n) = \ell(y) $$ 
+    \item If $x_n \xrightarrow{w} x, x_n \xrightarrow{w} y$, then $x=y$. Assume not, by \Cref{dual elements separate points}, $\exists l \in X^*: \ell(x) \neq \ell(y)$ if $x\neq y$. With this $l$: $$\ell(x) = \lim_{n \to \infty} \ell(x_n) = \ell(y) $$ 
     ,a contradiction.
     
     \item $x_n \xrightarrow{w} x \Rightarrow \sup||x_n|| < \infty$. Consider $A_n \in \mathfrak{L}(X^*, \mathbb{R})$ ($=X^{**}$, the bidual) with $A_n(\ell) := \ell(x_n), \ell \in X^*$. $x_n \xrightarrow{w} x$ implies $\sup_n |A_n(l)| < \infty,$ $\forall l\in X^*$, and $X^*$ is complete so by Banach-Steinhaus: $$\sup_n ||A_n||_{\mathfrak{L}(X^*, \mathbb{R})} < \infty$$ 
@@ -76,7 +77,7 @@ with the same norm (Omit \textquotedblleft $[-1,1]$" henceforth) \\
 For $g\in L^1$, we define $\forall f\in L^\infty$
 
 $$\ell_g(f) = \int_{-1}^1 gf dx$$
-then $l_g\in (L^\infty)^*$.
+then $\ell_g\in (L^\infty)^*$.
 
 % \begin{unexaminable}
 % This is the canonical embedding of $L^1$ into $(L^1)^{**}=(L^{\infty})^*$, since $(L^1)^* = L^{\infty}$, every $\zeta \in (L^1)^*$ can be written as  
@@ -93,15 +94,15 @@ The claim implies that $\iota: L^1 \rightarrow (L^1)^{**}=(L^\infty)^*, g \mapst
 
 For $L^\infty$, use: $X$ reflexive $\Rightarrow$ $X^*$ reflexive (exercise).  
 
-\textbf{Proof of Claim:} Suppose $\exists g\in L^1$ s.t. $l=l_g$. For simplicity let $x_0=0$.\\
+\textbf{Proof of Claim:} Suppose $\exists g\in L^1$ s.t. $\ell=\ell_g$. For simplicity let $x_0=0$.\\
 Pick a bump function $\phi \in C^\infty [-1,1]: 0 \leq \phi \leq 1$
 
 $$
 \phi(x) = 1, \ x \in [-\frac{1}{2}, \frac{1}{2}] \qquad \text{and} \qquad \phi(x)=0, \ x=\pm 1
 $$
 
-For $n\leq 1: \phi_n(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \rightarrow 0 \ a.e.$.\\
-This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = l_g(\phi_n) = \int_{-1}^1 g\phi_n dx \rightarrow 0$$
+For $n\leq 1: \phi_n(x) := \phi(nx)$. Then $0\leq \phi_n \leq 1$, $\phi_n \overset{n\to \infty}{\longrightarrow} 0 \ a.e.$.\\
+This yields: $$1 = \phi_n(0)=\delta_{0}(\phi_n) = \ell(\phi_n) = \ell_g(\phi_n) = \int_{-1}^1 g\phi_n dx \overset{n\to \infty}{\longrightarrow} 0$$
 this is a contradiction.
 \end{proof}
 \begin{unexaminable}
@@ -158,7 +159,7 @@ In the following, we let $(X, \norm{\cdot})$ be a normed linear space, $X^*$ its
         \item norm/strong convergence: $\norm{\ell_n-\ell}_* \overset{n\to \infty}{\longrightarrow} 0$ (i.e. $\ell_n \to \ell$)
         \item weak convergence: $\ell_n \overset{w}{\longrightarrow} \ell$, i.e.  
         \begin{equation*}
-        \forall \xi \in X^{**}: \qquad \lim_{n\to \infty} \xi(\ell_n) = \xi(\ell)    \tag{**}
+        \forall \xi \in X^{**}: \qquad \lim_{n\to \infty} \xi(\ell_n) = \xi(\ell)    \tag{$**$}
         \end{equation*}
         \item weak*-convergence: $\ell_n \overset{w^*}{\longrightarrow} \ell$: equivalent to asking $(**)$ for $\xi \in \iota(X)$ only. 
     \end{enumerate}
@@ -169,7 +170,7 @@ In the following, we let $(X, \norm{\cdot})$ be a normed linear space, $X^*$ its
 \end{remark}
 
 \begin{theorem}[Banach-Alaoglu]\nl
-\label{Banach-Alaoglu}
+\label{thm: Banach-Alaoglu}
 Let $X$ be separable. If $(\ell_n) \subset X^*$ is bounded (in $X^*$) there exists $\ell\in X^*$ and a subsequence $\Lambda \subset \natu$ s.t.  
 $$
 \ell_n \overset{w^*}{\longrightarrow} \ell \qquad n \to \infty, n\in \Lambda
@@ -204,23 +205,27 @@ $$
 \end{proof}  
 
 \begin{remark}
-    \begin{enumerate}[1)]
-        \item If $X$ is reflexive, separability can be removed. Together with {\color{red} todo!!!!!!!!!!!}
-
-        \item As a corollary, for $H$ Hilbert. If $(x_n) \subset H$ is bounded ($\sup_n \norm{x_n}_H < \infty$), then $(x_n)$ has a weakly convergent subsequence.  
-    \end{enumerate}
+\label{remark: reflexivity in Banach Alaoglu}
+    If $X$ is reflexive, separability can be removed. 
 \end{remark}
 
-Unless $\dim H<\infty$, one \textbf{cannot} replace weak by strong in 2).
+Together with \Cref{thm: Banach-Alaoglu} and \Cref{remark: reflexivity in Banach Alaoglu}, this gives immediately:
+
+\begin{corollary}
+\label{corollary: hilbert weak convergence}
+For $H$ Hilbert. If $(x_n) \subset H$ is bounded ($\sup_n \norm{x_n}_H < \infty$), then $(x_n)$ has a weakly convergent subsequence. 
+\end{corollary}
+
+Unless $\dim H<\infty$, one \textbf{cannot} replace weak by strong in \Cref{corollary: hilbert weak convergence}.
 
 \begin{example}
     \begin{enumerate}[i)]
         \item $X = L^1[0,1]$ is separable, $X^* \cong L^{\infty}$.
-        If $(f_n) \subset L^{\infty}$ is bounded, i.e. $\sup \norm{f_n}_\infty < \infty$, \Cref{Banach-Alaoglu} yields a subsequence $(n_k)_k \subset \natu$ and $f\in L^{\infty}$ s.t.  
+        If $(f_n) \subset L^{\infty}$ is bounded, i.e. $\sup \norm{f_n}_\infty < \infty$, \Cref{thm: Banach-Alaoglu} yields a subsequence $(n_k)_k \subset \natu$ and $f\in L^{\infty}$ s.t.  
         $$
         \lim_{k \to \infty} \int f_{n_k}g dx = \int fg dx, \qquad \forall g\in L^1
         $$
-        \item $X = L^{\infty}(=L^{\infty}[0,1])$ is not separable (and also not reflexive). The following example shows that the conclusions of \Cref{Banach-Alaoglu} fail in this case. 
+        \item $X = L^{\infty}(=L^{\infty}[0,1])$ is not separable (and also not reflexive). The following example shows that the conclusions of \Cref{thm: Banach-Alaoglu} fail in this case. 
         
         For $0<\varepsilon\leq 1$ consider,  
         $$
@@ -248,9 +253,9 @@ Unless $\dim H<\infty$, one \textbf{cannot} replace weak by strong in 2).
             so $(T_{\varepsilon_k} f)_k$ accumulates at $\pm 1$ and is thus divergent.
         \end{proof}
 
-    \item If instead consider $X = C^0[0,1]\subset L^{\infty}$, a separable closed subspace, then \Cref{Banach-Alaoglu} applies to $T_\varepsilon \mid_X$. Indeed, one immediately sees that  
+    \item If instead consider $X = C^0[0,1]\subset L^{\infty}$, a separable closed subspace, then \Cref{thm: Banach-Alaoglu} applies to $T_\varepsilon \mid_X$. Indeed, one immediately sees that  
     $$
-    T_\varepsilon f \overset{\varepsilon \downarrow 0}{\longrightarrow} f(0), i.e. \qquad T_\varepsilon \overset{w^*}{\rightarrow} \delta_0 \ (\varepsilon \downarrow 0)
+    T_\varepsilon f \overset{\varepsilon \downarrow 0}{\longrightarrow} f(0), \qquad i.e. \ T_\varepsilon \overset{w^*}{\rightarrow} \delta_0 \ (\varepsilon \downarrow 0)
     $$
     where $\delta_0$ is the Dirac delta functional at $0$ defined in \Cref{non-reflexive space}.
     \end{enumerate}
@@ -263,4 +268,15 @@ One possible error in this note is in Remark 1), where the inequality $|\ell(x_n
 
 The most difficult part of the note may be the Banach-Steinhaus theorem in Remark 1), which is a deep result in functional analysis. To improve this note, the author could consider providing more intuition and examples for the Banach-Steinhaus theorem and its application to weak convergence. The author could also provide more examples of reflexive spaces and explain why they are important. Additionally, the author could include exercises and solutions to help students practice and reinforce their understanding of the material.
 \end{comment}
+
+\begin{unexaminable}
+    \begin{proposition}
+        $X$ reflexive $\implies$ $X^*$ reflexive
+    \end{proposition}
+    \begin{proof}(Sketch)
+        If $X$ is reflexive, then the isometric embedding $\iota: X\to X^{**}$ is bijective and has a bijectve inverse $\iota^{-1}$.  
+
+        Consider the dual operator of $\iota$ given by $\iota^*:(X^{**})^* \to X^*$. It is also bijective (which follows from the properties of dual operators) and has an inverse $(\iota^*)^{-1}$ which gives the isometric bijection between $X^*$ and its bidual $(X^*)^{**}$.  
+    \end{proof}
+\end{unexaminable}
 \end{document}

@@ -8,7 +8,7 @@
 \date{\today}
 
 \begin{document}
-\author{\aut}
+% \author{\aut}
 \maketitle
 
 \section{Duality}
@@ -62,7 +62,7 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
 
 \begin{proof}
 	\begin{enumerate}[i)]
-		\item We need to check the linearity and boundedness of the operator  \(\Lambda_y^*\). The former follows from the linearity of the inner product and the latter is proven by applying Cauchy-Schwarz
+		\item We need to check the linearity and boundedness of the operator  \(\Lambda_y^*\). The former follows from the linearity of the inner product and the latter is proved by applying Cauchy-Schwarz
 		      \begin{equation*}
 			      ||\Lambda_y||_* = \sup_{x\in H, ||x|| \leq 1} |\inne{y}{x}_H| \leq \norm{y}_H
 		      \end{equation*}
@@ -312,7 +312,7 @@ We note that this is an injective map from  \(H\) to its dual  \(H^*\) and we wi
 	\[A^*: Y^* \to X^*\]
 	is defined by
 	\[A^* y^* \overset{\rm{def}}{=} y^* \circ A \qquad \forall y^* \in Y^* \]
-	where \(A^* y^* : X \to \real\)
+	where \(A^* y^* : X \to \real\) is a linear functional in $X^*$.
 \end{definition}
 
 A note on the notation: For \(\ell \in X^*\), instead of \(\ell(x)\), we write \(\inne{\ell}{x}\). Then the above is equivalent to

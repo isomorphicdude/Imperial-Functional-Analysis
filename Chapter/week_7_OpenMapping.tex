@@ -6,7 +6,7 @@
 \title{Week 7}
 
 \begin{document}
-\author{\aut}
+% \author{\aut}
 \maketitle
 % This file is made purely according to Written note
 \section{Open mapping theorem}
@@ -22,7 +22,7 @@ $$
 \end{definition}
 
 \begin{definition}[Open map]\nl
-	Let $X$, $Y$ be linear spaces. \func{A}{X}{Y} is {\underline{open}} if $A(U)\subset Y $ is open.
+	Let $X$, $Y$ be linear spaces. \func{A}{X}{Y} is \textbf{open} if $A(U)\subset Y $ is open.
 \end{definition}
 \begin{remark}
 \phantom{something}
@@ -46,9 +46,9 @@ ii) is important in application. If $A\in\blf{X}{Y}$ is bijective then \func{A^{
 \end{remark}
 
 The main step of the proof is the following:
-\begin{lemma}[$A$ as in i)]\nl
+\begin{lemma}\nl
 \label{open ball is in closure}
-$\exists r>0$ s.t. $B_Y(r)\subset \overline{A(B_X(1))}$
+Let $A$ be surjective and bounded as in i), then $\exists r>0$ s.t. $B_Y(r)\subset \overline{A(B_X(1))}$
 \end{lemma}
 \begin{proof}
 Since $A$ is surjective, 
@@ -58,7 +58,10 @@ $$
 Since $Y$ is complete, by  Baire Category theorem, $\exists k_0$ s.t. 
 $$ \interior (\overline{A(B_X(k_0))})\neq\emptyset$$
 So by surjectivity of $A$, one can find $y_0=Ax_0\in Y$, $r_0>0$ s.t. 
-$$ \underbrace{B_Y(y_0,r_0)}_{=Ax_0+B_Y(r_0)}\subset \overline{A(B_X(k_0))}$$
+$$ 
+\underbrace{B_Y(y_0,r_0)}_{=Ax_0+B_Y(r_0)}\subset \overline{A(B_X(k_0))}
+$$
+
 By linearity of $A$,
 \begin{equation}\nonumber
     \begin{split}
@@ -98,7 +101,7 @@ By \Cref{open ball is in closure} above with $\Tilde{r}=\frac{r}{2}$,
 
 \begin{equation*}
     \forall s>0, \qquad B_Y(s\Tilde{r})\subset \overline{A(B_X(s/2)}
-    \tag{*}
+    \tag{$*$}
 \end{equation*}
 Let $s=1$. Pick $x_1\in B_X(1/2)$, such that $\norm{Ax_1-y}<\Tilde{r}/2$. 
 
@@ -195,15 +198,18 @@ with $D(A)\stackrel{eg}{=}C^1[0,1]\subset X$ or subspaces thereof.
 Prime example of  (\underline{unbounded}) operator with dense domain $D(A)$: indeed $C^1[0,1]=C$ using e.g. Weierstrass Approximation Theorem (Polynomials are already $\norm{\cdot}_\infty$-dense in C)
 \end{example}
 \begin{definition}[Graph of an operator]\nl
-Let $X$, $Y$ be normed space, $A:D(A)(\subset X)\to Y$ . Graph of $A$ (really  of $(A,D(A))$) is the linear (!) space 
+Let $X$, $Y$ be normed space, $A:D(A)(\subset X)\to Y$ . Graph of $A$ (really  of $(A,D(A))$) is the linear (!) space  
+
 $$
 \Gamma_A=\{(x,Ax):x\in D(A)\}\subset X\times Y
-$$
-We endowed $X\times Y$ with the norm $\norm{(x,y)}_{X\times Y}=\norm{x}_X+\norm{y}_Y$, for all $x\in X$, $y\in Y$.
+$$  
+
+We endowed $X\times Y$ with the norm $\norm{(x,y)}_{X\times Y}=\norm{x}_X+\norm{y}_Y$, for all $x\in X$, $y\in Y$.  
     
 \end{definition}
+
 \begin{definition}[Closed Operator]
-$A$ is called \underline{closed} if $\Gamma_A$ is closed in  $(X\times Y,\norm{\cdot}_{X\times Y})$
+$A$ is called \textbf{closed} if $\Gamma_A$ is closed in  $(X\times Y,\norm{\cdot}_{X\times Y})$
 \end{definition}
 
 \begin{example}
@@ -213,7 +219,7 @@ Let $A\in\mathcal{L}(X,Y)$ with $D(A)=X$. Then $A$ is closed.
 	Let $(x_k,y_k)_k\subset \Gamma_A$  with $\norm{(x_k,y_k)-(x,y)}_{X\times Y}\xrightarrow{k\to\infty}0$ for some $(x,y)\in X\times Y$\\
 	Need to show: $(x,y)\in \Gamma_A$ i.e. $y=Ax$.   
  
-	We know $ y_k=Ax_k$ and $\norm{x_k-x}_X\xrightarrow{k\to\infty}0$, $\norm{Ax-y}_Y\xrightarrow{k\to\infty}0$
+	We know $ y_k=Ax_k$ and $\norm{x_k-x}_X\xrightarrow{k\to\infty}0$, $\norm{Ax_k-y}_Y\xrightarrow{k\to\infty}0$
 	But $\forall k\geq 1$,
 	$$\norm{y-Ax}_Y\leq\norm{y-Ax}_Y+\norm{Ax_k-ax}_Y
 	\leq \norm{y-Ax}_Y+\norm{A}\norm{x_k-x}_X$$
@@ -238,7 +244,7 @@ Let $X$, $Y$ be Banach $A:X\to Y$ linear. The following are equivalent:
         (x,Ax)&\mapsto x  & (x,Ax)&\mapsto Ax\\
         \end{aligned}    
     \end{equation}
-$\Pi_X$, $\Pi_Y$ are continuous with $\norm{\Pi_X},\norm{\Pi_Y}\leq 1$, $\Pi_X$ is injective, and surjective. By \Cref{open mapping theorem} ii), ${\Pi_X}^{-1}\in\mathcal{L}{(X,\Gamma_A)}$ and so
+$\Pi_X$, $\Pi_Y$ are continuous with $\norm{\Pi_X},\norm{\Pi_Y}\leq 1$, $\Pi_X$ is injective, and surjective. By the Open Mapping \Cref{open mapping theorem} ii), ${\Pi_X}^{-1}\in\mathcal{L}{(X,\Gamma_A)}$ and so
 $$
 A=\Pi_Y\circ \Pi_X^{-1}\in\mathcal{L}(X,Y)
 $$
@@ -265,8 +271,10 @@ $$
 \begin{example}[running example continues]\nl
 	$(D(A),\norm{\cdot}_\infty)$ with $D(A)=C^1[0,1]$ is NOT Banach, and $A:D(A)\to C$ is an example of an operator which is:\\
 	\textbf{Claim: }\\
-	i) closed, but\\
-	ii) not continuous\\
+             \begin{enumerate}[i)]
+                 \item closed, but
+                 \item not continuous
+             \end{enumerate}
 	For ii), take $f_n(t)=t^n\in D(A)$, $Af_n=nf_{n-1}$ so $\norm{f_n}_\infty=1$, $\norm{Af_n}_\infty=n\norm{f_{n-1}}_\infty=n$. So 
 	$$ \sup_{f\in D(A),\norm{f}_\infty\leq1}\norm{Af}_\infty=\infty$$
 	For i), if $(f_n,f_n')\to(f,g)$ in $(D(A)\times C)$ then $\norm{f-f_n}_\infty\to 0$, $\norm{f_n'-g}_\infty\to0$ but
@@ -283,6 +291,7 @@ The second convergence uses dominated convergence theorem
 
 
 \begin{corollary}[Continuous Inverse]\nl
+\label{corollary: continuous inverse}
 	$X$, $Y$ Banach, $A:D(A)\subset X\to Y$ linear, closed and bijective. Then $\exists B=A^{-1}\in\mathcal{L}(Y,X)$ with $AB=id_Y$ and $BA=id_{D(A)}$. 
 \end{corollary}
 \begin{proof}
@@ -293,7 +302,7 @@ The second convergence uses dominated convergence theorem
 	A is surjective: for $g\in C$ define $f(t)=\int_0^t g(s) ds$. Then by FTC, $Af=g$.\\
 	A is not injective: $Af=A\tilde{f}\implies f=\tilde{f}+c,c\in\real$. 
 	Let $D(A)\defeq C_0^1[0,1]=\{f\in C^1[0,1]:f(0)=0\}$
-	Then $A:D(A)\to C$ is bijective and has continuous inverse $B=A^{-1}$ by corollary. In fact, $Bf(t)=\int_0^tf(s)ds$ with $Bf\in D(A)$.
+	Then $A:D(A)\to C$ is bijective and has continuous inverse $B=A^{-1}$ by \Cref{corollary: continuous inverse}. In fact, $Bf(t)=\int_0^tf(s)ds$ with $Bf\in D(A)$.
 \end{example}
 
 

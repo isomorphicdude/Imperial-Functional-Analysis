@@ -6,7 +6,7 @@
 \title{Week 6}
 
 \begin{document}
-\author{\aut}
+% \author{\aut}
 \maketitle
 
 \section{Baire Category and UBP}
@@ -60,7 +60,7 @@ We now present a key lemma.
         
         $$B(x_1,r_1)\subset X\setminus A_1$$  
         
-        We can repeat the construction above and find $x_2\in B(x_1,r_1/2)\setminus A_2$ and $r_2 \in (0, 2^{-2} r_1)$, such that 
+        We can repeat the construction above and find $x_2\in B(x_1,2^{-1}r_1)\setminus A_2$ and $r_2 \in (0, 2^{-2} r_1)$, such that 
         
         $$B(x_2,r_2)\subset X\setminus A_2$$
         
@@ -106,6 +106,7 @@ The lemma motivates the following.
 \end{enumerate} 
 \end{definition} 
 
+
 In this language, \Cref{baire lemma} becomes  
 
 \begin{theorem}
@@ -124,9 +125,7 @@ Note that the "completeness" assumption depends and by conclusion is purely topo
 \begin{enumerate}[1)]
     \item $\qq = \bigcup_{x\in \qq} \{x\} \subset \real (=X)$ is meager. What about $\real \setminus \qq$? (this is fat. Why?)
     \item Under the assumption of \Cref{baire category}, if $A\subset X$  
-    $$
-    \text{cat}(A)=1 \implies \text{cat}(X \setminus A)=2 \ \text{and} \ X\setminus A \ \text{is} \ \text{dense}
-    $$
+    $$\text{cat}(A)=1 \implies \text{cat}(X \setminus A)=2 \ \text{and} \ X\setminus A \ \text{is} \ \text{dense}$$
     use (exercise): $U \subset X$ open and dense $\iff$ $A = X\setminus U$ closed and nowhere dense, hence:  
     \begin{equation*}
         \text{\Cref{baire lemma}} \iff U_k \subset X, k\geq 1, \text{open,\ dense}. \ \text{Then} \ U = \cap_{k=1}^{\infty} U_k \ \text{dense}
@@ -137,7 +136,7 @@ Note that the "completeness" assumption depends and by conclusion is purely topo
         $$
         X = \overline{X\setminus U}\overset{X\setminus U \ closed}{=} X\setminus U
         $$
-        in other words, $U=\emptyset$, which is also closed.
+        in other words, $U=\emptyset$, which is also closed, a contradiction.
     \end{proof}
     \item (Topological vs. measure-theoretic size)  $X=\real$ with $\lambda$ the Lebesgue measure. Does $\lambda(A)=0 \implies A $ meager? Does $A \subset \real \implies \lambda(A)=0$?  
 
@@ -167,11 +166,17 @@ Baire's category theorem leads to UBP. The first instance of this is not a 'line
 \label{uniform bounded but not linear}
     Let $(X,d)$ be a complete metric space and $(f_\lambda)_{\lambda \in \Lambda}$ be a family of continuous functions $f_{\lambda}:X \to \real$. If $(f_\lambda)_{\lambda \in \Lambda}$ is bounded pointwise, \textit{i.e.}  
     $$
+    \sup_{\lambda \in \Lambda} |f_\lambda(x)| < \infty \qquad \forall x \in X
+    $$
+    then $\exists B\subset X$ an open ball s.t. 
+    $$
     \sup_{\lambda \in \Lambda, x\in B} |f_{\lambda}(x)|<\infty
     $$
     \textit{i.e.} $(f_{\lambda})_{\lambda \in \Lambda}$ uniformly bounded on $B$.
 \end{theorem}
-
+\begin{remark}
+    The $(f_\lambda)_{\lambda \in \Lambda}$ need NOT to be linear.
+\end{remark}
 \begin{proof}
     For $k\geq 1$, consider the closed set  
     $$
@@ -181,9 +186,7 @@ Baire's category theorem leads to UBP. The first instance of this is not a 'line
     by \Cref{baire lemma}, $\exists k_0 \in \natu$, s.t. $\interior (A_{k_0})\neq \emptyset$. Pick $B\subset A_{k_0}$.
 \end{proof}
 
-\begin{remark}
-    The $(f_\lambda)_{\lambda \in \Lambda}$ need not to be linear.
-\end{remark}
+
 
 Incorporating the linear structure, this leads to the following.  
 
@@ -221,11 +224,11 @@ This gives for all $\norm{x}_X<1$ and $\lambda \in \Lambda$:
 An application of \Cref{banach steinhaus} is the following.  
 
 \begin{proposition}
-    Let $A_k \in \mathcal{L}(X,Y)$, $(A_k)$ converges pointwise to $A: X\to Y$, \textit{i.e.}  
+    With $X,Y$ normed and $X$ \textbf{complete}, let $A_k \in \mathcal{L}(X,Y)$, $(A_k)$ converges point-wise to $A: X\to Y$, \textit{i.e.}  
     $$
     \forall x \in X: \qquad \norm{A_k x - Ax}_Y \overset{k\to \infty}{\longrightarrow} 0 
     $$
-    The $A$ is linear and continuous, \textit{i.e.} $A \in \mathcal{L}(X,Y)$ ,and  
+    Then $A$ is linear and continuous, \textit{i.e.} $A \in \mathcal{L}(X,Y)$ ,and  
     $$
     \norm{A}_{\mathcal{L}(X,Y)} \leq \liminf_{k \to \infty} \norm{A_k}_{\mathcal{L}(X,Y)} <\infty
     $$
@@ -247,16 +250,19 @@ An application of \Cref{banach steinhaus} is the following.
     $$
     A_k f = k\int_{1-1/k}^1 f(t) dt \qquad k\geq 1
     $$  
-    Clearly, $|A_k f|\leq k \norm{f}_1$, so $A_k: X\to \real$ continuous with $\norm{A_k}_{\mathcal{L}(X,Y)} \leq k, \forall k \in \natu$. Moreoever,  
+    Clearly, $|A_k f|\leq k \norm{f}_1$, so $A_k: X\to \real$ continuous with $\norm{A_k}_{\mathcal{L}(X,Y)} \leq k, \forall k \in \natu$. Moreover,  
     $$
     \forall f \in X: \qquad A_k f \overset{k\to \infty}{\longrightarrow} Af \defeq f(1)
     $$
-    But $A:X\to \real$ is not coninuous: take for examples, $f_n(t)=t^n$ then $\norm{f_n}=\frac{1}{n+1}$ so $f_n \overset{L^1}{\longrightarrow} 0 $ but  
+    But $A:X\to \real$ is not continuous: take for examples, $f_n(t)=t^n$ then $\norm{f_n}=\frac{1}{n+1}$ so $f_n \overset{L^1}{\longrightarrow} 0 $ but  
     $$
     Af_n = f_n(1) = 1 \nrightarrow 0
     $$  
     Of course $(X, \norm{\cdot}_1)$ is not complete (why?), so there is no contradiction.  
 \end{remark}
+
+\todo{(Lebesgue) derivatives definition here?}
+
 
 \begin{remark}
     If instead we consider $(C, \norm{\cdot}_\infty)$, then  
@@ -266,8 +272,11 @@ An application of \Cref{banach steinhaus} is the following.
     and $Af=f(1)$ is continuous as it's bounded $\norm{A}_{\mathcal{L}(X,Y)}\leq 1$ as $\norm{Af}_{\infty} \leq \norm{f}_\infty$
 \end{remark}
 
+The following section is not examinable.  
+
+
 \subsection{Baire's Original Problem}
-Let $(f_n)_{n\geq 1}$ be a sequence of continuous functions $f_n: [0,1] \to \real$ and converges pointwise, \textit{i.e.}  
+Let $(f_n)_{n\geq 1}$ be a sequence of continuous functions $f_n: [0,1] \to \real$ and converges point-wise, \textit{i.e.}  
 $$
 f(x) = \lim_{n\to\infty} f_n(x) \ \text{exists} \ \forall x \in [0,1]
 $$  

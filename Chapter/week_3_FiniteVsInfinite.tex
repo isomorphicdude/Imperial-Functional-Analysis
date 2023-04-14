@@ -4,7 +4,7 @@
 \input{theoremstyle.tex}
 
 \title{Week 3}
-\author{\aut}
+% \author{\aut}
 \begin{document}
 \maketitle
 
@@ -82,7 +82,7 @@ As a consequence of \Cref{finite dim is complete}, one also gets
 \end{corollary}
 \begin{proof}
     Let $(x_n)\subset Y$ be convergent, $\norm{x_n-x}\xrightarrow{n\to\infty}0$ for some $x\in X$. Need to show $x\in Y$.\\
-    Since $(x_n)$ is convergent, it is Cauchy, but $x_n\in Y$ $\forall  n$, so $(x_n)$ is Cauchy in $Y$. By proposition 1.4. $(Y,\norm{\cdot})$ is complete, hence $(y_n)$ converges to a point $y\in Y$, thus $Y$ is closed.
+    Since $(x_n)$ is convergent, it is Cauchy, but $x_n\in Y$, $\forall  n$, so $(x_n)$ is Cauchy in $Y$. By \Cref{finite dim is complete} $(Y,\norm{\cdot})$ is complete, hence $(y_n)$ converges to a point $y\in Y$, thus $Y$ is closed.
 \end{proof}
 
 \subsection{Compactness}  
@@ -128,9 +128,12 @@ We would like to show $x \in K$. By compactness, $\exists (x_{n_k})_k \subset K$
 \underline{\textbf{Bounded:}}\nextline
 Assume that $K$ is not bounded. Fix $x_0 \in K$. By definition, $\forall n \geq 1$, we can find $x_k$ s.t. 
 
-$$
-\rho(x_k, x_0) \geq n \qquad
-$$  
+\begin{equation*}
+\rho(x_k, x_0) \geq n \qquad 
+\tag{*}
+\end{equation*}
+
+
 By compactness, $(x_n)$ has a convergent subsequence $(x_k)$ with limit $x \in K$. But then 
 $$
 \rho(x_{n_k}, x_0) \leq \underbrace{\rho(x_{n_k}, x)}_{\overset{k \to \infty}{\longrightarrow 0}} + \rho(x, x_0) \leq C
@@ -174,8 +177,10 @@ Compactness of the unit ball characterises in fact finite dimensional spaces.
 \end{theorem}  
 
 \begin{proof}
-    i) $\implies$ ii) $\overline{B_1}$ is closed and bounded, which implies compactness since $X$ has finite dimension.
-    For ii) $\implies$ i), one uses  
+    \textbf{i)} $\implies$ \textbf{ii)} $\overline{B_1}$ is closed and bounded, which implies compactness since $X$ has finite dimension.  
+    
+    For \textbf{ii)} $\implies$ \textbf{i)}, one uses    
+    
 \begin{lemma}[Riesz]\nextline
 \label{riesz unit ball lemma}
     Let $Y \subset X$, $Y\neq X$ be a \textit{proper} closed subspace of $(X, \norm{\cdot})$. Then for all $\varepsilon \in (0,1)$, $\exists x \in X\setminus Y$ such that,  
@@ -192,13 +197,13 @@ Compactness of the unit ball characterises in fact finite dimensional spaces.
     $$  
     Set $x = \frac{x^*-y^*}{\norm{x^*-y^*}}$, then i) is satisfied and for all $y\in Y$ one has  
     $$
-    \norm{x-y} = \norm{\frac{x^*-(y^*+\norm{x^*-y^*}y)}{\norm{x^*-y^*}}}=
+    \norm{x-y} = \norm{\frac{x^*-(y^*+\norm{x^*-y^*}y)}{\norm{x^*-y^*}}}
     %\frac{\norm{x^*-\overbrace{(y^*+\norm{x^*-y^*}y)}^{\in Y}}}{\norm{x^*-y^*}} 
     \geq \frac{d}{\norm{x^*-y^*}} > 1-\varepsilon
     $$
 \end{proof}
 
-Returning to  ii) $\implies$ i). We show the contrapositive. 
+Returning to  \textbf{ii)} $\implies$ \textbf{i)}. We show the contrapositive. 
 
 Assume $\dim X=\infty$, let $(y_n)$ be a sequence of linearly independent vectors, define
 
@@ -235,7 +240,7 @@ is the best possible $C$.
 
 $\norm{A}$ is called \textbf{operator norm} (it is a norm on $\mathcal{L}(X,Y)$).  
 
-Boundedness is the same as continuity.  
+For linear operators, boundedness is the same as continuity.  
 
 \begin{theorem}
 \label{equivalent defn of bounded operators}
@@ -312,7 +317,7 @@ A classical example is:
     $$
     (or $f_n(t)=t^n$) then $\norm{f_n}_X=1$ but $\norm{Af_n}_Y=n \to \infty$.
 
-    \textbf{Note:} if instead one sets $\norm{\cdot}_X = \norm{\cdot}_{C^1}=\norm{f}_{\infty}+\norm{f'}_{\infty}$ then the above $f_n$'s are of no use (and in fact $A$ is {\bf{bounded}}.(see \cref{bounded operator def})
+    \textbf{Note:} if instead one sets $\norm{\cdot}_X = \norm{\cdot}_{C^1}=\norm{f}_{\infty}+\norm{f'}_{\infty}$ then the above $f_n$'s are of no use and in fact $A$ is {\bf{bounded}}.(see \Cref{bounded operator def})
 \end{example}  
 
 Now set 
