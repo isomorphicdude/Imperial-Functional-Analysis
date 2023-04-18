@@ -14,28 +14,32 @@ In this section, we consider Banach space over $\comp$.
 
 \begin{definition}[Resolvent \& Spectral]\nl
 Let $X$ be Banach. \func{A}{D_A\subset X}{X}  linear operator.\\
-{\underline{Resolvent set}} of $A$ is
+The {\textbf{resolvent set}} of $A$ is
 $$
 \varrho({A})=
 \{
-\lambda\in\comp:(\lambda I-A) \text{ is bijective and } \exists (xI-A)^{-1}\in \mathcal{L}(X)
+\lambda\in\comp:(\lambda I-A) \text{ is bijective with } \exists (\lambda I-A)^{-1}\in \mathcal{L}(X)
 \}
 $$
-The {\underline{spectrum}} is defined as the complement:
+The {\textbf{spectrum}} is defined as the complement:
 $$
 \sigma(A)=\comp\backslash\varrho(A)
 $$
-The {\underline{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)}, $\varrho(A)\ni\lambda\mapsto R_\lambda= (\lambda-A)^{-1}\in\mathcal{L}(X)$
+The {\textbf{resolvent}} of A is the map \func{R}{\varrho(A)}{\mathcal{L}(X)}, $\varrho(A)\ni\lambda\mapsto R_\lambda= (\lambda-A)^{-1}\in\mathcal{L}(X)$
 \end{definition}
 
 \begin{remark}\nl
-    In this section, we define $\lambda-A=\lambda id -A=\lambda I-A$, where $id$ is the identity map and the third expression uses first-year linear algebra notation.
+    In this section, we define $\lambda-A=\lambda Id -A=\lambda I-A$, where $id$ is the identity map and the third expression uses first-year linear algebra notation.
 \end{remark}
 
 % Below are in accordance with written notes
 \begin{example}\nl
     Consider $X=\comp$, $A\in \mathcal{L}(X)$, i.e. $D_A=X$, $\lambda\in\comp$.\\
-    $(\lambda-A)$ invertible $\iff p(\lambda)\stackrel{\text{def.}}{=}\det(\lambda-A)\neq0$. Since  $p(\cdot)$ has at least $1$ and at most $n$ (distinct) solutions, one get $\sigma(A)\neq \emptyset$, $\sigma(A)$ contains at most $n$ points. Hence $\varrho(A)\neq\emptyset$ and $\varrho(A)\subset\comp$ is dense.
+    \begin{center}
+        $(\lambda-A)$ invertible $\iff p(\lambda)\stackrel{\text{def.}}{=}\det(\lambda-A)\neq0$.  
+    \end{center}  
+    
+    Since  $p(\cdot)$ has at least $1$ and at most $n$ (distinct) solutions, one get $\sigma(A)\neq \emptyset$, $\sigma(A)$ contains at most $n$ points. Hence $\varrho(A)\neq\emptyset$ and $\varrho(A)\subset\comp$ is dense.
 \end{example}
 
 \begin{lemma}\nl
@@ -51,13 +55,13 @@ Hence $\varrho(A)$ is open, and $\sigma(A)$ is closed.
 
 \begin{proof}
 Write 
-$$
+\[
 z-A=
-( z-z_0)+(z_0-A)=(1+(z-z_0)R_{z_0})(z_0-A)
-$$
+( z-z_0)+(z_0-A)=(1+(z-z_0)R_{z_0})(z_0-A) \tag{$*$}
+\]
 If $z\in D$ then $1+(z-z_0)R_{z_0}$ is invertible with:
 \[
-(1+(z-z_0)R_{z_0})^{-1}=\sum_{n\geq0}(z_0-z)^n {R_{z_0}}^n\tag{1}
+(1+(z-z_0)R_{z_0})^{-1}=\sum_{n\geq0}(z_0-z)^n R_{z_0}^n \tag{1}
 \]
 hence also
 $$
@@ -81,17 +85,28 @@ $$
 
 
 \begin{example}\nl
-% \label{}
-{\color{red}!!!!!!!{add ref to diagonal op}}\\
+cf. \Cref{examples of compact operators}
+% {\color{red}!!!!!!!{add ref to diagonal op}}\\
     Diagonal operator $T=T_\lambda$ continued. Claim: $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
 \end{example}
-\begin{proof}{$\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$}{}
-    $Tx=\lambda_k x$ so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by \Cref{spectrum is closed} $\sigma(T)=\overline{\{\lambda_k:k\in\natu\}}$.
-    \end{proof}
-    \begin{proof}{$\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$}{}
+\begin{proof}
+\begin{itemize}
+    \item $\sigma(T)\supset\overline{\{\lambda_k:k\in\natu\}}$  
+
+    If $x=e_k$, then $Tx=\lambda_k x$, so $\lambda_k-T$ is not injective, so $\{\lambda_k:k\in\natu\}\subset\sigma(T)$, hence by \Cref{spectrum is closed} $\overline{\{\lambda_k:k\in\natu\}} \subset \sigma(T)$.
+    
+      
+
+    \item $\sigma(T)\subset\overline{\{\lambda_k:k\in\natu\}}$  
+    
     If $\widetilde{\lambda}\notin\overline{\{\lambda_k:k\in\natu\}}$, then $\exists\delta>0$ s.t. $|\widetilde{\lambda}-\lambda_k|>\delta$, $\forall k\in\natu$. \\
-    Let $x\in\ell^2$, $y\defeq(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k$. So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
-    \end{proof}
+    Let $x\in\ell^2$, 
+    $$
+    y\defeq(\widetilde{\lambda}-T)x=((\widetilde{\lambda}-\lambda_k)x_k)_k
+    $$
+    So $x_k=(\widetilde{\lambda}-\lambda_k)^{-1}y_k$ and $\norm{x}_{\ell^2}\leq\delta^{-1}\norm{y}_{\ell^2}$ which implies $(\widetilde{\lambda}-T)^{-1}\in\mathcal{L}(H)$ and $\widetilde{\lambda}\in\varrho(T)$
+\end{itemize}
+\end{proof}
 
 \begin{remark}\nl
     In finite dimension, $(\lambda-A)$ not invertible $\iff(\lambda-A)$ not injective by rank formula. One may wonder if "lack of injectivity"is the only reason for $\lambda\notin \sigma(A)$.
@@ -111,21 +126,25 @@ $$
         \item Residual spectrum: $\sigma_r(A)\defeq\sigma(A)\setminus(
         \sigma_p(A)\cup\sigma_c(A))$         
     \end{itemize}
-    Elements of point specturm are called {\underline {eigenvalues} of $A$} with {\underline {eigenspaces}} $$ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$$
+    Elements of point specturm are called {\textbf{eigenvalues} of $A$} with {\textbf{eigenspaces}}(null spaces) $$ker(\lambda-A)=\{x\in D_A:Ax=\lambda x\}\neq\{0\}$$
 \end{definition}
 
-\begin{example}[Shift operator]\nl
-    \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$: indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
-    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_{(n+1)},\,\,\forall n\in\natu\implies x_k=0$ for all $k\in\natu$. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\zeta\in\comp:|\zeta|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$.
-\end{example} 
-\begin{example}\nl
-    $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
-\end{example}
+\begin{example}[Shift operator]
+\label{example: shift operator}
+\begin{enumerate}[1)]
+    \item \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$:   
+    
+    Indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
+    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_{(n+1)},\,\,\forall n\in\natu\implies x_k=0$ for all $k\in\natu$. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\xi\in\comp:|\xi|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$.
 
-\begin{example}\nl
-    $T_\lambda$ is indicative of a certain class: $ X$ Hilbert, $T\in\mathcal{L}(X)$ compact, self-adjoint. \\
+    \item $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
+
+    \item  $T_\lambda$ is indicative of a certain class: $ X$ Hilbert, $T\in\mathcal{L}(X)$ compact, self-adjoint. \\
     Then by Riesz-Schauder, $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}$
-\end{example}
+\end{enumerate}
+    
+\end{example} 
+
 % Below are content from written lecture note 9.2-10
 
 \subsection{Spectral Theory in Hilbert space}
@@ -137,8 +156,8 @@ In sequel write $A\subset B$, reads $B$ is extension of $A$ if $D_A\subset D_B$ 
 
 
 \begin{definition}\nl
-	i)  $A$ is {\underline{symmetric}} if $A\subset \dual{A}$, i.e. $D_A\subset D_{A^*}$ and $\inne{Ax}{y}=\inne{x}{Ay}$ for all $x,y\in D_A$.\\
-	ii) $A$ is {\underline{self-adjoint}} if $A=\dual{A}$, i.e. A symmetric with $D_{A^*}=D_A$.
+	i)  $A$ is {\textbf{symmetric}} if $A\subset \dual{A}$, i.e. $D_A\subset D_{A^*}$ and $\inne{Ax}{y}=\inne{x}{Ay}$ for all $x,y\in D_A$.\\
+	ii) $A$ is {\textbf{self-adjoint}} if $A=\dual{A}$, i.e. A symmetric with $D_{A^*}=D_A$.
 \end{definition}
 
 What can we say about spectrum $\sigma(A)$ for such $A$?
@@ -151,14 +170,14 @@ What can we say about spectrum $\sigma(A)$ for such $A$?
 		Let $\lambda\in\sigma_p(A)$ with non-zero eigenvector $x\in ker(\lambda-A)$. \\
 		Then $\lambda\norm{X}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H^1$. So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
 	\end{proof}
-Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
+Is this true for all the spectrum of $  H$ (cf. $\comp^n$)?
 %question part----------------------------------
 
 % the support is denoted as C_c(0,1), outside of which the function takes zero value
 
 \begin{example}[Weak derivative]\nl
 	$H$=$L^2(0,1)$, $\inne{f}{g}=\int_0^1f\bar{g} \mathrm{d}t$. $A\in\frac{\mathrm{d}}{\mathrm{d}t}$.\\
-	More precisely, $f\in\mathcal{H}$ is said to have a \textbf{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in \mathcal{H}$, 
+	More precisely, $f\in  H$ is said to have a \textbf{weak derivative} $f'$ if $f'\defeq{v}$ for some $v\in   H$, 
  $$\int_0^1 fg'\mathrm{d}t=-\int_0^1 vg\mathrm{d}t \qquad \forall g\in C^\infty_c(0,1)$$
 	Consider
 	$$
@@ -189,10 +208,10 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 	So symmetric operators can have imaginary spectrum!
 	\begin{proof}
 		i) For $\lambda\in\comp$, pick $f(t)=e^{-i\lambda t}\in ker(\lambda-A_1)$.\\
-		ii) For $k\in\inte$, $f(t)=e^{-2\pi ikt}\in D_{A_2}\cap ker(a\pi k-A_2$,
+		ii) For $k\in\inte$, $f(t)=e^{-2\pi ikt}\in D_{A_2}\cap ker(a\pi k-A_2)$,
 		so $2\pi \inte\subset \sigma_p(A_2)\subset\sigma(A_2)$.
 		Let $\lambda\in\comp\setminus a\pi\inte$.
-		Need to show: $\lambda\in\varrho(A_2)$ i.e. \func{\lambda-A_2}{D_{A_2}}{H} is invertible and $(\lambda-A_2)^{-1}\in\mathcal{H}$.\\
+		Need to show: $\lambda\in\varrho(A_2)$ i.e. \func{\lambda-A_2}{D_{A_2}}{H} is invertible and $(\lambda-A_2)^{-1}\in{H}$.\\
 		For $g\in H$, the general sd. of $\lambda f-if'=g$ can be obtained via variation of constant formula:
 		$$
 			(*)\rightsquigarrow f(t)=ae^{-i\lambda t}+i \int_0^t e^{i\lambda}g(s)\mathrm{d}s
@@ -221,15 +240,18 @@ Is this true for all the spectrum of $\mathcal{H}$ (cf. $\comp^n$)?
 We have seen: symmetric operators can have imaginary spectrum, but:
 \begin{lemma}
 \label{images of symmetric operators bounded below by imaginary part}
-	Let $A\subset \dual{A}$. Then $\forall\zeta\in\comp\,\forall u\in D_A$: $\norm
-		{(\zeta-A)u}_H\geq |Im(\zeta)|\norm{u}_H$.\\
-	(So for $\zeta\notin\real\implies(\zeta-A)$ injective, i.e. $\zeta\notin\sigma_p(A)$)
+
+Let $A\subset \dual{A}$ (\textit{i.e.} $A$ is symmetric). Then 
+ $$
+ \forall \xi \in \comp \, \forall u\in D_A: \qquad  \norm{(\xi-A)u}_H\geq |Im(\xi)|\norm{u}_H
+  $$
+	(So for $\xi\notin\real\implies(\xi-A)$ injective, i.e. $\xi\notin\sigma_p(A)$)
 \end{lemma}
 \begin{proof}
 		For $u\in D_A:$ $\inne{u}{Au}\stackrel{A\subset\dual{A}}{=}\inne{Au}{u}=\overline{\inne{u}{Au}}\in\real$. Hence,
 		$$
-			|Im(\zeta)|\norm{u}^2_H=|Im(\inne{u}{(\zeta-A)u)}|\leq|\inne
-			{u}{(\zeta-A)u}|\leq\norm{u}_H\norm{(\zeta-A)u}_H
+			|Im(\xi)|\norm{u}^2_H=|Im(\inne{u}{(\xi-A)u)}|\leq|\inne
+			{u}{(\xi-A)u}|\leq\norm{u}_H\norm{(\xi-A)u}_H
 		$$
 \end{proof}
 % mind Im and im, Im is imaginary part and im is image. Pay attention  to the difference.
@@ -238,39 +260,39 @@ The example also nicely illustrates:
 	If $A=\dual{A}$, then $\sigma(A)\subset \real$
 \end{proposition}
 \begin{proof}
-		Let $\zeta\in\comp\setminus\real$. Want to show $\zeta\in\varrho(A)$, i.e. \func{\zeta-A}{D_A}{H} is bijective with $(\zeta-A)^{-1}\in\mathcal{L}(H)$.\\
+		Let $\xi\in\comp\setminus\real$. Want to show $\xi\in\varrho(A)$, i.e. \func{\xi-A}{D_A}{H} is bijective with $(\xi-A)^{-1}\in\mathcal{L}(H)$.\\
 		We will show:\\
   \begin{center}
-     		(*) $\zeta-A$ is surjective 
+     		$(*)$ $\xi-A$ is surjective 
   \end{center}
-		Once  (*) holds, we are done: by previous lemma, $\zeta-A$ is injective hence bijective, and surjectivity + same lemma also yields
+		Once  $(*)$ holds, we are done: by previous lemma, $\xi-A$ is injective hence bijective, and surjectivity + same lemma also yields
 		$$
-			\norm{(\zeta-A)^{-1}}_{\mathcal{L}(H)}\leq\frac{1}{|Im(\zeta)}
+			\norm{(\xi-A)^{-1}}_{\mathcal{L}(H)}\leq\frac{1}{|Im(\xi)|}
 		$$
 		\textbf{proof of (*):} we first show
 		$$
-			(**)\qquad im(\zeta-A)(\subset H) \text{  is closed}
+			(**)\qquad im(\xi-A)(\subset H) \text{  is closed}
 		$$
-		Assume $v_k=(\zeta-A)u_k\xrightarrow{k\to\infty}v$. By \Cref{images of symmetric operators bounded below by imaginary part},
+		Assume $v_k=(\xi-A)u_k\xrightarrow{k\to\infty}v$. By \Cref{images of symmetric operators bounded below by imaginary part},
 		$$
-			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\zeta)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
-   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\zeta-A)u$, i.e. (**) holds.\\ 
+			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\xi)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
+   Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\xi-A)u$, i.e. (**) holds.\\ 
    \begin{unexaminable}
     every self-adjoint operator is bounded \href{https://math.stackexchange.com/questions/2602548/is-every-self-adjoint-operator-bounded}{link here}
    \end{unexaminable}
    % \todo{Is A a bounded operator?(unless A is defined everywhere)}
    % Short answer: we don't need boundedness. consider operator on $\ell^2$, that multiplies n-th term by n. This is unbounded, but for any $e_k$ it gives finite result.  
    
-		Back to (*): Due to (**), $M\defeq Im(\zeta-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
+		Back to (*): Due to (**), $M\defeq Im(\xi-A)$ is closed. Assume $M\neq H$. Pick $v\in M^\perp\setminus\{0\}$. Then
 		$$
-			\forall u\in D_A:\inne{v}{(\zeta-A)u}=0\text{  or  }\inne{v}{Au}=\overline{\zeta}\inne{v}{u}$$
+			\forall u\in D_A:\inne{v}{(\xi-A)u}=0\text{  or  }\inne{v}{Au}=\overline{\xi}\inne{v}{u}$$
 		Hence,
 		$
 			D_A\ni u\mapsto \inne{v}{Au}
 		$
-		is continuous, $v\in D_{A^*}=D_A$ and $Av=\dual{A}v=\overline{\zeta}v$
+		is continuous, $v\in D_{A^*}=D_A$ and $Av=\dual{A}v=\overline{\xi}v$
 		but by \Cref{images of symmetric operators bounded below by imaginary part},
-		$$|Im(\zeta)|\norm{v}_H\leq\norm{(\overline{\zeta}-A)v}_H=0$$
+		$$|Im(\xi)|\norm{v}_H\leq\norm{(\overline{\xi}-A)v}_H=0$$
 		which yields $v=0$. Contradiction.
   \end{proof}
  
@@ -288,7 +310,7 @@ Following is an extension (!) of the familiar result from linear algebra concern
 	\end{itemize}
 \end{theorem}
 \begin{example}\nl
-	Shift operator \func{T_\lambda}{\ell^2}{\ell^2} continued.\\
+	Diagonal operator (\Cref{examples of compact operators}) \func{T_\lambda}{\ell^2}{\ell^2} continued.\\
 	\begin{itemize}
 	    \item $T_\lambda$ is compact $\iff \lim_{k\to\infty}\lambda_k=0$
 	    \item $T_\lambda$ is self-adjoint $\iff \lambda_k\in\real\,,\forall k$
