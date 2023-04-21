@@ -121,7 +121,7 @@ cf. \Cref{examples of compact operators}
         \right\}$
         \item Continuous spectrum: $\sigma_c(A)\defeq
         \left\{
-        \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, im(\lambda-A) \text{ dense }        
+        \lambda\in\comp\setminus\varrho(A):(\lambda-A) \text{ injective }, im(\lambda-A) \text{\ not\ dense }        
         \right\}$
         \item Residual spectrum: $\sigma_r(A)\defeq\sigma(A)\setminus(
         \sigma_p(A)\cup\sigma_c(A))$         
@@ -148,10 +148,11 @@ cf. \Cref{examples of compact operators}
 % Below are content from written lecture note 9.2-10
 
 \subsection{Spectral Theory in Hilbert space}
+\todo{should mention $D_A$ is a dense subspace as in notes?}
 Consider $(H,\inne{\cdot}{\cdot}$, Hilbert space over $\comp$, \func{A}{{D_A\subset H}}{H} linear, with adjoint \func{\dual{A}}{D_{A^*}\subset H}{H}.
 Recall $\dual{A}$ characterised by $$\forall x\in D_A, y\in D_{A^*} \qquad \inne{\dual{A}y}{x}=\inne{y}{Ax}$$ 
 and 
-$$D_{A^*}=\{y\in H : l_y:D_A\to \comp,\,x\mapsto \inne{y}{Ax}\,\text{ is continuous }\}$$
+$$D_{A^*}=\{y\in H : \ell_y:D_A\to \comp,\,x\mapsto \inne{y}{Ax}\,\text{ is continuous }\}$$
 In sequel write $A\subset B$, reads $B$ is extension of $A$ if $D_A\subset D_B$ and $B|_{D_A}=A$.
 
 
@@ -168,7 +169,9 @@ What can we say about spectrum $\sigma(A)$ for such $A$?
 \end{lemma}
 	\begin{proof}
 		Let $\lambda\in\sigma_p(A)$ with non-zero eigenvector $x\in ker(\lambda-A)$. \\
-		Then $\lambda\norm{X}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H^1$. So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
+		Then $\lambda\norm{x}_H^2=\inne{Ax}{x}\stackrel{symm.}{=}\inne{x}{Ax}=\overline{\inne{Ax}{x}}=\overline{\lambda}\norm{x}_H$.   
+  
+  So $\lambda=\overline{\lambda}\implies \lambda\in\real$.
 	\end{proof}
 Is this true for all the spectrum of $  H$ (cf. $\comp^n$)?
 %question part----------------------------------
@@ -275,10 +278,10 @@ The example also nicely illustrates:
 		$$
 		Assume $v_k=(\xi-A)u_k\xrightarrow{k\to\infty}v$. By \Cref{images of symmetric operators bounded below by imaginary part},
 		$$
-			\norm{u_k-v_k}_H\leq\frac{1}{|Im(\xi)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
+			\norm{u_k-u_l}_H\leq\frac{1}{|Im(\xi)|}\norm{v_k-v_l}_H\xrightarrow{k,l\to\infty}0$$
    Hence $(u_k)$ is Cauchy and $u_k\to u$ for some $u\in H$. But $A=\dual{A}$ has a closed graph so $v=(\xi-A)u$, i.e. (**) holds.\\ 
    \begin{unexaminable}
-    every self-adjoint operator is bounded \href{https://math.stackexchange.com/questions/2602548/is-every-self-adjoint-operator-bounded}{link here}
+    every self-adjoint operator is bounded \href{https://math.stackexchange.com/questions/2602548/is-every-self-adjoint-operator-bounded}{link here}.
    \end{unexaminable}
    % \todo{Is A a bounded operator?(unless A is defined everywhere)}
    % Short answer: we don't need boundedness. consider operator on $\ell^2$, that multiplies n-th term by n. This is unbounded, but for any $e_k$ it gives finite result.  
