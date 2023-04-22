@@ -3,190 +3,201 @@
 \input{commands}
 \input{theoremstyle.tex}
 
-\title{Week 5}
-\author{\aut}
+\title{Week 1}
+% \author{\aut}
 \begin{document}
 
 \maketitle
+\section{Introduction}  
 
-\section{Preliminaries}\label{vector space defs}
+What is the course about?\\
 
-\subsection{Linear space}
-
-\begin{definition}[Linear space]\rm\nextline
-	A linear space $(V,\oplus,(\mathbb{F},+,\cdot),\odot)$ over a field $\mathbb{F}$, where
-	\begin{itemize}
-		\item $(V,\oplus)$ is an abelian group
-		\item $(\mathbb{F},+,\cdot)$ is a field
-	\end{itemize}
-	and multiplication by a scalar $\odot:\mathbb{F}\times V\xrightarrow{}V$ satisfies for every $\alpha,\beta\in\mathbb{F}$ with $v,\omega\in V$
-	\begin{itemize}
-		\item $\alpha\odot(v\oplus\omega)=\alpha\odot v+\alpha\odot\omega$
-		\item $(\alpha+\beta)\odot v=\alpha\odot v+\beta\odot v$
-		\item $\alpha\odot(\beta\odot v)=(\alpha\cdot\beta)\odot v$
-		\item $\mathbf{1}\cdot v=v$, where $\mathbf{1}$ is unit element in $\mathbb{F}$
-	\end{itemize}
-\end{definition}
-% \subsubsection{Examples of linear spaces}
-% \todo{Should we delete this section? ZY.}
-% In this section we have both example and counter example.
-% \begin{example}[Vector space over field]\rm\nextline
-% 	$\mathbb{F}^n$ where $\mathbb{F}$ is a field, $n\in\\natu$ is a linear space. This includes 3 or 2-dimensional vector space over $\real$, or 3-dimensional vector field over $\mathbb{F}_p$. For example, let's check
-% 	$$
-% 		V=\mathbb{F}_2^2=\left\{(v_1,v_2)|v_1,v_2\in\mathbb{F}_2\right\}
-% 	$$
-% 	with the natural definition of scalar multiplication and term-wise addition over $\mathbb{F}_2$. Note that this is indeed a space of four elements:
-% 	$$
-% 		V=\left\{(0,0),(0,1),(1,0),(1,1)\right\}
-% 	$$
-% 	With scalars only 1 or 0. Thus it's easy to closure under scalar multiplication. Now consider vector addition, one just have to check every pair of addition and see if still falls into $V$, like
-% 	$$
-% 		(1,0)+(1,1)=(0,1)\in V
-% 	$$
-% \end{example}
-% \begin{example}\rm\nextline
-% 	Consider set of convergent sequence:
-% 	$$
-% 		V=\left\{\{x_n\}_1^\infty:x_i\in\mathbb{F}\,\forall i\in\mathbb{N},\,and\, \lim_{n\to \infty}x_n\to C\right\}
-% 	$$
-% 	First we consider the addition to be term-wise and multiplication applied to whole sequence:
-% 	$$
-% 		x+y=\{x_i+y_i\}_1^\infty,\,\alpha\odot x=\{\alpha\cdot x_i\},\,\,\forall x,y\in V,\,\alpha\in\mathbb{F}
-% 	$$
-% 	When $C$ is fixed, this is a vector space if and only if $C=0$
-% 	When $C$ is not fixed, this becomes a vector space.
-% \end{example}
-
-% \begin{example}[Polynomials]\rm\nextline
-% 	$V$ is set of all polynomials:
-% 	$$
-% 		f(z)=\sum_{j=0}^{n}a_jz^j,\,n\in\mathbb{N}
-% 	$$
-% 	with $z\in\mathbb{C}$ and $a_j\in{\mathbb{Q}}$ with addition and multiplication of polynomials. Unfortunately this is not a vector space, since the field is set to be $\mathbb{C}$. When we multiply an element in V by a complex number, say $1+2i$, we could end up in some polynomials with complex coefficient. But this would be a vector space if we change to $a_j\in \mathbb{C}$ or $z\in\mathbb{Q}$
-% \end{example}
-
-% \begin{example}[Analytic functions]\rm\nextline
-% 	Consider set of all analytic functions $f:\mathbb{C}\xrightarrow{}\mathbb{C}$ satisfying:
-% 	$$
-% 		\frac{d^2}{dz^2}f-\frac{d}{dz}f-2z=0
-% 	$$
-% 	This is not a vector space. Take a non-trivial $f$, consider $g=2f$:
-% 	\begin{equation}
-% 		\begin{split}\nonumber
-% 			&\frac{d^2}{dz^2}g-\frac{d}{dz}g-2z\\
-% 			=&\frac{d^2}{dz^2}(2f)-\frac{d}{dz}(2f)-2z\\
-% 			=&2\frac{d^2}{dz^2}f-2\frac{d}{dz}f-2z\\
-% 			=&4z-2z=2z\neq0
-% 		\end{split}
-% 	\end{equation}
-% 	However, removing $-2z$ will make this a vector space.
-% \end{example}
-
-% \begin{example}[Weak $L^p$ space]\rm\nextline
-% 	Define $D_f(t)=\{\lambda{x\in\mathbb{R}:|f(x)|>t}\}$, where $\lambda$ is Lebesgue measure on $\mathbb{R}$. Consider:
-% 	$$
-% 		L^{p,w}=
-% 		\left\{
-% 		f:\mathbb{R}\xrightarrow{}\mathbb{R}:f,\,\,measurable,\,\, and\,\, \exists C>0,\,\,s.t.\,\,D_f(t)<\frac{C^p}{t_p}\,\forall t>0
-% 		\right\}
-% 	$$
-% 	This is a vector space for $p>0$ and $L^p(\mathbb{R})\subset L^{p,w}(\mathbb{R})$. Distributivity and commutativity of scalar operation follows immediately from their definition. The point is to check closure under scalar multiplication and addition.\\
-% 	$\mathbf{f+g\in L^{p,w}}:$\\
-% 	Let $f,g\in L^{p,w}$, then we can find $C_1>0 $ and $C_2>0$ with
-% 	\begin{equation}
-% 		\begin{split}\nonumber
-% 			C_1^p>t^p\cdot\lambda\{x:|f(x)|>t\},\,\,\forall t>0\\
-% 			C_2^p>t^p\cdot\lambda\{x:|g(x)|>t\},\,\,\forall t>0
-% 		\end{split}
-% 	\end{equation}
-% 	Now by triangular inequality we have $|f(x)|+|g(x)|\geq|f(x)+g(x))|$.\\
-% 	Thus $|(f+g)(x)|>t\implies|f(x)|+|g(x)|>t\implies 2\cdot max(|f(x)|,|g(x)|)>t$.
-% 	So consider set $A,B,C$:
-% 	\begin{equation}
-% 		\begin{split}\nonumber
-% 			X:&=\{x\in\mathbb{R}:|f(x)+g(x)|>t\}\\
-% 			Y:&=\{x\in\mathbb{R}:|f(x)|+|g(x)|>t\}\\
-% 			Z:&=\{x\in\mathbb{R}:2max(|f(x)|,|g(x)|)>t\}=\left\{x\in\mathbb{R}:max(|f(x)|,|g(x)|)>t/2\right\}
-% 		\end{split}
-% 	\end{equation}
-% 	We have $X\subseteq Y\subseteq Z$, thus $\lambda(X)\leq\lambda(Y)\leq\lambda(Z)$.\\
-% 	Thus $t^p\cdot\lambda(A)\leq 2^p (t/2)^p\lambda\{x:max(|f(x)|,|g(x)|)>t/2\}\leq2^p\cdot max(C_1^p,C_2^p)<\infty$ for all $t>0$.\\
-% 	Showing closure under scalar multiplication is a bit easier. Take any $t>0,$ we have
-% 	\begin{equation}
-% 		\begin{split}\nonumber
-% 			&t^p\cdot\lambda\{x\in\mathbb{R}:|2f(x)|>t\}\\
-% 			=&2^p\left(\frac{t}{2}\right)^p\cdot\lambda\{x\in\mathbb{R}:|f(x)|>t/2\}\\
-% 			<&2^pC_1^p
-% 		\end{split}
-% 	\end{equation}
-% 	Which completes the proof.
-% \end{example}
-
-
-\subsection{Metric Linear space}\label{Metric linear space}
-\begin{definition}[Metric linear space]\rm\nextline
-	A metric space $(V,d)$ is called metric linear space if its vector addition and scalar multiplication $\oplus$, $\odot$ are continuous.
-\end{definition}
-
-
-\begin{remark}[Equivalence of metrics]\rm\nextline
-	$\oplus$ can be considered as a function: \func{\oplus}{V\times V}{V}, endowed with metric \func{\rho_1}{V\times V}{V} defined as $\rho_1(x_1+y_1,x_2+y_2)=max(d(x_1,x_2),d(y_1,y_2))$
-	or sum \func{\rho_2}{V\times V}{V} defined as $\rho_2(x_1+y_1,x_2+y_2)=d(x_1,x_2)+d(y_1,y_2)$. The two metrics are topologically equivalent, i.e. they induces same topology.\\
-	Similarly, $\odot$ can be considered as a function: \func{\odot}{\mathbb{F}\times V}{V}, endowed with metric \func{\rho_1}{\mathbb{F}\times V}{V} defined as $\rho_1(k_1x_1,k_2x_2)=max(|k_1-k_2|,d(x_1,x_2))$
-	or sum \func{\rho_2}{V\times V}{V} defined as $\rho_2(x_1+y_1,x_2+y_2)=|k_1-k_2|+d(x_1,x_2)$. Again, the two metrics are topologically equivalent.
+Roughly: solving linear systems of the form
+$$Ax=y$$
+where \func{A}{X}{Y} is linear, $y\in Y$ given, find solutions $x\in X$. $X$ and $Y$ are linear spaces.
+\begin{remark}
+	When $X$ and $Y$ are finite dimensional spaces, this is linear algebra.\\
+	$\infty$-dim brings into play additional structure, then it's functional analysis. (completeness, compactness, metric, norm)
 \end{remark}
 
-\begin{definition}[Translation invariant]\rm\nextline
-	A metric $\rho$ is translation invariant if for all $x,y,z\in V$, we have  $\rho(x,y)=\rho(x-z,y-z)$
-\end{definition}
+Example: $f\in C_0^\infty (\real^n)$, solve
+$$
+	\underbrace{-\Delta}_A u=f\in\real^n
+$$where
+$$
+	C_0^\infty(\real^n)=\left\{
+	f:\real^n\to\real:f\text{ infinitely differentiable }, supp(f)=\{x:f(x)\neq0\} \text{ compact }
+	\right\}
+$$
+What space?
+Can take (in PDE) $X=Y=C_\infty(\real^n)$: function spaces.
+Adequate choice of space to find solutions necessary!
+con vary, metric/normed linear space, locally convex topological space...
 
-\begin{proposition}\rm\nextline
-	Addition is continuous with respect to translation invariant metic.
-\end{proposition}
-
-\begin{proposition}[Metric induced by norm]\rm\nextline
-	Let $\norm{\cdot}$ be a norm on $V$, then its induced metric $\rho(x,y)=\norm{x-y}$ is translation invariant. %See definition of norm {\color{red} \href[definition of norm]{here}}.
-\end{proposition}
-
-\subsection{Topology}\label{topology}
-
-\subsubsection{Separability}
-\begin{definition}[dense]\rm
-	A set in $S$ metric space $(V,d)$ is dense if there it intersects with any open subset of $V$. Equivalently this is $\forall x\in V,\forall \varepsilon>0$, $D\cap B_{x,\varepsilon}\neq \emptyset$.
-\end{definition}
-
-
-\begin{definition}[separable]\rm
-	A metric space $(V,d)$ is separable if it contains a countable dense subset.
-\end{definition}
-
-\begin{example}[separable space example]\label{separable space example}
+In this course: linear space is (almost always): Banach space or Hilbert space.
+\begin{example}[Running example, $L^P$]
+	cf. MATH50006 notes $\S2.6$ .
+	$(X,\mathcal{A},\mu)$:measure space.
+	$$
+		L^P(\mu)\equiv l^P(X,\mathcal{A},\mu)=
+		\left\{
+		f:X\to\mathbb{K}/\sim:\norm{f}_{L^P}<\infty
+		\right\},\quad p\in[1,\infty]
+	$$
+	Norm of $f\in L^p$:
+	$$
+		\norm{f}_p\equiv\norm{f}_{L^p}=
+		\left\{
+		\begin{aligned}
+			 & \left(\int|f|^p{\rm d}\mu\right)^{1/p} & p<
+			\infty                                               \\
+			 & \esssup_X |f|                          & p=\infty
+		\end{aligned}\right.
+	$$
 \end{example}
 
 
-\subsubsection{Schauder Basis and Hamel basis}
-\begin{definition}[Schauder basis]\label{Schauder basis}\rm
-	A Schauder basis of Normed vector space $(v,\norm{\cdot})$ is a set $B\subset V$ that is linearly independent, and that $\forall x\in V$, we have a sequence $\{a_n\}$ with $\lim_{n\to\infty}\sum_{k=1}^n a_k b_k\to x$. In plain language, this means that every element of the set can be expressed as a infinite linear combination of the basis.
+Choices of measure space:\\
+\underline{Example 0}:\\ $X=\{1,2,....,n\}$, $\mathcal{A}=2^X$, $\mu(\{k\})=1, \forall k=1,...,n$, counting measure on $X$, extended to measure by additivity.\\
+Every function $f:X\to\real$ is simple
+$$
+	f(x)=\sum^n_{k=1}f(k)1_{\{k\}}(x)\qquad 1_A(x)=
+	\left\{\begin{aligned}
+		 & 1 & x\in A    \\
+		 & 0 & x\notin A
+	\end{aligned}\right.
+$$
+Thus
+$$
+	\norm{f}_p^p=\int|f|^p{\rm d}\mu=\sum_{k=1}^n|f(k)|^p
+	\underbrace{\int1_{\{k\}}{\rm d}\mu}_{\mu(\{k\})=1}
+	=\sum_{k=1}^n|f(k)|
+$$
+So $L^p(\{1,...,n\},\mu\cong\real^n$ endowed with norm
+$$
+	\norm{p}_p=\left(\sum_{k=1}^n|f(k)|^p\right)^{1/p}\quad f\in\real^n
+$$
+which are finite dimensional vector spaces over $\real$ (linear algebra).
+
+\underline{Example 1}:\\
+Same with $X=\natu=\{1,2,3,...\}\mathrel{\leadsto} \ell^p$, "Little-l-p",\\
+i.e. $\mu(\{k\})=1\,\forall k\in\natu$, extended to measure by $\sigma$-additivity, i.e.
+$$
+	\mu(A)=\sum_{k\in A} \mu(\{k\})=|A|\quad A\subset \natu
+$$
+Now every $f:X\to \real $ of form
+
+$$f(x)=\sum_{k=1}^\infty f(k)1_{\{k\}}(x)$$
+Approximated by $f_n\mathrel:=\sum_{k=1}^n f(k)1_{\{k\}}(x)$ and use of monotone convergence theorem to get
+$$\norm{f}_p^p=\sum_{k=1}^\infty |f(k)|^p$$
+An element $f:X\to \real$, $f=(f(1),f(2),...)\equiv(f_1,f_2,..._\equiv(f_k)_k$ is a sequence!
+$$\ell^p=
+	\{
+	\text{all real-valued sequences }
+	f=(f_k)_k
+	\text{ s.t. }
+	\sum_{k=1}^\infty|f_k|^p<\infty
+	\}$$
+Specially, when $p=1$, the space $\ell^1$ is the set of all \underline{absolutely convergent series}!.
+\begin{remark}
+We can add weights to the measures in examples above, the resulting space is denoted $\ell^p(\eta)$, where we define 
+$\mu(\{j\})=\eta_j, \eta_j \geq 0, \forall j\in\natu$, thus the norm is $$\norm{f}_{\ell^p(\eta)}=\sum_{j=1}^\infty|f_j|^p\eta_j
+$$
+\end{remark}
+
+\underline{Example 2}\\
+$X=\real^n$ for some $n\in\natu$, $\mathcal{A}=$ Borel $\sigma$-algebra, $\mu=$Lebesgue meausre, we denote the space as $L^P(\real^n)$, which has norm:  
+
+$$\norm{f}_p=\left(\int|f|^p{\rm d}x\right)^\frac{1}{p}$$  
+
+where we are integrating w.r.t the Lebesgue measure. \\  
+
+More generally, $x\subset \real^n$ open/closed $\mathrel{\leadsto} L^P(X)$, e.g. $n=1$, $X=[0,1]$.
+
+
+
+\begin{theorem}
+	Let $(X,\mathcal{A},\mu)$ be {\underline {any}} measure space. Then:
+	\begin{itemize}
+		\item [i)] $\norm{f}_p$ defines a \underline{norm} $\forall p\in[1,\infty]$, triangular inequality (Minkowski ineq.) holds: $\norm{f+g}_p\leq\norm{f}_p+\norm{g}_p$.
+		\item [ii)] Holders inequality holds: if $\frac{1}{p}+\frac{1}{q}=1$ with $p,q\in[1,\infty]$, then $\forall f\in L^p(\mu),\,\forall g\in L^q(\mu)$, then $f\cdot g\in L^1(\mu)$ and $\norm{fg}_{L^1(\mu)}\leq\norm{f}_{L^1(\mu)}\norm{g}_{L^1(\mu)}$
+		\item [iii)] $L^p(\mu)$ is complete
+	\end{itemize}
+\end{theorem}
+
+\begin{definition}[Banach Space]
+	A normed linear space $(X,\norm{\cdot}$ which is complete w.r.t the induced metric is called \textbf{Banach space}.\\
+	Explanation:
+	\begin{itemize}
+		\item $\norm\cdot$ is a norm. See definition 3 in notes.
+		\item the induced metric is $d(x,y)=\norm{x-y}$. It is a metric (proposition 2 in the notes) % d(x,y) is the notation used in year-2 analysis 
+		\item $X$ complete w.r.t. $d$: every Cauchy sequence converges.
+		\item Cauchy sequence: $(f_n)_n\subset X$ s.t. $\forall \varepsilon>0,\,\exists N\,\forall m,n\geq N,\,d(f_m,f_n)<\varepsilon$
+	\end{itemize}
 \end{definition}
 
+\begin{remark}
+	Theorem asserts $L^P(\mu)$ is a Banach space. Apply in the case of 1 to get immediately all of theorem 2, exercise 10-12 proposition 7 example 12-14 and much more
+	!
 
-\begin{proposition}[Schauder implies separability]\rm\nextline
-	If a normed vector space has a Schauder basis, then it's separable.
+\end{remark}
+
+\underline{Furthur examples}\\
+3. $C([a,b])=\{f:[a,b]\to\real,\,\text{continuous}\}$ with $\norm{f}_\infty=\sup_{x\in[a,b]}|f(x)|$\\
+4. $C^r([a,b])$, similar to above but $f$ is set to be r-times continuously differentiable. In particular $C=C[(a,b)]=C^0[(a,b)]$.  $\norm{f}_{r,\infty}=\sup_{x\in[a,b],1\leq k\leq r}|f^{(k)}(x)|$\\
+5. Sobolev space, for solving PDE(not this course).
+
+\begin{proposition}
+	$(C[0,1],\norm{\cdot}_\infty)$ is complete.
 \end{proposition}
+\underline{General strategy to show completeness of  $(X,\norm{\cdot})$}: For a given Cauchy sequence $(f_n)\subset X$
+\begin{enumerate}
+\item  find candidate limit $f$
+\item  show $\norm{f_n-f}\xrightarrow{n\to\infty}0$
+\item  show $f\in X$
+\end{enumerate}
+	
 
-% Following parts causes bug, why?
-% \begin{definition}[Hamel basis]\rm\nextline
-% 	\placeholder
-% 	sadsadsad
-% \end{definition}
+\begin{proof}\nl
+\underline{STEP I}  Let $(f_n)\subset C$ be Cauchy sequence, i.e. $\forall \varepsilon>0,\,\exists N,\,\forall m,n\geq N:\,\norm{f_m-f_n}_\infty<\varepsilon$.\\
+But $\norm{f_n-f_m}_\infty\geq|f_n(x)-f_m(x)|,\,\forall x\in[0,1]$ so $\left(f_n(x)\right)$ is Cauchy sequence in $\real$ $\forall  x\in[0,1]$. Since $\real$ is complete, it has a limit. Call it $f(x)=\lim_{n\to\infty}f_n(x)$.\\
 
-% \begin{remark}[Hamel basis and Schauder basis]\rm\nextline
-% 	\placeholder
-% 	sadasddas
-% \end{remark}
+\underline{STEP II} 
+$|f_n(x)-f_m(x)|<\varepsilon\,\forall n,m\geq N,\,\forall x\in[0,1]$, which implies
+$\lim_{n\to\infty}|f_n(x)-f_m(x)|<\varepsilon$, we also have that $lim_{n\to\infty}|f_n(x)-f_m(x)|=|f(x)-f_m(x)|$ by continuity of $f$.\\
+
+\underline{STEP III} 
+To show $f\in C$, need to argue 
+\[
+\forall x,\,\varepsilon>0,\,\exists\delta:\,|x-y|<\delta\implies |f(x)-f(y)|<\varepsilon \tag{$C1$}\label{C1}
+\]
+Now we use $\varepsilon/3$ argument. Write for any $n\in\natu$ and $x,y\in[0,1]$,
+\[
+	|f(x)-f(y)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\tag{$C2$}\label{C2}
+\]
+First, using STEP II, pick $n$ s.t. $\norm{f_n-f}_\infty<\frac{\varepsilon}{3}$, whence
+\[
+	|f(x)-f_n(x)|<\frac{\varepsilon}{3},\,|f(y)-f_n(y)|<\frac{\varepsilon}{3},\,\,\forall x,y\in[0,1]\tag{$C3$}\label{C3}
+\]
+Then, with $n$ now fixed, using continuity of $f_n$, pick $\delta>0$ s.t.
+\[
+	|f_n(x)-f_n(y)|<\frac{\varepsilon}{3}\text{ whenever } |x-y|<\delta\tag{$C4$}\label{C4}
+\]
+Substitute \Cref{C4},\Cref{C3} into \Cref{C2} to get \Cref{C1}.
+
+\end{proof}
 
 
+\begin{remark}
+	\begin{itemize}
+		\item \cref{C3} is well-known from analysis I-II. $\lim_{n\to\infty}\norm{f_n-f}_\infty=0$ is precisely the \underline{uniform convergence} of $(f_n)$ towards $f$. so 3 asserts that "uniform limit of a sequence of continuous functions is again continuous".
+		\item $f_n(x)=x^n$ is not a Cauchy sequence in $(c,\norm{\cdot}\infty$, yet $f_n(x)\xrightarrow{n\to\infty} f(x)=1_{\{1\}}(x)$.
+		\item if instead consider $f_n(x)=x^n$ to be elements of $L^1([0,1])$:
+		      $$\int_0^1f_n{\rm d}x=\left.\frac{x^{n+1}}{n+1}\right|^1_0=\frac{1}{n+1}<\infty$$
+		      Then $(f_n)\subset L^1([0,1])$ a Cauchy sequence(Ex.), and converges by  completeness of $L^p(\mu)$. The limit in $L^1([0,1])$ is $f=0$:
+		      $$\norm{f_n}_{L^1([0,1])}=\norm{f_n-0}_{L^1([0,1])}=(n+1)^{-1}\xrightarrow{n\to\infty}0$$
+	\end{itemize}
 
-
+\end{remark}
 \end{document}
 
