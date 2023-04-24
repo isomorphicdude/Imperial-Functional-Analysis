@@ -135,7 +135,8 @@ cf. \Cref{examples of compact operators}
     \item \func{S}{\ell^2}{\ell^2}, $S(x_1,x_2...)=(0,x_1,x_2...)$. Then $0\in\sigma(S)$:   
     
     Indeed $S$ is not invertible since it's not surjective: $\forall y\in\ell^2$ with $y_1\neq0$, $ y\notin im(S)$, but $0\notin\sigma_p(S)$: $S$ is injective.\\
-    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_{(n+1)},\,\,\forall n\in\natu\implies x_k=0$ for all $k\in\natu$. So $\sigma_p(S)=\emptyset$. In fact, $\sigma(S)=\overline{D}=\{\xi\in\comp:|\xi|\leq1\}$, $\sigma_p(S)=D$, $\sigma_c(S)=\partial D=S^1$.
+    In fact $Sx=\lambda x\implies0=\lambda x_1$, $x_n=\lambda x_{(n+1)},\,\,\forall n\in\natu\implies x_k=0$ for all $k\in\natu$. So $\sigma_p(S)=\emptyset$. (In fact, $\sigma(S)=\overline{D}=\{\xi\in\comp:|\xi|\leq1\}$ the closed unit disk, $\sigma_r(S)=D$, $\sigma_c(S)=\partial D=S^1$, the unit circle.)
+    % can be seen by considering \xi>1, and show injectivity and surjectivity
 
     \item $X=\comp^n$, $\sigma(\cdot)=\sigma_p(\cdot)$
 
@@ -260,6 +261,7 @@ Let $A\subset \dual{A}$ (\textit{i.e.} $A$ is symmetric). Then
 % mind Im and im, Im is imaginary part and im is image. Pay attention  to the difference.
 The example also nicely illustrates:
 \begin{proposition}
+\label{proposition: self adjoint operators have real spectrum}
 	If $A=\dual{A}$, then $\sigma(A)\subset \real$
 \end{proposition}
 \begin{proof}
@@ -322,6 +324,7 @@ Following is an extension (!) of the familiar result from linear algebra concern
 \end{example}
 We start with the following lemma:
 \begin{lemma}[Lemma 1]
+\label{lemma: eigenvectors are orthogonal for T self-adjoint}
 	$T\in\mathcal{L}(H)$, self-adjoint. If $\lambda_1\neq\lambda_2$, $\lambda_1,\lambda_2\in\sigma_p(T)$ with eigenvectors $e_1,e_2$, i.e. $\lambda_1 e_1=Te_1$ and $\lambda_2e_2=Te_2$, then $\inne{e_1}{e_2}=0$
 \end{lemma}
 \begin{proof}
@@ -334,20 +337,24 @@ We start with the following lemma:
 		Since $\lambda_1\neq\lambda_2$, $\inne{e_1}{e_2}=0$. 
 \end{proof}
 
-Henceforth, we always assume \func{T}{H}{H} is compact and self-adjoint. In particular, Lemma 1 is in force.\\
+Henceforth, we always assume \func{T}{H}{H} is compact and self-adjoint. In particular, Lemma 1(\Cref{lemma: eigenvectors are orthogonal for T self-adjoint}) is in force.\\
 Define, for $\lambda\in\sigma_p(T)\setminus\{0\}$, 
 $$X_\lambda=ker(\lambda-T)\neq\{0\}$$
-By Lemma 1:
+% the kernel is a closed subspace hence can take orthogonal complement
+By  Lemma 1(\Cref{lemma: eigenvectors are orthogonal for T self-adjoint}):
 $$X_{\lambda} \perp X_{\lambda '} \qquad \forall \lambda \neq {\lambda '} \ \text{and} \ \lambda , {\lambda '} \in \sigma_p(T)\setminus\{0\}$$
-\begin{lemma}[Lemma 2]
-	$\lambda\in\sigma_p(T)\setminus\{0\}$.
+
+
+\begin{lemma}[Lemma 2]\nl
+\label{lemma: eigenspaces have finite dimensions for compact self-adjoint operators}
+	Let $\lambda\in\sigma_p(T)\setminus\{0\}$.
 	\begin{enumerate}[i)]
 		\item $\dim (X_\lambda)<\infty$
 		\item $\forall r>0$: $\sigma_p(T)\setminus B_r(0)$ is finite.
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
-		i) Let $B_r^{X_\lambda}(0)=\{x\in X_\lambda:\norm{x}_H<r\}$, which is a bounded set. By compactness of $T$, $T(B_r^{X_\lambda}(0))$ is compact. 
+		i) Let $B_r^{X_\lambda}(0)=\{x\in X_\lambda:\norm{x}_H<r\}$, which is a bounded set. By compactness of $T$, $\overline{T(B_r^{X_\lambda}(0))}$ is compact. 
   But since $Tx=\lambda x\, \ \forall x\in X_\lambda$, taking $r=1$
   
   $$T(B_1^{X_\lambda}(0))=\lambda B_1^{X_\lambda}(0)$$
@@ -356,20 +363,27 @@ $$X_{\lambda} \perp X_{\lambda '} \qquad \forall \lambda \neq {\lambda '} \ \tex
   \begin{center}
         $\lambda\overline{(B_1^{X_\lambda}(0))}$ is compact $\implies \overline{B_1^{X_\lambda}(0)}$ is compact $\implies \dim(X_\lambda)<\infty$
   \end{center}
-ii) Suppose not, then $\exists r>0$: $\sigma_p(T)\setminus B_r(0)$ is infinite (one can show $\sup_{\lambda\in\sigma_p(T)}|\lambda|<\infty$). 
+\begin{unexaminable}
+    By \Cref{thm: unit ball not compact in infty dim}, the unit ball is compact if and only if the space is finite dimensional
+\end{unexaminable}
+ii) Suppose not, then $\exists r>0$: $\sigma_p(T)\setminus B_r(0)$ is infinite (one can show $\sup_{\lambda\in\sigma_p(T)}|\lambda|<\infty$, no proof provided here).  
+\begin{unexaminable}
+    A proof of $\sup \sigma(A)=\sup_{\norm{x}=1}\inne{x}{Ax}$ can be found on Pg.231(243 in pdf) in THEOREM 5.3.16 of \href{https://people.math.ethz.ch/~salamon/PREPRINTS/funcana-ams.pdf}{\textcolor{blue}{the notes provided on Blackboard}}.
+\end{unexaminable}
+
 Then one can pick sequence $(\lambda_k)\subset\sigma_p(T)$ with 
 \begin{center}
-$\lambda_k\neq\lambda_l, \ \forall k\neq l$ and $|\lambda_k|>r, \ \forall k$    
+$\lambda_k\neq\lambda_l, \ \forall k\neq l$ and $|\lambda_k|>r, \ \forall k \in \natu$    
 \end{center}
 
 Let $e_k\neq0$ be eigenvector for $\lambda_k$: 
 
-$$Te_k=\lambda_ke_k\,\forall k$$ 
+$$Te_k=\lambda_ke_k\qquad \forall k\in \natu$$ 
 % {\color{red}{Are those normalised eigenvectors?}!!!!!!!!!!!!!!!!!!!}
 By compactness of $T$, $\exists\Lambda\subset\natu$ such that for some $y\in H$, $$Te_k\xrightarrow[k\to\infty,k\in\Lambda]{\norm{\cdot}_H}y\in H$$
 		Hence,
 		$$(\lambda_ke_k)\xrightarrow[k\to\infty,k\in\Lambda]{\norm{\cdot}_H}y\in H$$
-		In particular, $(\lambda_ke_k))_{k\in\Lambda}$ is Cauchy. But for $k\neq l$,
+		In particular, $(\lambda_ke_k)_{k\in\Lambda}$ is Cauchy. But for $k\neq l$,
 		$$\norm{\lambda_ke_k-\lambda_le_l}^2_H=
                 \inne{\lambda_ke_k}{\lambda_ke_k}
 			+\inne{\lambda_le_l}{\lambda_le_l}
@@ -385,19 +399,25 @@ By compactness of $T$, $\exists\Lambda\subset\natu$ such that for some $y\in H$,
 Now return to the proof of \Cref{riesz schauder}.  
 
 \begin{proof}
-	Proof of i) see last week.\\
-	ii) By Lemma 2 ii),
+        i) $\sigma(T) \subset \real$ by \Cref{proposition: self adjoint operators have real spectrum}.  
+        
+	ii) By Lemma 2 ii)(\Cref{lemma: eigenspaces have finite dimensions for compact self-adjoint operators}),
 	$$A_n=\sigma_p(T)\cap\{z:\frac{1}{n+1}\leq|z|\leq\frac{1}{n}\}(\subset \sigma_p(T)\setminus B_{1/(n+1)}(0))$$
 	is finite and $\sigma_p(T)\setminus\{0\}=\bigcup_n A_n$ is thus countable. This also implies $\sigma_p(T)\setminus\{0\}$ has no accumulation point.\\
-	iii) By applying Gram-Schmidt to the (finite-dimensional) space $X_\lambda$, $\lambda\in\sigma_p(T)\setminus\{0\}$, can ensure that eigenvectors $e_k$, $e_l$ to eigenvalues $\lambda_k=\lambda_l$ are orthonormal. If they belong
-	% remark: Lemma 2 gives important structural information on the spectrum. In particular, ii) implies that $\sigma_p(T)\setminus\{0\}$ is countable with no accumulation point and by I) each eigenvalue has finite multiplicity.
-	to distinct eigenvalues $\lambda+k \neq \lambda_l$ this is automatic after normalizing them to have norm 1 by lemma 1.\\
+	iii) By applying Gram-Schmidt to the (finite-dimensional) space $X_\lambda$, $\lambda\in\sigma_p(T)\setminus\{0\}$, can ensure that eigenvectors $e_k$, $e_l$ to eigenvalues $\lambda_k=\lambda_l$ are orthonormal (that is $e_k \perp e_l$ and $\norm{e_k}=\norm{e_l}=1$). If they belong to distinct eigenvalues,  this is automatic after normalizing them to have norm 1 by lemma 1.\\  
+
+ \begin{remark}
+      Lemma 2 gives important structural information on the spectrum. In particular, ii) implies that $\sigma_p(T)\setminus\{0\}$ is countable with no accumulation point and by i) each eigenvalue has "finite multiplicity".
+ \end{remark}  
+ 
 	So let $(\lambda_k)$ be the elements of $\sigma_p(T)\setminus\{0\}$, counted with multiplicities( i.e. $\dim(X_{\lambda_k})$ copies of $\lambda_k$. Let
 	$$
 		X\defeq\overline{span\{e_k\}}=\overline{\bigoplus_{\lambda\in\sigma_p(T)\setminus\{0\}}X_\lambda}
 	$$
 	\textbf{Claim 1:} $\forall x\in X$: $x=\sum_k \inne{x}{e_k}e_k$\\
-	proof: Let $x_n=\sum_{k \leq n} \inne{x}{e_k}e_k$.
+	Proof of Claim1:   
+ 
+        Let $x_n=\sum_{k \leq n} \inne{x}{e_k}e_k$.
 	Then $\forall n\geq0$,
 	$$
 	\norm{x_n}_H^2=\sum_{k\leq n}|\inne{x}{e_k}|^2=\inne{x_n}{x}\leq\norm{x_n}_H\norm{x}_H$$
@@ -412,7 +432,7 @@ Now return to the proof of \Cref{riesz schauder}.
 	It remains to argue:\\
 	{\bf Claim 2}: $Y\defeq X^\perp=ker(T)$, which concludes the proof.  
  
-	Proof of claim2:\\
+	Proof of Claim2:\\
 	If $Y=\{0\}$, it's trivial. So one can assume $Y\neq\{0\}$. First, note that
 	\begin{equation}T(Y)\subset Y\tag{$*$}\end{equation}
 	For, if $y\in Y$ then $\forall k$:
@@ -420,7 +440,11 @@ Now return to the proof of \Cref{riesz schauder}.
 	By $(*)$,
 	\[T_Y=T|_Y:Y\to Y\] is well defined. $T_Y$ inherits compactness and self-adjointness from $T$ (exercise). We want to show that \func{T_Y}{Y}{Y}: $y\mapsto0 $ is the  "0-map" on $Y$, or equivalently, $\norm{T_Y}_{\mathcal{L}(X)}=0$. If not, one can show (no proof) that
 	\[\sigma_p(T_Y)\setminus\{0\}\neq\emptyset\]
-	(in fact $+\lambda$ or $-\lambda$ is an eigenvalue where $\lambda=\norm{T_Y}_{\mathcal{L}(X)}$) But this can't be because if $e\in Y$ is an eigenvector for $\lambda\in \sigma_p(T_Y)$, $\lambda\neq 0$, then
+	(in fact $+\lambda$ or $-\lambda$ is an eigenvalue where $\lambda=\norm{T_Y}_{\mathcal{L}(X)}$)   
+ % \begin{unexaminable}
+     
+ % \end{unexaminable}
+ But this can't be because if $e\in Y$ is an eigenvector for $\lambda\in \sigma_p(T_Y)$, $\lambda\neq 0$, then
 	\[Te\stackrel{e\in Y}{=}T_Y e=\lambda e\]
 	So $e\in X_\lambda\subset X=Y^\perp$. But $Y^\perp\cap Y=\{0\}$.
 \end{proof}
