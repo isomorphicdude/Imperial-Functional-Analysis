@@ -15,7 +15,7 @@
 \label{sublinear map}
 	Let $X$ be a vector space. \func{p}{X}{\real} is called \textbf{sublinear} if the following holds
 	\begin{enumerate}[i)]
-		\item $p( \alpha x)= \alpha p(x),$ $\forall x\in X$ and $\alpha\geq0$
+    		\item $p( \alpha x)= \alpha p(x),$ $\forall x\in X$ and $\alpha\geq0$
 		\item $p(x+y) \leq p(x)+p(y),\,\,\forall x,y\in X$
 	\end{enumerate}
 \end{definition}
@@ -80,7 +80,7 @@
     $$
     ($M\subset X$ linear). Extend $f$ to $M_1$, such that ($*$) holds on $M_1$, then 'repeat'  
 
-    \underline{\textbf{Step (I)}}\nl
+    \underline{\textbf{Step (I)}}
     
     For all $x,y \in M$: 
     $$
@@ -125,7 +125,7 @@
 
 NB: If $X$ has a countable basis $\{e_1, i\geq 1\}$ [e.g. $\ell^p, p\in [1,\infty)$], then we can take $x_1=e_1$ and proceed by induction. For the general case, we use:
 
-\underline{\textbf{Step (II)}}\nl
+\underline{\textbf{Step (II)}}
 \begin{proof}(continued:)
 \begin{lemma}[Zorn's lemma]\nl
 \label{Zorn's Lemma}
@@ -354,9 +354,9 @@ Let $X,Y$ be normed linear spaces and $A \in \blf{X}{Y}$. The dual operator \fun
 
 \begin{proof}
 \begin{align*}
-    \norm{\dual{A}} &\stackrel{\textrm{def \ of} \ \norm{\cdot}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}} \norm{\dual{A} \dual{y}}_{\dual{X}} \\
-    &\stackrel{\textrm{def \ of} \  \norm{\cdot}_{\dual{X}}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}} \sup_{\norm{x}_X=1} |\inne{\dual{A}\dual{y}}{x}| \\
-    &\stackrel{\textrm{def \ of} \ \dual{A}}{=} \sup_{\norm{x}_X=1}  \sup_{\norm{\dual{y}}_{\dual{Y}}}  |\inne{\dual{y}}{Ax}| \\
+    \norm{\dual{A}} &\stackrel{\textrm{def \ of} \ \norm{\cdot}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}=1} \norm{\dual{A} \dual{y}}_{\dual{X}} \\
+    &\stackrel{\textrm{def \ of} \  \norm{\cdot}_{\dual{X}}}{=} \sup_{\norm{\dual{y}}_{\dual{Y}}=1} \sup_{\norm{x}_X=1} |\inne{\dual{A}\dual{y}}{x}| \\
+    &\stackrel{\textrm{def \ of} \ \dual{A}}{=} \sup_{\norm{x}_X=1}  \sup_{\norm{\dual{y}}_{\dual{Y}}=1}  |\inne{\dual{y}}{Ax}| \\
     &\stackrel{\phantom{\textrm{def \ of} \ \dual{A}}}{=} \sup_{\norm{x}_X=1} \norm{Ax}_Y
 \end{align*}
 where in the last step we used the "$\leq$" direction in the proof of \Cref{duality of norm} holds and the supremum over $\dual{y}$ is attained by \Cref{existence of functional equals norm squared}.  

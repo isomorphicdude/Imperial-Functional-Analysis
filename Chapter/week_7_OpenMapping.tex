@@ -22,7 +22,7 @@ $$
 \end{definition}
 
 \begin{definition}[Open map]\nl
-	Let $X$, $Y$ be linear spaces. \func{A}{X}{Y} is \textbf{open} if $A(U)\subset Y $ is open.
+	Let $X$, $Y$ be linear spaces. \func{A}{X}{Y} is \textbf{open} if $A(U)\subset Y $ is open whenever $U\subset X$ is open.
 \end{definition}
 \begin{remark}
 \phantom{something}
@@ -34,7 +34,7 @@ $$
 
 \begin{theorem}[Open Mapping Theorem]\nl
 \label{open mapping theorem}
-	Let $X,Y$ be Banach, $A\subset\mathcal{L}(X,Y)$. Then:
+	Let $X,Y$ be Banach, $A\in \mathcal{L}(X,Y)$. Then:
 	\begin{itemize}
 	    \item[i)] if $A$ is surjective, $A$ is open.
 	    \item[ii)] if $A$ is bijective, then $A^{-1}\in \mathcal{L}(X,Y)$. (Inverse operator theorem)
@@ -221,10 +221,10 @@ Let $A\in\mathcal{L}(X,Y)$ with $D(A)=X$. Then $A$ is closed.
  
 	We know $ y_k=Ax_k$ and $\norm{x_k-x}_X\xrightarrow{k\to\infty}0$, $\norm{Ax_k-y}_Y\xrightarrow{k\to\infty}0$
 	But $\forall k\geq 1$,
-	$$\norm{y-Ax}_Y\leq\norm{y-Ax}_Y+\norm{Ax_k-ax}_Y
-	\leq \norm{y-Ax}_Y+\norm{A}\norm{x_k-x}_X$$
+	$$\norm{y-Ax}_Y\leq\norm{y-Ax_k}_Y+\norm{Ax_k-Ax}_Y
+	\leq \underbrace{\norm{y-Ax_k}_Y}_{\to0\text{ as } k\to\infty}+\norm{A}\underbrace{\norm{x_k-x}_X}_{\to0\text{ as } k\to\infty}$$
 	Thus 
-	$$\lim_{k\to\infty}\norm{y-Ax}_Y\leq\lim_{k\to\infty}\norm{y-Ax}_Y+\norm{A}\norm{x_k-x}_X=0$$
+	$$\lim_{k\to\infty}\norm{y-Ax}_Y\leq\lim_{k\to\infty}\left(\norm{y-Ax}_Y+\norm{A}\norm{x_k-x}_X\right)=0$$
 \end{proof}
 
 \begin{theorem}[Closed Graph]\nl

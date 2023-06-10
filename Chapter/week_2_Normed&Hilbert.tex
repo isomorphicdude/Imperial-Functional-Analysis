@@ -107,7 +107,7 @@ see also MATH50006 proof of (4.13).
 
 	Let $(X,\norm{\cdot})$ be a normed linear space. A \textbf{Schauder basis} of $X$ is a sequence of linearly independent $(e_i)_{i\in \natu}, e_i \in X$, such that $\forall x \in X$,  there is a \textit{unique} sequence $(a_n)_{n\in \natu}, a_n \in \real$ with
 	$$
-		\norm{x - \lim_{n\to\infty}\sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
+		\norm{x - \sum_{i=1}^n a_i e_i} \overset{n\to \infty}{\longrightarrow} 0
 	$$
 \end{definition}
 
@@ -150,7 +150,7 @@ see also MATH50006 proof of (4.13).
 	$$
 		\norm{x-\sum_{i=1}^n x_ie_i}_p^p = \sum_{i=n+1}^{\infty} |x_i|^p \overset{n\to \infty}{\longrightarrow} 0
 	$$
-	since $\norm{x}_0 < \infty$.
+	since $\norm{x}_p < \infty$.
 \end{example}
 
 
@@ -187,7 +187,7 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 	If $\left<\cdot,\cdot\right>$ is an inner product on $X$, define $\norm{x}\overset{\textrm{def}}{=}\sqrt{\inne{x}{x}}$.
 	\begin{enumerate}[i)]
 		\item (Cauchy-Schwarz) $\ \forall x,y\in X$,
-		      $$|\inne{x}{y}|^2\leq \norm{x} \norm{y}$$
+		      $$|\inne{x}{y}|\leq \norm{x} \norm{y}$$
 		\item $\norm{x}$ is a norm
 	\end{enumerate}
 \end{theorem}
@@ -218,7 +218,7 @@ In this section we work with linear space $H$ over $\mathbb{K} = \real$. For con
 		\left\{\{x_k\}_{k\in \natu}:\sum_{k=1}^\infty |x_k|^2<\infty \right\}$
 	is a Hilbert space with inner product defined by
 	$
-		\inne{x}{y}=\sum_{k=1}^\infty \,{x_k \overline{y_k}}
+		\inne{x}{y}=\sum_{k=1}^\infty \,{x_k y_k}
 	$
 \end{example}
 
